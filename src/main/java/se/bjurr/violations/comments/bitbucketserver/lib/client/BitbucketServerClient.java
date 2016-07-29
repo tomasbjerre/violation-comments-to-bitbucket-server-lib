@@ -2,7 +2,6 @@ package se.bjurr.violations.comments.bitbucketserver.lib.client;
 
 import static com.google.common.collect.Lists.newArrayList;
 
-import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -34,36 +33,30 @@ public class BitbucketServerClient {
   this.bitbucketServerUser = bitbucketServerUser;
  }
 
- public List<String> pullRequestChanges() throws IOException {
+ public List<String> pullRequestChanges() {
   return invokeAndParse(getBitbucketServerPulLRequestBase() + "/changes?limit=999999", "$..path.toString");
  }
 
- public void pullRequestComment(String message) throws IOException {
-  String postContent = "{ \"text\": \"" + message.replaceAll("\"", "") + "\"}";
+ public void pullRequestComment(String message) {
+  String postContent = "{ \"text\": \"" + safeJson(message) + "\"}";
   bitbucketServerInvoker.invokeUrl(getBitbucketServerPulLRequestBase() + "/comments",
     BitbucketServerInvoker.Method.POST, postContent, this.bitbucketServerUser, this.bitbucketServerPassword);
  }
 
- public void pullRequestComment(String changedFile, int line, String message) throws IOException {
-  String postContent = "{ \"text\": \"" + message.replaceAll("\"", "") + "\", \"anchor\": { \"line\": \"" + line
-    + "\", \"lineType\": \"ADDED\", \"fileType\": \"TO\", \"path\": \"" + changedFile + "\" }}";
+ public void pullRequestComment(String changedFile, int line, String message) {
+  String postContent = "{ \"text\": \"" + safeJson(message) + "\", \"anchor\": { \"line\": " + line
+    + ", \"lineType\": \"ADDED\", \"fileType\": \"TO\", \"path\": \"" + changedFile + "\" }}";
   bitbucketServerInvoker.invokeUrl(getBitbucketServerPulLRequestBase() + "/comments",
     BitbucketServerInvoker.Method.POST, postContent, this.bitbucketServerUser, this.bitbucketServerPassword);
  }
 
- public List<BitbucketServerComment> pullRequestComments() throws IOException {
-  List<LinkedHashMap<?, ?>> parsed = invokeAndParse(getBitbucketServerPulLRequestBase() + "/comments?limit=999999",
-    "$.values[*]");
-  return toBitbucketServerComments(parsed);
- }
-
- public List<BitbucketServerComment> pullRequestComments(String changedFile) throws IOException {
+ public List<BitbucketServerComment> pullRequestComments(String changedFile) {
   List<LinkedHashMap<?, ?>> parsed = invokeAndParse(getBitbucketServerPulLRequestBase() + "/comments?path="
     + changedFile + "&limit=999999", "$.values[*]");
   return toBitbucketServerComments(parsed);
  }
 
- public void pullRequestRemoveComment(Integer commentId, Integer commentVersion) throws IOException {
+ public void pullRequestRemoveComment(Integer commentId, Integer commentVersion) {
   bitbucketServerInvoker.invokeUrl(getBitbucketServerPulLRequestBase() + "/comments/" + commentId + "?version="
     + commentVersion, BitbucketServerInvoker.Method.DELETE, null, this.bitbucketServerUser,
     this.bitbucketServerPassword);
@@ -74,7 +67,7 @@ public class BitbucketServerClient {
     + this.bitbucketServerRepo + "/pull-requests/" + this.bitbucketServerPullRequestId;
  }
 
- private <T> T invokeAndParse(String url, String jsonPath) throws IOException {
+ private <T> T invokeAndParse(String url, String jsonPath) {
   String json = bitbucketServerInvoker.invokeUrl(url, BitbucketServerInvoker.Method.GET, null,
     this.bitbucketServerUser, this.bitbucketServerPassword);
   try {
@@ -82,6 +75,10 @@ public class BitbucketServerClient {
   } catch (Exception e) {
    throw e;
   }
+ }
+
+ private String safeJson(String message) {
+  return message.replaceAll("\"", "").replaceAll("\n", "\\\\n");
  }
 
  private List<BitbucketServerComment> toBitbucketServerComments(List<LinkedHashMap<?, ?>> parsed) {

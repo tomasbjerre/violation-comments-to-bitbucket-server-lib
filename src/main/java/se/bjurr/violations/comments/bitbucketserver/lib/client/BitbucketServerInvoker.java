@@ -14,6 +14,8 @@ import java.net.URL;
 
 import javax.xml.bind.DatatypeConverter;
 
+import com.google.common.base.Throwables;
+
 public class BitbucketServerInvoker {
 
  public enum Method {
@@ -21,7 +23,7 @@ public class BitbucketServerInvoker {
  }
 
  public String invokeUrl(String url, Method method, String postContent, String bitbucketServerUser,
-   String bitbucketServerPassword) throws IOException {
+   String bitbucketServerPassword) {
   HttpURLConnection conn = null;
   OutputStream output = null;
   BufferedReader reader = null;
@@ -50,15 +52,21 @@ public class BitbucketServerInvoker {
    }
    String json = stringBuilder.toString();
    return json;
+  } catch (Exception e) {
+   throw new RuntimeException("Error calling:\n" + url + "\n" + method + "\n" + postContent, e);
   } finally {
    try {
-    conn.disconnect();
-    reader.close();
+    if (conn != null) {
+     conn.disconnect();
+    }
+    if (reader != null) {
+     reader.close();
+    }
     if (output != null) {
      output.close();
     }
    } catch (IOException e) {
-    throw e;
+    throw Throwables.propagate(e);
    }
   }
  }
