@@ -25,7 +25,11 @@ public class BitbucketServerClient {
 
  public BitbucketServerClient(String bitbucketServerBaseUrl, String bitbucketServerProject, String bitbucketServerRepo,
    Integer bitbucketServerPullRequestId, String bitbucketServerUser, String bitbucketServerPassword) {
-  this.bitbucketServerBaseUrl = bitbucketServerBaseUrl;
+  if (bitbucketServerBaseUrl.endsWith("/")) {
+   this.bitbucketServerBaseUrl = bitbucketServerBaseUrl.substring(0, bitbucketServerBaseUrl.length() - 1);
+  } else {
+   this.bitbucketServerBaseUrl = bitbucketServerBaseUrl;
+  }
   this.bitbucketServerPassword = bitbucketServerPassword;
   this.bitbucketServerProject = bitbucketServerProject;
   this.bitbucketServerPullRequestId = bitbucketServerPullRequestId;
