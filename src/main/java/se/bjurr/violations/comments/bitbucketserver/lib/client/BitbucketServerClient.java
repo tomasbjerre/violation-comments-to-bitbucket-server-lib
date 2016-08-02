@@ -48,6 +48,9 @@ public class BitbucketServerClient {
  }
 
  public void pullRequestComment(String changedFile, int line, String message) {
+  if (line == 0) {
+   line = 1;
+  }
   String postContent = "{ \"text\": \"" + safeJson(message) + "\", \"anchor\": { \"line\": " + line
     + ", \"lineType\": \"ADDED\", \"fileType\": \"TO\", \"path\": \"" + changedFile + "\" }}";
   bitbucketServerInvoker.invokeUrl(getBitbucketServerPulLRequestBase() + "/comments",
