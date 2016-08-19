@@ -1,10 +1,12 @@
 package se.bjurr.violations.comments.bitbucketserver.lib;
 
-import static com.google.common.base.Throwables.propagate;
 import static com.google.common.collect.Lists.newArrayList;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import se.bjurr.violations.comments.bitbucketserver.lib.client.BitbucketServerClient;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.BitbucketServerComment;
@@ -13,6 +15,8 @@ import se.bjurr.violations.comments.lib.model.Comment;
 import se.bjurr.violations.comments.lib.model.CommentsProvider;
 
 public class BitbucketServerCommentsProvider implements CommentsProvider {
+
+ private static final Logger LOG = LoggerFactory.getLogger(BitbucketServerCommentsProvider.class);
 
  private final BitbucketServerClient client;
 
@@ -78,12 +82,14 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
  @Override
  public void removeComments(List<Comment> comments) {
   for (Comment comment : comments) {
+   Integer commentId = null;
+   Integer commentVersion = null;
    try {
-    Integer commentId = Integer.valueOf(comment.getIdentifier());
-    Integer commentVersion = Integer.valueOf(comment.getSpecifics().get(0));
+    commentId = Integer.valueOf(comment.getIdentifier());
+    commentVersion = Integer.valueOf(comment.getSpecifics().get(0));
     this.client.pullRequestRemoveComment(commentId, commentVersion);
    } catch (Exception e) {
-    throw propagate(e);
+    LOG.warn("Was unable to remove comment " + commentId + " " + commentVersion, e);
    }
   }
  }
