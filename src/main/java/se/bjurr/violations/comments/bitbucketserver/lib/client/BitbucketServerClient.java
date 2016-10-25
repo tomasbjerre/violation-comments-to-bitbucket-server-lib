@@ -17,6 +17,7 @@ public class BitbucketServerClient {
  }
 
  private final String bitbucketServerBaseUrl;
+
  private final String bitbucketServerPassword;
  private final String bitbucketServerProject;
  private final Integer bitbucketServerPullRequestId;
@@ -37,6 +38,21 @@ public class BitbucketServerClient {
   this.bitbucketServerUser = bitbucketServerUser;
  }
 
+ private String getBitbucketServerPulLRequestBase() {
+  return bitbucketServerBaseUrl + "/rest/api/1.0/projects/" + bitbucketServerProject + "/repos/" + bitbucketServerRepo
+    + "/pull-requests/" + bitbucketServerPullRequestId;
+ }
+
+ private <T> T invokeAndParse(String url, String jsonPath) {
+  String json = bitbucketServerInvoker.invokeUrl(url, BitbucketServerInvoker.Method.GET, null, bitbucketServerUser,
+    bitbucketServerPassword);
+  try {
+   return JsonPath.read(json, jsonPath);
+  } catch (Exception e) {
+   throw e;
+  }
+ }
+
  public List<String> pullRequestChanges() {
   return invokeAndParse(getBitbucketServerPulLRequestBase() + "/changes?limit=999999", "$..path.toString");
  }
@@ -44,7 +60,7 @@ public class BitbucketServerClient {
  public void pullRequestComment(String message) {
   String postContent = "{ \"text\": \"" + safeJson(message) + "\"}";
   bitbucketServerInvoker.invokeUrl(getBitbucketServerPulLRequestBase() + "/comments",
-    BitbucketServerInvoker.Method.POST, postContent, this.bitbucketServerUser, this.bitbucketServerPassword);
+    BitbucketServerInvoker.Method.POST, postContent, bitbucketServerUser, bitbucketServerPassword);
  }
 
  public void pullRequestComment(String changedFile, int line, String message) {
@@ -54,38 +70,24 @@ public class BitbucketServerClient {
   String postContent = "{ \"text\": \"" + safeJson(message) + "\", \"anchor\": { \"line\": " + line
     + ", \"lineType\": \"ADDED\", \"fileType\": \"TO\", \"path\": \"" + changedFile + "\" }}";
   bitbucketServerInvoker.invokeUrl(getBitbucketServerPulLRequestBase() + "/comments",
-    BitbucketServerInvoker.Method.POST, postContent, this.bitbucketServerUser, this.bitbucketServerPassword);
+    BitbucketServerInvoker.Method.POST, postContent, bitbucketServerUser, bitbucketServerPassword);
  }
 
  public List<BitbucketServerComment> pullRequestComments(String changedFile) {
-  List<LinkedHashMap<?, ?>> parsed = invokeAndParse(getBitbucketServerPulLRequestBase() + "/comments?path="
-    + changedFile + "&limit=999999", "$.values[*]");
+  List<LinkedHashMap<?, ?>> parsed = invokeAndParse(
+    getBitbucketServerPulLRequestBase() + "/comments?path=" + changedFile + "&limit=999999", "$.values[*]");
   return toBitbucketServerComments(parsed);
  }
 
  public void pullRequestRemoveComment(Integer commentId, Integer commentVersion) {
-  bitbucketServerInvoker.invokeUrl(getBitbucketServerPulLRequestBase() + "/comments/" + commentId + "?version="
-    + commentVersion, BitbucketServerInvoker.Method.DELETE, null, this.bitbucketServerUser,
-    this.bitbucketServerPassword);
+  bitbucketServerInvoker.invokeUrl(
+    getBitbucketServerPulLRequestBase() + "/comments/" + commentId + "?version=" + commentVersion,
+    BitbucketServerInvoker.Method.DELETE, null, bitbucketServerUser, bitbucketServerPassword);
  }
 
- private String getBitbucketServerPulLRequestBase() {
-  return this.bitbucketServerBaseUrl + "/rest/api/1.0/projects/" + this.bitbucketServerProject + "/repos/"
-    + this.bitbucketServerRepo + "/pull-requests/" + this.bitbucketServerPullRequestId;
- }
-
- private <T> T invokeAndParse(String url, String jsonPath) {
-  String json = bitbucketServerInvoker.invokeUrl(url, BitbucketServerInvoker.Method.GET, null,
-    this.bitbucketServerUser, this.bitbucketServerPassword);
-  try {
-   return JsonPath.read(json, jsonPath);
-  } catch (Exception e) {
-   throw e;
-  }
- }
-
- private String safeJson(String message) {
-  return message.replaceAll("\"", "").replaceAll("\n", "\\\\n");
+ @VisibleForTesting
+ String safeJson(String message) {
+  return message.replaceAll("\\\\", "\\\\\\\\").replaceAll("\"", "").replaceAll("\n", "\\\\n");
  }
 
  private List<BitbucketServerComment> toBitbucketServerComments(List<LinkedHashMap<?, ?>> parsed) {
