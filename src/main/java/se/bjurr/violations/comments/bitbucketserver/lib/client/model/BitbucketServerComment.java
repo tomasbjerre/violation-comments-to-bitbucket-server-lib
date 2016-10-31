@@ -1,4 +1,4 @@
-package se.bjurr.violations.comments.bitbucketserver.lib.client;
+package se.bjurr.violations.comments.bitbucketserver.lib.client.model;
 
 public class BitbucketServerComment {
 

@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import se.bjurr.violations.comments.bitbucketserver.lib.client.BitbucketServerClient;
-import se.bjurr.violations.comments.bitbucketserver.lib.client.BitbucketServerComment;
+import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerComment;
 import se.bjurr.violations.comments.lib.model.ChangedFile;
 import se.bjurr.violations.comments.lib.model.Comment;
 import se.bjurr.violations.comments.lib.model.CommentsProvider;

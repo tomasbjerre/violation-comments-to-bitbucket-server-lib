@@ -6,7 +6,11 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import com.google.common.annotations.VisibleForTesting;
+import com.google.gson.Gson;
 import com.jayway.jsonpath.JsonPath;
+
+import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerComment;
+import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerDiffResponse;
 
 public class BitbucketServerClient {
  private static BitbucketServerInvoker bitbucketServerInvoker = new BitbucketServerInvoker();
@@ -79,6 +83,17 @@ public class BitbucketServerClient {
   return toBitbucketServerComments(parsed);
  }
 
+ public BitbucketServerDiffResponse pullRequestDiff() {
+  String url = getBitbucketServerPulLRequestBase() + "/diff?limit=999999";
+  String json = bitbucketServerInvoker.invokeUrl(url, BitbucketServerInvoker.Method.GET, null, bitbucketServerUser,
+    bitbucketServerPassword);
+  try {
+   return new Gson().fromJson(json, BitbucketServerDiffResponse.class);
+  } catch (Exception e) {
+   throw e;
+  }
+ }
+
  public void pullRequestRemoveComment(Integer commentId, Integer commentVersion) {
   bitbucketServerInvoker.invokeUrl(
     getBitbucketServerPulLRequestBase() + "/comments/" + commentId + "?version=" + commentVersion,
@@ -100,4 +115,5 @@ public class BitbucketServerClient {
   }
   return transformed;
  }
+
 }
