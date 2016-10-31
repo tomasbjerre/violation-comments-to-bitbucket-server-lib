@@ -115,6 +115,9 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
 
  @Override
  public boolean shouldComment(ChangedFile changedFile, Integer changedLine) {
+  if (!violationCommentsToBitbucketApi.getCommentOnlyChangedContent()) {
+   return true;
+  }
   for (BitbucketServerDiff diff : diffResponse.get().getDiffs()) {
    if (diff.getDestination().getToString().equals(changedFile.getFilename())) {
     for (DiffHunk hunk : diff.getHunks()) {
