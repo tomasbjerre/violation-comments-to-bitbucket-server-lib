@@ -29,6 +29,7 @@ public class ViolationCommentsToBitbucketServerApi {
  private String repoSlug;
  private String username;
  private List<Violation> violations;
+ private boolean commentOnlyChangedContent = false;
 
  private ViolationCommentsToBitbucketServerApi() {
 
@@ -49,6 +50,10 @@ public class ViolationCommentsToBitbucketServerApi {
 
  public String getBitbucketServerUrl() {
   return bitbucketServerUrl;
+ }
+
+ public boolean getCommentOnlyChangedContent() {
+  return commentOnlyChangedContent;
  }
 
  public boolean getCreateCommentWithAllSingleFileComments() {
@@ -105,6 +110,11 @@ public class ViolationCommentsToBitbucketServerApi {
 
  public ViolationCommentsToBitbucketServerApi withBitbucketServerUrl(String bitbucketServerUrl) {
   this.bitbucketServerUrl = bitbucketServerUrl;
+  return this;
+ }
+
+ public ViolationCommentsToBitbucketServerApi withCommentOnlyChangedContent(boolean commentOnlyChangedContent) {
+  this.commentOnlyChangedContent = commentOnlyChangedContent;
   return this;
  }
 
