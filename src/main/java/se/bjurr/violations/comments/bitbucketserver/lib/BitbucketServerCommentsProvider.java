@@ -55,19 +55,11 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
 
  @Override
  public void createCommentWithAllSingleFileComments(String comment) {
-  if (!violationCommentsToBitbucketApi.getCreateCommentWithAllSingleFileComments()) {
-   return;
-  }
-
   client.pullRequestComment(comment);
  }
 
  @Override
  public void createSingleFileComment(ChangedFile file, Integer line, String comment) {
-  if (!violationCommentsToBitbucketApi.getCreateSingleFileComments()) {
-   return;
-  }
-
   client.pullRequestComment(file.getFilename(), line, comment);
  }
 
@@ -115,9 +107,6 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
 
  @Override
  public boolean shouldComment(ChangedFile changedFile, Integer changedLine) {
-  if (!violationCommentsToBitbucketApi.getCommentOnlyChangedContent()) {
-   return true;
-  }
   for (BitbucketServerDiff diff : diffResponse.get().getDiffs()) {
    if (diff.getDestination().getToString().equals(changedFile.getFilename())) {
     for (DiffHunk hunk : diff.getHunks()) {
@@ -135,5 +124,15 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
    }
   }
   return false;
+ }
+
+ @Override
+ public boolean shouldCreateCommentWithAllSingleFileComments() {
+  return violationCommentsToBitbucketApi.getCreateCommentWithAllSingleFileComments();
+ }
+
+ @Override
+ public boolean shouldCreateSingleFileComment() {
+  return violationCommentsToBitbucketApi.getCreateSingleFileComments();
  }
 }
