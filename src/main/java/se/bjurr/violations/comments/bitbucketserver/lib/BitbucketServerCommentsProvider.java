@@ -4,7 +4,6 @@ import static com.google.common.base.Suppliers.memoizeWithExpiration;
 import static com.google.common.collect.Lists.newArrayList;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static se.bjurr.violations.comments.bitbucketserver.lib.client.model.DIFFTYPE.ADDED;
-import static se.bjurr.violations.comments.bitbucketserver.lib.client.model.DIFFTYPE.CONTEXT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +11,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Supplier;
 
 import se.bjurr.violations.comments.bitbucketserver.lib.client.BitbucketServerClient;
@@ -40,6 +40,12 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
  private final BitbucketServerClient client;
 
  private final ViolationCommentsToBitbucketServerApi violationCommentsToBitbucketApi;
+
+ @VisibleForTesting
+ BitbucketServerCommentsProvider() {
+  client = null;
+  violationCommentsToBitbucketApi = null;
+ }
 
  public BitbucketServerCommentsProvider(ViolationCommentsToBitbucketServerApi violationCommentsToBitbucketApi) {
   String bitbucketServerBaseUrl = violationCommentsToBitbucketApi.getBitbucketServerUrl();
@@ -107,14 +113,23 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
 
  @Override
  public boolean shouldComment(ChangedFile changedFile, Integer changedLine) {
-  for (BitbucketServerDiff diff : diffResponse.get().getDiffs()) {
+  if (!violationCommentsToBitbucketApi.getCommentOnlyChangedContent()) {
+   return true;
+  }
+  int context = violationCommentsToBitbucketApi.getCommentOnlyChangedContentContext();
+  List<BitbucketServerDiff> diffs = diffResponse.get().getDiffs();
+  return shouldComment(changedFile, changedLine, context, diffs);
+ }
+
+ @VisibleForTesting
+ boolean shouldComment(ChangedFile changedFile, Integer changedLine, int context, List<BitbucketServerDiff> diffs) {
+  for (BitbucketServerDiff diff : diffs) {
    if (diff.getDestination().getToString().equals(changedFile.getFilename())) {
     for (DiffHunk hunk : diff.getHunks()) {
      for (Segment segment : hunk.getSegments()) {
-      if (segment.getType() == ADDED //
-        || segment.getType() == CONTEXT) {
+      if (segment.getType() == ADDED) {
        for (Line line : segment.getLines()) {
-        if (line.getDestination() == changedLine) {
+        if (line.getDestination() >= changedLine - context && line.getDestination() <= changedLine + context) {
          return true;
         }
        }

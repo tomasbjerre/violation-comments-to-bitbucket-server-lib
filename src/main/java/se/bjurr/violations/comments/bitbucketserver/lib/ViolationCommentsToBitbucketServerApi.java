@@ -30,6 +30,7 @@ public class ViolationCommentsToBitbucketServerApi {
  private String username;
  private List<Violation> violations;
  private boolean commentOnlyChangedContent = false;
+ private int commentOnlyChangedContentContext;
 
  private ViolationCommentsToBitbucketServerApi() {
 
@@ -54,6 +55,10 @@ public class ViolationCommentsToBitbucketServerApi {
 
  public boolean getCommentOnlyChangedContent() {
   return commentOnlyChangedContent;
+ }
+
+ public int getCommentOnlyChangedContentContext() {
+  return commentOnlyChangedContentContext;
  }
 
  public boolean getCreateCommentWithAllSingleFileComments() {
@@ -115,6 +120,12 @@ public class ViolationCommentsToBitbucketServerApi {
 
  public ViolationCommentsToBitbucketServerApi withCommentOnlyChangedContent(boolean commentOnlyChangedContent) {
   this.commentOnlyChangedContent = commentOnlyChangedContent;
+  return this;
+ }
+
+ public ViolationCommentsToBitbucketServerApi withCommentOnlyChangedContentContext(
+   int commentOnlyChangedContentContext) {
+  this.commentOnlyChangedContentContext = commentOnlyChangedContentContext;
   return this;
  }
 
