@@ -53,7 +53,7 @@ public class BitbucketServerClient {
   try {
    return JsonPath.read(json, jsonPath);
   } catch (Exception e) {
-   throw e;
+   throw new RuntimeException("Unable to parse diff response from " + url + " using " + jsonPath + "\n\n" + json, e);
   }
  }
 
@@ -90,7 +90,7 @@ public class BitbucketServerClient {
   try {
    return new Gson().fromJson(json, BitbucketServerDiffResponse.class);
   } catch (Exception e) {
-   throw e;
+   throw new RuntimeException("Unable to parse diff response from " + url + "\n\n" + json, e);
   }
  }
 
