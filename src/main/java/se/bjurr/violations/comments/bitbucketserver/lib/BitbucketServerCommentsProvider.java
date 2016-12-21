@@ -1,5 +1,6 @@
 package se.bjurr.violations.comments.bitbucketserver.lib;
 
+import static com.google.common.base.Strings.isNullOrEmpty;
 import static com.google.common.base.Suppliers.memoizeWithExpiration;
 import static com.google.common.collect.Lists.newArrayList;
 import static java.util.concurrent.TimeUnit.SECONDS;
@@ -18,6 +19,7 @@ import se.bjurr.violations.comments.bitbucketserver.lib.client.BitbucketServerCl
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerComment;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerDiff;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerDiffResponse;
+import se.bjurr.violations.comments.bitbucketserver.lib.client.model.DiffDestination;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.DiffHunk;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.Line;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.Segment;
@@ -29,6 +31,8 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
 
  private static final Logger LOG = LoggerFactory.getLogger(BitbucketServerCommentsProvider.class);
 
+ private final BitbucketServerClient client;
+
  private final Supplier<BitbucketServerDiffResponse> diffResponse = memoizeWithExpiration(
    new Supplier<BitbucketServerDiffResponse>() {
     @Override
@@ -36,8 +40,6 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
      return client.pullRequestDiff();
     }
    }, 10, SECONDS);
-
- private final BitbucketServerClient client;
 
  private final ViolationCommentsToBitbucketServerApi violationCommentsToBitbucketApi;
 
@@ -124,13 +126,21 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
  @VisibleForTesting
  boolean shouldComment(ChangedFile changedFile, Integer changedLine, int context, List<BitbucketServerDiff> diffs) {
   for (BitbucketServerDiff diff : diffs) {
-   if (diff.getDestination().getToString().equals(changedFile.getFilename())) {
-    for (DiffHunk hunk : diff.getHunks()) {
-     for (Segment segment : hunk.getSegments()) {
-      if (segment.getType() == ADDED) {
-       for (Line line : segment.getLines()) {
-        if (line.getDestination() >= changedLine - context && line.getDestination() <= changedLine + context) {
-         return true;
+   DiffDestination destination = diff.getDestination();
+   if (destination != null) {
+    String destinationToString = destination.getToString();
+    if (!isNullOrEmpty(destinationToString)) {
+     if (destinationToString.equals(changedFile.getFilename())) {
+      if (diff.getHunks() != null) {
+       for (DiffHunk hunk : diff.getHunks()) {
+        for (Segment segment : hunk.getSegments()) {
+         if (segment.getType() == ADDED) {
+          for (Line line : segment.getLines()) {
+           if (line.getDestination() >= changedLine - context && line.getDestination() <= changedLine + context) {
+            return true;
+           }
+          }
+         }
         }
        }
       }

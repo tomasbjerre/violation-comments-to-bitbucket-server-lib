@@ -90,6 +90,16 @@ public class BitbucketServerClientTest {
  }
 
  @Test
+ public void testPullRequestDiffDiffDeleted() {
+  mockJson("pull-request-changes-3-deleted.json");
+  BitbucketServerDiffResponse response = sut.pullRequestDiff();
+  assertThat(response)//
+    .isNotNull();
+  assertThat(response.getDiffs())//
+    .hasSize(12);
+ }
+
+ @Test
  public void testPullRequestDiffDiffTypes() {
   mockJson("pull-request-changes-2.json");
   BitbucketServerDiffResponse response = sut.pullRequestDiff();

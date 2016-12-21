@@ -26,6 +26,25 @@ public class BitbucketServerCommentsProviderTest {
  }
 
  @Test
+ public void testThatDeletedFilesCanBeHandled() {
+  ChangedFile changedFile = new ChangedFile("filename", null);
+  List<BitbucketServerDiff> diffs = newArrayList();
+  List<DiffHunk> hunks = newArrayList();
+  List<Segment> segments = newArrayList();
+  List<Line> lines = newArrayList();
+  lines.add(new Line(10));
+  segments.add(new Segment(DIFFTYPE.ADDED, lines));
+  hunks.add(new DiffHunk(segments));
+  BitbucketServerDiff diff = new BitbucketServerDiff(null, hunks);
+  diffs.add(diff);
+
+  Integer changedLine = 10;
+  int context = 0;
+  boolean actual = sut.shouldComment(changedFile, changedLine, context, diffs);
+  assertThat(actual).isFalse();
+ }
+
+ @Test
  public void testThatOnlyAddedCanBeCommented() {
   ChangedFile changedFile = new ChangedFile("filename", null);
   List<BitbucketServerDiff> diffs = newArrayList();
