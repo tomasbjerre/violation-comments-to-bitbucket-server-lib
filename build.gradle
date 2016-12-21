@@ -38,13 +38,18 @@ task gitChangelogTask(type: se.bjurr.gitchangelog.plugin.gradle.GitChangelogTask
   {{^hasIssue}}
 ### {{name}}
   {{/hasIssue}}
+
   {{#commits}}
 **{{{messageTitle}}}**
+
 {{#messageBodyItems}}
  * {{.}} 
 {{/messageBodyItems}}
+
 [{{hash}}](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/{{hash}}) {{authorName}} *{{commitTime}}*
+
   {{/commits}}
+
  {{/issues}}
 {{/tags}}
  """;
