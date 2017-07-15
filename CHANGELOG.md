@@ -1,5 +1,100 @@
 
 # Changelog
+## Unreleased
+### No issue
+
+**Violations-lib 1.29 with reporter field**
+
+
+[0a21de3617beebe](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/0a21de3617beebe) Tomas Bjerre *2017-07-15 09:16:34*
+
+
+## 1.26
+### No issue
+
+**URL in Klocwork**
+
+
+[3c906fabbbe0bcf](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/3c906fabbbe0bcf) Tomas Bjerre *2017-04-11 18:22:55*
+
+
+## 1.25
+### No issue
+
+**SbtScalac**
+
+
+[fdf8a28dc7502fd](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/fdf8a28dc7502fd) Tomas Bjerre *2017-04-10 18:20:41*
+
+
+## 1.24
+### No issue
+
+**Klocwork parser**
+
+
+[0b83521291bb7d4](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/0b83521291bb7d4) Tomas Bjerre *2017-03-30 17:31:51*
+
+
+## 1.23
+### No issue
+
+**Reducing logging**
+
+
+[57b78fb4ea56b2b](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/57b78fb4ea56b2b) Tomas Bjerre *2017-03-17 17:33:08*
+
+
+## 1.22
+### No issue
+
+**Adding filtering util**
+
+
+[e53e0682214ea70](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/e53e0682214ea70) Tomas Bjerre *2017-03-17 14:29:15*
+
+
+## 1.21
+### No issue
+
+**Commenting with file name from server**
+
+
+[752b07b7507e319](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/752b07b7507e319) Tomas Bjerre *2017-02-19 21:21:54*
+
+
+## 1.20
+### No issue
+
+**CLang, RubyCop, GoLint, GoVet, PHPMD, PHPCS**
+
+
+[76aa7b3a0723981](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/76aa7b3a0723981) Tomas Bjerre *2017-02-18 21:49:47*
+
+
+## 1.19
+### No issue
+
+**Finding findbugsmessages and correcting codenarc**
+
+
+[29b87c6a9f73fa1](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/29b87c6a9f73fa1) Tomas Bjerre *2017-02-16 21:06:56*
+
+
+## 1.18
+### No issue
+
+**Adding MyPy and PyDocStyle parsers**
+
+
+[2cbbd4d608bbfcf](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/2cbbd4d608bbfcf) Tomas Bjerre *2017-02-06 17:39:12*
+
+**doc**
+
+
+[41d9c7f7e91e178](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/41d9c7f7e91e178) Tomas Bjerre *2016-12-21 18:31:41*
+
+
 ## 1.17
 ### No issue
 
