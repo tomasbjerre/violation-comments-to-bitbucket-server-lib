@@ -3,10 +3,19 @@
 ## Unreleased
 ### No issue
 
+**URL encoding paths #2**
+
+
+[73a75a3c4ffe8d1](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/73a75a3c4ffe8d1) Tomas Bjerre *2017-08-02 15:29:12*
+
+
+## 1.27
+### No issue
+
 **Violations-lib 1.29 with reporter field**
 
 
-[0a21de3617beebe](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/0a21de3617beebe) Tomas Bjerre *2017-07-15 09:16:34*
+[b729287b348333d](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/b729287b348333d) Tomas Bjerre *2017-07-15 09:17:53*
 
 
 ## 1.26

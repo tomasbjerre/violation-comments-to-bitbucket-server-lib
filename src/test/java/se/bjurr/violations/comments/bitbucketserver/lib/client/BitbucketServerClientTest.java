@@ -12,9 +12,6 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.google.common.base.Charsets;
-import com.google.common.io.Resources;
-
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerComment;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerDiff;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerDiffResponse;
@@ -22,26 +19,30 @@ import se.bjurr.violations.comments.bitbucketserver.lib.client.model.DIFFTYPE;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.DiffHunk;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.Segment;
 
+import com.google.common.base.Charsets;
+import com.google.common.io.Resources;
+
 public class BitbucketServerClientTest {
  private String mockedJson = null;
  private final BitbucketServerClient sut = new BitbucketServerClient("bitbucketServerBaseUrl", "bitbucketServerProject",
    "bitbucketServerRepo", 1, "bitbucketServerUser", "bitbucketServerPassword");
-
+private String invoked;
  @Before
  public void before() {
   BitbucketServerClient.setBitbucketServerInvoker(new BitbucketServerInvoker() {
    @Override
    public String invokeUrl(String url, Method method, String postContent, String bitbucketServerUser,
      String bitbucketServerPassword) {
+	   invoked = url;
     return mockedJson;
    }
   });
  }
 
  public List<BitbucketServerDiff> filterByFile(BitbucketServerDiffResponse response, String filename) {
-  List<BitbucketServerDiff> filtered = newArrayList();
-  List<BitbucketServerDiff> mixed = response.getDiffs();
-  for (BitbucketServerDiff d : mixed) {
+  final List<BitbucketServerDiff> filtered = newArrayList();
+  final List<BitbucketServerDiff> mixed = response.getDiffs();
+  for (final BitbucketServerDiff d : mixed) {
    if (d.getDestination().getToString().equals(filename)) {
     filtered.add(d);
    }
@@ -50,10 +51,10 @@ public class BitbucketServerClientTest {
  }
 
  public List<Segment> filterSegments(BitbucketServerDiff bitbucketServerDiff, DIFFTYPE diffType) {
-  List<Segment> filtered = newArrayList();
-  for (DiffHunk hunk : bitbucketServerDiff.getHunks()) {
-   List<Segment> mixed = hunk.getSegments();
-   for (Segment s : mixed) {
+  final List<Segment> filtered = newArrayList();
+  for (final DiffHunk hunk : bitbucketServerDiff.getHunks()) {
+   final List<Segment> mixed = hunk.getSegments();
+   for (final Segment s : mixed) {
     if (s.getType() == diffType) {
      filtered.add(s);
     }
@@ -66,7 +67,7 @@ public class BitbucketServerClientTest {
  private void mockJson(String resourceName) {
   try {
    mockedJson = Resources.toString(Resources.getResource(resourceName), Charsets.UTF_8);
-  } catch (IOException e) {
+  } catch (final IOException e) {
    e.printStackTrace();
   }
  }
@@ -74,7 +75,7 @@ public class BitbucketServerClientTest {
  @Test
  public void testPullRequestChanges() {
   mockJson("pull-request-changes.json");
-  List<String> actual = sut.pullRequestChanges();
+  final List<String> actual = sut.pullRequestChanges();
   assertThat(actual).isNotEmpty();
   assertThat(actual.get(0)).isEqualTo("basic_branching/file.txt");
  }
@@ -82,17 +83,29 @@ public class BitbucketServerClientTest {
  @Test
  public void testPullRequestCommentsOnFile() {
   mockJson("pull-request-comments.json");
-  List<BitbucketServerComment> actual = sut.pullRequestComments("any/file.txt");
+  final List<BitbucketServerComment> actual = sut.pullRequestComments("any/file.txt");
   assertThat(actual).isNotEmpty();
   assertThat(actual.get(0).getId()).isEqualTo(2);
   assertThat(actual.get(0).getText()).isEqualTo("in diff comment");
   assertThat(actual.get(0).getVersion()).isEqualTo(0);
+  assertThat(invoked).isEqualTo("bitbucketServerBaseUrl/rest/api/1.0/projects/bitbucketServerProject/repos/bitbucketServerRepo/pull-requests/1/comments?path=any%2Ffile.txt&limit=999999");
+ }
+
+ @Test
+ public void testPullRequestCommentsOnFileWithSpaces() {
+  mockJson("pull-request-comments.json");
+  final List<BitbucketServerComment> actual = sut.pullRequestComments("any folder with spaces/file.txt");
+  assertThat(actual).isNotEmpty();
+  assertThat(actual.get(0).getId()).isEqualTo(2);
+  assertThat(actual.get(0).getText()).isEqualTo("in diff comment");
+  assertThat(actual.get(0).getVersion()).isEqualTo(0);
+  assertThat(invoked).isEqualTo("bitbucketServerBaseUrl/rest/api/1.0/projects/bitbucketServerProject/repos/bitbucketServerRepo/pull-requests/1/comments?path=any+folder+with+spaces%2Ffile.txt&limit=999999");
  }
 
  @Test
  public void testPullRequestDiffDiffDeleted() {
   mockJson("pull-request-changes-3-deleted.json");
-  BitbucketServerDiffResponse response = sut.pullRequestDiff();
+  final BitbucketServerDiffResponse response = sut.pullRequestDiff();
   assertThat(response)//
     .isNotNull();
   assertThat(response.getDiffs())//
@@ -102,12 +115,12 @@ public class BitbucketServerClientTest {
  @Test
  public void testPullRequestDiffDiffTypes() {
   mockJson("pull-request-changes-2.json");
-  BitbucketServerDiffResponse response = sut.pullRequestDiff();
+  final BitbucketServerDiffResponse response = sut.pullRequestDiff();
   assertThat(response)//
     .isNotNull();
   assertThat(response.getDiffs())//
     .hasSize(12);
-  BitbucketServerDiff diff = response.getDiffs().get(0);
+  final BitbucketServerDiff diff = response.getDiffs().get(0);
   assertThat(filterSegments(diff, CONTEXT))//
     .hasSize(3);
   assertThat(filterSegments(diff, ADDED))//
@@ -123,10 +136,10 @@ public class BitbucketServerClientTest {
  @Test
  public void testPullRequestDiffPerFileTestCpp() {
   mockJson("pull-request-changes-2.json");
-  BitbucketServerDiffResponse response = sut.pullRequestDiff();
+  final BitbucketServerDiffResponse response = sut.pullRequestDiff();
   assertThat(response)//
     .isNotNull();
-  List<BitbucketServerDiff> diffs = filterByFile(response, "cpp/test.cpp");
+  final List<BitbucketServerDiff> diffs = filterByFile(response, "cpp/test.cpp");
   assertThat(diffs)//
     .hasSize(1);
 
@@ -141,10 +154,10 @@ public class BitbucketServerClientTest {
  @Test
  public void testPullRequestDiffPerFileTravisYml() {
   mockJson("pull-request-changes-2.json");
-  BitbucketServerDiffResponse response = sut.pullRequestDiff();
+  final BitbucketServerDiffResponse response = sut.pullRequestDiff();
   assertThat(response)//
     .isNotNull();
-  List<BitbucketServerDiff> diffs = filterByFile(response, ".travis.yml");
+  final List<BitbucketServerDiff> diffs = filterByFile(response, ".travis.yml");
   assertThat(diffs)//
     .hasSize(1);
 

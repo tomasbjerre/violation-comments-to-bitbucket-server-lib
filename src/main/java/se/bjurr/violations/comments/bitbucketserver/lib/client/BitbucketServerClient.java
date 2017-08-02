@@ -1,16 +1,19 @@
 package se.bjurr.violations.comments.bitbucketserver.lib.client;
 
+import static com.google.common.base.Charsets.UTF_8;
 import static com.google.common.collect.Lists.newArrayList;
+import static java.net.URLEncoder.encode;
 
+import java.io.UnsupportedEncodingException;
 import java.util.LinkedHashMap;
 import java.util.List;
+
+import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerComment;
+import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerDiffResponse;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.gson.Gson;
 import com.jayway.jsonpath.JsonPath;
-
-import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerComment;
-import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerDiffResponse;
 
 public class BitbucketServerClient {
  private static BitbucketServerInvoker bitbucketServerInvoker = new BitbucketServerInvoker();
@@ -48,11 +51,11 @@ public class BitbucketServerClient {
  }
 
  private <T> T invokeAndParse(String url, String jsonPath) {
-  String json = bitbucketServerInvoker.invokeUrl(url, BitbucketServerInvoker.Method.GET, null, bitbucketServerUser,
+  final String json = bitbucketServerInvoker.invokeUrl(url, BitbucketServerInvoker.Method.GET, null, bitbucketServerUser,
     bitbucketServerPassword);
   try {
    return JsonPath.read(json, jsonPath);
-  } catch (Exception e) {
+  } catch (final Exception e) {
    throw new RuntimeException("Unable to parse diff response from " + url + " using " + jsonPath + "\n\n" + json, e);
   }
  }
@@ -62,7 +65,7 @@ public class BitbucketServerClient {
  }
 
  public void pullRequestComment(String message) {
-  String postContent = "{ \"text\": \"" + safeJson(message) + "\"}";
+  final String postContent = "{ \"text\": \"" + safeJson(message) + "\"}";
   bitbucketServerInvoker.invokeUrl(getBitbucketServerPulLRequestBase() + "/comments",
     BitbucketServerInvoker.Method.POST, postContent, bitbucketServerUser, bitbucketServerPassword);
  }
@@ -71,25 +74,30 @@ public class BitbucketServerClient {
   if (line == 0) {
    line = 1;
   }
-  String postContent = "{ \"text\": \"" + safeJson(message) + "\", \"anchor\": { \"line\": " + line
+  final String postContent = "{ \"text\": \"" + safeJson(message) + "\", \"anchor\": { \"line\": " + line
     + ", \"lineType\": \"ADDED\", \"fileType\": \"TO\", \"path\": \"" + changedFile + "\" }}";
   bitbucketServerInvoker.invokeUrl(getBitbucketServerPulLRequestBase() + "/comments",
     BitbucketServerInvoker.Method.POST, postContent, bitbucketServerUser, bitbucketServerPassword);
  }
 
  public List<BitbucketServerComment> pullRequestComments(String changedFile) {
-  List<LinkedHashMap<?, ?>> parsed = invokeAndParse(
-    getBitbucketServerPulLRequestBase() + "/comments?path=" + changedFile + "&limit=999999", "$.values[*]");
+	 try {
+		final String encodedChangedFile = encode(changedFile, UTF_8.name());
+  final List<LinkedHashMap<?, ?>> parsed = invokeAndParse(
+    getBitbucketServerPulLRequestBase() + "/comments?path=" + encodedChangedFile + "&limit=999999", "$.values[*]");
   return toBitbucketServerComments(parsed);
+		} catch (final UnsupportedEncodingException e) {
+			throw new RuntimeException(e);
+		}
  }
 
  public BitbucketServerDiffResponse pullRequestDiff() {
-  String url = getBitbucketServerPulLRequestBase() + "/diff?limit=999999";
-  String json = bitbucketServerInvoker.invokeUrl(url, BitbucketServerInvoker.Method.GET, null, bitbucketServerUser,
+  final String url = getBitbucketServerPulLRequestBase() + "/diff?limit=999999";
+  final String json = bitbucketServerInvoker.invokeUrl(url, BitbucketServerInvoker.Method.GET, null, bitbucketServerUser,
     bitbucketServerPassword);
   try {
    return new Gson().fromJson(json, BitbucketServerDiffResponse.class);
-  } catch (Exception e) {
+  } catch (final Exception e) {
    throw new RuntimeException("Unable to parse diff response from " + url + "\n\n" + json, e);
   }
  }
@@ -106,11 +114,11 @@ public class BitbucketServerClient {
  }
 
  private List<BitbucketServerComment> toBitbucketServerComments(List<LinkedHashMap<?, ?>> parsed) {
-  List<BitbucketServerComment> transformed = newArrayList();
-  for (LinkedHashMap<?, ?> from : parsed) {
-   Integer version = (Integer) from.get("version");
-   String text = (String) from.get("text");
-   Integer id = (Integer) from.get("id");
+  final List<BitbucketServerComment> transformed = newArrayList();
+  for (final LinkedHashMap<?, ?> from : parsed) {
+   final Integer version = (Integer) from.get("version");
+   final String text = (String) from.get("text");
+   final Integer id = (Integer) from.get("id");
    transformed.add(new BitbucketServerComment(version, text, id));
   }
   return transformed;
