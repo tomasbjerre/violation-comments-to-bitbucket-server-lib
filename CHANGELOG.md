@@ -3,10 +3,31 @@
 ## Unreleased
 ### No issue
 
+**Keeping comments and adjusting checkstyle**
+
+ * Checkstyle now allows empty source attribute. 
+ * Comments can optionaly be kept and not removed when new comments are added. 
+ * Will no longer re-create identical comments. 
+
+[75375780b599622](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/75375780b599622) Tomas Bjerre *2017-09-02 09:18:53*
+
+
+## 1.29
+### No issue
+
+**Checking for null in API-calls**
+
+
+[fdff3f2ae865d81](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/fdff3f2ae865d81) Tomas Bjerre *2017-08-11 10:04:40*
+
+
+## 1.28
+### No issue
+
 **URL encoding paths #2**
 
 
-[73a75a3c4ffe8d1](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/73a75a3c4ffe8d1) Tomas Bjerre *2017-08-02 15:29:12*
+[7122da4322e2f6e](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/7122da4322e2f6e) Tomas Bjerre *2017-08-02 15:29:50*
 
 
 ## 1.27

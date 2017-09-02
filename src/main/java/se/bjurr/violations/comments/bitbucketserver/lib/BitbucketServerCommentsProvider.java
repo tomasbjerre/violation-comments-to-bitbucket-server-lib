@@ -12,9 +12,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.annotations.VisibleForTesting;
-import com.google.common.base.Supplier;
-
 import se.bjurr.violations.comments.bitbucketserver.lib.client.BitbucketServerClient;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerComment;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerDiff;
@@ -28,6 +25,9 @@ import se.bjurr.violations.comments.lib.model.Comment;
 import se.bjurr.violations.comments.lib.model.CommentsProvider;
 import se.bjurr.violations.lib.model.Violation;
 import se.bjurr.violations.lib.util.Optional;
+
+import com.google.common.annotations.VisibleForTesting;
+import com.google.common.base.Supplier;
 
 public class BitbucketServerCommentsProvider implements CommentsProvider {
 
@@ -52,12 +52,12 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
  }
 
  public BitbucketServerCommentsProvider(ViolationCommentsToBitbucketServerApi violationCommentsToBitbucketApi) {
-  String bitbucketServerBaseUrl = violationCommentsToBitbucketApi.getBitbucketServerUrl();
-  String bitbucketServerProject = violationCommentsToBitbucketApi.getProjectKey();
-  String bitbucketServerRepo = violationCommentsToBitbucketApi.getRepoSlug();
-  Integer bitbucketServerPullRequestId = violationCommentsToBitbucketApi.getPullRequestId();
-  String bitbucketServerUser = violationCommentsToBitbucketApi.getUsername();
-  String bitbucketServerPassword = violationCommentsToBitbucketApi.getPassword();
+  final String bitbucketServerBaseUrl = violationCommentsToBitbucketApi.getBitbucketServerUrl();
+  final String bitbucketServerProject = violationCommentsToBitbucketApi.getProjectKey();
+  final String bitbucketServerRepo = violationCommentsToBitbucketApi.getRepoSlug();
+  final Integer bitbucketServerPullRequestId = violationCommentsToBitbucketApi.getPullRequestId();
+  final String bitbucketServerUser = violationCommentsToBitbucketApi.getUsername();
+  final String bitbucketServerPassword = violationCommentsToBitbucketApi.getPassword();
   client = new BitbucketServerClient(bitbucketServerBaseUrl, bitbucketServerProject, bitbucketServerRepo,
     bitbucketServerPullRequestId, bitbucketServerUser, bitbucketServerPassword);
   this.violationCommentsToBitbucketApi = violationCommentsToBitbucketApi;
@@ -75,11 +75,11 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
 
  @Override
  public List<Comment> getComments() {
-  List<Comment> comments = newArrayList();
-  for (String changedFile : client.pullRequestChanges()) {
-   List<BitbucketServerComment> bitbucketServerCommentsOnFile = client.pullRequestComments(changedFile);
-   for (BitbucketServerComment fileComment : bitbucketServerCommentsOnFile) {
-    List<String> specifics = newArrayList(fileComment.getVersion() + "", changedFile);
+  final List<Comment> comments = newArrayList();
+  for (final String changedFile : client.pullRequestChanges()) {
+   final List<BitbucketServerComment> bitbucketServerCommentsOnFile = client.pullRequestComments(changedFile);
+   for (final BitbucketServerComment fileComment : bitbucketServerCommentsOnFile) {
+    final List<String> specifics = newArrayList(fileComment.getVersion() + "", changedFile);
     comments.add(new Comment(fileComment.getId() + "", fileComment.getText(), null, specifics));
    }
   }
@@ -89,11 +89,11 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
 
  @Override
  public List<ChangedFile> getFiles() {
-  List<ChangedFile> changedFiles = newArrayList();
+  final List<ChangedFile> changedFiles = newArrayList();
 
-  List<String> bitbucketServerChangedFiles = client.pullRequestChanges();
+  final List<String> bitbucketServerChangedFiles = client.pullRequestChanges();
 
-  for (String changedFile : bitbucketServerChangedFiles) {
+  for (final String changedFile : bitbucketServerChangedFiles) {
    changedFiles.add(new ChangedFile(changedFile, new ArrayList<String>()));
   }
 
@@ -102,14 +102,14 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
 
  @Override
  public void removeComments(List<Comment> comments) {
-  for (Comment comment : comments) {
+  for (final Comment comment : comments) {
    Integer commentId = null;
    Integer commentVersion = null;
    try {
     commentId = Integer.valueOf(comment.getIdentifier());
     commentVersion = Integer.valueOf(comment.getSpecifics().get(0));
     client.pullRequestRemoveComment(commentId, commentVersion);
-   } catch (Exception e) {
+   } catch (final Exception e) {
     LOG.warn("Was unable to remove comment " + commentId + " " + commentVersion, e);
    }
   }
@@ -120,24 +120,24 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
   if (!violationCommentsToBitbucketApi.getCommentOnlyChangedContent()) {
    return true;
   }
-  int context = violationCommentsToBitbucketApi.getCommentOnlyChangedContentContext();
-  List<BitbucketServerDiff> diffs = diffResponse.get().getDiffs();
+  final int context = violationCommentsToBitbucketApi.getCommentOnlyChangedContentContext();
+  final List<BitbucketServerDiff> diffs = diffResponse.get().getDiffs();
   return shouldComment(changedFile, changedLine, context, diffs);
  }
 
  @VisibleForTesting
  boolean shouldComment(ChangedFile changedFile, Integer changedLine, int context, List<BitbucketServerDiff> diffs) {
-  for (BitbucketServerDiff diff : diffs) {
-   DiffDestination destination = diff.getDestination();
+  for (final BitbucketServerDiff diff : diffs) {
+   final DiffDestination destination = diff.getDestination();
    if (destination != null) {
-    String destinationToString = destination.getToString();
+    final String destinationToString = destination.getToString();
     if (!isNullOrEmpty(destinationToString)) {
      if (destinationToString.equals(changedFile.getFilename())) {
       if (diff.getHunks() != null) {
-       for (DiffHunk hunk : diff.getHunks()) {
-        for (Segment segment : hunk.getSegments()) {
+       for (final DiffHunk hunk : diff.getHunks()) {
+        for (final Segment segment : hunk.getSegments()) {
          if (segment.getType() == ADDED) {
-          for (Line line : segment.getLines()) {
+          for (final Line line : segment.getLines()) {
            if (line.getDestination() >= changedLine - context && line.getDestination() <= changedLine + context) {
             return true;
            }
@@ -167,4 +167,9 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
  public Optional<String> findCommentFormat(ChangedFile changedFile, Violation violation) {
    return Optional.absent();
  }
+
+@Override
+public boolean shouldKeepOldComments() {
+	return violationCommentsToBitbucketApi.getShouldKeepOldComments();
+}
 }

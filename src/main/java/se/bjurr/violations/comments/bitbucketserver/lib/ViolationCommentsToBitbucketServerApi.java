@@ -31,6 +31,7 @@ public class ViolationCommentsToBitbucketServerApi {
  private List<Violation> violations;
  private boolean commentOnlyChangedContent = false;
  private int commentOnlyChangedContentContext;
+private boolean shouldKeepOldComments;
 
  private ViolationCommentsToBitbucketServerApi() {
 
@@ -109,7 +110,7 @@ public class ViolationCommentsToBitbucketServerApi {
  public void toPullRequest() throws Exception {
   populateFromEnvironmentVariables();
   checkState();
-  CommentsProvider commentsProvider = new BitbucketServerCommentsProvider(this);
+  final CommentsProvider commentsProvider = new BitbucketServerCommentsProvider(this);
   createComments(commentsProvider, violations, BITBUCKET_MAX_COMMENT_SIZE);
  }
 
@@ -177,4 +178,10 @@ public class ViolationCommentsToBitbucketServerApi {
   this.violations = violations;
   return this;
  }
+public ViolationCommentsToBitbucketServerApi setShouldKeepOldComments(boolean shouldKeepOldComments) {
+	this.shouldKeepOldComments = shouldKeepOldComments;
+return this;}
+public boolean getShouldKeepOldComments() {
+	return shouldKeepOldComments;
+}
 }
