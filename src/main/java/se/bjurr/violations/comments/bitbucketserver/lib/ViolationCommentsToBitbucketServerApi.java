@@ -5,183 +5,192 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static se.bjurr.violations.comments.lib.CommentsCreator.createComments;
 
 import java.util.List;
-
 import se.bjurr.violations.comments.lib.model.CommentsProvider;
 import se.bjurr.violations.lib.model.Violation;
 
 public class ViolationCommentsToBitbucketServerApi {
- private static final Integer BITBUCKET_MAX_COMMENT_SIZE = 32767;
- public static final String DEFAULT_PROP_VIOLATIONS_PASSWORD = "VIOLATIONS_PASSWORD";
- public static final String DEFAULT_PROP_VIOLATIONS_USERNAME = "VIOLATIONS_USERNAME";
+  private static final Integer BITBUCKET_MAX_COMMENT_SIZE = 32767;
+  public static final String DEFAULT_PROP_VIOLATIONS_PASSWORD = "VIOLATIONS_PASSWORD";
+  public static final String DEFAULT_PROP_VIOLATIONS_USERNAME = "VIOLATIONS_USERNAME";
 
- public static ViolationCommentsToBitbucketServerApi violationCommentsToBitbucketServerApi() {
-  return new ViolationCommentsToBitbucketServerApi();
- }
-
- private String bitbucketServerUrl = null;
- private boolean createCommentWithAllSingleFileComments = false;
- private boolean createSingleFileComments = true;
- private String password;
- private String projectKey;
- private String propPassword = DEFAULT_PROP_VIOLATIONS_PASSWORD;
- private String propUsername = DEFAULT_PROP_VIOLATIONS_USERNAME;
- private int pullRequestId;
- private String repoSlug;
- private String username;
- private List<Violation> violations;
- private boolean commentOnlyChangedContent = false;
- private int commentOnlyChangedContentContext;
-private boolean shouldKeepOldComments;
-
- private ViolationCommentsToBitbucketServerApi() {
-
- }
-
- private void checkState() {
-  if (username == null || password == null) {
-   throw new IllegalStateException(
-     "User and Password must be set! They can be set with the API or by setting properties.\n" + //
-       "Username/password:\n" + //
-       "-D" + DEFAULT_PROP_VIOLATIONS_USERNAME + "=theuser -D" + DEFAULT_PROP_VIOLATIONS_PASSWORD + "=thepassword");
+  public static ViolationCommentsToBitbucketServerApi violationCommentsToBitbucketServerApi() {
+    return new ViolationCommentsToBitbucketServerApi();
   }
-  checkNotNull(bitbucketServerUrl, "BitbucketServerURL");
-  checkNotNull(pullRequestId, "PullRequestId");
-  checkNotNull(repoSlug, "repoSlug");
-  checkNotNull(projectKey, "projectKey");
- }
 
- public String getBitbucketServerUrl() {
-  return bitbucketServerUrl;
- }
+  private String bitbucketServerUrl = null;
+  private boolean createCommentWithAllSingleFileComments = false;
+  private boolean createSingleFileComments = true;
+  private String password;
+  private String projectKey;
+  private String propPassword = DEFAULT_PROP_VIOLATIONS_PASSWORD;
+  private String propUsername = DEFAULT_PROP_VIOLATIONS_USERNAME;
+  private int pullRequestId;
+  private String repoSlug;
+  private String username;
+  private List<Violation> violations;
+  private boolean commentOnlyChangedContent = false;
+  private int commentOnlyChangedContentContext;
+  private boolean shouldKeepOldComments;
 
- public boolean getCommentOnlyChangedContent() {
-  return commentOnlyChangedContent;
- }
+  private ViolationCommentsToBitbucketServerApi() {}
 
- public int getCommentOnlyChangedContentContext() {
-  return commentOnlyChangedContentContext;
- }
-
- public boolean getCreateCommentWithAllSingleFileComments() {
-  return createCommentWithAllSingleFileComments;
- }
-
- public boolean getCreateSingleFileComments() {
-  return createSingleFileComments;
- }
-
- public String getPassword() {
-  return password;
- }
-
- public String getProjectKey() {
-  return projectKey;
- }
-
- public String getPropPassword() {
-  return propPassword;
- }
-
- public String getPropUsername() {
-  return propUsername;
- }
-
- public int getPullRequestId() {
-  return pullRequestId;
- }
-
- public String getRepoSlug() {
-  return repoSlug;
- }
-
- public String getUsername() {
-  return username;
- }
-
- private void populateFromEnvironmentVariables() {
-  if (System.getProperty(propUsername) != null) {
-   username = firstNonNull(username, System.getProperty(propUsername));
+  private void checkState() {
+    if (username == null || password == null) {
+      throw new IllegalStateException(
+          "User and Password must be set! They can be set with the API or by setting properties.\n"
+              + //
+              "Username/password:\n"
+              + //
+              "-D"
+              + DEFAULT_PROP_VIOLATIONS_USERNAME
+              + "=theuser -D"
+              + DEFAULT_PROP_VIOLATIONS_PASSWORD
+              + "=thepassword");
+    }
+    checkNotNull(bitbucketServerUrl, "BitbucketServerURL");
+    checkNotNull(pullRequestId, "PullRequestId");
+    checkNotNull(repoSlug, "repoSlug");
+    checkNotNull(projectKey, "projectKey");
   }
-  if (System.getProperty(propPassword) != null) {
-   password = firstNonNull(password, System.getProperty(propPassword));
+
+  public String getBitbucketServerUrl() {
+    return bitbucketServerUrl;
   }
- }
 
- public void toPullRequest() throws Exception {
-  populateFromEnvironmentVariables();
-  checkState();
-  final CommentsProvider commentsProvider = new BitbucketServerCommentsProvider(this);
-  createComments(commentsProvider, violations, BITBUCKET_MAX_COMMENT_SIZE);
- }
+  public boolean getCommentOnlyChangedContent() {
+    return commentOnlyChangedContent;
+  }
 
- public ViolationCommentsToBitbucketServerApi withBitbucketServerUrl(String bitbucketServerUrl) {
-  this.bitbucketServerUrl = bitbucketServerUrl;
-  return this;
- }
+  public int getCommentOnlyChangedContentContext() {
+    return commentOnlyChangedContentContext;
+  }
 
- public ViolationCommentsToBitbucketServerApi withCommentOnlyChangedContent(boolean commentOnlyChangedContent) {
-  this.commentOnlyChangedContent = commentOnlyChangedContent;
-  return this;
- }
+  public boolean getCreateCommentWithAllSingleFileComments() {
+    return createCommentWithAllSingleFileComments;
+  }
 
- public ViolationCommentsToBitbucketServerApi withCommentOnlyChangedContentContext(
-   int commentOnlyChangedContentContext) {
-  this.commentOnlyChangedContentContext = commentOnlyChangedContentContext;
-  return this;
- }
+  public boolean getCreateSingleFileComments() {
+    return createSingleFileComments;
+  }
 
- public ViolationCommentsToBitbucketServerApi withCreateCommentWithAllSingleFileComments(
-   boolean createCommentWithAllSingleFileComments) {
-  this.createCommentWithAllSingleFileComments = createCommentWithAllSingleFileComments;
-  return this;
- }
+  public String getPassword() {
+    return password;
+  }
 
- public ViolationCommentsToBitbucketServerApi withCreateSingleFileComments(boolean createSingleFileComments) {
-  this.createSingleFileComments = createSingleFileComments;
-  return this;
- }
+  public String getProjectKey() {
+    return projectKey;
+  }
 
- public ViolationCommentsToBitbucketServerApi withPassword(String password) {
-  this.password = password;
-  return this;
- }
+  public String getPropPassword() {
+    return propPassword;
+  }
 
- public ViolationCommentsToBitbucketServerApi withProjectKey(String projectKey) {
-  this.projectKey = projectKey;
-  return this;
- }
+  public String getPropUsername() {
+    return propUsername;
+  }
 
- public void withPropPassword(String envPassword) {
-  propPassword = envPassword;
- }
+  public int getPullRequestId() {
+    return pullRequestId;
+  }
 
- public void withPropUsername(String envUsername) {
-  propUsername = envUsername;
- }
+  public String getRepoSlug() {
+    return repoSlug;
+  }
 
- public ViolationCommentsToBitbucketServerApi withPullRequestId(int pullRequestId) {
-  this.pullRequestId = pullRequestId;
-  return this;
- }
+  public String getUsername() {
+    return username;
+  }
 
- public ViolationCommentsToBitbucketServerApi withRepoSlug(String repoSlug) {
-  this.repoSlug = repoSlug;
-  return this;
- }
+  private void populateFromEnvironmentVariables() {
+    if (System.getProperty(propUsername) != null) {
+      username = firstNonNull(username, System.getProperty(propUsername));
+    }
+    if (System.getProperty(propPassword) != null) {
+      password = firstNonNull(password, System.getProperty(propPassword));
+    }
+  }
 
- public ViolationCommentsToBitbucketServerApi withUsername(String username) {
-  this.username = username;
-  return this;
- }
+  public void toPullRequest() throws Exception {
+    populateFromEnvironmentVariables();
+    checkState();
+    final CommentsProvider commentsProvider = new BitbucketServerCommentsProvider(this);
+    createComments(commentsProvider, violations, BITBUCKET_MAX_COMMENT_SIZE);
+  }
 
- public ViolationCommentsToBitbucketServerApi withViolations(List<Violation> violations) {
-  this.violations = violations;
-  return this;
- }
-public ViolationCommentsToBitbucketServerApi setShouldKeepOldComments(boolean shouldKeepOldComments) {
-	this.shouldKeepOldComments = shouldKeepOldComments;
-return this;}
-public boolean getShouldKeepOldComments() {
-	return shouldKeepOldComments;
-}
+  public ViolationCommentsToBitbucketServerApi withBitbucketServerUrl(String bitbucketServerUrl) {
+    this.bitbucketServerUrl = bitbucketServerUrl;
+    return this;
+  }
+
+  public ViolationCommentsToBitbucketServerApi withCommentOnlyChangedContent(
+      boolean commentOnlyChangedContent) {
+    this.commentOnlyChangedContent = commentOnlyChangedContent;
+    return this;
+  }
+
+  public ViolationCommentsToBitbucketServerApi withCommentOnlyChangedContentContext(
+      int commentOnlyChangedContentContext) {
+    this.commentOnlyChangedContentContext = commentOnlyChangedContentContext;
+    return this;
+  }
+
+  public ViolationCommentsToBitbucketServerApi withCreateCommentWithAllSingleFileComments(
+      boolean createCommentWithAllSingleFileComments) {
+    this.createCommentWithAllSingleFileComments = createCommentWithAllSingleFileComments;
+    return this;
+  }
+
+  public ViolationCommentsToBitbucketServerApi withCreateSingleFileComments(
+      boolean createSingleFileComments) {
+    this.createSingleFileComments = createSingleFileComments;
+    return this;
+  }
+
+  public ViolationCommentsToBitbucketServerApi withPassword(String password) {
+    this.password = password;
+    return this;
+  }
+
+  public ViolationCommentsToBitbucketServerApi withProjectKey(String projectKey) {
+    this.projectKey = projectKey;
+    return this;
+  }
+
+  public void withPropPassword(String envPassword) {
+    propPassword = envPassword;
+  }
+
+  public void withPropUsername(String envUsername) {
+    propUsername = envUsername;
+  }
+
+  public ViolationCommentsToBitbucketServerApi withPullRequestId(int pullRequestId) {
+    this.pullRequestId = pullRequestId;
+    return this;
+  }
+
+  public ViolationCommentsToBitbucketServerApi withRepoSlug(String repoSlug) {
+    this.repoSlug = repoSlug;
+    return this;
+  }
+
+  public ViolationCommentsToBitbucketServerApi withUsername(String username) {
+    this.username = username;
+    return this;
+  }
+
+  public ViolationCommentsToBitbucketServerApi withViolations(List<Violation> violations) {
+    this.violations = violations;
+    return this;
+  }
+
+  public ViolationCommentsToBitbucketServerApi withShouldKeepOldComments(
+      boolean shouldKeepOldComments) {
+    this.shouldKeepOldComments = shouldKeepOldComments;
+    return this;
+  }
+
+  public boolean getShouldKeepOldComments() {
+    return shouldKeepOldComments;
+  }
 }

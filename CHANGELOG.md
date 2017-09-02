@@ -1,6 +1,6 @@
 
 # Changelog
-## Unreleased
+## 1.30
 ### No issue
 
 **Keeping comments and adjusting checkstyle**
@@ -9,7 +9,7 @@
  * Comments can optionaly be kept and not removed when new comments are added. 
  * Will no longer re-create identical comments. 
 
-[75375780b599622](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/75375780b599622) Tomas Bjerre *2017-09-02 09:18:53*
+[4e2cc9662e53323](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/4e2cc9662e53323) Tomas Bjerre *2017-09-02 09:19:51*
 
 
 ## 1.29
