@@ -1,5 +1,58 @@
 
-# Changelog
+ # Violation comments to bitbucket server lib changelog
+
+Changelog of Violation comments to bitbucket server lib.
+
+## Unreleased
+### Jira JENKINS-48648 
+
+**Using UTF-8 in Bitbucket client**
+
+
+[34c3dfeaa82a055](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/34c3dfeaa82a055) Tomas Bjerre *2017-12-20 20:16:59*
+
+
+## 1.34
+### No issue
+
+**Refactoring build scripts**
+
+
+[5bf64160d6ca74c](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/5bf64160d6ca74c) Tomas Bjerre *2017-12-07 16:01:06*
+
+
+## 1.33
+### No issue
+
+**Resharper WikiUrl**
+
+
+[c08ea355348f350](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/c08ea355348f350) Tomas Bjerre *2017-10-13 09:40:16*
+
+
+## 1.32
+### No issue
+
+**Added handling for empty IssueType Description attributes for Resharper**
+
+
+[1e2311c342cf1e0](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/1e2311c342cf1e0) Tomas Bjerre *2017-10-09 16:37:54*
+
+**Doc**
+
+
+[37eeea9ff213c8a](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/37eeea9ff213c8a) Tomas Bjerre *2017-09-02 20:08:21*
+
+
+## 1.31
+### No issue
+
+**Google Java Format**
+
+
+[ff4e27423a411f7](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/ff4e27423a411f7) Tomas Bjerre *2017-09-02 11:50:15*
+
+
 ## 1.30
 ### No issue
 
@@ -22,9 +75,9 @@
 
 
 ## 1.28
-### No issue
+### GitHub [#2](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/issues/2) Paths with spaces fail
 
-**URL encoding paths #2**
+**URL encoding paths**
 
 
 [7122da4322e2f6e](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/7122da4322e2f6e) Tomas Bjerre *2017-08-02 15:29:50*
@@ -126,13 +179,16 @@
 
 
 ## 1.17
-### No issue
+### GitHub [#1](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/issues/1) NullPointerException when running the Jenkins plugin
 
-**Handling deleted files in PR:s #1**
+**Handling deleted files in PR:s**
 
  * And using violations lib 1.22 
 
 [40c69f6a7b64eea](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/40c69f6a7b64eea) Tomas Bjerre *2016-12-21 17:16:48*
+
+
+### No issue
 
 **violations lib 1.22**
 

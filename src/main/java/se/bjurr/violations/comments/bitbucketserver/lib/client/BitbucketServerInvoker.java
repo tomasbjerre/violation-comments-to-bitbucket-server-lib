@@ -1,5 +1,6 @@
 package se.bjurr.violations.comments.bitbucketserver.lib.client;
 
+import static com.google.common.base.Charsets.UTF_8;
 import static com.google.common.base.Strings.isNullOrEmpty;
 
 import com.google.common.base.Throwables;
@@ -34,11 +35,12 @@ public class BitbucketServerInvoker {
     try {
       CookieHandler.setDefault(new CookieManager(null, CookiePolicy.ACCEPT_ALL));
       conn = (HttpURLConnection) new URL(url).openConnection();
-      String userAndPass = bitbucketServerUser + ":" + bitbucketServerPassword;
-      String authString = new String(DatatypeConverter.printBase64Binary(userAndPass.getBytes()));
+      final String userAndPass = bitbucketServerUser + ":" + bitbucketServerPassword;
+      final String authString =
+          new String(DatatypeConverter.printBase64Binary(userAndPass.getBytes()));
       conn.setRequestProperty("Authorization", "Basic " + authString);
       conn.setRequestMethod(method.name());
-      String charset = "UTF-8";
+      final String charset = "UTF-8";
       conn.setDoOutput(true);
       conn.setRequestProperty("X-Atlassian-Token", "no-check");
       conn.setRequestProperty("Content-Type", "application/json");
@@ -48,15 +50,15 @@ public class BitbucketServerInvoker {
         output = conn.getOutputStream();
         output.write(postContent.getBytes(charset));
       }
-      reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-      StringBuilder stringBuilder = new StringBuilder();
+      reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), UTF_8));
+      final StringBuilder stringBuilder = new StringBuilder();
       String line = null;
       while ((line = reader.readLine()) != null) {
         stringBuilder.append(line + "\n");
       }
-      String json = stringBuilder.toString();
+      final String json = stringBuilder.toString();
       return json;
-    } catch (Exception e) {
+    } catch (final Exception e) {
       throw new RuntimeException("Error calling:\n" + url + "\n" + method + "\n" + postContent, e);
     } finally {
       try {
@@ -69,7 +71,7 @@ public class BitbucketServerInvoker {
         if (output != null) {
           output.close();
         }
-      } catch (IOException e) {
+      } catch (final IOException e) {
         throw Throwables.propagate(e);
       }
     }
