@@ -36,8 +36,7 @@ public class BitbucketServerInvoker {
       CookieHandler.setDefault(new CookieManager(null, CookiePolicy.ACCEPT_ALL));
       conn = (HttpURLConnection) new URL(url).openConnection();
       final String userAndPass = bitbucketServerUser + ":" + bitbucketServerPassword;
-      final String authString =
-          new String(DatatypeConverter.printBase64Binary(userAndPass.getBytes()));
+      final String authString = DatatypeConverter.printBase64Binary(userAndPass.getBytes("UTF-8"));
       conn.setRequestProperty("Authorization", "Basic " + authString);
       conn.setRequestMethod(method.name());
       final String charset = "UTF-8";
@@ -58,7 +57,7 @@ public class BitbucketServerInvoker {
       }
       final String json = stringBuilder.toString();
       return json;
-    } catch (final Exception e) {
+    } catch (final Throwable e) {
       throw new RuntimeException("Error calling:\n" + url + "\n" + method + "\n" + postContent, e);
     } finally {
       try {

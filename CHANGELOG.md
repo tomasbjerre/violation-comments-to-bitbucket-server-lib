@@ -4,12 +4,61 @@
 Changelog of Violation comments to bitbucket server lib.
 
 ## Unreleased
+### No issue
+
+**Using UTF-8, instead of default**
+
+
+[79a5a8b0869c4d7](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/79a5a8b0869c4d7) Tomas Bjerre *2017-12-24 22:03:10*
+
+
+## 1.40
+### No issue
+
+**Bumping version to fix faulty release**
+
+
+[86b16b4d20add98](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/86b16b4d20add98) Tomas Bjerre *2017-12-22 18:57:11*
+
+
+## 1.39
+### No issue
+
+**DocFX parsing JSON with Gson, not ScriptEngine**
+
+
+[19e05ef49d841ac](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/19e05ef49d841ac) Tomas Bjerre *2017-12-22 12:41:07*
+
+
+## 1.38
+### No issue
+
+**Bumping version to fix faulty release**
+
+
+[123de6203f53c75](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/123de6203f53c75) Tomas Bjerre *2017-12-21 14:50:11*
+
+**DocFX**
+
+
+[cd0e98f14598b8d](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/cd0e98f14598b8d) Tomas Bjerre *2017-12-21 14:46:08*
+
+
+## 1.36
 ### Jira JENKINS-48648 
 
 **Using UTF-8 in Bitbucket client**
 
 
-[34c3dfeaa82a055](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/34c3dfeaa82a055) Tomas Bjerre *2017-12-20 20:16:59*
+[3fd97cc3246284b](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/3fd97cc3246284b) Tomas Bjerre *2017-12-20 20:27:37*
+
+
+### No issue
+
+**Bumping version to fix faulty release**
+
+
+[9c515cbc86028a4](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/9c515cbc86028a4) Tomas Bjerre *2017-12-20 20:28:23*
 
 
 ## 1.34
