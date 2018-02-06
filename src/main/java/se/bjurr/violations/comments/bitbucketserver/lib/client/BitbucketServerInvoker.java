@@ -3,7 +3,6 @@ package se.bjurr.violations.comments.bitbucketserver.lib.client;
 import static com.google.common.base.Charsets.UTF_8;
 import static com.google.common.base.Strings.isNullOrEmpty;
 
-import com.google.common.base.Throwables;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -13,7 +12,10 @@ import java.net.CookieManager;
 import java.net.CookiePolicy;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
 import javax.xml.bind.DatatypeConverter;
+
+import com.google.common.base.Throwables;
 
 public class BitbucketServerInvoker {
 
@@ -35,6 +37,8 @@ public class BitbucketServerInvoker {
     try {
       CookieHandler.setDefault(new CookieManager(null, CookiePolicy.ACCEPT_ALL));
       conn = (HttpURLConnection) new URL(url).openConnection();
+      conn.setReadTimeout(30000);
+      conn.setConnectTimeout(30000);
       final String userAndPass = bitbucketServerUser + ":" + bitbucketServerPassword;
       final String authString = DatatypeConverter.printBase64Binary(userAndPass.getBytes("UTF-8"));
       conn.setRequestProperty("Authorization", "Basic " + authString);
