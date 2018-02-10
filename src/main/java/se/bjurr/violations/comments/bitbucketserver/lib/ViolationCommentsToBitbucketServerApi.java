@@ -168,6 +168,12 @@ public class ViolationCommentsToBitbucketServerApi {
     return this;
   }
 
+  public ViolationCommentsToBitbucketServerApi withPersonalAccessToken(
+      final String personalAccessToken) {
+    this.personalAccessToken = personalAccessToken;
+    return this;
+  }
+
   public ViolationCommentsToBitbucketServerApi withProjectKey(final String projectKey) {
     this.projectKey = projectKey;
     return this;
