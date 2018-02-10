@@ -3,6 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.46
+### GitHub #47 
+
+**Personal Access Tokens**
+
+
+[f8b8d772bb455fc](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/f8b8d772bb455fc) Tomas Bjerre *2018-02-10 07:38:54*
+
+
 ## 1.45
 ### No issue
 
