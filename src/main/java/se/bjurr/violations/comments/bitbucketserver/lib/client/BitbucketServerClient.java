@@ -3,6 +3,7 @@ package se.bjurr.violations.comments.bitbucketserver.lib.client;
 import static com.google.common.base.Charsets.UTF_8;
 import static com.google.common.collect.Lists.newArrayList;
 import static java.net.URLEncoder.encode;
+import static se.bjurr.violations.lib.util.Utils.isNullOrEmpty;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.gson.Gson;
@@ -10,6 +11,7 @@ import com.jayway.jsonpath.JsonPath;
 import java.io.UnsupportedEncodingException;
 import java.util.LinkedHashMap;
 import java.util.List;
+import se.bjurr.violations.comments.bitbucketserver.lib.client.BitbucketServerInvoker.Method;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerComment;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerDiffResponse;
 
@@ -17,7 +19,8 @@ public class BitbucketServerClient {
   private static BitbucketServerInvoker bitbucketServerInvoker = new BitbucketServerInvoker();
 
   @VisibleForTesting
-  public static void setBitbucketServerInvoker(BitbucketServerInvoker bitbucketServerInvoker) {
+  public static void setBitbucketServerInvoker(
+      final BitbucketServerInvoker bitbucketServerInvoker) {
     BitbucketServerClient.bitbucketServerInvoker = bitbucketServerInvoker;
   }
 
@@ -28,25 +31,28 @@ public class BitbucketServerClient {
   private final Integer bitbucketServerPullRequestId;
   private final String bitbucketServerRepo;
   private final String bitbucketServerUser;
+  private final String bitbucketPersonalAccessToken;
 
   public BitbucketServerClient(
-      String bitbucketServerBaseUrl,
-      String bitbucketServerProject,
-      String bitbucketServerRepo,
-      Integer bitbucketServerPullRequestId,
-      String bitbucketServerUser,
-      String bitbucketServerPassword) {
+      final String bitbucketServerBaseUrl,
+      final String bitbucketServerProject,
+      final String bitbucketServerRepo,
+      final Integer bitbucketServerPullRequestId,
+      final String bitbucketServerUser,
+      final String bitbucketServerPassword,
+      final String bitbucketPersonalAccessToken) {
     if (bitbucketServerBaseUrl.endsWith("/")) {
       this.bitbucketServerBaseUrl =
           bitbucketServerBaseUrl.substring(0, bitbucketServerBaseUrl.length() - 1);
     } else {
       this.bitbucketServerBaseUrl = bitbucketServerBaseUrl;
     }
-    this.bitbucketServerPassword = bitbucketServerPassword;
     this.bitbucketServerProject = bitbucketServerProject;
     this.bitbucketServerPullRequestId = bitbucketServerPullRequestId;
     this.bitbucketServerRepo = bitbucketServerRepo;
     this.bitbucketServerUser = bitbucketServerUser;
+    this.bitbucketServerPassword = bitbucketServerPassword;
+    this.bitbucketPersonalAccessToken = bitbucketPersonalAccessToken;
   }
 
   private String getBitbucketServerPulLRequestBase() {
@@ -59,14 +65,9 @@ public class BitbucketServerClient {
         + bitbucketServerPullRequestId;
   }
 
-  private <T> T invokeAndParse(String url, String jsonPath) {
-    final String json =
-        bitbucketServerInvoker.invokeUrl(
-            url,
-            BitbucketServerInvoker.Method.GET,
-            null,
-            bitbucketServerUser,
-            bitbucketServerPassword);
+  private <T> T invokeAndParse(final String url, final String jsonPath) {
+    final String json = doInvokeUrl(url, BitbucketServerInvoker.Method.GET, null);
+
     try {
       return JsonPath.read(json, jsonPath);
     } catch (final Exception e) {
@@ -80,17 +81,25 @@ public class BitbucketServerClient {
         getBitbucketServerPulLRequestBase() + "/changes?limit=999999", "$..path.toString");
   }
 
-  public void pullRequestComment(String message) {
+  public void pullRequestComment(final String message) {
     final String postContent = "{ \"text\": \"" + safeJson(message) + "\"}";
-    bitbucketServerInvoker.invokeUrl(
+    doInvokeUrl(
         getBitbucketServerPulLRequestBase() + "/comments",
         BitbucketServerInvoker.Method.POST,
-        postContent,
-        bitbucketServerUser,
-        bitbucketServerPassword);
+        postContent);
   }
 
-  public void pullRequestComment(String changedFile, int line, String message) {
+  private String doInvokeUrl(final String string, final Method method, final String postContent) {
+    if (isNullOrEmpty(bitbucketServerUser) || isNullOrEmpty(bitbucketServerPassword)) {
+      return bitbucketServerInvoker.invokeUrl(
+          string, method, postContent, bitbucketPersonalAccessToken);
+    } else {
+      return bitbucketServerInvoker.invokeUrl(
+          string, method, postContent, bitbucketServerUser, bitbucketServerPassword);
+    }
+  }
+
+  public void pullRequestComment(final String changedFile, int line, final String message) {
     if (line == 0) {
       line = 1;
     }
@@ -102,15 +111,13 @@ public class BitbucketServerClient {
             + ", \"lineType\": \"ADDED\", \"fileType\": \"TO\", \"path\": \""
             + changedFile
             + "\" }}";
-    bitbucketServerInvoker.invokeUrl(
+    doInvokeUrl(
         getBitbucketServerPulLRequestBase() + "/comments",
         BitbucketServerInvoker.Method.POST,
-        postContent,
-        bitbucketServerUser,
-        bitbucketServerPassword);
+        postContent);
   }
 
-  public List<BitbucketServerComment> pullRequestComments(String changedFile) {
+  public List<BitbucketServerComment> pullRequestComments(final String changedFile) {
     try {
       final String encodedChangedFile = encode(changedFile, UTF_8.name());
       final List<LinkedHashMap<?, ?>> parsed =
@@ -128,13 +135,7 @@ public class BitbucketServerClient {
 
   public BitbucketServerDiffResponse pullRequestDiff() {
     final String url = getBitbucketServerPulLRequestBase() + "/diff?limit=999999";
-    final String json =
-        bitbucketServerInvoker.invokeUrl(
-            url,
-            BitbucketServerInvoker.Method.GET,
-            null,
-            bitbucketServerUser,
-            bitbucketServerPassword);
+    final String json = doInvokeUrl(url, BitbucketServerInvoker.Method.GET, null);
     try {
       return new Gson().fromJson(json, BitbucketServerDiffResponse.class);
     } catch (final Exception e) {
@@ -142,25 +143,24 @@ public class BitbucketServerClient {
     }
   }
 
-  public void pullRequestRemoveComment(Integer commentId, Integer commentVersion) {
-    bitbucketServerInvoker.invokeUrl(
+  public void pullRequestRemoveComment(final Integer commentId, final Integer commentVersion) {
+    doInvokeUrl(
         getBitbucketServerPulLRequestBase()
             + "/comments/"
             + commentId
             + "?version="
             + commentVersion,
         BitbucketServerInvoker.Method.DELETE,
-        null,
-        bitbucketServerUser,
-        bitbucketServerPassword);
+        null);
   }
 
   @VisibleForTesting
-  String safeJson(String message) {
+  String safeJson(final String message) {
     return message.replaceAll("\\\\", "\\\\\\\\").replaceAll("\"", "").replaceAll("\n", "\\\\n");
   }
 
-  private List<BitbucketServerComment> toBitbucketServerComments(List<LinkedHashMap<?, ?>> parsed) {
+  private List<BitbucketServerComment> toBitbucketServerComments(
+      final List<LinkedHashMap<?, ?>> parsed) {
     final List<BitbucketServerComment> transformed = newArrayList();
     for (final LinkedHashMap<?, ?> from : parsed) {
       final Integer version = (Integer) from.get("version");

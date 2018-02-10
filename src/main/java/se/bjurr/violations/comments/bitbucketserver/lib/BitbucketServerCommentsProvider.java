@@ -52,13 +52,15 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
   }
 
   public BitbucketServerCommentsProvider(
-      ViolationCommentsToBitbucketServerApi violationCommentsToBitbucketApi) {
+      final ViolationCommentsToBitbucketServerApi violationCommentsToBitbucketApi) {
     final String bitbucketServerBaseUrl = violationCommentsToBitbucketApi.getBitbucketServerUrl();
     final String bitbucketServerProject = violationCommentsToBitbucketApi.getProjectKey();
     final String bitbucketServerRepo = violationCommentsToBitbucketApi.getRepoSlug();
     final Integer bitbucketServerPullRequestId = violationCommentsToBitbucketApi.getPullRequestId();
     final String bitbucketServerUser = violationCommentsToBitbucketApi.getUsername();
     final String bitbucketServerPassword = violationCommentsToBitbucketApi.getPassword();
+    final String bitbucketPersonalAccessToken =
+        violationCommentsToBitbucketApi.getPersonalAccessToken();
     client =
         new BitbucketServerClient(
             bitbucketServerBaseUrl,
@@ -66,17 +68,19 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
             bitbucketServerRepo,
             bitbucketServerPullRequestId,
             bitbucketServerUser,
-            bitbucketServerPassword);
+            bitbucketServerPassword,
+            bitbucketPersonalAccessToken);
     this.violationCommentsToBitbucketApi = violationCommentsToBitbucketApi;
   }
 
   @Override
-  public void createCommentWithAllSingleFileComments(String comment) {
+  public void createCommentWithAllSingleFileComments(final String comment) {
     client.pullRequestComment(comment);
   }
 
   @Override
-  public void createSingleFileComment(ChangedFile file, Integer line, String comment) {
+  public void createSingleFileComment(
+      final ChangedFile file, final Integer line, final String comment) {
     client.pullRequestComment(file.getFilename(), line, comment);
   }
 
@@ -109,7 +113,7 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
   }
 
   @Override
-  public void removeComments(List<Comment> comments) {
+  public void removeComments(final List<Comment> comments) {
     for (final Comment comment : comments) {
       Integer commentId = null;
       Integer commentVersion = null;
@@ -124,7 +128,7 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
   }
 
   @Override
-  public boolean shouldComment(ChangedFile changedFile, Integer changedLine) {
+  public boolean shouldComment(final ChangedFile changedFile, final Integer changedLine) {
     if (!violationCommentsToBitbucketApi.getCommentOnlyChangedContent()) {
       return true;
     }
@@ -135,7 +139,10 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
 
   @VisibleForTesting
   boolean shouldComment(
-      ChangedFile changedFile, Integer changedLine, int context, List<BitbucketServerDiff> diffs) {
+      final ChangedFile changedFile,
+      final Integer changedLine,
+      final int context,
+      final List<BitbucketServerDiff> diffs) {
     for (final BitbucketServerDiff diff : diffs) {
       final DiffDestination destination = diff.getDestination();
       if (destination != null) {
@@ -174,7 +181,8 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
   }
 
   @Override
-  public Optional<String> findCommentFormat(ChangedFile changedFile, Violation violation) {
+  public Optional<String> findCommentFormat(
+      final ChangedFile changedFile, final Violation violation) {
     return Optional.absent();
   }
 

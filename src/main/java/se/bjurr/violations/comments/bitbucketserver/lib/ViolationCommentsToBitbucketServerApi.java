@@ -1,8 +1,9 @@
 package se.bjurr.violations.comments.bitbucketserver.lib;
 
-import static com.google.common.base.Objects.firstNonNull;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static se.bjurr.violations.comments.lib.CommentsCreator.createComments;
+import static se.bjurr.violations.lib.util.Utils.firstNonNull;
+import static se.bjurr.violations.lib.util.Utils.isNullOrEmpty;
 
 import java.util.List;
 import se.bjurr.violations.comments.lib.model.CommentsProvider;
@@ -12,6 +13,7 @@ public class ViolationCommentsToBitbucketServerApi {
   private static final Integer BITBUCKET_MAX_COMMENT_SIZE = 32767;
   public static final String DEFAULT_PROP_VIOLATIONS_PASSWORD = "VIOLATIONS_PASSWORD";
   public static final String DEFAULT_PROP_VIOLATIONS_USERNAME = "VIOLATIONS_USERNAME";
+  public static final String DEFAULT_PROP_PERSONAL_ACCESS_TOKEN = "VIOLATIONS_PAT";
 
   public static ViolationCommentsToBitbucketServerApi violationCommentsToBitbucketServerApi() {
     return new ViolationCommentsToBitbucketServerApi();
@@ -24,6 +26,7 @@ public class ViolationCommentsToBitbucketServerApi {
   private String projectKey;
   private String propPassword = DEFAULT_PROP_VIOLATIONS_PASSWORD;
   private String propUsername = DEFAULT_PROP_VIOLATIONS_USERNAME;
+  private String propPersonalAccessToken = DEFAULT_PROP_PERSONAL_ACCESS_TOKEN;
   private int pullRequestId;
   private String repoSlug;
   private String username;
@@ -31,13 +34,16 @@ public class ViolationCommentsToBitbucketServerApi {
   private boolean commentOnlyChangedContent = false;
   private int commentOnlyChangedContentContext;
   private boolean shouldKeepOldComments;
+  private String personalAccessToken;
 
   private ViolationCommentsToBitbucketServerApi() {}
 
   private void checkState() {
-    if (username == null || password == null) {
+    final boolean noUsername = isNullOrEmpty(username) || isNullOrEmpty(password);
+    final boolean noPat = isNullOrEmpty(personalAccessToken);
+    if (noUsername && noPat) {
       throw new IllegalStateException(
-          "User and Password must be set! They can be set with the API or by setting properties.\n"
+          "User and Password, or personal access token, must be set! They can be set with the API or by setting properties.\n"
               + //
               "Username/password:\n"
               + //
@@ -45,7 +51,13 @@ public class ViolationCommentsToBitbucketServerApi {
               + DEFAULT_PROP_VIOLATIONS_USERNAME
               + "=theuser -D"
               + DEFAULT_PROP_VIOLATIONS_PASSWORD
-              + "=thepassword");
+              + "=thepassword"
+              + //
+              "\n\nPersonal access token:\n"
+              + //
+              "-D"
+              + DEFAULT_PROP_PERSONAL_ACCESS_TOKEN
+              + "=asdasd");
     }
     checkNotNull(bitbucketServerUrl, "BitbucketServerURL");
     checkNotNull(pullRequestId, "PullRequestId");
@@ -108,6 +120,10 @@ public class ViolationCommentsToBitbucketServerApi {
     if (System.getProperty(propPassword) != null) {
       password = firstNonNull(password, System.getProperty(propPassword));
     }
+    if (System.getProperty(propPassword) != null) {
+      personalAccessToken =
+          firstNonNull(personalAccessToken, System.getProperty(propPersonalAccessToken));
+    }
   }
 
   public void toPullRequest() throws Exception {
@@ -117,80 +133,91 @@ public class ViolationCommentsToBitbucketServerApi {
     createComments(commentsProvider, violations, BITBUCKET_MAX_COMMENT_SIZE);
   }
 
-  public ViolationCommentsToBitbucketServerApi withBitbucketServerUrl(String bitbucketServerUrl) {
+  public ViolationCommentsToBitbucketServerApi withBitbucketServerUrl(
+      final String bitbucketServerUrl) {
     this.bitbucketServerUrl = bitbucketServerUrl;
     return this;
   }
 
   public ViolationCommentsToBitbucketServerApi withCommentOnlyChangedContent(
-      boolean commentOnlyChangedContent) {
+      final boolean commentOnlyChangedContent) {
     this.commentOnlyChangedContent = commentOnlyChangedContent;
     return this;
   }
 
   public ViolationCommentsToBitbucketServerApi withCommentOnlyChangedContentContext(
-      int commentOnlyChangedContentContext) {
+      final int commentOnlyChangedContentContext) {
     this.commentOnlyChangedContentContext = commentOnlyChangedContentContext;
     return this;
   }
 
   public ViolationCommentsToBitbucketServerApi withCreateCommentWithAllSingleFileComments(
-      boolean createCommentWithAllSingleFileComments) {
+      final boolean createCommentWithAllSingleFileComments) {
     this.createCommentWithAllSingleFileComments = createCommentWithAllSingleFileComments;
     return this;
   }
 
   public ViolationCommentsToBitbucketServerApi withCreateSingleFileComments(
-      boolean createSingleFileComments) {
+      final boolean createSingleFileComments) {
     this.createSingleFileComments = createSingleFileComments;
     return this;
   }
 
-  public ViolationCommentsToBitbucketServerApi withPassword(String password) {
+  public ViolationCommentsToBitbucketServerApi withPassword(final String password) {
     this.password = password;
     return this;
   }
 
-  public ViolationCommentsToBitbucketServerApi withProjectKey(String projectKey) {
+  public ViolationCommentsToBitbucketServerApi withProjectKey(final String projectKey) {
     this.projectKey = projectKey;
     return this;
   }
 
-  public void withPropPassword(String envPassword) {
+  public void withPropPassword(final String envPassword) {
     propPassword = envPassword;
   }
 
-  public void withPropUsername(String envUsername) {
+  public void withPropUsername(final String envUsername) {
     propUsername = envUsername;
   }
 
-  public ViolationCommentsToBitbucketServerApi withPullRequestId(int pullRequestId) {
+  public ViolationCommentsToBitbucketServerApi withPropPersonalAccessToken(
+      final String propPersonalAccessToken) {
+    this.propPersonalAccessToken = propPersonalAccessToken;
+    return this;
+  }
+
+  public ViolationCommentsToBitbucketServerApi withPullRequestId(final int pullRequestId) {
     this.pullRequestId = pullRequestId;
     return this;
   }
 
-  public ViolationCommentsToBitbucketServerApi withRepoSlug(String repoSlug) {
+  public ViolationCommentsToBitbucketServerApi withRepoSlug(final String repoSlug) {
     this.repoSlug = repoSlug;
     return this;
   }
 
-  public ViolationCommentsToBitbucketServerApi withUsername(String username) {
+  public ViolationCommentsToBitbucketServerApi withUsername(final String username) {
     this.username = username;
     return this;
   }
 
-  public ViolationCommentsToBitbucketServerApi withViolations(List<Violation> violations) {
+  public ViolationCommentsToBitbucketServerApi withViolations(final List<Violation> violations) {
     this.violations = violations;
     return this;
   }
 
   public ViolationCommentsToBitbucketServerApi withShouldKeepOldComments(
-      boolean shouldKeepOldComments) {
+      final boolean shouldKeepOldComments) {
     this.shouldKeepOldComments = shouldKeepOldComments;
     return this;
   }
 
   public boolean getShouldKeepOldComments() {
     return shouldKeepOldComments;
+  }
+
+  public String getPersonalAccessToken() {
+    return personalAccessToken;
   }
 }

@@ -28,7 +28,8 @@ public class BitbucketServerClientTest {
           "bitbucketServerRepo",
           1,
           "bitbucketServerUser",
-          "bitbucketServerPassword");
+          "bitbucketServerPassword",
+          null);
   private String invoked;
 
   @Before
@@ -37,11 +38,11 @@ public class BitbucketServerClientTest {
         new BitbucketServerInvoker() {
           @Override
           public String invokeUrl(
-              String url,
-              Method method,
-              String postContent,
-              String bitbucketServerUser,
-              String bitbucketServerPassword) {
+              final String url,
+              final Method method,
+              final String postContent,
+              final String bitbucketServerUser,
+              final String bitbucketServerPassword) {
             invoked = url;
             return mockedJson;
           }
@@ -49,7 +50,7 @@ public class BitbucketServerClientTest {
   }
 
   public List<BitbucketServerDiff> filterByFile(
-      BitbucketServerDiffResponse response, String filename) {
+      final BitbucketServerDiffResponse response, final String filename) {
     final List<BitbucketServerDiff> filtered = newArrayList();
     final List<BitbucketServerDiff> mixed = response.getDiffs();
     for (final BitbucketServerDiff d : mixed) {
@@ -60,7 +61,8 @@ public class BitbucketServerClientTest {
     return filtered;
   }
 
-  public List<Segment> filterSegments(BitbucketServerDiff bitbucketServerDiff, DIFFTYPE diffType) {
+  public List<Segment> filterSegments(
+      final BitbucketServerDiff bitbucketServerDiff, final DIFFTYPE diffType) {
     final List<Segment> filtered = newArrayList();
     for (final DiffHunk hunk : bitbucketServerDiff.getHunks()) {
       final List<Segment> mixed = hunk.getSegments();
@@ -74,7 +76,7 @@ public class BitbucketServerClientTest {
     return filtered;
   }
 
-  private void mockJson(String resourceName) {
+  private void mockJson(final String resourceName) {
     try {
       mockedJson = Resources.toString(Resources.getResource(resourceName), Charsets.UTF_8);
     } catch (final IOException e) {

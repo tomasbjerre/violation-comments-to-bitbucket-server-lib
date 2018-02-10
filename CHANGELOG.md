@@ -3,13 +3,50 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
-## Unreleased
+## 1.45
 ### No issue
+
+**Stepping version to fix faulty release**
+
+
+[eff118305ad7ca8](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/eff118305ad7ca8) Tomas Bjerre *2018-02-06 18:04:41*
+
+**Setting timeout to 30s**
+
+
+[3173d02da2df549](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/3173d02da2df549) Tomas Bjerre *2018-02-06 17:59:33*
+
+
+## 1.43
+### No issue
+
+**Google error-prone**
+
+
+[b39df0b7481f4f8](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/b39df0b7481f4f8) Tomas Bjerre *2018-01-14 11:53:49*
+
+
+## 1.42
+### No issue
+
+**Relocating to correct Java identifier**
+
+
+[9daaa06247f67a0](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/9daaa06247f67a0) Tomas Bjerre *2017-12-31 11:47:43*
+
+
+## 1.41
+### No issue
+
+**Fixing encoding issues**
+
+
+[272f1623e559a54](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/272f1623e559a54) Tomas Bjerre *2017-12-25 19:45:51*
 
 **Using UTF-8, instead of default**
 
 
-[79a5a8b0869c4d7](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/79a5a8b0869c4d7) Tomas Bjerre *2017-12-24 22:03:10*
+[65dacc19718859e](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/65dacc19718859e) Tomas Bjerre *2017-12-25 16:12:52*
 
 
 ## 1.40

@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.CookieHandler;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
@@ -24,11 +25,37 @@ public class BitbucketServerInvoker {
   }
 
   public String invokeUrl(
-      String url,
-      Method method,
-      String postContent,
-      String bitbucketServerUser,
-      String bitbucketServerPassword) {
+      final String url, final Method method, final String postContent, final String bearer) {
+
+    final String authorizationValue = "Bearer " + bearer;
+
+    return doInvokeUrl(url, method, postContent, authorizationValue);
+  }
+
+  public String invokeUrl(
+      final String url,
+      final Method method,
+      final String postContent,
+      final String bitbucketServerUser,
+      final String bitbucketServerPassword) {
+
+    final String userAndPass = bitbucketServerUser + ":" + bitbucketServerPassword;
+    String authString;
+    try {
+      authString = DatatypeConverter.printBase64Binary(userAndPass.getBytes("UTF-8"));
+    } catch (final UnsupportedEncodingException e1) {
+      throw new RuntimeException(e1);
+    }
+    final String authorizationValue = "Basic " + authString;
+
+    return doInvokeUrl(url, method, postContent, authorizationValue);
+  }
+
+  private String doInvokeUrl(
+      final String url,
+      final Method method,
+      final String postContent,
+      final String authorizationValue) {
     HttpURLConnection conn = null;
     OutputStream output = null;
     BufferedReader reader = null;
@@ -37,9 +64,7 @@ public class BitbucketServerInvoker {
       conn = (HttpURLConnection) new URL(url).openConnection();
       conn.setReadTimeout(30000);
       conn.setConnectTimeout(30000);
-      final String userAndPass = bitbucketServerUser + ":" + bitbucketServerPassword;
-      final String authString = DatatypeConverter.printBase64Binary(userAndPass.getBytes("UTF-8"));
-      conn.setRequestProperty("Authorization", "Basic " + authString);
+      conn.setRequestProperty("Authorization", authorizationValue);
       conn.setRequestMethod(method.name());
       final String charset = "UTF-8";
       conn.setDoOutput(true);
