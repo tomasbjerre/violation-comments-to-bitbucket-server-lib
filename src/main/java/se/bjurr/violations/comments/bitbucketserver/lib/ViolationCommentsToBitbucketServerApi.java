@@ -2,12 +2,14 @@ package se.bjurr.violations.comments.bitbucketserver.lib;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static se.bjurr.violations.comments.lib.CommentsCreator.createComments;
+import static se.bjurr.violations.lib.util.Optional.fromNullable;
 import static se.bjurr.violations.lib.util.Utils.firstNonNull;
 import static se.bjurr.violations.lib.util.Utils.isNullOrEmpty;
 
 import java.util.List;
 import se.bjurr.violations.comments.lib.model.CommentsProvider;
 import se.bjurr.violations.lib.model.Violation;
+import se.bjurr.violations.lib.util.Optional;
 
 public class ViolationCommentsToBitbucketServerApi {
   private static final Integer BITBUCKET_MAX_COMMENT_SIZE = 32767;
@@ -35,6 +37,7 @@ public class ViolationCommentsToBitbucketServerApi {
   private int commentOnlyChangedContentContext;
   private boolean shouldKeepOldComments;
   private String personalAccessToken;
+  private String commentTemplate;
 
   private ViolationCommentsToBitbucketServerApi() {}
 
@@ -225,5 +228,14 @@ public class ViolationCommentsToBitbucketServerApi {
 
   public String getPersonalAccessToken() {
     return personalAccessToken;
+  }
+
+  public ViolationCommentsToBitbucketServerApi withCommentTemplate(final String commentTemplate) {
+    this.commentTemplate = commentTemplate;
+    return this;
+  }
+
+  public Optional<String> findCommentTemplate() {
+    return fromNullable(commentTemplate);
   }
 }

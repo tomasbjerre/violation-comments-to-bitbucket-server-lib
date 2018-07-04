@@ -23,7 +23,6 @@ import se.bjurr.violations.comments.bitbucketserver.lib.client.model.Segment;
 import se.bjurr.violations.comments.lib.model.ChangedFile;
 import se.bjurr.violations.comments.lib.model.Comment;
 import se.bjurr.violations.comments.lib.model.CommentsProvider;
-import se.bjurr.violations.lib.model.Violation;
 import se.bjurr.violations.lib.util.Optional;
 
 public class BitbucketServerCommentsProvider implements CommentsProvider {
@@ -181,9 +180,8 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
   }
 
   @Override
-  public Optional<String> findCommentFormat(
-      final ChangedFile changedFile, final Violation violation) {
-    return Optional.absent();
+  public Optional<String> findCommentTemplate() {
+    return violationCommentsToBitbucketApi.findCommentTemplate();
   }
 
   @Override

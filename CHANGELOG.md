@@ -3,6 +3,24 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.48
+### No issue
+
+**PCLint**
+
+
+[68c09c2d9836709](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/68c09c2d9836709) Tomas Bjerre *2018-02-13 18:59:38*
+
+
+## 1.47
+### No issue
+
+**ViolationCommentsToBitbucketServerApi**
+
+
+[e8cd87fdd59f777](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/e8cd87fdd59f777) Tomas Bjerre *2018-02-10 07:55:37*
+
+
 ## 1.46
 ### GitHub #47 
 
