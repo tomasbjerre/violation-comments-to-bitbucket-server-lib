@@ -3,6 +3,39 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## Unreleased
+### No issue
+
+**Commit corrections by build process**
+
+
+[34976ed36d0c71a](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/34976ed36d0c71a) stoesselt *2018-07-05 13:13:32*
+
+**Added support for proxy**
+
+ * - Implementation basing on org.apache.http.client.HttpClient was chosen, because this works with Jenkins StashNotifier as well. 
+
+[5fd8e3af5126beb](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/5fd8e3af5126beb) stoesselt *2018-07-05 13:04:03*
+
+
+## 1.50
+### No issue
+
+**GCC, ARM GCC and Doxygen**
+
+
+[a59a2ee59c5a1c2](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/a59a2ee59c5a1c2) Tomas Bjerre *2018-07-04 18:13:57*
+
+
+## 1.49
+### No issue
+
+**Custom template**
+
+
+[dead345cae1fa1b](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/dead345cae1fa1b) Tomas Bjerre *2018-07-04 12:56:14*
+
+
 ## 1.48
 ### No issue
 

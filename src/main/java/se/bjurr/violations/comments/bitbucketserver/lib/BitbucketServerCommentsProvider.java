@@ -60,6 +60,10 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
     final String bitbucketServerPassword = violationCommentsToBitbucketApi.getPassword();
     final String bitbucketPersonalAccessToken =
         violationCommentsToBitbucketApi.getPersonalAccessToken();
+    final String proxyHostNameOrIp = violationCommentsToBitbucketApi.getProxyHostNameOrIp();
+    final Integer proxyHostPort = violationCommentsToBitbucketApi.getProxyHostPort();
+    final String proxyUser = violationCommentsToBitbucketApi.getProxyUser();
+    final String proxyPassword = violationCommentsToBitbucketApi.getProxyPassword();
     client =
         new BitbucketServerClient(
             bitbucketServerBaseUrl,
@@ -68,7 +72,11 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
             bitbucketServerPullRequestId,
             bitbucketServerUser,
             bitbucketServerPassword,
-            bitbucketPersonalAccessToken);
+            bitbucketPersonalAccessToken,
+            proxyHostNameOrIp,
+            proxyHostPort,
+            proxyUser,
+            proxyPassword);
     this.violationCommentsToBitbucketApi = violationCommentsToBitbucketApi;
   }
 

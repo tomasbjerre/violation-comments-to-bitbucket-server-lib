@@ -29,6 +29,10 @@ public class BitbucketServerClientTest {
           1,
           "bitbucketServerUser",
           "bitbucketServerPassword",
+          null,
+          null,
+          0,
+          null,
           null);
   private String invoked;
 
@@ -42,7 +46,8 @@ public class BitbucketServerClientTest {
               final Method method,
               final String postContent,
               final String bitbucketServerUser,
-              final String bitbucketServerPassword) {
+              final String bitbucketServerPassword,
+              final ProxyConfig proxyConfig) {
             invoked = url;
             return mockedJson;
           }

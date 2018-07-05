@@ -7,14 +7,21 @@ import com.google.common.base.Throwables;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.CookieHandler;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.net.URI;
 import javax.xml.bind.DatatypeConverter;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.HttpClientBuilder;
 
 public class BitbucketServerInvoker {
 
@@ -25,11 +32,15 @@ public class BitbucketServerInvoker {
   }
 
   public String invokeUrl(
-      final String url, final Method method, final String postContent, final String bearer) {
+      final String url,
+      final Method method,
+      final String postContent,
+      final String bearer,
+      final ProxyConfig proxyConfig) {
 
     final String authorizationValue = "Bearer " + bearer;
 
-    return doInvokeUrl(url, method, postContent, authorizationValue);
+    return doInvokeUrl(url, method, postContent, authorizationValue, proxyConfig);
   }
 
   public String invokeUrl(
@@ -37,7 +48,8 @@ public class BitbucketServerInvoker {
       final Method method,
       final String postContent,
       final String bitbucketServerUser,
-      final String bitbucketServerPassword) {
+      final String bitbucketServerPassword,
+      final ProxyConfig proxyConfig) {
 
     final String userAndPass = bitbucketServerUser + ":" + bitbucketServerPassword;
     String authString;
@@ -48,38 +60,59 @@ public class BitbucketServerInvoker {
     }
     final String authorizationValue = "Basic " + authString;
 
-    return doInvokeUrl(url, method, postContent, authorizationValue);
+    return doInvokeUrl(url, method, postContent, authorizationValue, proxyConfig);
   }
 
   private String doInvokeUrl(
       final String url,
       final Method method,
       final String postContent,
-      final String authorizationValue) {
-    HttpURLConnection conn = null;
-    OutputStream output = null;
-    BufferedReader reader = null;
+      final String authorizationValue,
+      final ProxyConfig proxyConfig) {
+    BufferedReader bufferedReader = null;
     try {
       CookieHandler.setDefault(new CookieManager(null, CookiePolicy.ACCEPT_ALL));
-      conn = (HttpURLConnection) new URL(url).openConnection();
-      conn.setReadTimeout(30000);
-      conn.setConnectTimeout(30000);
-      conn.setRequestProperty("Authorization", authorizationValue);
-      conn.setRequestMethod(method.name());
-      final String charset = "UTF-8";
-      conn.setDoOutput(true);
-      conn.setRequestProperty("X-Atlassian-Token", "no-check");
-      conn.setRequestProperty("Content-Type", "application/json");
-      conn.setRequestProperty("Accept", "application/json");
-      conn.connect();
-      if (!isNullOrEmpty(postContent)) {
-        output = conn.getOutputStream();
-        output.write(postContent.getBytes(charset));
+      // Preparation of the request
+      HttpRequestBase request;
+      switch (method) {
+        case DELETE:
+          request = new HttpDelete();
+          break;
+        case GET:
+          request = new HttpGet();
+          break;
+        case POST:
+          request = new HttpPost();
+          break;
+        default:
+          throw new IllegalArgumentException(
+              "Unsupported http method:\n" + url + "\n" + method + "\n" + postContent);
       }
-      reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), UTF_8));
+      request.setURI(new URI(url));
+      RequestConfig.Builder requestBuilder =
+          RequestConfig.custom().setConnectionRequestTimeout(30000).setConnectTimeout(30000);
+      request.setConfig(requestBuilder.build());
+      request.addHeader("Authorization", authorizationValue);
+      request.addHeader("X-Atlassian-Token", "no-check");
+      request.addHeader("Content-Type", "application/json");
+      request.addHeader("Accept", "application/json");
+
+      if (request instanceof HttpPost && !isNullOrEmpty(postContent)) {
+        StringEntity entity = new StringEntity(postContent, UTF_8);
+        ((HttpPost) request).setEntity(entity);
+      }
+
+      HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
+      proxyConfig.addTo(httpClientBuilder);
+      HttpClient httpClient = httpClientBuilder.build();
+
+      // Execute the request and get the response
+      HttpResponse response = httpClient.execute(request);
+      bufferedReader =
+          new BufferedReader(new InputStreamReader(response.getEntity().getContent(), UTF_8));
       final StringBuilder stringBuilder = new StringBuilder();
       String line = null;
-      while ((line = reader.readLine()) != null) {
+      while ((line = bufferedReader.readLine()) != null) {
         stringBuilder.append(line + "\n");
       }
       final String json = stringBuilder.toString();
@@ -88,15 +121,10 @@ public class BitbucketServerInvoker {
       throw new RuntimeException("Error calling:\n" + url + "\n" + method + "\n" + postContent, e);
     } finally {
       try {
-        if (conn != null) {
-          conn.disconnect();
+        if (bufferedReader != null) {
+          bufferedReader.close();
         }
-        if (reader != null) {
-          reader.close();
-        }
-        if (output != null) {
-          output.close();
-        }
+
       } catch (final IOException e) {
         throw Throwables.propagate(e);
       }

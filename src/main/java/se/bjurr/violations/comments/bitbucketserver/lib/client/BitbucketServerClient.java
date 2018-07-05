@@ -32,6 +32,7 @@ public class BitbucketServerClient {
   private final String bitbucketServerRepo;
   private final String bitbucketServerUser;
   private final String bitbucketPersonalAccessToken;
+  private final ProxyConfig proxyInformation;
 
   public BitbucketServerClient(
       final String bitbucketServerBaseUrl,
@@ -40,7 +41,11 @@ public class BitbucketServerClient {
       final Integer bitbucketServerPullRequestId,
       final String bitbucketServerUser,
       final String bitbucketServerPassword,
-      final String bitbucketPersonalAccessToken) {
+      final String bitbucketPersonalAccessToken,
+      final String proxyHostNameOrIp,
+      final Integer proxyHostPort,
+      final String proxyUser,
+      final String proxyPassword) {
     if (bitbucketServerBaseUrl.endsWith("/")) {
       this.bitbucketServerBaseUrl =
           bitbucketServerBaseUrl.substring(0, bitbucketServerBaseUrl.length() - 1);
@@ -53,6 +58,8 @@ public class BitbucketServerClient {
     this.bitbucketServerUser = bitbucketServerUser;
     this.bitbucketServerPassword = bitbucketServerPassword;
     this.bitbucketPersonalAccessToken = bitbucketPersonalAccessToken;
+    this.proxyInformation =
+        new ProxyConfig(proxyHostNameOrIp, proxyHostPort, proxyUser, proxyPassword);
   }
 
   private String getBitbucketServerPulLRequestBase() {
@@ -92,10 +99,15 @@ public class BitbucketServerClient {
   private String doInvokeUrl(final String string, final Method method, final String postContent) {
     if (isNullOrEmpty(bitbucketServerUser) || isNullOrEmpty(bitbucketServerPassword)) {
       return bitbucketServerInvoker.invokeUrl(
-          string, method, postContent, bitbucketPersonalAccessToken);
+          string, method, postContent, bitbucketPersonalAccessToken, proxyInformation);
     } else {
       return bitbucketServerInvoker.invokeUrl(
-          string, method, postContent, bitbucketServerUser, bitbucketServerPassword);
+          string,
+          method,
+          postContent,
+          bitbucketServerUser,
+          bitbucketServerPassword,
+          proxyInformation);
     }
   }
 

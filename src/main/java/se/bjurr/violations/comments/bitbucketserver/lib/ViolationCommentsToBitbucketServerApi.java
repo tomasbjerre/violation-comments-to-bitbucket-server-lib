@@ -38,6 +38,10 @@ public class ViolationCommentsToBitbucketServerApi {
   private boolean shouldKeepOldComments;
   private String personalAccessToken;
   private String commentTemplate;
+  private String proxyHostNameOrIp;
+  private Integer proxyHostPort = 0;
+  private String proxyUser;
+  private String proxyPassword;
 
   private ViolationCommentsToBitbucketServerApi() {}
 
@@ -114,6 +118,30 @@ public class ViolationCommentsToBitbucketServerApi {
 
   public String getUsername() {
     return username;
+  }
+
+  public boolean getShouldKeepOldComments() {
+    return shouldKeepOldComments;
+  }
+
+  public String getPersonalAccessToken() {
+    return personalAccessToken;
+  }
+
+  public String getProxyHostNameOrIp() {
+    return proxyHostNameOrIp;
+  }
+
+  public Integer getProxyHostPort() {
+    return proxyHostPort;
+  }
+
+  public String getProxyUser() {
+    return proxyUser;
+  }
+
+  public String getProxyPassword() {
+    return proxyPassword;
   }
 
   private void populateFromEnvironmentVariables() {
@@ -222,12 +250,25 @@ public class ViolationCommentsToBitbucketServerApi {
     return this;
   }
 
-  public boolean getShouldKeepOldComments() {
-    return shouldKeepOldComments;
+  public ViolationCommentsToBitbucketServerApi withProxyHostNameOrIp(
+      final String proxyHostNameOrIp) {
+    this.proxyHostNameOrIp = proxyHostNameOrIp;
+    return this;
   }
 
-  public String getPersonalAccessToken() {
-    return personalAccessToken;
+  public ViolationCommentsToBitbucketServerApi withProxyHostPort(final Integer proxyHostPort) {
+    this.proxyHostPort = proxyHostPort;
+    return this;
+  }
+
+  public ViolationCommentsToBitbucketServerApi withProxyUser(final String proxyUser) {
+    this.proxyUser = proxyUser;
+    return this;
+  }
+
+  public ViolationCommentsToBitbucketServerApi withProxyPassword(final String proxyPassword) {
+    this.proxyPassword = proxyPassword;
+    return this;
   }
 
   public ViolationCommentsToBitbucketServerApi withCommentTemplate(final String commentTemplate) {
