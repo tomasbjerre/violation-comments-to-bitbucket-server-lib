@@ -3,6 +3,7 @@ package se.bjurr.violations.comments.bitbucketserver.lib.client;
 import static com.google.common.base.Charsets.UTF_8;
 import static com.google.common.base.Strings.isNullOrEmpty;
 
+import com.google.common.base.Throwables;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,9 +12,7 @@ import java.net.CookieHandler;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
 import java.net.URI;
-
 import javax.xml.bind.DatatypeConverter;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
@@ -23,8 +22,6 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
-
-import com.google.common.base.Throwables;
 
 public class BitbucketServerInvoker {
 
@@ -78,18 +75,18 @@ public class BitbucketServerInvoker {
       // Preparation of the request
       HttpRequestBase request;
       switch (method) {
-      case DELETE:
-        request = new HttpDelete();
-        break;
-      case GET:
-        request = new HttpGet();
-        break;
-      case POST:
-        request = new HttpPost();
-        break;
-      default:
-        throw new IllegalArgumentException(
-            "Unsupported http method:\n" + url + "\n" + method + "\n" + postContent);
+        case DELETE:
+          request = new HttpDelete();
+          break;
+        case GET:
+          request = new HttpGet();
+          break;
+        case POST:
+          request = new HttpPost();
+          break;
+        default:
+          throw new IllegalArgumentException(
+              "Unsupported http method:\n" + url + "\n" + method + "\n" + postContent);
       }
       request.setURI(new URI(url));
       RequestConfig.Builder requestBuilder =

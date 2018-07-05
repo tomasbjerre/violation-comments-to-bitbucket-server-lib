@@ -101,8 +101,13 @@ public class BitbucketServerClient {
       return bitbucketServerInvoker.invokeUrl(
           string, method, postContent, bitbucketPersonalAccessToken, proxyInformation);
     } else {
-      return bitbucketServerInvoker.invokeUrl(string, method, postContent, bitbucketServerUser, 
-          bitbucketServerPassword, proxyInformation);
+      return bitbucketServerInvoker.invokeUrl(
+          string,
+          method,
+          postContent,
+          bitbucketServerUser,
+          bitbucketServerPassword,
+          proxyInformation);
     }
   }
 
