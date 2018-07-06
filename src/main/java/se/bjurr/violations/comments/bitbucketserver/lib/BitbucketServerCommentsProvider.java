@@ -88,7 +88,12 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
   @Override
   public void createSingleFileComment(
       final ChangedFile file, final Integer line, final String comment) {
-    client.pullRequestComment(file.getFilename(), line, comment);
+    final BitbucketServerComment bitbucketComment =
+        client.pullRequestComment(file.getFilename(), line, comment);
+
+    if (violationCommentsToBitbucketApi.getCreateSingleFileCommentsTasks()) {
+      client.commentCreateTask(bitbucketComment, file.getFilename(), line);
+    }
   }
 
   @Override

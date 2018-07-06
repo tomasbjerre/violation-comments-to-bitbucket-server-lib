@@ -24,6 +24,7 @@ public class ViolationCommentsToBitbucketServerApi {
   private String bitbucketServerUrl = null;
   private boolean createCommentWithAllSingleFileComments = false;
   private boolean createSingleFileComments = true;
+  private boolean createSingleFileCommentsTasks = false;
   private String password;
   private String projectKey;
   private String propPassword = DEFAULT_PROP_VIOLATIONS_PASSWORD;
@@ -90,6 +91,10 @@ public class ViolationCommentsToBitbucketServerApi {
 
   public boolean getCreateSingleFileComments() {
     return createSingleFileComments;
+  }
+
+  public boolean getCreateSingleFileCommentsTasks() {
+    return createSingleFileCommentsTasks;
   }
 
   public String getPassword() {
@@ -191,6 +196,12 @@ public class ViolationCommentsToBitbucketServerApi {
   public ViolationCommentsToBitbucketServerApi withCreateSingleFileComments(
       final boolean createSingleFileComments) {
     this.createSingleFileComments = createSingleFileComments;
+    return this;
+  }
+
+  public ViolationCommentsToBitbucketServerApi withCreateSingleFileCommentsTasks(
+      final boolean createSingleFileCommentsTasks) {
+    this.createSingleFileCommentsTasks = createSingleFileCommentsTasks;
     return this;
   }
 
