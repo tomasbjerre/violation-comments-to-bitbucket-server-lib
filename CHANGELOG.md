@@ -3,7 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
-## Unreleased
+## 1.52
+### GitHub [#5](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/pull/5) Add optional creation of Bitbucket tasks for violation comments.
+
+**Formatting after merge**
+
+
+[b10696f4ee69bad](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/b10696f4ee69bad) Tomas Bjerre *2018-07-06 15:30:22*
+
+
 ### No issue
 
 **Add optional creation of Bitbucket tasks for violation comments.**
