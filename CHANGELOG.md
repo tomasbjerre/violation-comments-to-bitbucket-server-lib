@@ -6,6 +6,15 @@ Changelog of Violation comments to bitbucket server lib.
 ## Unreleased
 ### No issue
 
+**Add optional creation of Bitbucket tasks for violation comments.**
+
+
+[a0c2b0f1d922fbb](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/a0c2b0f1d922fbb) Frederik Boster *2018-07-06 12:41:19*
+
+
+## 1.51
+### No issue
+
 **Commit corrections by build process**
 
 

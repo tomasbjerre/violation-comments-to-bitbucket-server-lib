@@ -111,16 +111,12 @@ public class BitbucketServerClient {
           url, method, postContent, bitbucketPersonalAccessToken, proxyInformation);
     } else {
       return bitbucketServerInvoker.invokeUrl(
-          url,
-          method,
-          postContent,
-          bitbucketServerUser,
-          bitbucketServerPassword,
-          proxyInformation);
+          url, method, postContent, bitbucketServerUser, bitbucketServerPassword, proxyInformation);
     }
   }
 
-  public BitbucketServerComment pullRequestComment(final String changedFile, int line, final String message) {
+  public BitbucketServerComment pullRequestComment(
+      final String changedFile, int line, final String message) {
     if (line == 0) {
       line = 1;
     }
