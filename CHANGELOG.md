@@ -3,6 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.53
+### No issue
+
+**Avoiding NPE when removing comment**
+
+
+[e06f02e954a8cc8](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/e06f02e954a8cc8) Tomas Bjerre *2018-07-09 11:03:05*
+
+
 ## 1.52
 ### GitHub [#5](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/pull/5) Add optional creation of Bitbucket tasks for violation comments.
 
