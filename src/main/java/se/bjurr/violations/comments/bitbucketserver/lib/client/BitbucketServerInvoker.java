@@ -89,7 +89,7 @@ public class BitbucketServerInvoker {
               "Unsupported http method:\n" + url + "\n" + method + "\n" + postContent);
       }
       request.setURI(new URI(url));
-      RequestConfig.Builder requestBuilder =
+      final RequestConfig.Builder requestBuilder =
           RequestConfig.custom().setConnectionRequestTimeout(30000).setConnectTimeout(30000);
       request.setConfig(requestBuilder.build());
       request.addHeader("Authorization", authorizationValue);
@@ -98,16 +98,19 @@ public class BitbucketServerInvoker {
       request.addHeader("Accept", "application/json");
 
       if (request instanceof HttpPost && !isNullOrEmpty(postContent)) {
-        StringEntity entity = new StringEntity(postContent, UTF_8);
+        final StringEntity entity = new StringEntity(postContent, UTF_8);
         ((HttpPost) request).setEntity(entity);
       }
 
-      HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
+      final HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
       proxyConfig.addTo(httpClientBuilder);
-      HttpClient httpClient = httpClientBuilder.build();
+      final HttpClient httpClient = httpClientBuilder.build();
 
       // Execute the request and get the response
-      HttpResponse response = httpClient.execute(request);
+      final HttpResponse response = httpClient.execute(request);
+      if (response.getEntity() == null) {
+        return null;
+      }
       bufferedReader =
           new BufferedReader(new InputStreamReader(response.getEntity().getContent(), UTF_8));
       final StringBuilder stringBuilder = new StringBuilder();
