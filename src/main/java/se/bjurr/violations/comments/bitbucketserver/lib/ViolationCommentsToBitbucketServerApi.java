@@ -180,7 +180,8 @@ public class ViolationCommentsToBitbucketServerApi {
   public void toPullRequest() throws Exception {
     populateFromEnvironmentVariables();
     checkState();
-    final CommentsProvider commentsProvider = new BitbucketServerCommentsProvider(this);
+    final CommentsProvider commentsProvider =
+        new BitbucketServerCommentsProvider(this, violationsLogger);
     createComments(violationsLogger, violations, BITBUCKET_MAX_COMMENT_SIZE, commentsProvider);
   }
 

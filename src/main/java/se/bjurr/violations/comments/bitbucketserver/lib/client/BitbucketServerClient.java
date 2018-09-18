@@ -15,9 +15,11 @@ import java.util.List;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.BitbucketServerInvoker.Method;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerComment;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerDiffResponse;
+import se.bjurr.violations.comments.lib.ViolationsLogger;
 
 public class BitbucketServerClient {
   private static BitbucketServerInvoker bitbucketServerInvoker = new BitbucketServerInvoker();
+  private final ViolationsLogger violationsLogger;
 
   @VisibleForTesting
   public static void setBitbucketServerInvoker(
@@ -36,6 +38,7 @@ public class BitbucketServerClient {
   private final ProxyConfig proxyInformation;
 
   public BitbucketServerClient(
+      final ViolationsLogger violationsLogger,
       final String bitbucketServerBaseUrl,
       final String bitbucketServerProject,
       final String bitbucketServerRepo,
@@ -47,6 +50,7 @@ public class BitbucketServerClient {
       final Integer proxyHostPort,
       final String proxyUser,
       final String proxyPassword) {
+    this.violationsLogger = violationsLogger;
     if (bitbucketServerBaseUrl.endsWith("/")) {
       this.bitbucketServerBaseUrl =
           bitbucketServerBaseUrl.substring(0, bitbucketServerBaseUrl.length() - 1);
@@ -90,11 +94,26 @@ public class BitbucketServerClient {
   }
 
   public List<String> pullRequestChanges() {
-    return invokeAndParse(
-        getBitbucketServerPullRequestBase() + "/changes?limit=999999",
-        Method.GET,
-        null,
-        "$..path.toString");
+    String url = getBitbucketServerPullRequestBase() + "/changes?limit=999999";
+    final String json = doInvokeUrl(url, Method.GET, null);
+
+    String jsonPath = "$..path.toString";
+    try {
+      List<String> response = JsonPath.read(json, jsonPath);
+      if (response.isEmpty()) {
+        violationsLogger.log(
+            "Found no changed files from "
+                + url
+                + " with JSONPath "
+                + jsonPath
+                + " in JSON:\n"
+                + json);
+      }
+      return response;
+    } catch (final Exception e) {
+      throw new RuntimeException(
+          "Unable to parse diff response from " + url + " using " + jsonPath + "\n\n" + json, e);
+    }
   }
 
   public void pullRequestComment(final String message) {
@@ -142,15 +161,27 @@ public class BitbucketServerClient {
   public List<BitbucketServerComment> pullRequestComments(final String changedFile) {
     try {
       final String encodedChangedFile = encode(changedFile, UTF_8.name());
-      final List<LinkedHashMap<?, ?>> parsed =
-          invokeAndParse(
-              getBitbucketServerPullRequestBase()
-                  + "/comments?path="
-                  + encodedChangedFile
-                  + "&limit=999999",
-              Method.GET,
-              null,
-              "$.values[*]");
+      String url =
+          getBitbucketServerPullRequestBase()
+              + "/comments?path="
+              + encodedChangedFile
+              + "&limit=999999";
+      String jsonPath = "$.values[*]";
+
+      final String json = doInvokeUrl(url, Method.GET, null);
+      List<LinkedHashMap<?, ?>> parsed = null;
+      try {
+        parsed = JsonPath.read(json, jsonPath);
+      } catch (final Exception e) {
+        throw new RuntimeException(
+            "Unable to parse diff response from " + url + " using " + jsonPath + "\n\n" + json, e);
+      }
+
+      if (parsed.isEmpty()) {
+        violationsLogger.log(
+            "Found no comments from " + url + " with JSONPath " + jsonPath + " in JSON:\n" + json);
+      }
+
       return toBitbucketServerComments(parsed);
     } catch (final UnsupportedEncodingException e) {
       throw new RuntimeException(e);
@@ -161,7 +192,12 @@ public class BitbucketServerClient {
     final String url = getBitbucketServerPullRequestBase() + "/diff?limit=999999";
     final String json = doInvokeUrl(url, BitbucketServerInvoker.Method.GET, null);
     try {
-      return new Gson().fromJson(json, BitbucketServerDiffResponse.class);
+      final BitbucketServerDiffResponse diff =
+          new Gson().fromJson(json, BitbucketServerDiffResponse.class);
+      if (diff.getDiffs().isEmpty()) {
+        violationsLogger.log("Found no diffs from " + url + " in JSON:\n" + json);
+      }
+      return diff;
     } catch (final Exception e) {
       throw new RuntimeException("Unable to parse diff response from " + url + "\n\n" + json, e);
     }

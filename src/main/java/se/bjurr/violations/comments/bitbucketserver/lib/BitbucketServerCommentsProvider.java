@@ -21,6 +21,7 @@ import se.bjurr.violations.comments.bitbucketserver.lib.client.model.DiffHunk;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.Line;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.Segment;
 import se.bjurr.violations.comments.lib.CommentsProvider;
+import se.bjurr.violations.comments.lib.ViolationsLogger;
 import se.bjurr.violations.comments.lib.model.ChangedFile;
 import se.bjurr.violations.comments.lib.model.Comment;
 import se.bjurr.violations.lib.util.Optional;
@@ -51,7 +52,8 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
   }
 
   public BitbucketServerCommentsProvider(
-      final ViolationCommentsToBitbucketServerApi violationCommentsToBitbucketApi) {
+      final ViolationCommentsToBitbucketServerApi violationCommentsToBitbucketApi,
+      final ViolationsLogger violationsLogger) {
     final String bitbucketServerBaseUrl = violationCommentsToBitbucketApi.getBitbucketServerUrl();
     final String bitbucketServerProject = violationCommentsToBitbucketApi.getProjectKey();
     final String bitbucketServerRepo = violationCommentsToBitbucketApi.getRepoSlug();
@@ -66,6 +68,7 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
     final String proxyPassword = violationCommentsToBitbucketApi.getProxyPassword();
     client =
         new BitbucketServerClient(
+            violationsLogger,
             bitbucketServerBaseUrl,
             bitbucketServerProject,
             bitbucketServerRepo,

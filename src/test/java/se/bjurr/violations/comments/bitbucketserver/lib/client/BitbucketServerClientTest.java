@@ -10,6 +10,7 @@ import com.google.common.base.Charsets;
 import com.google.common.io.Resources;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Logger;
 import org.junit.Before;
 import org.junit.Test;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerComment;
@@ -18,11 +19,18 @@ import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketSe
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.DIFFTYPE;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.DiffHunk;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.Segment;
+import se.bjurr.violations.comments.lib.ViolationsLogger;
 
 public class BitbucketServerClientTest {
   private String mockedJson = null;
   private final BitbucketServerClient sut =
       new BitbucketServerClient(
+          new ViolationsLogger() {
+            @Override
+            public void log(final String string) {
+              Logger.getLogger(BitbucketServerClientTest.class.getSimpleName()).info(string);
+            }
+          },
           "bitbucketServerBaseUrl",
           "bitbucketServerProject",
           "bitbucketServerRepo",
