@@ -3,6 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.57
+### No issue
+
+**Enabling injected logger**
+
+
+[e8e683457224b68](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/e8e683457224b68) Tomas Bjerre *2018-09-18 07:46:33*
+
+
 ## 1.56
 ### No issue
 

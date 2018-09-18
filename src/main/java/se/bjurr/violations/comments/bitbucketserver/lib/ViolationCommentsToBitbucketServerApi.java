@@ -82,8 +82,10 @@ public class ViolationCommentsToBitbucketServerApi {
     checkNotNull(projectKey, "projectKey");
   }
 
-  public void setViolationsLogger(final ViolationsLogger violationsLogger) {
+  public ViolationCommentsToBitbucketServerApi withViolationsLogger(
+      final ViolationsLogger violationsLogger) {
     this.violationsLogger = violationsLogger;
+    return this;
   }
 
   public String getBitbucketServerUrl() {
