@@ -3,6 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.58
+### No issue
+
+**Reducing logging a bit**
+
+
+[92bc0f7e922b026](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/92bc0f7e922b026) Tomas Bjerre *2018-09-18 08:25:08*
+
+
 ## 1.57
 ### No issue
 
