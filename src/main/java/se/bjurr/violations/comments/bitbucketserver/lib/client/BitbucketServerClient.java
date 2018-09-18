@@ -3,6 +3,7 @@ package se.bjurr.violations.comments.bitbucketserver.lib.client;
 import static com.google.common.base.Charsets.UTF_8;
 import static com.google.common.collect.Lists.newArrayList;
 import static java.net.URLEncoder.encode;
+import static java.util.logging.Level.INFO;
 import static se.bjurr.violations.lib.util.Utils.isNullOrEmpty;
 
 import com.google.common.annotations.VisibleForTesting;
@@ -102,6 +103,7 @@ public class BitbucketServerClient {
       List<String> response = JsonPath.read(json, jsonPath);
       if (response.isEmpty()) {
         violationsLogger.log(
+            INFO,
             "Found no changed files from "
                 + url
                 + " with JSONPath "
@@ -179,12 +181,13 @@ public class BitbucketServerClient {
 
       if (parsed.isEmpty()) {
         violationsLogger.log(
+            INFO,
             "Found no comments from " + url + " with JSONPath " + jsonPath + " in JSON:\n" + json);
       }
 
       return toBitbucketServerComments(parsed);
     } catch (final UnsupportedEncodingException e) {
-      throw new RuntimeException(e);
+      throw new RuntimeException(e.getMessage(), e);
     }
   }
 
@@ -195,7 +198,7 @@ public class BitbucketServerClient {
       final BitbucketServerDiffResponse diff =
           new Gson().fromJson(json, BitbucketServerDiffResponse.class);
       if (diff.getDiffs().isEmpty()) {
-        violationsLogger.log("Found no diffs from " + url + " in JSON:\n" + json);
+        violationsLogger.log(INFO, "Found no diffs from " + url + " in JSON:\n" + json);
       }
       return diff;
     } catch (final Exception e) {

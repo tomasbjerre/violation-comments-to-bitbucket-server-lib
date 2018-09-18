@@ -10,6 +10,7 @@ import com.google.common.base.Charsets;
 import com.google.common.io.Resources;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,8 +28,14 @@ public class BitbucketServerClientTest {
       new BitbucketServerClient(
           new ViolationsLogger() {
             @Override
-            public void log(final String string) {
+            public void log(final Level level, final String string) {
               Logger.getLogger(BitbucketServerClientTest.class.getSimpleName()).info(string);
+            }
+
+            @Override
+            public void log(final Level level, final String string, final Throwable t) {
+              Logger.getLogger(BitbucketServerClientTest.class.getSimpleName())
+                  .log(Level.SEVERE, string, t);
             }
           },
           "bitbucketServerBaseUrl",

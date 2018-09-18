@@ -3,7 +3,6 @@ package se.bjurr.violations.comments.bitbucketserver.lib.client;
 import static com.google.common.base.Charsets.UTF_8;
 import static com.google.common.base.Strings.isNullOrEmpty;
 
-import com.google.common.base.Throwables;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -129,7 +128,7 @@ public class BitbucketServerInvoker {
         }
 
       } catch (final IOException e) {
-        throw Throwables.propagate(e);
+        throw new RuntimeException(e.getMessage(), e);
       }
     }
   }

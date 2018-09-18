@@ -7,7 +7,8 @@ import static se.bjurr.violations.lib.util.Utils.firstNonNull;
 import static se.bjurr.violations.lib.util.Utils.isNullOrEmpty;
 
 import java.util.List;
-import org.slf4j.LoggerFactory;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import se.bjurr.violations.comments.lib.CommentsProvider;
 import se.bjurr.violations.comments.lib.ViolationsLogger;
 import se.bjurr.violations.lib.model.Violation;
@@ -48,8 +49,13 @@ public class ViolationCommentsToBitbucketServerApi {
   private ViolationsLogger violationsLogger =
       new ViolationsLogger() {
         @Override
-        public void log(final String string) {
-          LoggerFactory.getLogger(ViolationsLogger.class).info(string);
+        public void log(final Level level, final String string) {
+          Logger.getLogger(ViolationsLogger.class.getSimpleName()).log(level, string);
+        }
+
+        @Override
+        public void log(final Level level, final String string, final Throwable t) {
+          Logger.getLogger(ViolationsLogger.class.getSimpleName()).log(level, string, t);
         }
       };
 

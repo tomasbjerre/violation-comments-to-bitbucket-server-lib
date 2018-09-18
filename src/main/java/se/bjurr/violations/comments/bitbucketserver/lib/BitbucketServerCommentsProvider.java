@@ -4,14 +4,13 @@ import static com.google.common.base.Strings.isNullOrEmpty;
 import static com.google.common.base.Suppliers.memoizeWithExpiration;
 import static com.google.common.collect.Lists.newArrayList;
 import static java.util.concurrent.TimeUnit.SECONDS;
+import static java.util.logging.Level.SEVERE;
 import static se.bjurr.violations.comments.bitbucketserver.lib.client.model.DIFFTYPE.ADDED;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Supplier;
 import java.util.ArrayList;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.BitbucketServerClient;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerComment;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerDiff;
@@ -28,8 +27,6 @@ import se.bjurr.violations.lib.util.Optional;
 
 public class BitbucketServerCommentsProvider implements CommentsProvider {
 
-  private static final Logger LOG = LoggerFactory.getLogger(BitbucketServerCommentsProvider.class);
-
   private final BitbucketServerClient client;
 
   private final Supplier<BitbucketServerDiffResponse> diffResponse =
@@ -44,16 +41,19 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
           SECONDS);
 
   private final ViolationCommentsToBitbucketServerApi violationCommentsToBitbucketApi;
+  private final ViolationsLogger violationsLogger;
 
   @VisibleForTesting
   BitbucketServerCommentsProvider() {
     client = null;
     violationCommentsToBitbucketApi = null;
+    violationsLogger = null;
   }
 
   public BitbucketServerCommentsProvider(
       final ViolationCommentsToBitbucketServerApi violationCommentsToBitbucketApi,
       final ViolationsLogger violationsLogger) {
+    this.violationsLogger = violationsLogger;
     final String bitbucketServerBaseUrl = violationCommentsToBitbucketApi.getBitbucketServerUrl();
     final String bitbucketServerProject = violationCommentsToBitbucketApi.getProjectKey();
     final String bitbucketServerRepo = violationCommentsToBitbucketApi.getRepoSlug();
@@ -137,7 +137,8 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
         commentVersion = Integer.valueOf(comment.getSpecifics().get(0));
         client.pullRequestRemoveComment(commentId, commentVersion);
       } catch (final Exception e) {
-        LOG.warn("Was unable to remove comment " + commentId + " " + commentVersion, e);
+        violationsLogger.log(
+            SEVERE, "Was unable to remove comment " + commentId + " " + commentVersion, e);
       }
     }
   }
