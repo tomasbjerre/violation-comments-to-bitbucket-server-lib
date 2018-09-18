@@ -20,9 +20,9 @@ import se.bjurr.violations.comments.bitbucketserver.lib.client.model.DiffDestina
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.DiffHunk;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.Line;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.Segment;
+import se.bjurr.violations.comments.lib.CommentsProvider;
 import se.bjurr.violations.comments.lib.model.ChangedFile;
 import se.bjurr.violations.comments.lib.model.Comment;
-import se.bjurr.violations.comments.lib.model.CommentsProvider;
 import se.bjurr.violations.lib.util.Optional;
 
 public class BitbucketServerCommentsProvider implements CommentsProvider {

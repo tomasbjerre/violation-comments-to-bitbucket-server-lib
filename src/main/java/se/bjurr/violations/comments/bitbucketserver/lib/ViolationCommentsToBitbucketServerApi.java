@@ -7,7 +7,9 @@ import static se.bjurr.violations.lib.util.Utils.firstNonNull;
 import static se.bjurr.violations.lib.util.Utils.isNullOrEmpty;
 
 import java.util.List;
-import se.bjurr.violations.comments.lib.model.CommentsProvider;
+import org.slf4j.LoggerFactory;
+import se.bjurr.violations.comments.lib.CommentsProvider;
+import se.bjurr.violations.comments.lib.ViolationsLogger;
 import se.bjurr.violations.lib.model.Violation;
 import se.bjurr.violations.lib.util.Optional;
 
@@ -43,6 +45,13 @@ public class ViolationCommentsToBitbucketServerApi {
   private Integer proxyHostPort = 0;
   private String proxyUser;
   private String proxyPassword;
+  private ViolationsLogger violationsLogger =
+      new ViolationsLogger() {
+        @Override
+        public void log(final String string) {
+          LoggerFactory.getLogger(ViolationsLogger.class).info(string);
+        }
+      };
 
   private ViolationCommentsToBitbucketServerApi() {}
 
@@ -71,6 +80,10 @@ public class ViolationCommentsToBitbucketServerApi {
     checkNotNull(pullRequestId, "PullRequestId");
     checkNotNull(repoSlug, "repoSlug");
     checkNotNull(projectKey, "projectKey");
+  }
+
+  public void setViolationsLogger(final ViolationsLogger violationsLogger) {
+    this.violationsLogger = violationsLogger;
   }
 
   public String getBitbucketServerUrl() {
@@ -166,7 +179,7 @@ public class ViolationCommentsToBitbucketServerApi {
     populateFromEnvironmentVariables();
     checkState();
     final CommentsProvider commentsProvider = new BitbucketServerCommentsProvider(this);
-    createComments(commentsProvider, violations, BITBUCKET_MAX_COMMENT_SIZE);
+    createComments(violationsLogger, violations, BITBUCKET_MAX_COMMENT_SIZE, commentsProvider);
   }
 
   public ViolationCommentsToBitbucketServerApi withBitbucketServerUrl(

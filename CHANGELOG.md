@@ -3,6 +3,33 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.56
+### No issue
+
+**Fix optional rule in YAMLLint**
+
+
+[ef9cf692c04a118](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/ef9cf692c04a118) Tomas Bjerre *2018-09-17 13:32:10*
+
+
+## 1.55
+### No issue
+
+**YAMLLint**
+
+
+[cba77400e34ef7f](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/cba77400e34ef7f) Tomas Bjerre *2018-09-15 07:59:32*
+
+
+## 1.54
+### No issue
+
+**Correcting CPD parser and adding category to model**
+
+
+[54d69ce9a83237b](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/54d69ce9a83237b) Tomas Bjerre *2018-09-12 20:46:49*
+
+
 ## 1.53
 ### No issue
 
