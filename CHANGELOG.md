@@ -3,6 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.62
+### No issue
+
+**Exception logging in build job log**
+
+
+[fe98dad1236a392](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/fe98dad1236a392) Tomas Bjerre *2018-09-18 19:17:48*
+
+
 ## 1.61
 ### No issue
 
