@@ -3,6 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.59
+### No issue
+
+**Prettier logging**
+
+
+[d5bd660676ee31b](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/d5bd660676ee31b) Tomas Bjerre *2018-09-18 09:34:00*
+
+
 ## 1.58
 ### No issue
 
