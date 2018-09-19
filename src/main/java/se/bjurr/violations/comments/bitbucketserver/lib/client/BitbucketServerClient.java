@@ -129,10 +129,21 @@ public class BitbucketServerClient {
   private String doInvokeUrl(final String url, final Method method, final String postContent) {
     if (isNullOrEmpty(bitbucketServerUser) || isNullOrEmpty(bitbucketServerPassword)) {
       return bitbucketServerInvoker.invokeUrl(
-          url, method, postContent, bitbucketPersonalAccessToken, proxyInformation);
+          violationsLogger,
+          url,
+          method,
+          postContent,
+          bitbucketPersonalAccessToken,
+          proxyInformation);
     } else {
       return bitbucketServerInvoker.invokeUrl(
-          url, method, postContent, bitbucketServerUser, bitbucketServerPassword, proxyInformation);
+          violationsLogger,
+          url,
+          method,
+          postContent,
+          bitbucketServerUser,
+          bitbucketServerPassword,
+          proxyInformation);
     }
   }
 

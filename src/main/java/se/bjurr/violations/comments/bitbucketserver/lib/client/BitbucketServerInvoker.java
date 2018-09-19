@@ -2,6 +2,7 @@ package se.bjurr.violations.comments.bitbucketserver.lib.client;
 
 import static com.google.common.base.Charsets.UTF_8;
 import static com.google.common.base.Strings.isNullOrEmpty;
+import static java.util.logging.Level.INFO;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,6 +22,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
+import se.bjurr.violations.comments.lib.ViolationsLogger;
 
 public class BitbucketServerInvoker {
 
@@ -31,6 +33,7 @@ public class BitbucketServerInvoker {
   }
 
   public String invokeUrl(
+      final ViolationsLogger violationsLogger,
       final String url,
       final Method method,
       final String postContent,
@@ -39,10 +42,11 @@ public class BitbucketServerInvoker {
 
     final String authorizationValue = "Bearer " + bearer;
 
-    return doInvokeUrl(url, method, postContent, authorizationValue, proxyConfig);
+    return doInvokeUrl(violationsLogger, url, method, postContent, authorizationValue, proxyConfig);
   }
 
   public String invokeUrl(
+      final ViolationsLogger violationsLogger,
       final String url,
       final Method method,
       final String postContent,
@@ -59,10 +63,11 @@ public class BitbucketServerInvoker {
     }
     final String authorizationValue = "Basic " + authString;
 
-    return doInvokeUrl(url, method, postContent, authorizationValue, proxyConfig);
+    return doInvokeUrl(violationsLogger, url, method, postContent, authorizationValue, proxyConfig);
   }
 
   private String doInvokeUrl(
+      final ViolationsLogger violationsLogger,
       final String url,
       final Method method,
       final String postContent,
@@ -107,6 +112,13 @@ public class BitbucketServerInvoker {
 
       // Execute the request and get the response
       final HttpResponse response = httpClient.execute(request);
+      String statusCode = "";
+      String reasonPhrase = "";
+      if (response.getStatusLine() != null) {
+        statusCode = "" + response.getStatusLine().getStatusCode();
+        reasonPhrase = response.getStatusLine().getReasonPhrase();
+      }
+      violationsLogger.log(INFO, method + " " + url + " " + statusCode + " " + reasonPhrase);
       if (response.getEntity() == null) {
         return null;
       }

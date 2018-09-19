@@ -57,6 +57,7 @@ public class BitbucketServerClientTest {
         new BitbucketServerInvoker() {
           @Override
           public String invokeUrl(
+              final ViolationsLogger violationsLogger,
               final String url,
               final Method method,
               final String postContent,
