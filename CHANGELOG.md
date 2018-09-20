@@ -3,6 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.65
+### No issue
+
+**Correcting Kotlin parsers**
+
+
+[77db969a613ec38](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/77db969a613ec38) Tomas Bjerre *2018-09-20 23:49:32*
+
+
 ## 1.64
 ### No issue
 
