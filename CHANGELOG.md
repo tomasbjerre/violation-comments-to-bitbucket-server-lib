@@ -3,6 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.64
+### No issue
+
+**Kotlin Maven and Gradle parsers**
+
+
+[6a4494cd199373a](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/6a4494cd199373a) Tomas Bjerre *2018-09-20 14:11:13*
+
+
 ## 1.63
 ### No issue
 
