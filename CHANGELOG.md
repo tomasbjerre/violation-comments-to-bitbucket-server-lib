@@ -3,6 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.66
+### No issue
+
+**Automating reporters in readme**
+
+
+[e2b1d5734000c14](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/e2b1d5734000c14) Tomas Bjerre *2018-09-23 12:49:32*
+
+
 ## 1.65
 ### No issue
 
