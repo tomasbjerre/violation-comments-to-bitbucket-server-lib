@@ -1,14 +1,15 @@
 package se.bjurr.violations.comments.bitbucketserver.lib;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
-import static com.google.common.base.Suppliers.memoizeWithExpiration;
+import static com.google.common.cache.CacheBuilder.newBuilder;
 import static com.google.common.collect.Lists.newArrayList;
-import static java.util.concurrent.TimeUnit.SECONDS;
+import static java.util.concurrent.TimeUnit.MINUTES;
 import static java.util.logging.Level.SEVERE;
 import static se.bjurr.violations.comments.bitbucketserver.lib.client.model.DIFFTYPE.ADDED;
 
 import com.google.common.annotations.VisibleForTesting;
-import com.google.common.base.Supplier;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
 import java.util.ArrayList;
 import java.util.List;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.BitbucketServerClient;
@@ -29,16 +30,16 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
 
   private final BitbucketServerClient client;
 
-  private final Supplier<BitbucketServerDiffResponse> diffResponse =
-      memoizeWithExpiration(
-          new Supplier<BitbucketServerDiffResponse>() {
-            @Override
-            public BitbucketServerDiffResponse get() {
-              return client.pullRequestDiff();
-            }
-          },
-          10,
-          SECONDS);
+  private final LoadingCache<String, BitbucketServerDiffResponse> diffResponse =
+      newBuilder()
+          .maximumSize(100)
+          .expireAfterWrite(2, MINUTES)
+          .build(
+              new CacheLoader<String, BitbucketServerDiffResponse>() {
+                public BitbucketServerDiffResponse load(String path) {
+                  return client.pullRequestDiff(path);
+                }
+              });
 
   private final ViolationCommentsToBitbucketServerApi violationCommentsToBitbucketApi;
   private final ViolationsLogger violationsLogger;
@@ -149,8 +150,14 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
       return true;
     }
     final int context = violationCommentsToBitbucketApi.getCommentOnlyChangedContentContext();
-    final List<BitbucketServerDiff> diffs = diffResponse.get().getDiffs();
-    return shouldComment(changedFile, changedLine, context, diffs);
+    try {
+      final List<BitbucketServerDiff> diffs =
+          diffResponse.get(changedFile.getFilename()).getDiffs();
+      return shouldComment(changedFile, changedLine, context, diffs);
+    } catch (Exception e) {
+      violationsLogger.log(SEVERE, "Was unable to get diff from " + changedFile.getFilename(), e);
+      return false;
+    }
   }
 
   @VisibleForTesting

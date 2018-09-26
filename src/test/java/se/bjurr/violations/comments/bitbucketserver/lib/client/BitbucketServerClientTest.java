@@ -50,6 +50,7 @@ public class BitbucketServerClientTest {
           null,
           null);
   private String invoked;
+  private String path = "anypath";
 
   @Before
   public void before() {
@@ -143,7 +144,7 @@ public class BitbucketServerClientTest {
   @Test
   public void testPullRequestDiffDiffDeleted() {
     mockJson("pull-request-changes-3-deleted.json");
-    final BitbucketServerDiffResponse response = sut.pullRequestDiff();
+    final BitbucketServerDiffResponse response = sut.pullRequestDiff(path);
     assertThat(response) //
         .isNotNull();
     assertThat(response.getDiffs()) //
@@ -153,7 +154,7 @@ public class BitbucketServerClientTest {
   @Test
   public void testPullRequestDiffDiffTypes() {
     mockJson("pull-request-changes-2.json");
-    final BitbucketServerDiffResponse response = sut.pullRequestDiff();
+    final BitbucketServerDiffResponse response = sut.pullRequestDiff(path);
     assertThat(response) //
         .isNotNull();
     assertThat(response.getDiffs()) //
@@ -174,7 +175,7 @@ public class BitbucketServerClientTest {
   @Test
   public void testPullRequestDiffPerFileTestCpp() {
     mockJson("pull-request-changes-2.json");
-    final BitbucketServerDiffResponse response = sut.pullRequestDiff();
+    final BitbucketServerDiffResponse response = sut.pullRequestDiff(path);
     assertThat(response) //
         .isNotNull();
     final List<BitbucketServerDiff> diffs = filterByFile(response, "cpp/test.cpp");
@@ -192,7 +193,7 @@ public class BitbucketServerClientTest {
   @Test
   public void testPullRequestDiffPerFileTravisYml() {
     mockJson("pull-request-changes-2.json");
-    final BitbucketServerDiffResponse response = sut.pullRequestDiff();
+    final BitbucketServerDiffResponse response = sut.pullRequestDiff(path);
     assertThat(response) //
         .isNotNull();
     final List<BitbucketServerDiff> diffs = filterByFile(response, ".travis.yml");

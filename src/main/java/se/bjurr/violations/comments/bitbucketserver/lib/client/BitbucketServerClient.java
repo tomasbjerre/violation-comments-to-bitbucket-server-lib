@@ -202,8 +202,8 @@ public class BitbucketServerClient {
     }
   }
 
-  public BitbucketServerDiffResponse pullRequestDiff() {
-    final String url = getBitbucketServerPullRequestBase() + "/diff?limit=999999";
+  public BitbucketServerDiffResponse pullRequestDiff(final String path) {
+    final String url = getBitbucketServerPullRequestBase() + "/diff/" + path;
     final String json = doInvokeUrl(url, BitbucketServerInvoker.Method.GET, null);
     try {
       final BitbucketServerDiffResponse diff =

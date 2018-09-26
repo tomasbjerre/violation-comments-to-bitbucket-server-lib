@@ -130,7 +130,7 @@ Changelog of Violation comments to bitbucket server lib.
 
 
 ## 1.52
-### GitHub [#5](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/pull/5) Add optional creation of Bitbucket tasks for violation comments.
+### GitHub [#5](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/pull/5) Add optional creation of Bitbucket tasks for violation comments.    *enhancement*  
 
 **Formatting after merge**
 
@@ -198,7 +198,7 @@ Changelog of Violation comments to bitbucket server lib.
 
 
 ## 1.46
-### GitHub #47 
+### GitHub #47   
 
 **Personal Access Tokens**
 
@@ -285,7 +285,7 @@ Changelog of Violation comments to bitbucket server lib.
 
 
 ## 1.36
-### Jira JENKINS-48648 
+### Jira JENKINS-48648   
 
 **Using UTF-8 in Bitbucket client**
 
@@ -364,7 +364,7 @@ Changelog of Violation comments to bitbucket server lib.
 
 
 ## 1.28
-### GitHub [#2](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/issues/2) Paths with spaces fail
+### GitHub [#2](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/issues/2) Paths with spaces fail    *bug*  
 
 **URL encoding paths**
 
@@ -468,7 +468,7 @@ Changelog of Violation comments to bitbucket server lib.
 
 
 ## 1.17
-### GitHub [#1](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/issues/1) NullPointerException when running the Jenkins plugin
+### GitHub [#1](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/issues/1) NullPointerException when running the Jenkins plugin  
 
 **Handling deleted files in PR:s**
 
