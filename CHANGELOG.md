@@ -3,6 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.67
+### GitHub [#7](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/issues/7) Bitbucket Server will truncate diff responses    *bug*  
+
+**Getting diff of each file to avoid truncation**
+
+
+[4db31be2620cb39](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/4db31be2620cb39) Tomas Bjerre *2018-09-26 16:35:50*
+
+
 ## 1.66
 ### No issue
 
