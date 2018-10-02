@@ -12,6 +12,7 @@ import com.jayway.jsonpath.JsonPath;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import net.minidev.json.JSONArray;
@@ -285,35 +286,21 @@ public class BitbucketServerClient {
     final JSONArray jsonArrayTasks = (JSONArray) parsed.get("tasks");
     final JSONArray jsonArraySubComments = (JSONArray) parsed.get("comments");
 
-    List<LinkedHashMap<?, ?>> tasks = new ArrayList<>();
-    List<LinkedHashMap<?, ?>> subComments = new ArrayList<>();
-
-    for (Object jsonArrayTask : jsonArrayTasks) {
-      LinkedHashMap<?, ?> linkedHashMap = (LinkedHashMap<?, ?>) jsonArrayTask;
-      tasks.add(linkedHashMap);
-    }
-
-    for (Object jsonArraySubComment : jsonArraySubComments) {
-      LinkedHashMap<?, ?> linkedHashMap = (LinkedHashMap<?, ?>) jsonArraySubComment;
-      subComments.add(linkedHashMap);
-    }
+    final List<LinkedHashMap<?, ?>> tasks =
+        Arrays.asList(jsonArrayTasks.toArray(new LinkedHashMap<?, ?>[0]));
+    final List<LinkedHashMap<?, ?>> subComments =
+        Arrays.asList(jsonArraySubComments.toArray(new LinkedHashMap<?, ?>[0]));
 
     final List<BitbucketServerTask> bitbucketServerTasks = toBitbucketServerTasks(tasks);
     final List<BitbucketServerComment> bitbucketServerSubComments =
         toBitbucketServerComments(subComments);
 
-    BitbucketServerComment constructedComment = new BitbucketServerComment(version, text, id);
+    final BitbucketServerComment comment = new BitbucketServerComment(version, text, id);
 
-    constructedComment.setTasks(bitbucketServerTasks);
-    constructedComment.setComments(bitbucketServerSubComments);
+    comment.setTasks(bitbucketServerTasks);
+    comment.setComments(bitbucketServerSubComments);
 
-    return constructedComment;
-  }
-
-  private BitbucketServerTask toBitbucketServerTask(LinkedHashMap<?, ?> parsed) {
-    final Integer id = (Integer) parsed.get("id");
-    final String text = (String) parsed.get("text");
-    return new BitbucketServerTask(id, text);
+    return comment;
   }
 
   private List<BitbucketServerTask> toBitbucketServerTasks(List<LinkedHashMap<?, ?>> parsed) {
@@ -324,5 +311,11 @@ public class BitbucketServerClient {
     }
 
     return bitbucketServerTasks;
+  }
+
+  private BitbucketServerTask toBitbucketServerTask(LinkedHashMap<?, ?> parsed) {
+    final Integer id = (Integer) parsed.get("id");
+    final String text = (String) parsed.get("text");
+    return new BitbucketServerTask(id, text);
   }
 }
