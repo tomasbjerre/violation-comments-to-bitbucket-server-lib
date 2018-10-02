@@ -3,6 +3,23 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.68
+### No issue
+
+**[TFW2-1421] Refactor bugfix implementation for automatic violation comment removal.**
+
+
+[ff43976d80517ed](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/ff43976d80517ed) Frederik Boster *2018-10-02 14:03:39*
+
+**Fixed Pull Request comments automatic deletion**
+
+ * 1.Extend parsing of Bitbucket comments and tasks from REST response 
+ * 2.Add API for deletion of Bitbucket tasks 
+ * 3.Delete Bitbucket tasks and sub-comments recursively before removing a comment 
+
+[2dc9003ea81e692](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/2dc9003ea81e692) Peijie Liu *2018-10-02 14:02:59*
+
+
 ## 1.67
 ### GitHub [#7](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/issues/7) Bitbucket Server will truncate diff responses    *bug*  
 
