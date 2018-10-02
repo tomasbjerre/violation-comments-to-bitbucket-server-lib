@@ -10,12 +10,17 @@ import static se.bjurr.violations.comments.bitbucketserver.lib.client.model.DIFF
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Deque;
+import java.util.Iterator;
 import java.util.List;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.BitbucketServerClient;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerComment;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerDiff;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerDiffResponse;
+import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerTask;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.DiffDestination;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.DiffHunk;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.Line;
@@ -136,7 +141,10 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
       try {
         commentId = Integer.valueOf(comment.getIdentifier());
         commentVersion = Integer.valueOf(comment.getSpecifics().get(0));
-        client.pullRequestRemoveComment(commentId, commentVersion);
+
+        final BitbucketServerComment bitbucketServerComment =
+            client.pullRequestComment((long) commentId);
+        removeComment(bitbucketServerComment);
       } catch (final Exception e) {
         violationsLogger.log(
             SEVERE, "Was unable to remove comment " + commentId + " " + commentVersion, e);
@@ -211,5 +219,37 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
   @Override
   public boolean shouldKeepOldComments() {
     return violationCommentsToBitbucketApi.getShouldKeepOldComments();
+  }
+
+  private void removeComment(final BitbucketServerComment comment) {
+    final Deque<BitbucketServerComment> commentStack = new ArrayDeque<>();
+    commentStack.add(comment);
+
+    Collection<BitbucketServerComment> subComments = comment.getComments();
+    while (subComments != null && !subComments.isEmpty()) {
+      commentStack.addAll(subComments);
+
+      final Collection<BitbucketServerComment> currentSubComments = subComments;
+      subComments = new ArrayList<>();
+      for (final BitbucketServerComment subComment : currentSubComments) {
+        subComments.addAll(subComment.getComments());
+      }
+    }
+
+    final Iterator<BitbucketServerComment> commentStackIt = commentStack.descendingIterator();
+    while (commentStackIt.hasNext()) {
+      final BitbucketServerComment stackComment = commentStackIt.next();
+
+      removeTasks(stackComment);
+      client.pullRequestRemoveComment(stackComment.getId(), stackComment.getVersion());
+    }
+  }
+
+  private void removeTasks(final BitbucketServerComment comment) {
+    List<BitbucketServerTask> bitbucketServerTasks = comment.getTasks();
+
+    for (BitbucketServerTask bitbucketServerTask : bitbucketServerTasks) {
+      client.removeTask(bitbucketServerTask);
+    }
   }
 }

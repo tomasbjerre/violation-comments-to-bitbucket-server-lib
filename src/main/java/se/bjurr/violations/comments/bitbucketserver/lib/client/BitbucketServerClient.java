@@ -11,11 +11,15 @@ import com.google.gson.Gson;
 import com.jayway.jsonpath.JsonPath;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
+import net.minidev.json.JSONArray;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.BitbucketServerInvoker.Method;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerComment;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerDiffResponse;
+import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerTask;
 import se.bjurr.violations.comments.lib.ViolationsLogger;
 
 public class BitbucketServerClient {
@@ -171,6 +175,15 @@ public class BitbucketServerClient {
     return toBitbucketServerComment(parsed);
   }
 
+  public BitbucketServerComment pullRequestComment(final Long commentId) {
+    String url = getBitbucketServerPullRequestBase() + "/comments/" + commentId;
+
+    final LinkedHashMap<?, ?> parsed =
+        invokeAndParse(url, BitbucketServerInvoker.Method.GET, null, "$");
+
+    return toBitbucketServerComment(parsed);
+  }
+
   public List<BitbucketServerComment> pullRequestComments(final String changedFile) {
     try {
       final String encodedChangedFile = encode(changedFile, UTF_8.name());
@@ -228,6 +241,13 @@ public class BitbucketServerClient {
         null);
   }
 
+  public void removeTask(final BitbucketServerTask task) {
+    doInvokeUrl(
+        getBitbucketServerApiBase() + "/tasks/" + task.getId(),
+        BitbucketServerInvoker.Method.DELETE,
+        null);
+  }
+
   public void commentCreateTask(
       final BitbucketServerComment comment, String changedFile, int line) {
     final String changedFileName = new File(changedFile).getName();
@@ -263,6 +283,39 @@ public class BitbucketServerClient {
     final String text = (String) parsed.get("text");
     final Integer id = (Integer) parsed.get("id");
 
-    return new BitbucketServerComment(version, text, id);
+    final JSONArray jsonArrayTasks = (JSONArray) parsed.get("tasks");
+    final JSONArray jsonArraySubComments = (JSONArray) parsed.get("comments");
+
+    final List<LinkedHashMap<?, ?>> tasks =
+        Arrays.asList(jsonArrayTasks.toArray(new LinkedHashMap<?, ?>[0]));
+    final List<LinkedHashMap<?, ?>> subComments =
+        Arrays.asList(jsonArraySubComments.toArray(new LinkedHashMap<?, ?>[0]));
+
+    final List<BitbucketServerTask> bitbucketServerTasks = toBitbucketServerTasks(tasks);
+    final List<BitbucketServerComment> bitbucketServerSubComments =
+        toBitbucketServerComments(subComments);
+
+    final BitbucketServerComment comment = new BitbucketServerComment(version, text, id);
+
+    comment.setTasks(bitbucketServerTasks);
+    comment.setComments(bitbucketServerSubComments);
+
+    return comment;
+  }
+
+  private List<BitbucketServerTask> toBitbucketServerTasks(List<LinkedHashMap<?, ?>> parsed) {
+    List<BitbucketServerTask> bitbucketServerTasks = new ArrayList<>();
+
+    for (LinkedHashMap<?, ?> parsedTask : parsed) {
+      bitbucketServerTasks.add(toBitbucketServerTask(parsedTask));
+    }
+
+    return bitbucketServerTasks;
+  }
+
+  private BitbucketServerTask toBitbucketServerTask(LinkedHashMap<?, ?> parsed) {
+    final Integer id = (Integer) parsed.get("id");
+    final String text = (String) parsed.get("text");
+    return new BitbucketServerTask(id, text);
   }
 }
