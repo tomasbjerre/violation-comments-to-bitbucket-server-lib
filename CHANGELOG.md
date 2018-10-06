@@ -3,6 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.69
+### No issue
+
+**Including entire rule in Flake8**
+
+
+[c95b4317810cf96](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/c95b4317810cf96) Tomas Bjerre *2018-10-06 06:35:57*
+
+
 ## 1.68
 ### No issue
 
