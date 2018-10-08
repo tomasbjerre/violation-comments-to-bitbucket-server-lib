@@ -3,6 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.70
+### No issue
+
+**Removing custom Optional**
+
+
+[60c6d8daa48742c](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/60c6d8daa48742c) Tomas Bjerre *2018-10-08 17:13:09*
+
+
 ## 1.69
 ### No issue
 
