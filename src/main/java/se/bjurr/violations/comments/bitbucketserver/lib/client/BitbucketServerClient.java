@@ -191,7 +191,7 @@ public class BitbucketServerClient {
           getBitbucketServerPullRequestBase()
               + "/comments?path="
               + encodedChangedFile
-              + "&limit=999999";
+              + "&limit=999999&anchorState=ALL";
       String jsonPath = "$.values[*]";
 
       final String json = doInvokeUrl(url, Method.GET, null);
