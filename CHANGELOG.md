@@ -3,6 +3,25 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.71
+### No issue
+
+**Cleanup**
+
+
+[eb961f6ed0c3eef](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/eb961f6ed0c3eef) Tomas Bjerre *2018-12-13 16:14:11*
+
+**[TC-2481] Add retrieval of outdated pull request comments.**
+
+ * Violation comments and their tasks are not deleted if the annotated 
+ * commit has been removed by a force-push because it is marked as outdated 
+ * in Bitbucket. 
+ * By additionally fetching outdated comments, outdated violation comments 
+ * can be automatically deleted if keepOldComments is not set. 
+
+[40666bfdee58a13](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/40666bfdee58a13) Frederik Boster *2018-12-13 15:47:14*
+
+
 ## 1.70
 ### No issue
 
