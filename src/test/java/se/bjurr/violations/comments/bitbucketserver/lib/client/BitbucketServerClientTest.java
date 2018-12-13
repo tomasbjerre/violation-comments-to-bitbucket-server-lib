@@ -124,7 +124,7 @@ public class BitbucketServerClientTest {
     assertThat(actual.get(0).getVersion()).isEqualTo(0);
     assertThat(invoked)
         .isEqualTo(
-            "bitbucketServerBaseUrl/rest/api/1.0/projects/bitbucketServerProject/repos/bitbucketServerRepo/pull-requests/1/comments?path=any%2Ffile.txt&limit=999999");
+            "bitbucketServerBaseUrl/rest/api/1.0/projects/bitbucketServerProject/repos/bitbucketServerRepo/pull-requests/1/comments?path=any%2Ffile.txt&limit=999999&anchorState=ALL");
   }
 
   @Test
@@ -138,7 +138,7 @@ public class BitbucketServerClientTest {
     assertThat(actual.get(0).getVersion()).isEqualTo(0);
     assertThat(invoked)
         .isEqualTo(
-            "bitbucketServerBaseUrl/rest/api/1.0/projects/bitbucketServerProject/repos/bitbucketServerRepo/pull-requests/1/comments?path=any+folder+with+spaces%2Ffile.txt&limit=999999");
+            "bitbucketServerBaseUrl/rest/api/1.0/projects/bitbucketServerProject/repos/bitbucketServerRepo/pull-requests/1/comments?path=any+folder+with+spaces%2Ffile.txt&limit=999999&anchorState=ALL");
   }
 
   @Test
