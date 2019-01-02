@@ -3,6 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.72
+### No issue
+
+**Correcting AnsibleLint parsing**
+
+
+[386f56bbb025a8f](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/386f56bbb025a8f) Tomas Bjerre *2019-01-02 21:14:32*
+
+
 ## 1.71
 ### No issue
 
