@@ -3,6 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.73
+### No issue
+
+**Making CodeNarc respect source directory**
+
+
+[dbe87b4fbdd704d](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/dbe87b4fbdd704d) Tomas Bjerre *2019-01-09 19:39:31*
+
+
 ## 1.72
 ### No issue
 
