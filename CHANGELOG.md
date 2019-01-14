@@ -3,6 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.74
+### No issue
+
+**Avoiding faulty slash with CodeNarc**
+
+
+[569b3673ed2b968](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/569b3673ed2b968) Tomas Bjerre *2019-01-14 17:45:44*
+
+
 ## 1.73
 ### No issue
 
