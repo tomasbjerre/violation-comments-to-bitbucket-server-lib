@@ -3,6 +3,20 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.75
+### No issue
+
+**MSCPP and IAR**
+
+
+[ccde7c74f13c41f](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/ccde7c74f13c41f) Tomas Bjerre *2019-01-29 17:12:42*
+
+**license**
+
+
+[fa8949768e1e255](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/fa8949768e1e255) Tomas Bjerre *2019-01-25 19:43:49*
+
+
 ## 1.74
 ### No issue
 
