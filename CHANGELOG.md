@@ -3,6 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.76
+### No issue
+
+**Fixing Flake8 parser**
+
+
+[a193d24b08cda34](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/a193d24b08cda34) Tomas Bjerre *2019-02-11 18:30:03*
+
+
 ## 1.75
 ### No issue
 
