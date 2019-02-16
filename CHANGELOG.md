@@ -3,6 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.77
+### No issue
+
+**Not searching comments on files when not commenting files**
+
+
+[fb65dc1a3e684c3](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/fb65dc1a3e684c3) Tomas Bjerre *2019-02-16 18:55:20*
+
+
 ## 1.76
 ### No issue
 
