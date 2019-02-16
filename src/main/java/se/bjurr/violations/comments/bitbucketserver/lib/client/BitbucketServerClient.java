@@ -99,12 +99,12 @@ public class BitbucketServerClient {
   }
 
   public List<String> pullRequestChanges() {
-    String url = getBitbucketServerPullRequestBase() + "/changes?limit=999999";
+    final String url = getBitbucketServerPullRequestBase() + "/changes?limit=999999";
     final String json = doInvokeUrl(url, Method.GET, null);
 
-    String jsonPath = "$..path.toString";
+    final String jsonPath = "$..path.toString";
     try {
-      List<String> response = JsonPath.read(json, jsonPath);
+      final List<String> response = JsonPath.read(json, jsonPath);
       if (response.isEmpty()) {
         violationsLogger.log(
             INFO,
@@ -176,7 +176,7 @@ public class BitbucketServerClient {
   }
 
   public BitbucketServerComment pullRequestComment(final Long commentId) {
-    String url = getBitbucketServerPullRequestBase() + "/comments/" + commentId;
+    final String url = getBitbucketServerPullRequestBase() + "/comments/" + commentId;
 
     final LinkedHashMap<?, ?> parsed =
         invokeAndParse(url, BitbucketServerInvoker.Method.GET, null, "$");
@@ -184,35 +184,45 @@ public class BitbucketServerClient {
     return toBitbucketServerComment(parsed);
   }
 
+  public List<BitbucketServerComment> pullRequestComments() {
+    final String url =
+        getBitbucketServerPullRequestBase() + "/comments?limit=999999&anchorState=ALL";
+    return getComments(url);
+  }
+
   public List<BitbucketServerComment> pullRequestComments(final String changedFile) {
     try {
       final String encodedChangedFile = encode(changedFile, UTF_8.name());
-      String url =
+      final String url =
           getBitbucketServerPullRequestBase()
               + "/comments?path="
               + encodedChangedFile
               + "&limit=999999&anchorState=ALL";
-      String jsonPath = "$.values[*]";
-
-      final String json = doInvokeUrl(url, Method.GET, null);
-      List<LinkedHashMap<?, ?>> parsed = null;
-      try {
-        parsed = JsonPath.read(json, jsonPath);
-      } catch (final Exception e) {
-        throw new RuntimeException(
-            "Unable to parse diff response from " + url + " using " + jsonPath + "\n\n" + json, e);
-      }
-
-      if (parsed.isEmpty()) {
-        violationsLogger.log(
-            INFO,
-            "Found no comments from " + url + " with JSONPath " + jsonPath + " in JSON:\n" + json);
-      }
-
-      return toBitbucketServerComments(parsed);
+      return getComments(url);
     } catch (final UnsupportedEncodingException e) {
       throw new RuntimeException(e.getMessage(), e);
     }
+  }
+
+  private List<BitbucketServerComment> getComments(final String url) {
+    final String jsonPath = "$.values[*]";
+
+    final String json = doInvokeUrl(url, Method.GET, null);
+    List<LinkedHashMap<?, ?>> parsed = null;
+    try {
+      parsed = JsonPath.read(json, jsonPath);
+    } catch (final Exception e) {
+      throw new RuntimeException(
+          "Unable to parse diff response from " + url + " using " + jsonPath + "\n\n" + json, e);
+    }
+
+    if (parsed.isEmpty()) {
+      violationsLogger.log(
+          INFO,
+          "Found no comments from " + url + " with JSONPath " + jsonPath + " in JSON:\n" + json);
+    }
+
+    return toBitbucketServerComments(parsed);
   }
 
   public BitbucketServerDiffResponse pullRequestDiff(final String path) {
@@ -249,7 +259,7 @@ public class BitbucketServerClient {
   }
 
   public void commentCreateTask(
-      final BitbucketServerComment comment, String changedFile, int line) {
+      final BitbucketServerComment comment, final String changedFile, final int line) {
     final String changedFileName = new File(changedFile).getName();
 
     final String taskPostContent =
@@ -278,7 +288,7 @@ public class BitbucketServerClient {
     return transformed;
   }
 
-  private BitbucketServerComment toBitbucketServerComment(LinkedHashMap<?, ?> parsed) {
+  private BitbucketServerComment toBitbucketServerComment(final LinkedHashMap<?, ?> parsed) {
     final Integer version = (Integer) parsed.get("version");
     final String text = (String) parsed.get("text");
     final Integer id = (Integer) parsed.get("id");
@@ -303,17 +313,17 @@ public class BitbucketServerClient {
     return comment;
   }
 
-  private List<BitbucketServerTask> toBitbucketServerTasks(List<LinkedHashMap<?, ?>> parsed) {
-    List<BitbucketServerTask> bitbucketServerTasks = new ArrayList<>();
+  private List<BitbucketServerTask> toBitbucketServerTasks(final List<LinkedHashMap<?, ?>> parsed) {
+    final List<BitbucketServerTask> bitbucketServerTasks = new ArrayList<>();
 
-    for (LinkedHashMap<?, ?> parsedTask : parsed) {
+    for (final LinkedHashMap<?, ?> parsedTask : parsed) {
       bitbucketServerTasks.add(toBitbucketServerTask(parsedTask));
     }
 
     return bitbucketServerTasks;
   }
 
-  private BitbucketServerTask toBitbucketServerTask(LinkedHashMap<?, ?> parsed) {
+  private BitbucketServerTask toBitbucketServerTask(final LinkedHashMap<?, ?> parsed) {
     final Integer id = (Integer) parsed.get("id");
     final String text = (String) parsed.get("text");
     return new BitbucketServerTask(id, text);

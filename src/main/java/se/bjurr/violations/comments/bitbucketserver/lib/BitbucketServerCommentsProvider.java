@@ -41,7 +41,8 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
           .expireAfterWrite(2, MINUTES)
           .build(
               new CacheLoader<String, BitbucketServerDiffResponse>() {
-                public BitbucketServerDiffResponse load(String path) {
+                @Override
+                public BitbucketServerDiffResponse load(final String path) {
                   return client.pullRequestDiff(path);
                 }
               });
@@ -108,13 +109,24 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
   @Override
   public List<Comment> getComments() {
     final List<Comment> comments = newArrayList();
-    for (final String changedFile : client.pullRequestChanges()) {
-      final List<BitbucketServerComment> bitbucketServerCommentsOnFile =
-          client.pullRequestComments(changedFile);
-      for (final BitbucketServerComment fileComment : bitbucketServerCommentsOnFile) {
-        final List<String> specifics = newArrayList(fileComment.getVersion() + "", changedFile);
-        comments.add(new Comment(fileComment.getId() + "", fileComment.getText(), null, specifics));
+    if (shouldCreateSingleFileComment()) {
+      /**
+       * This is time consuming to do and is only needed if we are creating comments on each file.
+       */
+      for (final String changedFile : client.pullRequestChanges()) {
+        final List<BitbucketServerComment> bitbucketServerCommentsOnFile =
+            client.pullRequestComments(changedFile);
+        for (final BitbucketServerComment fileComment : bitbucketServerCommentsOnFile) {
+          final List<String> specifics = newArrayList(fileComment.getVersion() + "", changedFile);
+          comments.add(
+              new Comment(fileComment.getId() + "", fileComment.getText(), null, specifics));
+        }
       }
+    }
+
+    for (final BitbucketServerComment comment : client.pullRequestComments()) {
+      final List<String> specifics = newArrayList(comment.getVersion() + "", "");
+      comments.add(new Comment(comment.getId() + "", comment.getText(), null, specifics));
     }
 
     return comments;
@@ -162,7 +174,7 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
       final List<BitbucketServerDiff> diffs =
           diffResponse.get(changedFile.getFilename()).getDiffs();
       return shouldComment(changedFile, changedLine, context, diffs);
-    } catch (Exception e) {
+    } catch (final Exception e) {
       violationsLogger.log(SEVERE, "Was unable to get diff from " + changedFile.getFilename(), e);
       return false;
     }
@@ -246,9 +258,9 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
   }
 
   private void removeTasks(final BitbucketServerComment comment) {
-    List<BitbucketServerTask> bitbucketServerTasks = comment.getTasks();
+    final List<BitbucketServerTask> bitbucketServerTasks = comment.getTasks();
 
-    for (BitbucketServerTask bitbucketServerTask : bitbucketServerTasks) {
+    for (final BitbucketServerTask bitbucketServerTask : bitbucketServerTasks) {
       client.removeTask(bitbucketServerTask);
     }
   }
