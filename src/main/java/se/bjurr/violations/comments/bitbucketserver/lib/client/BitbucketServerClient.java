@@ -6,23 +6,21 @@ import static java.net.URLEncoder.encode;
 import static java.util.logging.Level.INFO;
 import static se.bjurr.violations.lib.util.Utils.isNullOrEmpty;
 
+import com.google.common.annotations.VisibleForTesting;
+import com.google.gson.Gson;
+import com.jayway.jsonpath.JsonPath;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
-
 import net.minidev.json.JSONArray;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.BitbucketServerInvoker.Method;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerComment;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerDiffResponse;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerTask;
 import se.bjurr.violations.comments.lib.ViolationsLogger;
-
-import com.google.common.annotations.VisibleForTesting;
-import com.google.gson.Gson;
-import com.jayway.jsonpath.JsonPath;
 
 public class BitbucketServerClient {
   private static BitbucketServerInvoker bitbucketServerInvoker = new BitbucketServerInvoker();
@@ -187,9 +185,8 @@ public class BitbucketServerClient {
   }
 
   public List<BitbucketServerComment> pullRequestComments() {
-    final String url =
-        getBitbucketServerPullRequestBase() + "/activities?activities?limit=9999";
-    return getComments(url,"$.values.[*].comment");
+    final String url = getBitbucketServerPullRequestBase() + "/activities?activities?limit=9999";
+    return getComments(url, "$.values.[*].comment");
   }
 
   public List<BitbucketServerComment> pullRequestComments(final String changedFile) {
@@ -200,13 +197,13 @@ public class BitbucketServerClient {
               + "/comments?path="
               + encodedChangedFile
               + "&limit=999999&anchorState=ALL";
-      return getComments(url,"$.values[*]");
+      return getComments(url, "$.values[*]");
     } catch (final UnsupportedEncodingException e) {
       throw new RuntimeException(e.getMessage(), e);
     }
   }
 
-  private List<BitbucketServerComment> getComments(final String url,final String jsonPath) {
+  private List<BitbucketServerComment> getComments(final String url, final String jsonPath) {
 
     final String json = doInvokeUrl(url, Method.GET, null);
     List<LinkedHashMap<?, ?>> parsed = null;

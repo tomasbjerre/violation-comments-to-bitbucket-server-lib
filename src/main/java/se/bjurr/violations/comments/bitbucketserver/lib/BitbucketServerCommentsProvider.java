@@ -7,6 +7,9 @@ import static java.util.concurrent.TimeUnit.MINUTES;
 import static java.util.logging.Level.SEVERE;
 import static se.bjurr.violations.comments.bitbucketserver.lib.client.model.DIFFTYPE.ADDED;
 
+import com.google.common.annotations.VisibleForTesting;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,7 +17,6 @@ import java.util.Deque;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
-
 import se.bjurr.violations.comments.bitbucketserver.lib.client.BitbucketServerClient;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerComment;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerDiff;
@@ -28,10 +30,6 @@ import se.bjurr.violations.comments.lib.CommentsProvider;
 import se.bjurr.violations.comments.lib.ViolationsLogger;
 import se.bjurr.violations.comments.lib.model.ChangedFile;
 import se.bjurr.violations.comments.lib.model.Comment;
-
-import com.google.common.annotations.VisibleForTesting;
-import com.google.common.cache.CacheLoader;
-import com.google.common.cache.LoadingCache;
 
 public class BitbucketServerCommentsProvider implements CommentsProvider {
 
