@@ -3,6 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.78
+### No issue
+
+**Correctly getting global comments**
+
+
+[7f02a0ea46314b1](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/7f02a0ea46314b1) Tomas Bjerre *2019-02-16 19:49:48*
+
+
 ## 1.77
 ### No issue
 
