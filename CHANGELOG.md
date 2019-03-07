@@ -3,6 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.79
+### No issue
+
+**golangci-lint**
+
+
+[291007c50c3af06](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/291007c50c3af06) Tomas Bjerre *2019-03-07 15:56:36*
+
+
 ## 1.78
 ### No issue
 
