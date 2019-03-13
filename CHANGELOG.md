@@ -3,6 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.80
+### No issue
+
+**Klocwork line numbers**
+
+
+[9543ece4c3d7ac2](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/9543ece4c3d7ac2) Tomas Bjerre *2019-03-13 19:23:46*
+
+
 ## 1.79
 ### No issue
 
