@@ -3,6 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.81
+### No issue
+
+**Sonar Report**
+
+
+[8661e5c16d25fa7](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/8661e5c16d25fa7) Tomas Bjerre *2019-03-23 15:07:07*
+
+
 ## 1.80
 ### No issue
 
