@@ -291,13 +291,17 @@ public class BitbucketServerClient {
     final String text = (String) parsed.get("text");
     final Integer id = (Integer) parsed.get("id");
 
+    List<LinkedHashMap<?, ?>> tasks = new ArrayList<LinkedHashMap<?, ?>>();
     final JSONArray jsonArrayTasks = (JSONArray) parsed.get("tasks");
-    final JSONArray jsonArraySubComments = (JSONArray) parsed.get("comments");
+    if (jsonArrayTasks != null) {
+      tasks = Arrays.asList(jsonArrayTasks.toArray(new LinkedHashMap<?, ?>[0]));
+    }
 
-    final List<LinkedHashMap<?, ?>> tasks =
-        Arrays.asList(jsonArrayTasks.toArray(new LinkedHashMap<?, ?>[0]));
-    final List<LinkedHashMap<?, ?>> subComments =
-        Arrays.asList(jsonArraySubComments.toArray(new LinkedHashMap<?, ?>[0]));
+    List<LinkedHashMap<?, ?>> subComments = new ArrayList<>();
+    final JSONArray jsonArraySubComments = (JSONArray) parsed.get("comments");
+    if (jsonArraySubComments != null) {
+      subComments = Arrays.asList(jsonArraySubComments.toArray(new LinkedHashMap<?, ?>[0]));
+    }
 
     final List<BitbucketServerTask> bitbucketServerTasks = toBitbucketServerTasks(tasks);
     final List<BitbucketServerComment> bitbucketServerSubComments =

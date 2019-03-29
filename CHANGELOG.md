@@ -3,6 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## Unreleased
+### No issue
+
+**Avoiding NPE when no tasks or sub comments**
+
+
+[1dd1140ddbd23ed](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/1dd1140ddbd23ed) Tomas Bjerre *2019-03-29 14:54:45*
+
+
 ## 1.81
 ### No issue
 
