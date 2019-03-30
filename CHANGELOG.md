@@ -3,13 +3,18 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
-## Unreleased
+## 1.82
 ### No issue
+
+**Correcting Sonar severity**
+
+
+[7a2ec64e6a3e797](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/7a2ec64e6a3e797) Tomas Bjerre *2019-03-30 06:04:54*
 
 **Avoiding NPE when no tasks or sub comments**
 
 
-[1dd1140ddbd23ed](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/1dd1140ddbd23ed) Tomas Bjerre *2019-03-29 14:54:45*
+[75860d638b30000](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/75860d638b30000) Tomas Bjerre *2019-03-29 14:56:55*
 
 
 ## 1.81
