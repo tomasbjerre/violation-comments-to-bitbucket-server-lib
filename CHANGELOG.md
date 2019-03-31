@@ -3,6 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.84
+### No issue
+
+**maxNumberOfComments**
+
+
+[5297e64ba527f6f](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/5297e64ba527f6f) Tomas Bjerre *2019-03-31 10:48:22*
+
+
 ## 1.83
 ### No issue
 
