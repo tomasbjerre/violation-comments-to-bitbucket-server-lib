@@ -264,4 +264,14 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
       client.removeTask(bitbucketServerTask);
     }
   }
+
+  @Override
+  public Integer getMaxNumberOfComments() {
+    return violationCommentsToBitbucketApi.getMaxNumberOfComments();
+  }
+
+  @Override
+  public Integer getMaxCommentSize() {
+    return violationCommentsToBitbucketApi.getMaxCommentSize();
+  }
 }
