@@ -10,12 +10,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import se.bjurr.violations.comments.lib.CommentsProvider;
 import se.bjurr.violations.comments.lib.ViolationsLogger;
 import se.bjurr.violations.lib.model.Violation;
 
 public class ViolationCommentsToBitbucketServerApi {
-  private static final Integer BITBUCKET_MAX_COMMENT_SIZE = 32767;
   public static final String DEFAULT_PROP_VIOLATIONS_PASSWORD = "VIOLATIONS_PASSWORD";
   public static final String DEFAULT_PROP_VIOLATIONS_USERNAME = "VIOLATIONS_USERNAME";
   public static final String DEFAULT_PROP_PERSONAL_ACCESS_TOKEN = "VIOLATIONS_PAT";
@@ -190,7 +190,7 @@ public class ViolationCommentsToBitbucketServerApi {
     checkState();
     final CommentsProvider commentsProvider =
         new BitbucketServerCommentsProvider(this, violationsLogger);
-    createComments(violationsLogger, violations, BITBUCKET_MAX_COMMENT_SIZE, commentsProvider);
+    createComments(violationsLogger, violations, commentsProvider);
   }
 
   public ViolationCommentsToBitbucketServerApi withBitbucketServerUrl(
