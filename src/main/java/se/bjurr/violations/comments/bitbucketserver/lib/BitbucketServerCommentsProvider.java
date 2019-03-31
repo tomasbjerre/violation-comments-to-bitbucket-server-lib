@@ -267,12 +267,12 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
   }
 
   @Override
-  public Integer getMaxNumberOfComments() {
+  public Integer getMaxCommentSize() {
     return BITBUCKET_MAX_COMMENT_SIZE;
   }
 
   @Override
-  public Integer getMaxCommentSize() {
-    return violationCommentsToBitbucketApi.getMaxCommentSize();
+  public Integer getMaxNumberOfViolations() {
+    return violationCommentsToBitbucketApi.getMaxNumberOfViolations();
   }
 }
