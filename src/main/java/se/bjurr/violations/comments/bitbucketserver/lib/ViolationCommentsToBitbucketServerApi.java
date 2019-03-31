@@ -57,7 +57,7 @@ public class ViolationCommentsToBitbucketServerApi {
           Logger.getLogger(ViolationsLogger.class.getSimpleName()).log(level, string, t);
         }
       };
-  private Integer maxNumberOfComments;
+  private Integer maxNumberOfViolations;
 
   private ViolationCommentsToBitbucketServerApi() {}
 
@@ -313,13 +313,13 @@ public class ViolationCommentsToBitbucketServerApi {
     return ofNullable(commentTemplate);
   }
 
-  public ViolationCommentsToBitbucketServerApi withMaxNumberOfComments(
-      final Integer maxNumberOfComments) {
-    this.maxNumberOfComments = maxNumberOfComments;
+  public ViolationCommentsToBitbucketServerApi withMaxNumberOfViolations(
+      final Integer maxNumberOfViolations) {
+    this.maxNumberOfViolations = maxNumberOfViolations;
     return this;
   }
 
   public Integer getMaxNumberOfViolations() {
-    return maxNumberOfComments;
+    return maxNumberOfViolations;
   }
 }
