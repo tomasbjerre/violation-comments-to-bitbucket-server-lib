@@ -3,6 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.87
+### No issue
+
+**Cpplint correction to handle line None**
+
+
+[857a346169fa5ba](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/857a346169fa5ba) Tomas Bjerre *2019-04-24 16:39:39*
+
+
 ## 1.86
 ### No issue
 
