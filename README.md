@@ -20,6 +20,7 @@ Very easy to use with a nice builder pattern
 ## Usage
 This software can be used:
  * With a [Jenkins plugin](https://github.com/jenkinsci/violation-comments-to-stash-plugin).
+ * From [Command Line](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-command-line)
 
 ## Developer instructions
 
