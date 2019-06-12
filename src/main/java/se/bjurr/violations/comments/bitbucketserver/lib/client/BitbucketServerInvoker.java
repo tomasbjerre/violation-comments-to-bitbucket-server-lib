@@ -7,12 +7,12 @@ import static java.util.logging.Level.INFO;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.CookieHandler;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
 import java.net.URI;
-import javax.xml.bind.DatatypeConverter;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
@@ -55,12 +55,8 @@ public class BitbucketServerInvoker {
       final ProxyConfig proxyConfig) {
 
     final String userAndPass = bitbucketServerUser + ":" + bitbucketServerPassword;
-    String authString;
-    try {
-      authString = DatatypeConverter.printBase64Binary(userAndPass.getBytes("UTF-8"));
-    } catch (final UnsupportedEncodingException e1) {
-      throw new RuntimeException(e1);
-    }
+    final String authString =
+        Base64.getEncoder().encodeToString(userAndPass.getBytes(StandardCharsets.UTF_8));
     final String authorizationValue = "Basic " + authString;
 
     return doInvokeUrl(violationsLogger, url, method, postContent, authorizationValue, proxyConfig);

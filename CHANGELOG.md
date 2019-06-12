@@ -3,6 +3,20 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## Unreleased
+### No issue
+
+**openjdk11**
+
+
+[4805d4dfdae24fd](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/4805d4dfdae24fd) Tomas Bjerre *2019-06-12 06:26:46*
+
+**doc**
+
+
+[984434f146731b7](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/984434f146731b7) Tomas Bjerre *2019-06-01 13:40:25*
+
+
 ## 1.87
 ### No issue
 
