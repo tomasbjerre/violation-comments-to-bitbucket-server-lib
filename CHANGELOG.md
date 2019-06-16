@@ -3,6 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.89
+### No issue
+
+**commentOnlyChangedFiles**
+
+
+[06e7315f000d98b](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/06e7315f000d98b) Tomas Bjerre *2019-06-16 07:35:21*
+
+
 ## 1.88
 ### No issue
 
