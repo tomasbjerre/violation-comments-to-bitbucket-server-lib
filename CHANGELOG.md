@@ -3,6 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.90
+### No issue
+
+**junit**
+
+
+[f811cf5f5880b17](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/f811cf5f5880b17) Tomas Bjerre *2019-06-16 16:36:03*
+
+
 ## 1.89
 ### No issue
 
