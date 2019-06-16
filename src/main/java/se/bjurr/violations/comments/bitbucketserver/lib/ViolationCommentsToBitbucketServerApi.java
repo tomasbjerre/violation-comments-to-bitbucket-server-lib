@@ -58,6 +58,7 @@ public class ViolationCommentsToBitbucketServerApi {
         }
       };
   private Integer maxNumberOfViolations;
+  private boolean shouldCommentOnlyChangedFiles = true;
 
   private ViolationCommentsToBitbucketServerApi() {}
 
@@ -148,6 +149,10 @@ public class ViolationCommentsToBitbucketServerApi {
 
   public boolean getShouldKeepOldComments() {
     return shouldKeepOldComments;
+  }
+
+  public boolean getShouldCommentOnlyChangedFiles() {
+    return shouldCommentOnlyChangedFiles;
   }
 
   public String getPersonalAccessToken() {
@@ -280,6 +285,12 @@ public class ViolationCommentsToBitbucketServerApi {
   public ViolationCommentsToBitbucketServerApi withShouldKeepOldComments(
       final boolean shouldKeepOldComments) {
     this.shouldKeepOldComments = shouldKeepOldComments;
+    return this;
+  }
+
+  public ViolationCommentsToBitbucketServerApi withShouldCommentOnlyChangedFiles(
+      final boolean shouldCommentOnlyChangedFiles) {
+    this.shouldCommentOnlyChangedFiles = shouldCommentOnlyChangedFiles;
     return this;
   }
 

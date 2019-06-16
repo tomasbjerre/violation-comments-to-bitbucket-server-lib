@@ -92,7 +92,7 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
   }
 
   @Override
-  public void createCommentWithAllSingleFileComments(final String comment) {
+  public void createComment(final String comment) {
     client.pullRequestComment(comment);
   }
 
@@ -232,6 +232,11 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
   @Override
   public boolean shouldKeepOldComments() {
     return violationCommentsToBitbucketApi.getShouldKeepOldComments();
+  }
+
+  @Override
+  public boolean shouldCommentOnlyChangedFiles() {
+    return violationCommentsToBitbucketApi.getShouldCommentOnlyChangedFiles();
   }
 
   private void removeComment(final BitbucketServerComment comment) {
