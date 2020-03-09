@@ -114,7 +114,14 @@ public class BitbucketServerInvoker {
         statusCode = "" + response.getStatusLine().getStatusCode();
         reasonPhrase = response.getStatusLine().getReasonPhrase();
       }
-      violationsLogger.log(INFO, method + " " + url + " " + statusCode + " " + reasonPhrase);
+      boolean wasNotOk = !statusCode.startsWith("2");
+      if (wasNotOk) {
+        violationsLogger.log(
+            INFO,
+            method + " " + url + " " + statusCode + " " + reasonPhrase + "\nSent:\n" + postContent);
+      } else {
+        violationsLogger.log(INFO, method + " " + url + " " + statusCode + " " + reasonPhrase);
+      }
       if (response.getEntity() == null) {
         return null;
       }
@@ -126,6 +133,9 @@ public class BitbucketServerInvoker {
         stringBuilder.append(line + "\n");
       }
       final String json = stringBuilder.toString();
+      if (wasNotOk) {
+        violationsLogger.log(INFO, "Response:\n" + json);
+      }
       return json;
     } catch (final Throwable e) {
       throw new RuntimeException("Error calling:\n" + url + "\n" + method + "\n" + postContent, e);
