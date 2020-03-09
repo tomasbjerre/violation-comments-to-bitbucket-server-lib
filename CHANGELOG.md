@@ -3,7 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
-## Unreleased
+## 1.91
+### GitHub #69   
+
+**More logging jenkinsci/violation-comments-to-stash-plugin**
+
+
+[6b1872805d35c90](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/6b1872805d35c90) Tomas Bjerre *2020-03-09 17:59:07*
+
+
 ### No issue
 
 **doc**
