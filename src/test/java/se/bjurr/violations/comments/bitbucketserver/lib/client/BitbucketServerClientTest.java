@@ -251,5 +251,7 @@ public class BitbucketServerClientTest {
   public void testSaveJson() {
     assertThat(sut.safeJson("...ring: '\\s'. \nStr\"i\"ng ...")) //
         .isEqualTo("...ring: '\\\\s'. \\nString ...");
+    assertThat(sut.safeJson("\thej\n\thej2")) //
+        .isEqualTo("    hej\\n    hej2");
   }
 }

@@ -274,7 +274,11 @@ public class BitbucketServerClient {
 
   @VisibleForTesting
   String safeJson(final String message) {
-    return message.replaceAll("\\\\", "\\\\\\\\").replaceAll("\"", "").replaceAll("\n", "\\\\n");
+    return message
+        .replaceAll("\\\\", "\\\\\\\\")
+        .replaceAll("\"", "")
+        .replaceAll("\n", "\\\\n")
+        .replaceAll("\t", "    ");
   }
 
   private List<BitbucketServerComment> toBitbucketServerComments(
