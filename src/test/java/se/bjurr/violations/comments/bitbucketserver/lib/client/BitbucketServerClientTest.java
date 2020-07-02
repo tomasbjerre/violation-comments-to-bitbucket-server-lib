@@ -65,8 +65,8 @@ public class BitbucketServerClientTest {
               final String bitbucketServerUser,
               final String bitbucketServerPassword,
               final ProxyConfig proxyConfig) {
-            invoked = url;
-            return mockedJson;
+            BitbucketServerClientTest.this.invoked = url;
+            return BitbucketServerClientTest.this.mockedJson;
           }
         });
   }
@@ -100,7 +100,7 @@ public class BitbucketServerClientTest {
 
   private void mockJson(final String resourceName) {
     try {
-      mockedJson = Resources.toString(Resources.getResource(resourceName), Charsets.UTF_8);
+      this.mockedJson = Resources.toString(Resources.getResource(resourceName), Charsets.UTF_8);
     } catch (final IOException e) {
       e.printStackTrace();
     }
@@ -108,52 +108,62 @@ public class BitbucketServerClientTest {
 
   @Test
   public void testPullRequestChanges() {
-    mockJson("pull-request-changes.json");
-    final List<String> actual = sut.pullRequestChanges();
+    this.mockJson("pull-request-changes.json");
+    final List<String> actual = this.sut.pullRequestChanges();
     assertThat(actual).isNotEmpty();
     assertThat(actual.get(0)).isEqualTo("basic_branching/file.txt");
   }
 
   @Test
   public void testPullRequestCommentsOnFile() {
-    mockJson("pull-request-comments.json");
-    final List<BitbucketServerComment> actual = sut.pullRequestComments("any/file.txt");
+    this.mockJson("pull-request-comments.json");
+    final List<BitbucketServerComment> actual = this.sut.pullRequestComments("any/file.txt");
     assertThat(actual).isNotEmpty();
     assertThat(actual.get(0).getId()).isEqualTo(2);
     assertThat(actual.get(0).getText()).isEqualTo("in diff comment");
     assertThat(actual.get(0).getVersion()).isEqualTo(0);
-    assertThat(invoked)
+    assertThat(this.invoked)
         .isEqualTo(
             "bitbucketServerBaseUrl/rest/api/1.0/projects/bitbucketServerProject/repos/bitbucketServerRepo/pull-requests/1/comments?path=any%2Ffile.txt&limit=999999&anchorState=ALL");
   }
 
   @Test
   public void testPullRequestCommentsEmpty() {
-    mockJson("pull-request-comments-all-empty.json");
-    final List<BitbucketServerComment> actual = sut.pullRequestComments();
+    this.mockJson("pull-request-comments-all-empty.json");
+    final List<BitbucketServerComment> actual = this.sut.pullRequestComments();
     assertThat(actual).isEmpty();
-    assertThat(invoked)
+    assertThat(this.invoked)
         .isEqualTo(
-            "bitbucketServerBaseUrl/rest/api/1.0/projects/bitbucketServerProject/repos/bitbucketServerRepo/pull-requests/1/activities?activities?limit=9999");
+            "bitbucketServerBaseUrl/rest/api/1.0/projects/bitbucketServerProject/repos/bitbucketServerRepo/pull-requests/1/activities?limit=9999");
+  }
+
+  @Test
+  public void testPullRequestCommentsGeneral() {
+    this.mockJson("pull-request-comments-generall.json");
+    final List<BitbucketServerComment> actual = this.sut.pullRequestComments();
+    assertThat(actual).hasSize(7);
+    assertThat(this.invoked)
+        .isEqualTo(
+            "bitbucketServerBaseUrl/rest/api/1.0/projects/bitbucketServerProject/repos/bitbucketServerRepo/pull-requests/1/activities?limit=9999");
   }
 
   @Test
   public void testPullRequestCommentsOne() {
-    mockJson("pull-request-comments-all-one.json");
-    final List<BitbucketServerComment> actual = sut.pullRequestComments();
+    this.mockJson("pull-request-comments-all-one.json");
+    final List<BitbucketServerComment> actual = this.sut.pullRequestComments();
     assertThat(actual).hasSize(1);
     assertThat(actual.get(0).getId()).isEqualTo(1);
     assertThat(actual.get(0).getText()).isEqualTo("as");
     assertThat(actual.get(0).getVersion()).isEqualTo(0);
-    assertThat(invoked)
+    assertThat(this.invoked)
         .isEqualTo(
-            "bitbucketServerBaseUrl/rest/api/1.0/projects/bitbucketServerProject/repos/bitbucketServerRepo/pull-requests/1/activities?activities?limit=9999");
+            "bitbucketServerBaseUrl/rest/api/1.0/projects/bitbucketServerProject/repos/bitbucketServerRepo/pull-requests/1/activities?limit=9999");
   }
 
   @Test
   public void testPullRequestCommentsTwo() {
-    mockJson("pull-request-comments-all-two.json");
-    final List<BitbucketServerComment> actual = sut.pullRequestComments();
+    this.mockJson("pull-request-comments-all-two.json");
+    final List<BitbucketServerComment> actual = this.sut.pullRequestComments();
     assertThat(actual).hasSize(2);
     assertThat(actual.get(0).getId()).isEqualTo(23);
     assertThat(actual.get(0).getText().trim()).isEqualTo("this is another comment");
@@ -161,29 +171,29 @@ public class BitbucketServerClientTest {
     assertThat(actual.get(1).getId()).isEqualTo(22);
     assertThat(actual.get(1).getText()).isEqualTo("this is a comment");
     assertThat(actual.get(1).getVersion()).isEqualTo(0);
-    assertThat(invoked)
+    assertThat(this.invoked)
         .isEqualTo(
-            "bitbucketServerBaseUrl/rest/api/1.0/projects/bitbucketServerProject/repos/bitbucketServerRepo/pull-requests/1/activities?activities?limit=9999");
+            "bitbucketServerBaseUrl/rest/api/1.0/projects/bitbucketServerProject/repos/bitbucketServerRepo/pull-requests/1/activities?limit=9999");
   }
 
   @Test
   public void testPullRequestCommentsOnFileWithSpaces() {
-    mockJson("pull-request-comments.json");
+    this.mockJson("pull-request-comments.json");
     final List<BitbucketServerComment> actual =
-        sut.pullRequestComments("any folder with spaces/file.txt");
+        this.sut.pullRequestComments("any folder with spaces/file.txt");
     assertThat(actual).isNotEmpty();
     assertThat(actual.get(0).getId()).isEqualTo(2);
     assertThat(actual.get(0).getText()).isEqualTo("in diff comment");
     assertThat(actual.get(0).getVersion()).isEqualTo(0);
-    assertThat(invoked)
+    assertThat(this.invoked)
         .isEqualTo(
             "bitbucketServerBaseUrl/rest/api/1.0/projects/bitbucketServerProject/repos/bitbucketServerRepo/pull-requests/1/comments?path=any+folder+with+spaces%2Ffile.txt&limit=999999&anchorState=ALL");
   }
 
   @Test
   public void testPullRequestDiffDiffDeleted() {
-    mockJson("pull-request-changes-3-deleted.json");
-    final BitbucketServerDiffResponse response = sut.pullRequestDiff(path);
+    this.mockJson("pull-request-changes-3-deleted.json");
+    final BitbucketServerDiffResponse response = this.sut.pullRequestDiff(this.path);
     assertThat(response) //
         .isNotNull();
     assertThat(response.getDiffs()) //
@@ -192,66 +202,66 @@ public class BitbucketServerClientTest {
 
   @Test
   public void testPullRequestDiffDiffTypes() {
-    mockJson("pull-request-changes-2.json");
-    final BitbucketServerDiffResponse response = sut.pullRequestDiff(path);
+    this.mockJson("pull-request-changes-2.json");
+    final BitbucketServerDiffResponse response = this.sut.pullRequestDiff(this.path);
     assertThat(response) //
         .isNotNull();
     assertThat(response.getDiffs()) //
         .hasSize(12);
     final BitbucketServerDiff diff = response.getDiffs().get(0);
-    assertThat(filterSegments(diff, CONTEXT)) //
+    assertThat(this.filterSegments(diff, CONTEXT)) //
         .hasSize(3);
-    assertThat(filterSegments(diff, ADDED)) //
+    assertThat(this.filterSegments(diff, ADDED)) //
         .hasSize(1);
-    assertThat(filterSegments(diff, ADDED).get(0).getLines()) //
+    assertThat(this.filterSegments(diff, ADDED).get(0).getLines()) //
         .hasSize(1);
-    assertThat(filterSegments(diff, REMOVED)) //
+    assertThat(this.filterSegments(diff, REMOVED)) //
         .hasSize(1);
-    assertThat(filterSegments(diff, REMOVED).get(0).getLines()) //
+    assertThat(this.filterSegments(diff, REMOVED).get(0).getLines()) //
         .hasSize(1);
   }
 
   @Test
   public void testPullRequestDiffPerFileTestCpp() {
-    mockJson("pull-request-changes-2.json");
-    final BitbucketServerDiffResponse response = sut.pullRequestDiff(path);
+    this.mockJson("pull-request-changes-2.json");
+    final BitbucketServerDiffResponse response = this.sut.pullRequestDiff(this.path);
     assertThat(response) //
         .isNotNull();
-    final List<BitbucketServerDiff> diffs = filterByFile(response, "cpp/test.cpp");
+    final List<BitbucketServerDiff> diffs = this.filterByFile(response, "cpp/test.cpp");
     assertThat(diffs) //
         .hasSize(1);
 
-    assertThat(filterSegments(diffs.get(0), ADDED)) //
+    assertThat(this.filterSegments(diffs.get(0), ADDED)) //
         .hasSize(1);
-    assertThat(filterSegments(diffs.get(0), REMOVED)) //
+    assertThat(this.filterSegments(diffs.get(0), REMOVED)) //
         .hasSize(0);
-    assertThat(filterSegments(diffs.get(0), CONTEXT)) //
+    assertThat(this.filterSegments(diffs.get(0), CONTEXT)) //
         .hasSize(2);
   }
 
   @Test
   public void testPullRequestDiffPerFileTravisYml() {
-    mockJson("pull-request-changes-2.json");
-    final BitbucketServerDiffResponse response = sut.pullRequestDiff(path);
+    this.mockJson("pull-request-changes-2.json");
+    final BitbucketServerDiffResponse response = this.sut.pullRequestDiff(this.path);
     assertThat(response) //
         .isNotNull();
-    final List<BitbucketServerDiff> diffs = filterByFile(response, ".travis.yml");
+    final List<BitbucketServerDiff> diffs = this.filterByFile(response, ".travis.yml");
     assertThat(diffs) //
         .hasSize(1);
 
-    assertThat(filterSegments(diffs.get(0), ADDED)) //
+    assertThat(this.filterSegments(diffs.get(0), ADDED)) //
         .hasSize(1);
-    assertThat(filterSegments(diffs.get(0), REMOVED)) //
+    assertThat(this.filterSegments(diffs.get(0), REMOVED)) //
         .hasSize(1);
-    assertThat(filterSegments(diffs.get(0), CONTEXT)) //
+    assertThat(this.filterSegments(diffs.get(0), CONTEXT)) //
         .hasSize(3);
   }
 
   @Test
   public void testSaveJson() {
-    assertThat(sut.safeJson("...ring: '\\s'. \nStr\"i\"ng ...")) //
+    assertThat(this.sut.safeJson("...ring: '\\s'. \nStr\"i\"ng ...")) //
         .isEqualTo("...ring: '\\\\s'. \\nString ...");
-    assertThat(sut.safeJson("\thej\n\thej2")) //
+    assertThat(this.sut.safeJson("\thej\n\thej2")) //
         .isEqualTo("    hej\\n    hej2");
   }
 }

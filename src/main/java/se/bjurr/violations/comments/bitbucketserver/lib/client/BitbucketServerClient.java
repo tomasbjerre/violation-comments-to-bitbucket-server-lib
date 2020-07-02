@@ -73,22 +73,22 @@ public class BitbucketServerClient {
   }
 
   private String getBitbucketServerApiBase() {
-    return bitbucketServerBaseUrl + "/rest/api/1.0";
+    return this.bitbucketServerBaseUrl + "/rest/api/1.0";
   }
 
   private String getBitbucketServerPullRequestBase() {
-    return getBitbucketServerApiBase()
+    return this.getBitbucketServerApiBase()
         + "/projects/"
-        + bitbucketServerProject
+        + this.bitbucketServerProject
         + "/repos/"
-        + bitbucketServerRepo
+        + this.bitbucketServerRepo
         + "/pull-requests/"
-        + bitbucketServerPullRequestId;
+        + this.bitbucketServerPullRequestId;
   }
 
   private <T> T invokeAndParse(
       final String url, final Method method, final String postContent, final String jsonPath) {
-    final String json = doInvokeUrl(url, method, postContent);
+    final String json = this.doInvokeUrl(url, method, postContent);
 
     try {
       return JsonPath.read(json, jsonPath);
@@ -99,14 +99,14 @@ public class BitbucketServerClient {
   }
 
   public List<String> pullRequestChanges() {
-    final String url = getBitbucketServerPullRequestBase() + "/changes?limit=999999";
-    final String json = doInvokeUrl(url, Method.GET, null);
+    final String url = this.getBitbucketServerPullRequestBase() + "/changes?limit=999999";
+    final String json = this.doInvokeUrl(url, Method.GET, null);
 
     final String jsonPath = "$..path.toString";
     try {
       final List<String> response = JsonPath.read(json, jsonPath);
       if (response.isEmpty()) {
-        violationsLogger.log(
+        this.violationsLogger.log(
             INFO,
             "Found no changed files from "
                 + url
@@ -123,31 +123,31 @@ public class BitbucketServerClient {
   }
 
   public void pullRequestComment(final String message) {
-    final String postContent = "{ \"text\": \"" + safeJson(message) + "\"}";
-    doInvokeUrl(
-        getBitbucketServerPullRequestBase() + "/comments",
+    final String postContent = "{ \"text\": \"" + this.safeJson(message) + "\"}";
+    this.doInvokeUrl(
+        this.getBitbucketServerPullRequestBase() + "/comments",
         BitbucketServerInvoker.Method.POST,
         postContent);
   }
 
   private String doInvokeUrl(final String url, final Method method, final String postContent) {
-    if (isNullOrEmpty(bitbucketServerUser) || isNullOrEmpty(bitbucketServerPassword)) {
+    if (isNullOrEmpty(this.bitbucketServerUser) || isNullOrEmpty(this.bitbucketServerPassword)) {
       return bitbucketServerInvoker.invokeUrl(
-          violationsLogger,
+          this.violationsLogger,
           url,
           method,
           postContent,
-          bitbucketPersonalAccessToken,
-          proxyInformation);
+          this.bitbucketPersonalAccessToken,
+          this.proxyInformation);
     } else {
       return bitbucketServerInvoker.invokeUrl(
-          violationsLogger,
+          this.violationsLogger,
           url,
           method,
           postContent,
-          bitbucketServerUser,
-          bitbucketServerPassword,
-          proxyInformation);
+          this.bitbucketServerUser,
+          this.bitbucketServerPassword,
+          this.proxyInformation);
     }
   }
 
@@ -158,7 +158,7 @@ public class BitbucketServerClient {
     }
     final String commentPostContent =
         "{ \"text\": \""
-            + safeJson(message)
+            + this.safeJson(message)
             + "\", \"anchor\": { \"line\": "
             + line
             + ", \"lineType\": \"ADDED\", \"fileType\": \"TO\", \"path\": \""
@@ -166,38 +166,38 @@ public class BitbucketServerClient {
             + "\" }}";
 
     final LinkedHashMap<?, ?> parsed =
-        invokeAndParse(
-            getBitbucketServerPullRequestBase() + "/comments",
+        this.invokeAndParse(
+            this.getBitbucketServerPullRequestBase() + "/comments",
             BitbucketServerInvoker.Method.POST,
             commentPostContent,
             "$");
 
-    return toBitbucketServerComment(parsed);
+    return this.toBitbucketServerComment(parsed);
   }
 
   public BitbucketServerComment pullRequestComment(final Long commentId) {
-    final String url = getBitbucketServerPullRequestBase() + "/comments/" + commentId;
+    final String url = this.getBitbucketServerPullRequestBase() + "/comments/" + commentId;
 
     final LinkedHashMap<?, ?> parsed =
-        invokeAndParse(url, BitbucketServerInvoker.Method.GET, null, "$");
+        this.invokeAndParse(url, BitbucketServerInvoker.Method.GET, null, "$");
 
-    return toBitbucketServerComment(parsed);
+    return this.toBitbucketServerComment(parsed);
   }
 
   public List<BitbucketServerComment> pullRequestComments() {
-    final String url = getBitbucketServerPullRequestBase() + "/activities?activities?limit=9999";
-    return getComments(url, "$.values.[*].comment");
+    final String url = this.getBitbucketServerPullRequestBase() + "/activities?limit=9999";
+    return this.getComments(url, "$.values.[*].comment");
   }
 
   public List<BitbucketServerComment> pullRequestComments(final String changedFile) {
     try {
       final String encodedChangedFile = encode(changedFile, UTF_8.name());
       final String url =
-          getBitbucketServerPullRequestBase()
+          this.getBitbucketServerPullRequestBase()
               + "/comments?path="
               + encodedChangedFile
               + "&limit=999999&anchorState=ALL";
-      return getComments(url, "$.values[*]");
+      return this.getComments(url, "$.values[*]");
     } catch (final UnsupportedEncodingException e) {
       throw new RuntimeException(e.getMessage(), e);
     }
@@ -205,7 +205,7 @@ public class BitbucketServerClient {
 
   private List<BitbucketServerComment> getComments(final String url, final String jsonPath) {
 
-    final String json = doInvokeUrl(url, Method.GET, null);
+    final String json = this.doInvokeUrl(url, Method.GET, null);
     List<LinkedHashMap<?, ?>> parsed = null;
     try {
       parsed = JsonPath.read(json, jsonPath);
@@ -215,22 +215,22 @@ public class BitbucketServerClient {
     }
 
     if (parsed.isEmpty()) {
-      violationsLogger.log(
+      this.violationsLogger.log(
           INFO,
           "Found no comments from " + url + " with JSONPath " + jsonPath + " in JSON:\n" + json);
     }
 
-    return toBitbucketServerComments(parsed);
+    return this.toBitbucketServerComments(parsed);
   }
 
   public BitbucketServerDiffResponse pullRequestDiff(final String path) {
-    final String url = getBitbucketServerPullRequestBase() + "/diff/" + path;
-    final String json = doInvokeUrl(url, BitbucketServerInvoker.Method.GET, null);
+    final String url = this.getBitbucketServerPullRequestBase() + "/diff/" + path;
+    final String json = this.doInvokeUrl(url, BitbucketServerInvoker.Method.GET, null);
     try {
       final BitbucketServerDiffResponse diff =
           new Gson().fromJson(json, BitbucketServerDiffResponse.class);
       if (diff.getDiffs().isEmpty()) {
-        violationsLogger.log(INFO, "Found no diffs from " + url + " in JSON:\n" + json);
+        this.violationsLogger.log(INFO, "Found no diffs from " + url + " in JSON:\n" + json);
       }
       return diff;
     } catch (final Exception e) {
@@ -239,8 +239,8 @@ public class BitbucketServerClient {
   }
 
   public void pullRequestRemoveComment(final Integer commentId, final Integer commentVersion) {
-    doInvokeUrl(
-        getBitbucketServerPullRequestBase()
+    this.doInvokeUrl(
+        this.getBitbucketServerPullRequestBase()
             + "/comments/"
             + commentId
             + "?version="
@@ -250,8 +250,8 @@ public class BitbucketServerClient {
   }
 
   public void removeTask(final BitbucketServerTask task) {
-    doInvokeUrl(
-        getBitbucketServerApiBase() + "/tasks/" + task.getId(),
+    this.doInvokeUrl(
+        this.getBitbucketServerApiBase() + "/tasks/" + task.getId(),
         BitbucketServerInvoker.Method.DELETE,
         null);
   }
@@ -269,7 +269,7 @@ public class BitbucketServerClient {
             + line
             + "\" }}";
 
-    doInvokeUrl(getBitbucketServerApiBase() + "/tasks", Method.POST, taskPostContent);
+    this.doInvokeUrl(this.getBitbucketServerApiBase() + "/tasks", Method.POST, taskPostContent);
   }
 
   @VisibleForTesting
@@ -285,7 +285,7 @@ public class BitbucketServerClient {
       final List<LinkedHashMap<?, ?>> parsed) {
     final List<BitbucketServerComment> transformed = newArrayList();
     for (final LinkedHashMap<?, ?> from : parsed) {
-      transformed.add(toBitbucketServerComment(from));
+      transformed.add(this.toBitbucketServerComment(from));
     }
     return transformed;
   }
@@ -307,9 +307,9 @@ public class BitbucketServerClient {
       subComments = Arrays.asList(jsonArraySubComments.toArray(new LinkedHashMap<?, ?>[0]));
     }
 
-    final List<BitbucketServerTask> bitbucketServerTasks = toBitbucketServerTasks(tasks);
+    final List<BitbucketServerTask> bitbucketServerTasks = this.toBitbucketServerTasks(tasks);
     final List<BitbucketServerComment> bitbucketServerSubComments =
-        toBitbucketServerComments(subComments);
+        this.toBitbucketServerComments(subComments);
 
     final BitbucketServerComment comment = new BitbucketServerComment(version, text, id);
 
@@ -323,7 +323,7 @@ public class BitbucketServerClient {
     final List<BitbucketServerTask> bitbucketServerTasks = new ArrayList<>();
 
     for (final LinkedHashMap<?, ?> parsedTask : parsed) {
-      bitbucketServerTasks.add(toBitbucketServerTask(parsedTask));
+      bitbucketServerTasks.add(this.toBitbucketServerTask(parsedTask));
     }
 
     return bitbucketServerTasks;
