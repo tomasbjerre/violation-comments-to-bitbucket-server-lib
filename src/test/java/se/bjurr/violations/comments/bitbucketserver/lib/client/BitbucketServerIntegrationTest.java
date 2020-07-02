@@ -69,18 +69,6 @@ public class BitbucketServerIntegrationTest {
           this.proxyPassword);
 
   // @Test
-  public void testPullRequestChanges() throws Exception {
-    this.removeAllComments();
-
-    this.sut.pullRequestComment("General *comment*");
-    assertThat(this.sut.pullRequestComments()).hasSize(1);
-
-    this.sut.pullRequestComment(CHANGED_FILE, 12, "comment on line and some **formatting**");
-
-    assertThat(this.sut.pullRequestComments()).hasSize(2);
-  }
-
-  // @Test
   public void withCreateCommentWithAllSingleFileComments() throws Exception {
     this.removeAllComments();
 
@@ -166,7 +154,7 @@ public class BitbucketServerIntegrationTest {
             .setSeverity(SEVERITY.ERROR) //
             .setStartLine(12) //
             .setReporter("The tool") //
-            .setParser(Parser.FINDBUGS) // CreateCommentWithAllSingleFileComments
+            .setParser(Parser.FINDBUGS) //
             .build());
 
     violationCommentsToBitbucketServerApi()
@@ -230,7 +218,7 @@ public class BitbucketServerIntegrationTest {
         .withViolations(new ArrayList<>()) //
         .withCreateCommentWithAllSingleFileComments(false) //
         .withCreateSingleFileComments(true) //
-        .withCreateSingleFileCommentsTasks(true) //
+        .withCreateSingleFileCommentsTasks(false) //
         .withCommentOnlyChangedContent(false) //
         .withShouldCommentOnlyChangedFiles(true) //
         .withCommentOnlyChangedContentContext(10) //

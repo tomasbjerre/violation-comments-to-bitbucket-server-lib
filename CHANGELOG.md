@@ -3,6 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## Unreleased
+### No issue
+
+**Chore: integrations tests**
+
+
+[b0589360f5a6d36](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/b0589360f5a6d36) Tomas Bjerre *2020-07-02 15:58:14*
+
+
 ## 1.92
 ### GitHub #69   
 

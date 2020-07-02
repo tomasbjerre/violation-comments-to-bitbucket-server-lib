@@ -14,8 +14,10 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Deque;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.BitbucketServerClient;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerComment;
@@ -44,7 +46,7 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
               new CacheLoader<String, BitbucketServerDiffResponse>() {
                 @Override
                 public BitbucketServerDiffResponse load(final String path) {
-                  return client.pullRequestDiff(path);
+                  return BitbucketServerCommentsProvider.this.client.pullRequestDiff(path);
                 }
               });
 
@@ -53,9 +55,9 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
 
   @VisibleForTesting
   BitbucketServerCommentsProvider() {
-    client = null;
-    violationCommentsToBitbucketApi = null;
-    violationsLogger = null;
+    this.client = null;
+    this.violationCommentsToBitbucketApi = null;
+    this.violationsLogger = null;
   }
 
   public BitbucketServerCommentsProvider(
@@ -74,7 +76,7 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
     final Integer proxyHostPort = violationCommentsToBitbucketApi.getProxyHostPort();
     final String proxyUser = violationCommentsToBitbucketApi.getProxyUser();
     final String proxyPassword = violationCommentsToBitbucketApi.getProxyPassword();
-    client =
+    this.client =
         new BitbucketServerClient(
             violationsLogger,
             bitbucketServerBaseUrl,
@@ -93,51 +95,55 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
 
   @Override
   public void createComment(final String comment) {
-    client.pullRequestComment(comment);
+    this.client.pullRequestComment(comment);
   }
 
   @Override
   public void createSingleFileComment(
       final ChangedFile file, final Integer line, final String comment) {
     final BitbucketServerComment bitbucketComment =
-        client.pullRequestComment(file.getFilename(), line, comment);
+        this.client.pullRequestComment(file.getFilename(), line, comment);
 
-    if (violationCommentsToBitbucketApi.getCreateSingleFileCommentsTasks()) {
-      client.commentCreateTask(bitbucketComment, file.getFilename(), line);
+    if (this.violationCommentsToBitbucketApi.getCreateSingleFileCommentsTasks()) {
+      this.client.commentCreateTask(bitbucketComment, file.getFilename(), line);
     }
   }
 
   @Override
   public List<Comment> getComments() {
-    final List<Comment> comments = newArrayList();
-    if (shouldCreateSingleFileComment()) {
+    final Map<Integer, Comment> comments = new HashMap<>();
+    if (this.shouldCreateSingleFileComment()) {
       /**
        * This is time consuming to do and is only needed if we are creating comments on each file.
        */
-      for (final String changedFile : client.pullRequestChanges()) {
+      for (final String changedFile : this.client.pullRequestChanges()) {
         final List<BitbucketServerComment> bitbucketServerCommentsOnFile =
-            client.pullRequestComments(changedFile);
+            this.client.pullRequestComments(changedFile);
         for (final BitbucketServerComment fileComment : bitbucketServerCommentsOnFile) {
           final List<String> specifics = newArrayList(fileComment.getVersion() + "", changedFile);
-          comments.add(
-              new Comment(fileComment.getId() + "", fileComment.getText(), null, specifics));
+          final Comment comment =
+              new Comment(fileComment.getId() + "", fileComment.getText(), null, specifics);
+          comments.put(fileComment.getId(), comment);
         }
       }
     }
 
-    for (final BitbucketServerComment comment : client.pullRequestComments()) {
+    for (final BitbucketServerComment comment : this.client.pullRequestComments()) {
       final List<String> specifics = newArrayList(comment.getVersion() + "", "");
-      comments.add(new Comment(comment.getId() + "", comment.getText(), null, specifics));
+      if (!comments.containsKey(comment.getId())) {
+        comments.put(
+            comment.getId(), new Comment(comment.getId() + "", comment.getText(), null, specifics));
+      }
     }
 
-    return comments;
+    return new ArrayList<>(comments.values());
   }
 
   @Override
   public List<ChangedFile> getFiles() {
     final List<ChangedFile> changedFiles = newArrayList();
 
-    final List<String> bitbucketServerChangedFiles = client.pullRequestChanges();
+    final List<String> bitbucketServerChangedFiles = this.client.pullRequestChanges();
 
     for (final String changedFile : bitbucketServerChangedFiles) {
       changedFiles.add(new ChangedFile(changedFile, new ArrayList<String>()));
@@ -156,10 +162,10 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
         commentVersion = Integer.valueOf(comment.getSpecifics().get(0));
 
         final BitbucketServerComment bitbucketServerComment =
-            client.pullRequestComment((long) commentId);
-        removeComment(bitbucketServerComment);
+            this.client.pullRequestComment((long) commentId);
+        this.removeComment(bitbucketServerComment);
       } catch (final Exception e) {
-        violationsLogger.log(
+        this.violationsLogger.log(
             SEVERE, "Was unable to remove comment " + commentId + " " + commentVersion, e);
       }
     }
@@ -167,16 +173,17 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
 
   @Override
   public boolean shouldComment(final ChangedFile changedFile, final Integer changedLine) {
-    if (!violationCommentsToBitbucketApi.getCommentOnlyChangedContent()) {
+    if (!this.violationCommentsToBitbucketApi.getCommentOnlyChangedContent()) {
       return true;
     }
-    final int context = violationCommentsToBitbucketApi.getCommentOnlyChangedContentContext();
+    final int context = this.violationCommentsToBitbucketApi.getCommentOnlyChangedContentContext();
     try {
       final List<BitbucketServerDiff> diffs =
-          diffResponse.get(changedFile.getFilename()).getDiffs();
-      return shouldComment(changedFile, changedLine, context, diffs);
+          this.diffResponse.get(changedFile.getFilename()).getDiffs();
+      return this.shouldComment(changedFile, changedLine, context, diffs);
     } catch (final Exception e) {
-      violationsLogger.log(SEVERE, "Was unable to get diff from " + changedFile.getFilename(), e);
+      this.violationsLogger.log(
+          SEVERE, "Was unable to get diff from " + changedFile.getFilename(), e);
       return false;
     }
   }
@@ -216,27 +223,27 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
 
   @Override
   public boolean shouldCreateCommentWithAllSingleFileComments() {
-    return violationCommentsToBitbucketApi.getCreateCommentWithAllSingleFileComments();
+    return this.violationCommentsToBitbucketApi.getCreateCommentWithAllSingleFileComments();
   }
 
   @Override
   public boolean shouldCreateSingleFileComment() {
-    return violationCommentsToBitbucketApi.getCreateSingleFileComments();
+    return this.violationCommentsToBitbucketApi.getCreateSingleFileComments();
   }
 
   @Override
   public Optional<String> findCommentTemplate() {
-    return violationCommentsToBitbucketApi.findCommentTemplate();
+    return this.violationCommentsToBitbucketApi.findCommentTemplate();
   }
 
   @Override
   public boolean shouldKeepOldComments() {
-    return violationCommentsToBitbucketApi.getShouldKeepOldComments();
+    return this.violationCommentsToBitbucketApi.getShouldKeepOldComments();
   }
 
   @Override
   public boolean shouldCommentOnlyChangedFiles() {
-    return violationCommentsToBitbucketApi.getShouldCommentOnlyChangedFiles();
+    return this.violationCommentsToBitbucketApi.getShouldCommentOnlyChangedFiles();
   }
 
   private void removeComment(final BitbucketServerComment comment) {
@@ -258,8 +265,8 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
     while (commentStackIt.hasNext()) {
       final BitbucketServerComment stackComment = commentStackIt.next();
 
-      removeTasks(stackComment);
-      client.pullRequestRemoveComment(stackComment.getId(), stackComment.getVersion());
+      this.removeTasks(stackComment);
+      this.client.pullRequestRemoveComment(stackComment.getId(), stackComment.getVersion());
     }
   }
 
@@ -267,7 +274,7 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
     final List<BitbucketServerTask> bitbucketServerTasks = comment.getTasks();
 
     for (final BitbucketServerTask bitbucketServerTask : bitbucketServerTasks) {
-      client.removeTask(bitbucketServerTask);
+      this.client.removeTask(bitbucketServerTask);
     }
   }
 
@@ -278,6 +285,6 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
 
   @Override
   public Integer getMaxNumberOfViolations() {
-    return violationCommentsToBitbucketApi.getMaxNumberOfViolations();
+    return this.violationCommentsToBitbucketApi.getMaxNumberOfViolations();
   }
 }

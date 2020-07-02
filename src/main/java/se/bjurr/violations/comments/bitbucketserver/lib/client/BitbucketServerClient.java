@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.logging.Level;
 import net.minidev.json.JSONArray;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.BitbucketServerInvoker.Method;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerComment;
@@ -186,7 +187,8 @@ public class BitbucketServerClient {
 
   public List<BitbucketServerComment> pullRequestComments() {
     final String url = this.getBitbucketServerPullRequestBase() + "/activities?limit=9999";
-    return this.getComments(url, "$.values.[*].comment");
+    final List<BitbucketServerComment> comments = this.getComments(url, "$.values.[*].comment");
+    return comments;
   }
 
   public List<BitbucketServerComment> pullRequestComments(final String changedFile) {
@@ -209,6 +211,7 @@ public class BitbucketServerClient {
     List<LinkedHashMap<?, ?>> parsed = null;
     try {
       parsed = JsonPath.read(json, jsonPath);
+      this.violationsLogger.log(Level.FINE, jsonPath + "\n" + json);
     } catch (final Exception e) {
       throw new RuntimeException(
           "Unable to parse diff response from " + url + " using " + jsonPath + "\n\n" + json, e);
@@ -294,6 +297,9 @@ public class BitbucketServerClient {
     final Integer version = (Integer) parsed.get("version");
     final String text = (String) parsed.get("text");
     final Integer id = (Integer) parsed.get("id");
+    if (id == null) {
+      throw new NullPointerException("id");
+    }
 
     List<LinkedHashMap<?, ?>> tasks = new ArrayList<LinkedHashMap<?, ?>>();
     final JSONArray jsonArrayTasks = (JSONArray) parsed.get("tasks");
