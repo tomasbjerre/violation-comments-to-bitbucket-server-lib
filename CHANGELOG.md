@@ -3,8 +3,13 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
-## Unreleased
+## 1.93
 ### No issue
+
+**Fix: avoiding trying to delete twice causing NPE in server log**
+
+
+[a950adb86f79c46](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/a950adb86f79c46) Tomas Bjerre *2020-07-02 17:20:48*
 
 **Chore: integrations tests**
 

@@ -69,7 +69,7 @@
             "line":57,
             "lineType":"ADDED",
             "fileType":"TO",
-            "path":"src/main/java/se/fk/exp/utb/logik/KontoLogik.java",
+            "path":"src/main/java/fold/log/KlassLogik.java",
             "diffType":"EFFECTIVE",
             "orphaned":false
          },
@@ -80,21 +80,18 @@
                   "src",
                   "main",
                   "java",
-                  "se",
-                  "fk",
-                  "exp",
                   "utb",
                   "logik",
-                  "KontoLogik.java"
+                  "KlassLogik.java"
                ],
-               "parent":"src/main/java/se/fk/exp/utb/logik",
-               "name":"KontoLogik.java",
+               "parent":"src/main/java/fold/log",
+               "name":"KlassLogik.java",
                "extension":"java",
-               "toString":"src/main/java/se/fk/exp/utb/logik/KontoLogik.java"
+               "toString":"src/main/java/fold/log/KlassLogik.java"
             },
             "hunks":[
                {
-                  "context":"public class KontoLogik",
+                  "context":"public class KlassLogik",
                   "sourceLine":47,
                   "sourceSpan":16,
                   "destinationLine":47,
@@ -106,7 +103,7 @@
                            {
                               "destination":47,
                               "source":47,
-                              "line":"    * @param kontoForm kontoForm",
+                              "line":"    * @param KlassForm KlassForm",
                               "truncated":false
                            },
                            {
@@ -130,7 +127,7 @@
                            {
                               "destination":51,
                               "source":51,
-                              "line":"   public void hamtaKontouppgifter(KontoForm kontoForm, String kundId, String personnummer)",
+                              "line":"   public void hamtaKlassuppgifter(KlassForm KlassForm, String kundId, String personnummer)",
                               "truncated":false
                            },
                            {
@@ -142,13 +139,13 @@
                            {
                               "destination":53,
                               "source":53,
-                              "line":"      // Hämta kontouppgifter",
+                              "line":"      // Hämta Klassuppgifter",
                               "truncated":false
                            },
                            {
                               "destination":54,
                               "source":54,
-                              "line":"      KontoVO kontoVO = kontoDAO.hamtaUtbetalningsuppgifter(kundId, personnummer);",
+                              "line":"      KlassVO KlassVO = KlassDAO.hamtaUtbetalningsuppgifter(kundId, personnummer);",
                               "truncated":false
                            }
                         ],
@@ -166,7 +163,7 @@
                            {
                               "destination":56,
                               "source":55,
-                              "line":"if (kontoVO == null) kontoVO.toString();",
+                              "line":"if (KlassVO == null) KlassVO.toString();",
                               "truncated":false
                            },
                            {
@@ -199,19 +196,19 @@
                            {
                               "destination":60,
                               "source":55,
-                              "line":"      // Initera kontoformen med hämtade uppgifter",
+                              "line":"      // Initera Klassformen med hämtade uppgifter",
                               "truncated":false
                            },
                            {
                               "destination":61,
                               "source":56,
-                              "line":"      initieraKontouppgifter(kontoForm, kontoVO);",
+                              "line":"      initieraKlassuppgifter(KlassForm, KlassVO);",
                               "truncated":false
                            },
                            {
                               "destination":62,
                               "source":57,
-                              "line":"      kontoForm.setInitierad(true);",
+                              "line":"      KlassForm.setInitierad(true);",
                               "truncated":false
                            },
                            {
@@ -241,7 +238,7 @@
                            {
                               "destination":67,
                               "source":62,
-                              "line":"    * Initierar kontoForm med inmatade värden",
+                              "line":"    * Initierar KlassForm med inmatade värden",
                               "truncated":false
                            }
                         ],
@@ -325,7 +322,7 @@
             "line":57,
             "lineType":"ADDED",
             "fileType":"TO",
-            "path":"src/main/java/se/fk/exp/utb/logik/KontoLogik.java",
+            "path":"src/main/java/fold/log/KlassLogik.java",
             "diffType":"EFFECTIVE",
             "orphaned":false
          },
@@ -336,21 +333,18 @@
                   "src",
                   "main",
                   "java",
-                  "se",
-                  "fk",
-                  "exp",
                   "utb",
                   "logik",
-                  "KontoLogik.java"
+                  "KlassLogik.java"
                ],
-               "parent":"src/main/java/se/fk/exp/utb/logik",
-               "name":"KontoLogik.java",
+               "parent":"src/main/java/fold/log",
+               "name":"KlassLogik.java",
                "extension":"java",
-               "toString":"src/main/java/se/fk/exp/utb/logik/KontoLogik.java"
+               "toString":"src/main/java/fold/log/KlassLogik.java"
             },
             "hunks":[
                {
-                  "context":"public class KontoLogik",
+                  "context":"public class KlassLogik",
                   "sourceLine":47,
                   "sourceSpan":16,
                   "destinationLine":47,
@@ -362,7 +356,7 @@
                            {
                               "destination":47,
                               "source":47,
-                              "line":"    * @param kontoForm kontoForm",
+                              "line":"    * @param KlassForm KlassForm",
                               "truncated":false
                            },
                            {
@@ -386,7 +380,7 @@
                            {
                               "destination":51,
                               "source":51,
-                              "line":"   public void hamtaKontouppgifter(KontoForm kontoForm, String kundId, String personnummer)",
+                              "line":"   public void hamtaKlassuppgifter(KlassForm KlassForm, String kundId, String personnummer)",
                               "truncated":false
                            },
                            {
@@ -398,13 +392,13 @@
                            {
                               "destination":53,
                               "source":53,
-                              "line":"      // Hämta kontouppgifter",
+                              "line":"      // Hämta Klassuppgifter",
                               "truncated":false
                            },
                            {
                               "destination":54,
                               "source":54,
-                              "line":"      KontoVO kontoVO = kontoDAO.hamtaUtbetalningsuppgifter(kundId, personnummer);",
+                              "line":"      KlassVO KlassVO = KlassDAO.hamtaUtbetalningsuppgifter(kundId, personnummer);",
                               "truncated":false
                            }
                         ],
@@ -422,7 +416,7 @@
                            {
                               "destination":56,
                               "source":55,
-                              "line":"if (kontoVO == null) kontoVO.toString();",
+                              "line":"if (KlassVO == null) KlassVO.toString();",
                               "truncated":false
                            },
                            {
@@ -455,19 +449,19 @@
                            {
                               "destination":60,
                               "source":55,
-                              "line":"      // Initera kontoformen med hämtade uppgifter",
+                              "line":"      // Initera Klassformen med hämtade uppgifter",
                               "truncated":false
                            },
                            {
                               "destination":61,
                               "source":56,
-                              "line":"      initieraKontouppgifter(kontoForm, kontoVO);",
+                              "line":"      initieraKlassuppgifter(KlassForm, KlassVO);",
                               "truncated":false
                            },
                            {
                               "destination":62,
                               "source":57,
-                              "line":"      kontoForm.setInitierad(true);",
+                              "line":"      KlassForm.setInitierad(true);",
                               "truncated":false
                            },
                            {
@@ -497,7 +491,7 @@
                            {
                               "destination":67,
                               "source":62,
-                              "line":"    * Initierar kontoForm med inmatade värden",
+                              "line":"    * Initierar KlassForm med inmatade värden",
                               "truncated":false
                            }
                         ],
@@ -581,7 +575,7 @@
             "line":56,
             "lineType":"ADDED",
             "fileType":"TO",
-            "path":"src/main/java/se/fk/exp/utb/logik/KontoLogik.java",
+            "path":"src/main/java/fold/log/KlassLogik.java",
             "diffType":"EFFECTIVE",
             "orphaned":false
          },
@@ -592,21 +586,18 @@
                   "src",
                   "main",
                   "java",
-                  "se",
-                  "fk",
-                  "exp",
                   "utb",
                   "logik",
-                  "KontoLogik.java"
+                  "KlassLogik.java"
                ],
-               "parent":"src/main/java/se/fk/exp/utb/logik",
-               "name":"KontoLogik.java",
+               "parent":"src/main/java/fold/log",
+               "name":"KlassLogik.java",
                "extension":"java",
-               "toString":"src/main/java/se/fk/exp/utb/logik/KontoLogik.java"
+               "toString":"src/main/java/fold/log/KlassLogik.java"
             },
             "hunks":[
                {
-                  "context":"public class KontoLogik",
+                  "context":"public class KlassLogik",
                   "sourceLine":46,
                   "sourceSpan":16,
                   "destinationLine":46,
@@ -624,7 +615,7 @@
                            {
                               "destination":47,
                               "source":47,
-                              "line":"    * @param kontoForm kontoForm",
+                              "line":"    * @param KlassForm KlassForm",
                               "truncated":false
                            },
                            {
@@ -648,7 +639,7 @@
                            {
                               "destination":51,
                               "source":51,
-                              "line":"   public void hamtaKontouppgifter(KontoForm kontoForm, String kundId, String personnummer)",
+                              "line":"   public void hamtaKlassuppgifter(KlassForm KlassForm, String kundId, String personnummer)",
                               "truncated":false
                            },
                            {
@@ -660,13 +651,13 @@
                            {
                               "destination":53,
                               "source":53,
-                              "line":"      // Hämta kontouppgifter",
+                              "line":"      // Hämta Klassuppgifter",
                               "truncated":false
                            },
                            {
                               "destination":54,
                               "source":54,
-                              "line":"      KontoVO kontoVO = kontoDAO.hamtaUtbetalningsuppgifter(kundId, personnummer);",
+                              "line":"      KlassVO KlassVO = KlassDAO.hamtaUtbetalningsuppgifter(kundId, personnummer);",
                               "truncated":false
                            }
                         ],
@@ -684,7 +675,7 @@
                            {
                               "destination":56,
                               "source":55,
-                              "line":"if (kontoVO == null) kontoVO.toString();",
+                              "line":"if (KlassVO == null) KlassVO.toString();",
                               "truncated":false,
                               "commentIds":[
                                  196266
@@ -717,19 +708,19 @@
                            {
                               "destination":60,
                               "source":55,
-                              "line":"      // Initera kontoformen med hämtade uppgifter",
+                              "line":"      // Initera Klassformen med hämtade uppgifter",
                               "truncated":false
                            },
                            {
                               "destination":61,
                               "source":56,
-                              "line":"      initieraKontouppgifter(kontoForm, kontoVO);",
+                              "line":"      initieraKlassuppgifter(KlassForm, KlassVO);",
                               "truncated":false
                            },
                            {
                               "destination":62,
                               "source":57,
-                              "line":"      kontoForm.setInitierad(true);",
+                              "line":"      KlassForm.setInitierad(true);",
                               "truncated":false
                            },
                            {
@@ -837,7 +828,7 @@
             "line":56,
             "lineType":"ADDED",
             "fileType":"TO",
-            "path":"src/main/java/se/fk/exp/utb/logik/KontoLogik.java",
+            "path":"src/main/java/fold/log/KlassLogik.java",
             "diffType":"EFFECTIVE",
             "orphaned":false
          },
@@ -848,21 +839,18 @@
                   "src",
                   "main",
                   "java",
-                  "se",
-                  "fk",
-                  "exp",
                   "utb",
                   "logik",
-                  "KontoLogik.java"
+                  "KlassLogik.java"
                ],
-               "parent":"src/main/java/se/fk/exp/utb/logik",
-               "name":"KontoLogik.java",
+               "parent":"src/main/java/fold/log",
+               "name":"KlassLogik.java",
                "extension":"java",
-               "toString":"src/main/java/se/fk/exp/utb/logik/KontoLogik.java"
+               "toString":"src/main/java/fold/log/KlassLogik.java"
             },
             "hunks":[
                {
-                  "context":"public class KontoLogik",
+                  "context":"public class KlassLogik",
                   "sourceLine":46,
                   "sourceSpan":16,
                   "destinationLine":46,
@@ -880,7 +868,7 @@
                            {
                               "destination":47,
                               "source":47,
-                              "line":"    * @param kontoForm kontoForm",
+                              "line":"    * @param KlassForm KlassForm",
                               "truncated":false
                            },
                            {
@@ -904,7 +892,7 @@
                            {
                               "destination":51,
                               "source":51,
-                              "line":"   public void hamtaKontouppgifter(KontoForm kontoForm, String kundId, String personnummer)",
+                              "line":"   public void hamtaKlassuppgifter(KlassForm KlassForm, String kundId, String personnummer)",
                               "truncated":false
                            },
                            {
@@ -916,13 +904,13 @@
                            {
                               "destination":53,
                               "source":53,
-                              "line":"      // Hämta kontouppgifter",
+                              "line":"      // Hämta Klassuppgifter",
                               "truncated":false
                            },
                            {
                               "destination":54,
                               "source":54,
-                              "line":"      KontoVO kontoVO = kontoDAO.hamtaUtbetalningsuppgifter(kundId, personnummer);",
+                              "line":"      KlassVO KlassVO = KlassDAO.hamtaUtbetalningsuppgifter(kundId, personnummer);",
                               "truncated":false
                            }
                         ],
@@ -940,7 +928,7 @@
                            {
                               "destination":56,
                               "source":55,
-                              "line":"if (kontoVO == null) kontoVO.toString();",
+                              "line":"if (KlassVO == null) KlassVO.toString();",
                               "truncated":false,
                               "commentIds":[
                                  196265
@@ -973,19 +961,19 @@
                            {
                               "destination":60,
                               "source":55,
-                              "line":"      // Initera kontoformen med hämtade uppgifter",
+                              "line":"      // Initera Klassformen med hämtade uppgifter",
                               "truncated":false
                            },
                            {
                               "destination":61,
                               "source":56,
-                              "line":"      initieraKontouppgifter(kontoForm, kontoVO);",
+                              "line":"      initieraKlassuppgifter(KlassForm, KlassVO);",
                               "truncated":false
                            },
                            {
                               "destination":62,
                               "source":57,
-                              "line":"      kontoForm.setInitierad(true);",
+                              "line":"      KlassForm.setInitierad(true);",
                               "truncated":false
                            },
                            {
@@ -1093,7 +1081,7 @@
             "line":57,
             "lineType":"ADDED",
             "fileType":"TO",
-            "path":"src/main/java/se/fk/exp/utb/logik/KontoLogik.java",
+            "path":"src/main/java/fold/log/KlassLogik.java",
             "diffType":"EFFECTIVE",
             "orphaned":false
          },
@@ -1104,21 +1092,18 @@
                   "src",
                   "main",
                   "java",
-                  "se",
-                  "fk",
-                  "exp",
                   "utb",
                   "logik",
-                  "KontoLogik.java"
+                  "KlassLogik.java"
                ],
-               "parent":"src/main/java/se/fk/exp/utb/logik",
-               "name":"KontoLogik.java",
+               "parent":"src/main/java/fold/log",
+               "name":"KlassLogik.java",
                "extension":"java",
-               "toString":"src/main/java/se/fk/exp/utb/logik/KontoLogik.java"
+               "toString":"src/main/java/fold/log/KlassLogik.java"
             },
             "hunks":[
                {
-                  "context":"public class KontoLogik",
+                  "context":"public class KlassLogik",
                   "sourceLine":47,
                   "sourceSpan":16,
                   "destinationLine":47,
@@ -1130,7 +1115,7 @@
                            {
                               "destination":47,
                               "source":47,
-                              "line":"    * @param kontoForm kontoForm",
+                              "line":"    * @param KlassForm KlassForm",
                               "truncated":false
                            },
                            {
@@ -1154,7 +1139,7 @@
                            {
                               "destination":51,
                               "source":51,
-                              "line":"   public void hamtaKontouppgifter(KontoForm kontoForm, String kundId, String personnummer)",
+                              "line":"   public void hamtaKlassuppgifter(KlassForm KlassForm, String kundId, String personnummer)",
                               "truncated":false
                            },
                            {
@@ -1166,13 +1151,13 @@
                            {
                               "destination":53,
                               "source":53,
-                              "line":"      // Hämta kontouppgifter",
+                              "line":"      // Hämta Klassuppgifter",
                               "truncated":false
                            },
                            {
                               "destination":54,
                               "source":54,
-                              "line":"      KontoVO kontoVO = kontoDAO.hamtaUtbetalningsuppgifter(kundId, personnummer);",
+                              "line":"      KlassVO KlassVO = KlassDAO.hamtaUtbetalningsuppgifter(kundId, personnummer);",
                               "truncated":false
                            }
                         ],
@@ -1190,7 +1175,7 @@
                            {
                               "destination":56,
                               "source":55,
-                              "line":"if (kontoVO == null) kontoVO.toString();",
+                              "line":"if (KlassVO == null) KlassVO.toString();",
                               "truncated":false
                            },
                            {
@@ -1223,19 +1208,19 @@
                            {
                               "destination":60,
                               "source":55,
-                              "line":"      // Initera kontoformen med hämtade uppgifter",
+                              "line":"      // Initera Klassformen med hämtade uppgifter",
                               "truncated":false
                            },
                            {
                               "destination":61,
                               "source":56,
-                              "line":"      initieraKontouppgifter(kontoForm, kontoVO);",
+                              "line":"      initieraKlassuppgifter(KlassForm, KlassVO);",
                               "truncated":false
                            },
                            {
                               "destination":62,
                               "source":57,
-                              "line":"      kontoForm.setInitierad(true);",
+                              "line":"      KlassForm.setInitierad(true);",
                               "truncated":false
                            },
                            {
@@ -1265,7 +1250,7 @@
                            {
                               "destination":67,
                               "source":62,
-                              "line":"    * Initierar kontoForm med inmatade värden",
+                              "line":"    * Initierar KlassForm med inmatade värden",
                               "truncated":false
                            }
                         ],
@@ -1349,7 +1334,7 @@
             "line":57,
             "lineType":"ADDED",
             "fileType":"TO",
-            "path":"src/main/java/se/fk/exp/utb/logik/KontoLogik.java",
+            "path":"src/main/java/fold/log/KlassLogik.java",
             "diffType":"EFFECTIVE",
             "orphaned":false
          },
@@ -1360,21 +1345,18 @@
                   "src",
                   "main",
                   "java",
-                  "se",
-                  "fk",
-                  "exp",
                   "utb",
                   "logik",
-                  "KontoLogik.java"
+                  "KlassLogik.java"
                ],
-               "parent":"src/main/java/se/fk/exp/utb/logik",
-               "name":"KontoLogik.java",
+               "parent":"src/main/java/fold/log",
+               "name":"KlassLogik.java",
                "extension":"java",
-               "toString":"src/main/java/se/fk/exp/utb/logik/KontoLogik.java"
+               "toString":"src/main/java/fold/log/KlassLogik.java"
             },
             "hunks":[
                {
-                  "context":"public class KontoLogik",
+                  "context":"public class KlassLogik",
                   "sourceLine":47,
                   "sourceSpan":16,
                   "destinationLine":47,
@@ -1386,7 +1368,7 @@
                            {
                               "destination":47,
                               "source":47,
-                              "line":"    * @param kontoForm kontoForm",
+                              "line":"    * @param KlassForm KlassForm",
                               "truncated":false
                            },
                            {
@@ -1410,7 +1392,7 @@
                            {
                               "destination":51,
                               "source":51,
-                              "line":"   public void hamtaKontouppgifter(KontoForm kontoForm, String kundId, String personnummer)",
+                              "line":"   public void hamtaKlassuppgifter(KlassForm KlassForm, String kundId, String personnummer)",
                               "truncated":false
                            },
                            {
@@ -1422,13 +1404,13 @@
                            {
                               "destination":53,
                               "source":53,
-                              "line":"      // Hämta kontouppgifter",
+                              "line":"      // Hämta Klassuppgifter",
                               "truncated":false
                            },
                            {
                               "destination":54,
                               "source":54,
-                              "line":"      KontoVO kontoVO = kontoDAO.hamtaUtbetalningsuppgifter(kundId, personnummer);",
+                              "line":"      KlassVO KlassVO = KlassDAO.hamtaUtbetalningsuppgifter(kundId, personnummer);",
                               "truncated":false
                            }
                         ],
@@ -1446,7 +1428,7 @@
                            {
                               "destination":56,
                               "source":55,
-                              "line":"if (kontoVO == null) kontoVO.toString();",
+                              "line":"if (KlassVO == null) KlassVO.toString();",
                               "truncated":false
                            },
                            {
@@ -1479,19 +1461,19 @@
                            {
                               "destination":60,
                               "source":55,
-                              "line":"      // Initera kontoformen med hämtade uppgifter",
+                              "line":"      // Initera Klassformen med hämtade uppgifter",
                               "truncated":false
                            },
                            {
                               "destination":61,
                               "source":56,
-                              "line":"      initieraKontouppgifter(kontoForm, kontoVO);",
+                              "line":"      initieraKlassuppgifter(KlassForm, KlassVO);",
                               "truncated":false
                            },
                            {
                               "destination":62,
                               "source":57,
-                              "line":"      kontoForm.setInitierad(true);",
+                              "line":"      KlassForm.setInitierad(true);",
                               "truncated":false
                            },
                            {
@@ -1521,7 +1503,7 @@
                            {
                               "destination":67,
                               "source":62,
-                              "line":"    * Initierar kontoForm med inmatade värden",
+                              "line":"    * Initierar KlassForm med inmatade värden",
                               "truncated":false
                            }
                         ],
@@ -1602,7 +1584,7 @@
                      }
                   },
                   "committerTimestamp":1593699309000,
-                  "message":"Chore: labbar lite (refs SB-4982)",
+                  "message":"Chore: labbar lite (refs JI-1234)",
                   "parents":[
                      {
                         "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
@@ -1611,7 +1593,7 @@
                   ],
                   "properties":{
                      "jira-key":[
-                        "SB-4982"
+                        "JI-1234"
                      ]
                   }
                }
@@ -1657,7 +1639,7 @@
                      }
                   },
                   "committerTimestamp":1593699067000,
-                  "message":"Chore: labbar lite (refs SB-4982)",
+                  "message":"Chore: labbar lite (refs JI-1234)",
                   "parents":[
                      {
                         "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
@@ -1793,7 +1775,7 @@
                      }
                   },
                   "committerTimestamp":1593699067000,
-                  "message":"Chore: labbar lite (refs SB-4982)",
+                  "message":"Chore: labbar lite (refs JI-1234)",
                   "parents":[
                      {
                         "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
@@ -1843,7 +1825,7 @@
                      }
                   },
                   "committerTimestamp":1593698964000,
-                  "message":"Chore: labbar lite (refs SB-4982)",
+                  "message":"Chore: labbar lite (refs JI-1234)",
                   "parents":[
                      {
                         "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
@@ -1918,7 +1900,7 @@
                      }
                   },
                   "committerTimestamp":1593698964000,
-                  "message":"Chore: labbar lite (refs SB-4982)",
+                  "message":"Chore: labbar lite (refs JI-1234)",
                   "parents":[
                      {
                         "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
@@ -1968,7 +1950,7 @@
                      }
                   },
                   "committerTimestamp":1593698833000,
-                  "message":"Chore: labbar lite (refs SB-4982)",
+                  "message":"Chore: labbar lite (refs JI-1234)",
                   "parents":[
                      {
                         "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
@@ -2043,7 +2025,7 @@
                      }
                   },
                   "committerTimestamp":1593698833000,
-                  "message":"Chore: labbar lite (refs SB-4982)",
+                  "message":"Chore: labbar lite (refs JI-1234)",
                   "parents":[
                      {
                         "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
@@ -2093,7 +2075,7 @@
                      }
                   },
                   "committerTimestamp":1593698825000,
-                  "message":"Chore: labbar lite (refs SB-4982)",
+                  "message":"Chore: labbar lite (refs JI-1234)",
                   "parents":[
                      {
                         "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
@@ -2168,7 +2150,7 @@
                      }
                   },
                   "committerTimestamp":1593698825000,
-                  "message":"Chore: labbar lite (refs SB-4982)",
+                  "message":"Chore: labbar lite (refs JI-1234)",
                   "parents":[
                      {
                         "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
@@ -2218,7 +2200,7 @@
                      }
                   },
                   "committerTimestamp":1593698783000,
-                  "message":"Chore: labbar lite (refs SB-4982)",
+                  "message":"Chore: labbar lite (refs JI-1234)",
                   "parents":[
                      {
                         "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
@@ -2293,7 +2275,7 @@
                      }
                   },
                   "committerTimestamp":1593698783000,
-                  "message":"Chore: labbar lite (refs SB-4982)",
+                  "message":"Chore: labbar lite (refs JI-1234)",
                   "parents":[
                      {
                         "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
@@ -2343,7 +2325,7 @@
                      }
                   },
                   "committerTimestamp":1593698731000,
-                  "message":"Chore: labbar lite (refs SB-4982)",
+                  "message":"Chore: labbar lite (refs JI-1234)",
                   "parents":[
                      {
                         "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
@@ -2418,7 +2400,7 @@
                      }
                   },
                   "committerTimestamp":1593698731000,
-                  "message":"Chore: labbar lite (refs SB-4982)",
+                  "message":"Chore: labbar lite (refs JI-1234)",
                   "parents":[
                      {
                         "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
@@ -2468,7 +2450,7 @@
                      }
                   },
                   "committerTimestamp":1593698523000,
-                  "message":"Chore: labbar lite (refs SB-4982)",
+                  "message":"Chore: labbar lite (refs JI-1234)",
                   "parents":[
                      {
                         "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
@@ -2543,7 +2525,7 @@
                      }
                   },
                   "committerTimestamp":1593698523000,
-                  "message":"Chore: labbar lite (refs SB-4982)",
+                  "message":"Chore: labbar lite (refs JI-1234)",
                   "parents":[
                      {
                         "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
@@ -2593,7 +2575,7 @@
                      }
                   },
                   "committerTimestamp":1593698296000,
-                  "message":"Chore: labbar lite (refs SB-4982)",
+                  "message":"Chore: labbar lite (refs JI-1234)",
                   "parents":[
                      {
                         "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
@@ -2668,7 +2650,7 @@
                      }
                   },
                   "committerTimestamp":1593698296000,
-                  "message":"Chore: labbar lite (refs SB-4982)",
+                  "message":"Chore: labbar lite (refs JI-1234)",
                   "parents":[
                      {
                         "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
@@ -2718,7 +2700,7 @@
                      }
                   },
                   "committerTimestamp":1593698223000,
-                  "message":"Chore: labbar lite (refs SB-4982)",
+                  "message":"Chore: labbar lite (refs JI-1234)",
                   "parents":[
                      {
                         "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
