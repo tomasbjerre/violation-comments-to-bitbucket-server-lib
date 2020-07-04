@@ -217,8 +217,7 @@ public class BitbucketServerClient {
 
     if (parsed.isEmpty()) {
       this.violationsLogger.log(
-          INFO,
-          "Found no comments from " + url + " with JSONPath " + jsonPath + " in JSON:\n" + json);
+          INFO, "Found no comments from " + url + " with JSONPath " + jsonPath);
     }
 
     return this.toBitbucketServerComments(parsed);
