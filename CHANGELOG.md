@@ -3,6 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.97
+### No issue
+
+**New: using Set for violations everywhere, to avoid transforming with List**
+
+
+[020a6b7f47e54b8](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/020a6b7f47e54b8) Tomas Bjerre *2020-07-05 11:13:48*
+
+
 ## 1.96
 ### No issue
 
