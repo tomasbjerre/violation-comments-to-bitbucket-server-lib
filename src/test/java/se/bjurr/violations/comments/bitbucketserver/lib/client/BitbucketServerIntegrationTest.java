@@ -4,11 +4,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static se.bjurr.violations.comments.bitbucketserver.lib.ViolationCommentsToBitbucketServerApi.violationCommentsToBitbucketServerApi;
 import static se.bjurr.violations.lib.model.Violation.violationBuilder;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import se.bjurr.violations.comments.lib.ViolationsLogger;
+import se.bjurr.violations.lib.ViolationsLogger;
 import se.bjurr.violations.lib.model.SEVERITY;
 import se.bjurr.violations.lib.model.Violation;
 import se.bjurr.violations.lib.reports.Parser;
@@ -72,7 +72,7 @@ public class BitbucketServerIntegrationTest {
   public void withCreateCommentWithAllSingleFileComments() throws Exception {
     this.removeAllComments();
 
-    final List<Violation> violations = new ArrayList<>();
+    final Set<Violation> violations = new TreeSet<>();
     violations.add(
         violationBuilder() //
             .setFile(CHANGED_FILE) //
@@ -109,7 +109,7 @@ public class BitbucketServerIntegrationTest {
   public void withCreateSingleFileComments() throws Exception {
     this.removeAllComments();
 
-    final List<Violation> violations = new ArrayList<>();
+    final Set<Violation> violations = new TreeSet<>();
     violations.add(
         violationBuilder() //
             .setFile(CHANGED_FILE) //
@@ -146,7 +146,7 @@ public class BitbucketServerIntegrationTest {
   public void withCreateSingleFileCommentsTasks() throws Exception {
     this.removeAllComments();
 
-    final List<Violation> violations = new ArrayList<>();
+    final Set<Violation> violations = new TreeSet<>();
     violations.add(
         violationBuilder() //
             .setFile(CHANGED_FILE) //
@@ -194,7 +194,7 @@ public class BitbucketServerIntegrationTest {
         .withPullRequestId(this.bitbucketServerPullRequestId) //
         .withProjectKey(this.bitbucketServerProject) //
         .withRepoSlug(this.bitbucketServerRepo) //
-        .withViolations(new ArrayList<>()) //
+        .withViolations(new TreeSet<>()) //
         .withCreateCommentWithAllSingleFileComments(true) //
         .withCreateSingleFileComments(false) //
         .withCreateSingleFileCommentsTasks(false) //
@@ -215,7 +215,7 @@ public class BitbucketServerIntegrationTest {
         .withPullRequestId(this.bitbucketServerPullRequestId) //
         .withProjectKey(this.bitbucketServerProject) //
         .withRepoSlug(this.bitbucketServerRepo) //
-        .withViolations(new ArrayList<>()) //
+        .withViolations(new TreeSet<>()) //
         .withCreateCommentWithAllSingleFileComments(false) //
         .withCreateSingleFileComments(true) //
         .withCreateSingleFileCommentsTasks(false) //

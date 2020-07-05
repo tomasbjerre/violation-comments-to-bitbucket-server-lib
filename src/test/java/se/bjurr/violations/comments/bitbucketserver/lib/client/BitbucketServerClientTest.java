@@ -20,7 +20,7 @@ import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketSe
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.DIFFTYPE;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.DiffHunk;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.Segment;
-import se.bjurr.violations.comments.lib.ViolationsLogger;
+import se.bjurr.violations.lib.ViolationsLogger;
 
 public class BitbucketServerClientTest {
   private String mockedJson = null;

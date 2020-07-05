@@ -3,15 +3,16 @@ package se.bjurr.violations.comments.bitbucketserver.lib;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static java.util.Optional.ofNullable;
 import static se.bjurr.violations.comments.lib.CommentsCreator.createComments;
+import static se.bjurr.violations.lib.FilteringViolationsLogger.filterLevel;
 import static se.bjurr.violations.lib.util.Utils.firstNonNull;
 import static se.bjurr.violations.lib.util.Utils.isNullOrEmpty;
 
-import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import se.bjurr.violations.comments.lib.CommentsProvider;
-import se.bjurr.violations.comments.lib.ViolationsLogger;
+import se.bjurr.violations.lib.ViolationsLogger;
 import se.bjurr.violations.lib.model.Violation;
 
 public class ViolationCommentsToBitbucketServerApi {
@@ -35,7 +36,7 @@ public class ViolationCommentsToBitbucketServerApi {
   private int pullRequestId;
   private String repoSlug;
   private String username;
-  private List<Violation> violations;
+  private Set<Violation> violations;
   private boolean commentOnlyChangedContent = false;
   private int commentOnlyChangedContentContext;
   private boolean shouldKeepOldComments;
@@ -46,25 +47,26 @@ public class ViolationCommentsToBitbucketServerApi {
   private String proxyUser;
   private String proxyPassword;
   private ViolationsLogger violationsLogger =
-      new ViolationsLogger() {
-        @Override
-        public void log(final Level level, final String string) {
-          Logger.getLogger(ViolationsLogger.class.getSimpleName()).log(level, string);
-        }
+      filterLevel(
+          new ViolationsLogger() {
+            @Override
+            public void log(final Level level, final String string) {
+              Logger.getLogger(ViolationsLogger.class.getSimpleName()).log(level, string);
+            }
 
-        @Override
-        public void log(final Level level, final String string, final Throwable t) {
-          Logger.getLogger(ViolationsLogger.class.getSimpleName()).log(level, string, t);
-        }
-      };
+            @Override
+            public void log(final Level level, final String string, final Throwable t) {
+              Logger.getLogger(ViolationsLogger.class.getSimpleName()).log(level, string, t);
+            }
+          });
   private Integer maxNumberOfViolations;
   private boolean shouldCommentOnlyChangedFiles = true;
 
   private ViolationCommentsToBitbucketServerApi() {}
 
   private void checkState() {
-    final boolean noUsername = isNullOrEmpty(username) || isNullOrEmpty(password);
-    final boolean noPat = isNullOrEmpty(personalAccessToken);
+    final boolean noUsername = isNullOrEmpty(this.username) || isNullOrEmpty(this.password);
+    final boolean noPat = isNullOrEmpty(this.personalAccessToken);
     if (noUsername && noPat) {
       throw new IllegalStateException(
           "User and Password, or personal access token, must be set! They can be set with the API or by setting properties.\n"
@@ -83,10 +85,10 @@ public class ViolationCommentsToBitbucketServerApi {
               + DEFAULT_PROP_PERSONAL_ACCESS_TOKEN
               + "=asdasd");
     }
-    checkNotNull(bitbucketServerUrl, "BitbucketServerURL");
-    checkNotNull(pullRequestId, "PullRequestId");
-    checkNotNull(repoSlug, "repoSlug");
-    checkNotNull(projectKey, "projectKey");
+    checkNotNull(this.bitbucketServerUrl, "BitbucketServerURL");
+    checkNotNull(this.pullRequestId, "PullRequestId");
+    checkNotNull(this.repoSlug, "repoSlug");
+    checkNotNull(this.projectKey, "projectKey");
   }
 
   public ViolationCommentsToBitbucketServerApi withViolationsLogger(
@@ -96,104 +98,104 @@ public class ViolationCommentsToBitbucketServerApi {
   }
 
   public String getBitbucketServerUrl() {
-    return bitbucketServerUrl;
+    return this.bitbucketServerUrl;
   }
 
   public boolean getCommentOnlyChangedContent() {
-    return commentOnlyChangedContent;
+    return this.commentOnlyChangedContent;
   }
 
   public int getCommentOnlyChangedContentContext() {
-    return commentOnlyChangedContentContext;
+    return this.commentOnlyChangedContentContext;
   }
 
   public boolean getCreateCommentWithAllSingleFileComments() {
-    return createCommentWithAllSingleFileComments;
+    return this.createCommentWithAllSingleFileComments;
   }
 
   public boolean getCreateSingleFileComments() {
-    return createSingleFileComments;
+    return this.createSingleFileComments;
   }
 
   public boolean getCreateSingleFileCommentsTasks() {
-    return createSingleFileCommentsTasks;
+    return this.createSingleFileCommentsTasks;
   }
 
   public String getPassword() {
-    return password;
+    return this.password;
   }
 
   public String getProjectKey() {
-    return projectKey;
+    return this.projectKey;
   }
 
   public String getPropPassword() {
-    return propPassword;
+    return this.propPassword;
   }
 
   public String getPropUsername() {
-    return propUsername;
+    return this.propUsername;
   }
 
   public int getPullRequestId() {
-    return pullRequestId;
+    return this.pullRequestId;
   }
 
   public String getRepoSlug() {
-    return repoSlug;
+    return this.repoSlug;
   }
 
   public String getUsername() {
-    return username;
+    return this.username;
   }
 
   public boolean getShouldKeepOldComments() {
-    return shouldKeepOldComments;
+    return this.shouldKeepOldComments;
   }
 
   public boolean getShouldCommentOnlyChangedFiles() {
-    return shouldCommentOnlyChangedFiles;
+    return this.shouldCommentOnlyChangedFiles;
   }
 
   public String getPersonalAccessToken() {
-    return personalAccessToken;
+    return this.personalAccessToken;
   }
 
   public String getProxyHostNameOrIp() {
-    return proxyHostNameOrIp;
+    return this.proxyHostNameOrIp;
   }
 
   public Integer getProxyHostPort() {
-    return proxyHostPort;
+    return this.proxyHostPort;
   }
 
   public String getProxyUser() {
-    return proxyUser;
+    return this.proxyUser;
   }
 
   public String getProxyPassword() {
-    return proxyPassword;
+    return this.proxyPassword;
   }
 
   private void populateFromEnvironmentVariables() {
-    if (System.getProperty(propUsername) != null) {
-      username = firstNonNull(username, System.getProperty(propUsername));
+    if (System.getProperty(this.propUsername) != null) {
+      this.username = firstNonNull(this.username, System.getProperty(this.propUsername));
     }
-    if (System.getProperty(propPassword) != null) {
-      password = firstNonNull(password, System.getProperty(propPassword));
+    if (System.getProperty(this.propPassword) != null) {
+      this.password = firstNonNull(this.password, System.getProperty(this.propPassword));
     }
-    if (System.getProperty(propPassword) != null) {
-      personalAccessToken =
-          firstNonNull(personalAccessToken, System.getProperty(propPersonalAccessToken));
+    if (System.getProperty(this.propPassword) != null) {
+      this.personalAccessToken =
+          firstNonNull(this.personalAccessToken, System.getProperty(this.propPersonalAccessToken));
     }
   }
 
   public void toPullRequest() throws Exception {
-    populateFromEnvironmentVariables();
-    checkState();
+    this.populateFromEnvironmentVariables();
+    this.checkState();
     final CommentsProvider commentsProvider =
-        new BitbucketServerCommentsProvider(this, violationsLogger);
-    createComments(violationsLogger, violations, commentsProvider);
+        new BitbucketServerCommentsProvider(this, this.violationsLogger);
+    createComments(this.violationsLogger, this.violations, commentsProvider);
   }
 
   public ViolationCommentsToBitbucketServerApi withBitbucketServerUrl(
@@ -249,11 +251,11 @@ public class ViolationCommentsToBitbucketServerApi {
   }
 
   public void withPropPassword(final String envPassword) {
-    propPassword = envPassword;
+    this.propPassword = envPassword;
   }
 
   public void withPropUsername(final String envUsername) {
-    propUsername = envUsername;
+    this.propUsername = envUsername;
   }
 
   public ViolationCommentsToBitbucketServerApi withPropPersonalAccessToken(
@@ -277,7 +279,7 @@ public class ViolationCommentsToBitbucketServerApi {
     return this;
   }
 
-  public ViolationCommentsToBitbucketServerApi withViolations(final List<Violation> violations) {
+  public ViolationCommentsToBitbucketServerApi withViolations(final Set<Violation> violations) {
     this.violations = violations;
     return this;
   }
@@ -321,7 +323,7 @@ public class ViolationCommentsToBitbucketServerApi {
   }
 
   public Optional<String> findCommentTemplate() {
-    return ofNullable(commentTemplate);
+    return ofNullable(this.commentTemplate);
   }
 
   public ViolationCommentsToBitbucketServerApi withMaxNumberOfViolations(
@@ -331,6 +333,6 @@ public class ViolationCommentsToBitbucketServerApi {
   }
 
   public Integer getMaxNumberOfViolations() {
-    return maxNumberOfViolations;
+    return this.maxNumberOfViolations;
   }
 }

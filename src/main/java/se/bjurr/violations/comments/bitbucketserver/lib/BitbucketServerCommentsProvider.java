@@ -29,9 +29,9 @@ import se.bjurr.violations.comments.bitbucketserver.lib.client.model.DiffHunk;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.Line;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.Segment;
 import se.bjurr.violations.comments.lib.CommentsProvider;
-import se.bjurr.violations.comments.lib.ViolationsLogger;
 import se.bjurr.violations.comments.lib.model.ChangedFile;
 import se.bjurr.violations.comments.lib.model.Comment;
+import se.bjurr.violations.lib.ViolationsLogger;
 
 public class BitbucketServerCommentsProvider implements CommentsProvider {
   private static final Integer BITBUCKET_MAX_COMMENT_SIZE = 32767;

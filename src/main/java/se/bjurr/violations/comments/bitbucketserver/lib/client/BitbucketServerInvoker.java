@@ -22,7 +22,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
-import se.bjurr.violations.comments.lib.ViolationsLogger;
+import se.bjurr.violations.lib.ViolationsLogger;
 
 public class BitbucketServerInvoker {
 
@@ -42,7 +42,8 @@ public class BitbucketServerInvoker {
 
     final String authorizationValue = "Bearer " + bearer;
 
-    return doInvokeUrl(violationsLogger, url, method, postContent, authorizationValue, proxyConfig);
+    return this.doInvokeUrl(
+        violationsLogger, url, method, postContent, authorizationValue, proxyConfig);
   }
 
   public String invokeUrl(
@@ -59,7 +60,8 @@ public class BitbucketServerInvoker {
         Base64.getEncoder().encodeToString(userAndPass.getBytes(StandardCharsets.UTF_8));
     final String authorizationValue = "Basic " + authString;
 
-    return doInvokeUrl(violationsLogger, url, method, postContent, authorizationValue, proxyConfig);
+    return this.doInvokeUrl(
+        violationsLogger, url, method, postContent, authorizationValue, proxyConfig);
   }
 
   private String doInvokeUrl(
@@ -114,7 +116,7 @@ public class BitbucketServerInvoker {
         statusCode = "" + response.getStatusLine().getStatusCode();
         reasonPhrase = response.getStatusLine().getReasonPhrase();
       }
-      boolean wasNotOk = !statusCode.startsWith("2");
+      final boolean wasNotOk = !statusCode.startsWith("2");
       if (wasNotOk) {
         violationsLogger.log(
             INFO,

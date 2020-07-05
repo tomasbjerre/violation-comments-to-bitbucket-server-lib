@@ -20,7 +20,7 @@ import se.bjurr.violations.comments.bitbucketserver.lib.client.BitbucketServerIn
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerComment;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerDiffResponse;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerTask;
-import se.bjurr.violations.comments.lib.ViolationsLogger;
+import se.bjurr.violations.lib.ViolationsLogger;
 
 public class BitbucketServerClient {
   private static BitbucketServerInvoker bitbucketServerInvoker = new BitbucketServerInvoker();
