@@ -3,6 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.96
+### No issue
+
+**New: custom logging in violations-lib**
+
+
+[1b3f61182e101b8](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/1b3f61182e101b8) Tomas Bjerre *2020-07-05 10:02:06*
+
+
 ## 1.95
 ### No issue
 
