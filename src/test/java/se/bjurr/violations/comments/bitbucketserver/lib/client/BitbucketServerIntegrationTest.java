@@ -8,6 +8,8 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import org.junit.Test;
 import se.bjurr.violations.lib.ViolationsLogger;
 import se.bjurr.violations.lib.model.SEVERITY;
 import se.bjurr.violations.lib.model.Violation;
@@ -53,6 +55,10 @@ public class BitbucketServerIntegrationTest {
 
   private final String proxyPassword = null;
 
+  private final String keyStorePath = null;
+
+  private final String keyStorePass = "changeit";
+
   private final BitbucketServerClient sut =
       new BitbucketServerClient(
           this.violationsLogger,
@@ -63,6 +69,8 @@ public class BitbucketServerIntegrationTest {
           this.bitbucketServerUser,
           this.bitbucketServerPassword,
           this.bitbucketPersonalAccessToken,
+          this.keyStorePath,
+          this.keyStorePass,
           this.proxyHostNameOrIp,
           this.proxyHostPort,
           this.proxyUser,
