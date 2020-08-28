@@ -41,6 +41,7 @@ public class BitbucketServerClient {
   private final String bitbucketServerUser;
   private final String bitbucketPersonalAccessToken;
   private final ProxyConfig proxyInformation;
+  private CertificateConfig certificateConfig = null;
 
   public BitbucketServerClient(
       final ViolationsLogger violationsLogger,
@@ -51,6 +52,8 @@ public class BitbucketServerClient {
       final String bitbucketServerUser,
       final String bitbucketServerPassword,
       final String bitbucketPersonalAccessToken,
+      final String keyStorePath,
+      final String keyStorePass,
       final String proxyHostNameOrIp,
       final Integer proxyHostPort,
       final String proxyUser,
@@ -68,6 +71,9 @@ public class BitbucketServerClient {
     this.bitbucketServerUser = bitbucketServerUser;
     this.bitbucketServerPassword = bitbucketServerPassword;
     this.bitbucketPersonalAccessToken = bitbucketPersonalAccessToken;
+    if(!isNullOrEmpty(keyStorePath) && !isNullOrEmpty(keyStorePass)) {
+      this.certificateConfig = new CertificateConfig(keyStorePath, keyStorePass);
+    }
     this.proxyInformation =
         new ProxyConfig(proxyHostNameOrIp, proxyHostPort, proxyUser, proxyPassword);
   }
@@ -131,7 +137,16 @@ public class BitbucketServerClient {
   }
 
   private String doInvokeUrl(final String url, final Method method, final String postContent) {
-    if (isNullOrEmpty(this.bitbucketServerUser) || isNullOrEmpty(this.bitbucketServerPassword)) {
+
+    if (this.certificateConfig != null) {
+      return bitbucketServerInvoker.invokeUrl(
+              this.violationsLogger,
+              url,
+              method,
+              postContent,
+              this.certificateConfig,
+              this.proxyInformation);
+    } else if (isNullOrEmpty(this.bitbucketServerUser) || isNullOrEmpty(this.bitbucketServerPassword)) {
       return bitbucketServerInvoker.invokeUrl(
           this.violationsLogger,
           url,

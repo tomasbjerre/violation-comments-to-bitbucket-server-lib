@@ -32,6 +32,8 @@ public class BitbucketServerInvoker {
     POST
   }
 
+  private CertificateConfig certificateConfig = null;
+
   public String invokeUrl(
       final ViolationsLogger violationsLogger,
       final String url,
@@ -62,6 +64,19 @@ public class BitbucketServerInvoker {
 
     return this.doInvokeUrl(
         violationsLogger, url, method, postContent, authorizationValue, proxyConfig);
+  }
+
+  public String invokeUrl(
+          final ViolationsLogger violationsLogger,
+          final String url,
+          final Method method,
+          final String postContent,
+          final CertificateConfig certificateConfig,
+          final ProxyConfig proxyConfig) {
+
+    this.certificateConfig = certificateConfig;
+    return this.doInvokeUrl(
+            violationsLogger, url, method, postContent, "", proxyConfig);
   }
 
   private String doInvokeUrl(
@@ -106,6 +121,10 @@ public class BitbucketServerInvoker {
 
       final HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
       proxyConfig.addTo(httpClientBuilder);
+      if(certificateConfig != null){
+        certificateConfig.addTo(httpClientBuilder);
+      }
+
       final HttpClient httpClient = httpClientBuilder.build();
 
       // Execute the request and get the response
