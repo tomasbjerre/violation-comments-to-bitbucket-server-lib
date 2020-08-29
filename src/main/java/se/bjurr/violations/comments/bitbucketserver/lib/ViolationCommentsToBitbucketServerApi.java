@@ -210,11 +210,11 @@ public class ViolationCommentsToBitbucketServerApi {
     }
     if (System.getProperty(this.propKeyStorePath) != null) {
       this.propKeyStorePath =
-              firstNonNull(this.propKeyStorePath, System.getProperty(this.propKeyStorePath));
+          firstNonNull(this.propKeyStorePath, System.getProperty(this.propKeyStorePath));
     }
     if (System.getProperty(this.propKeyStorePass) != null) {
       this.propKeyStorePass =
-              firstNonNull(this.propKeyStorePass, System.getProperty(this.propKeyStorePass));
+          firstNonNull(this.propKeyStorePass, System.getProperty(this.propKeyStorePass));
     }
   }
 
@@ -359,7 +359,6 @@ public class ViolationCommentsToBitbucketServerApi {
     this.propKeyStorePass = keyStorePass;
     return this;
   }
-
 
   public Optional<String> findCommentTemplate() {
     return ofNullable(this.commentTemplate);

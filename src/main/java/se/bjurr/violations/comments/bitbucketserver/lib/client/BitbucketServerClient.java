@@ -71,7 +71,7 @@ public class BitbucketServerClient {
     this.bitbucketServerUser = bitbucketServerUser;
     this.bitbucketServerPassword = bitbucketServerPassword;
     this.bitbucketPersonalAccessToken = bitbucketPersonalAccessToken;
-    if(!isNullOrEmpty(keyStorePath) && !isNullOrEmpty(keyStorePass)) {
+    if (!isNullOrEmpty(keyStorePath) && !isNullOrEmpty(keyStorePass)) {
       this.certificateConfig = new CertificateConfig(keyStorePath, keyStorePass);
     }
     this.proxyInformation =
@@ -140,13 +140,14 @@ public class BitbucketServerClient {
 
     if (this.certificateConfig != null) {
       return bitbucketServerInvoker.invokeUrl(
-              this.violationsLogger,
-              url,
-              method,
-              postContent,
-              this.certificateConfig,
-              this.proxyInformation);
-    } else if (isNullOrEmpty(this.bitbucketServerUser) || isNullOrEmpty(this.bitbucketServerPassword)) {
+          this.violationsLogger,
+          url,
+          method,
+          postContent,
+          this.certificateConfig,
+          this.proxyInformation);
+    } else if (isNullOrEmpty(this.bitbucketServerUser)
+        || isNullOrEmpty(this.bitbucketServerPassword)) {
       return bitbucketServerInvoker.invokeUrl(
           this.violationsLogger,
           url,
