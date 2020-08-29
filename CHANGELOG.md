@@ -3,6 +3,20 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.98
+### No issue
+
+**fix testcases**
+
+
+[fbf9c663472a9e5](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/fbf9c663472a9e5) Anirudh Bagri *2020-08-28 15:11:02*
+
+**add client certificate authentication mechanism**
+
+
+[a3daedc4bcf6b2a](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/a3daedc4bcf6b2a) Anirudh Bagri *2020-08-28 14:57:47*
+
+
 ## 1.97
 ### No issue
 
