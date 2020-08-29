@@ -19,6 +19,8 @@ public class ViolationCommentsToBitbucketServerApi {
   public static final String DEFAULT_PROP_VIOLATIONS_PASSWORD = "VIOLATIONS_PASSWORD";
   public static final String DEFAULT_PROP_VIOLATIONS_USERNAME = "VIOLATIONS_USERNAME";
   public static final String DEFAULT_PROP_PERSONAL_ACCESS_TOKEN = "VIOLATIONS_PAT";
+  public static final String DEFAULT_PROP_KEYSTORE_PATH = "VIOLATIONS_KEYSTORE_PATH";
+  public static final String DEFAULT_PROP_KEYSTORE_PASS = "VIOLATIONS_KEYSTORE_PASS";
 
   public static ViolationCommentsToBitbucketServerApi violationCommentsToBitbucketServerApi() {
     return new ViolationCommentsToBitbucketServerApi();
@@ -33,6 +35,8 @@ public class ViolationCommentsToBitbucketServerApi {
   private String propPassword = DEFAULT_PROP_VIOLATIONS_PASSWORD;
   private String propUsername = DEFAULT_PROP_VIOLATIONS_USERNAME;
   private String propPersonalAccessToken = DEFAULT_PROP_PERSONAL_ACCESS_TOKEN;
+  private String propKeyStorePath = DEFAULT_PROP_KEYSTORE_PATH;
+  private String propKeyStorePass = DEFAULT_PROP_KEYSTORE_PASS;
   private int pullRequestId;
   private String repoSlug;
   private String username;
@@ -67,9 +71,10 @@ public class ViolationCommentsToBitbucketServerApi {
   private void checkState() {
     final boolean noUsername = isNullOrEmpty(this.username) || isNullOrEmpty(this.password);
     final boolean noPat = isNullOrEmpty(this.personalAccessToken);
-    if (noUsername && noPat) {
+    final boolean noCert = isNullOrEmpty(this.propKeyStorePath);
+    if (noUsername && noPat && noCert) {
       throw new IllegalStateException(
-          "User and Password, or personal access token, must be set! They can be set with the API or by setting properties.\n"
+          "User and Password, or personal access token, or keystore path and keystore pass, must be set! They can be set with the API or by setting properties.\n"
               + //
               "Username/password:\n"
               + //
@@ -83,7 +88,14 @@ public class ViolationCommentsToBitbucketServerApi {
               + //
               "-D"
               + DEFAULT_PROP_PERSONAL_ACCESS_TOKEN
-              + "=asdasd");
+              + "=asdasd"
+              + "\n\nKeystore path and pass"
+              + //
+              "-D"
+              + DEFAULT_PROP_KEYSTORE_PATH
+              + "=keystorepath -D"
+              + DEFAULT_PROP_KEYSTORE_PASS
+              + "=keystorepass");
     }
     checkNotNull(this.bitbucketServerUrl, "BitbucketServerURL");
     checkNotNull(this.pullRequestId, "PullRequestId");
@@ -177,6 +189,14 @@ public class ViolationCommentsToBitbucketServerApi {
     return this.proxyPassword;
   }
 
+  public String getPropKeyStorePath() {
+    return this.propKeyStorePath;
+  }
+
+  public String getPropKeyStorePass() {
+    return this.propKeyStorePass;
+  }
+
   private void populateFromEnvironmentVariables() {
     if (System.getProperty(this.propUsername) != null) {
       this.username = firstNonNull(this.username, System.getProperty(this.propUsername));
@@ -187,6 +207,14 @@ public class ViolationCommentsToBitbucketServerApi {
     if (System.getProperty(this.propPassword) != null) {
       this.personalAccessToken =
           firstNonNull(this.personalAccessToken, System.getProperty(this.propPersonalAccessToken));
+    }
+    if (System.getProperty(this.propKeyStorePath) != null) {
+      this.propKeyStorePath =
+              firstNonNull(this.propKeyStorePath, System.getProperty(this.propKeyStorePath));
+    }
+    if (System.getProperty(this.propKeyStorePass) != null) {
+      this.propKeyStorePass =
+              firstNonNull(this.propKeyStorePass, System.getProperty(this.propKeyStorePass));
     }
   }
 
@@ -321,6 +349,17 @@ public class ViolationCommentsToBitbucketServerApi {
     this.commentTemplate = commentTemplate;
     return this;
   }
+
+  public ViolationCommentsToBitbucketServerApi withKeyStorePath(final String keyStorePath) {
+    this.propKeyStorePath = keyStorePath;
+    return this;
+  }
+
+  public ViolationCommentsToBitbucketServerApi withKeyStorePass(final String keyStorePass) {
+    this.propKeyStorePass = keyStorePass;
+    return this;
+  }
+
 
   public Optional<String> findCommentTemplate() {
     return ofNullable(this.commentTemplate);

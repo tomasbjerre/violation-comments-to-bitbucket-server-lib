@@ -46,6 +46,8 @@ public class BitbucketServerClientTest {
           "bitbucketServerPassword",
           null,
           null,
+          null,
+          null,
           0,
           null,
           null);
