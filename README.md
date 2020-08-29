@@ -22,6 +22,16 @@ This software can be used:
  * With a [Jenkins plugin](https://github.com/jenkinsci/violation-comments-to-stash-plugin).
  * From [Command Line](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-command-line)
 
+### Properties
+
+It can be configured with some Java properties:
+
+ * `VIOLATIONS_KEYSTORE_PATH` - A path to a keystore.
+ * `VIOLATIONS_KEYSTORE_PASS` - Password for the keystore. 
+ * `VIOLATIONS_PAT` - Personal access token used to authenticate.
+ * `VIOLATIONS_USERNAME` - Username to authenticate with.
+ * `VIOLATIONS_PASSWORD` - Password to authenticate with.
+
 ## Developer instructions
 
 To build the code, have a look at `.travis.yml`.
