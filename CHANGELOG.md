@@ -3,6 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## Unreleased
+### No issue
+
+**doc**
+
+
+[d9ff1815255b7dc](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/d9ff1815255b7dc) Tomas Bjerre *2020-08-29 13:58:10*
+
+
 ## 1.98
 ### No issue
 

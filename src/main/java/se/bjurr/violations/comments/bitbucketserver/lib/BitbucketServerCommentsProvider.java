@@ -76,8 +76,8 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
     final Integer proxyHostPort = violationCommentsToBitbucketApi.getProxyHostPort();
     final String proxyUser = violationCommentsToBitbucketApi.getProxyUser();
     final String proxyPassword = violationCommentsToBitbucketApi.getProxyPassword();
-    final String keyStorePath = violationCommentsToBitbucketApi.getPropKeyStorePath();
-    final String keyStorePass = violationCommentsToBitbucketApi.getPropKeyStorePass();
+    final String keyStorePath = violationCommentsToBitbucketApi.getKeyStorePath();
+    final String keyStorePass = violationCommentsToBitbucketApi.getKeyStorePass();
     this.client =
         new BitbucketServerClient(
             violationsLogger,

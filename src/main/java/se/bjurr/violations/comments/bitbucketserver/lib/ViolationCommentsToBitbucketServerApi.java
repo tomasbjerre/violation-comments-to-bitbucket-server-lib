@@ -37,6 +37,8 @@ public class ViolationCommentsToBitbucketServerApi {
   private String propPersonalAccessToken = DEFAULT_PROP_PERSONAL_ACCESS_TOKEN;
   private String propKeyStorePath = DEFAULT_PROP_KEYSTORE_PATH;
   private String propKeyStorePass = DEFAULT_PROP_KEYSTORE_PASS;
+  private String keyStorePath;
+  private String keyStorePass;
   private int pullRequestId;
   private String repoSlug;
   private String username;
@@ -71,10 +73,10 @@ public class ViolationCommentsToBitbucketServerApi {
   private void checkState() {
     final boolean noUsername = isNullOrEmpty(this.username) || isNullOrEmpty(this.password);
     final boolean noPat = isNullOrEmpty(this.personalAccessToken);
-    final boolean noCert = isNullOrEmpty(this.propKeyStorePath);
+    final boolean noCert = isNullOrEmpty(this.keyStorePath);
     if (noUsername && noPat && noCert) {
       throw new IllegalStateException(
-          "User and Password, or personal access token, or keystore path and keystore pass, must be set! They can be set with the API or by setting properties.\n"
+          "User and Password or personal access token, or keystore path and keystore pass, must be set! They can be set with the API or by setting properties.\n"
               + //
               "Username/password:\n"
               + //
@@ -197,6 +199,14 @@ public class ViolationCommentsToBitbucketServerApi {
     return this.propKeyStorePass;
   }
 
+  public String getKeyStorePass() {
+    return this.keyStorePass;
+  }
+
+  public String getKeyStorePath() {
+    return this.keyStorePath;
+  }
+
   private void populateFromEnvironmentVariables() {
     if (System.getProperty(this.propUsername) != null) {
       this.username = firstNonNull(this.username, System.getProperty(this.propUsername));
@@ -209,12 +219,12 @@ public class ViolationCommentsToBitbucketServerApi {
           firstNonNull(this.personalAccessToken, System.getProperty(this.propPersonalAccessToken));
     }
     if (System.getProperty(this.propKeyStorePath) != null) {
-      this.propKeyStorePath =
-          firstNonNull(this.propKeyStorePath, System.getProperty(this.propKeyStorePath));
+      this.keyStorePath =
+          firstNonNull(this.keyStorePath, System.getProperty(this.propKeyStorePath));
     }
     if (System.getProperty(this.propKeyStorePass) != null) {
-      this.propKeyStorePass =
-          firstNonNull(this.propKeyStorePass, System.getProperty(this.propKeyStorePass));
+      this.keyStorePass =
+          firstNonNull(this.keyStorePass, System.getProperty(this.propKeyStorePass));
     }
   }
 
@@ -351,12 +361,22 @@ public class ViolationCommentsToBitbucketServerApi {
   }
 
   public ViolationCommentsToBitbucketServerApi withKeyStorePath(final String keyStorePath) {
-    this.propKeyStorePath = keyStorePath;
+    this.keyStorePath = keyStorePath;
     return this;
   }
 
   public ViolationCommentsToBitbucketServerApi withKeyStorePass(final String keyStorePass) {
-    this.propKeyStorePass = keyStorePass;
+    this.keyStorePass = keyStorePass;
+    return this;
+  }
+
+  public ViolationCommentsToBitbucketServerApi withPropKeyStorePath(final String propKeyStorePath) {
+    this.propKeyStorePath = propKeyStorePath;
+    return this;
+  }
+
+  public ViolationCommentsToBitbucketServerApi withPropKeyStorePass(final String propKeyStorePass) {
+    this.propKeyStorePass = propKeyStorePass;
     return this;
   }
 
