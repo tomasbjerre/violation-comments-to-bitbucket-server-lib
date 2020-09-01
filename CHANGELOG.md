@@ -3,7 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
-## Unreleased
+## 1.99
+### GitHub [#14](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/issues/14) VIOLATIONS_KEYSTORE_PATH (No such file or directory)    *bug*  
+
+**VIOLATIONS_KEYSTORE_PATH**
+
+
+[80a7dbc77a76d31](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/80a7dbc77a76d31) Tomas Bjerre *2020-09-01 14:28:54*
+
+
 ### No issue
 
 **doc**
