@@ -3,6 +3,15 @@
 
 Changelog of Violation comments to bitbucket server lib.
 
+## 1.100
+### GitHub #72   
+
+**Making isIgnored public jenkinsci/violation-comments-to-stash-plugin**
+
+
+[35220e01bc4f78a](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/35220e01bc4f78a) Tomas Bjerre *2020-12-06 09:57:38*
+
+
 ## 1.99
 ### GitHub [#14](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/issues/14) VIOLATIONS_KEYSTORE_PATH (No such file or directory)    *bug*  
 
