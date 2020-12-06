@@ -7,6 +7,7 @@ import static se.bjurr.violations.lib.FilteringViolationsLogger.filterLevel;
 import static se.bjurr.violations.lib.util.Utils.firstNonNull;
 import static se.bjurr.violations.lib.util.Utils.isNullOrEmpty;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Level;
@@ -67,6 +68,7 @@ public class ViolationCommentsToBitbucketServerApi {
           });
   private Integer maxNumberOfViolations;
   private boolean shouldCommentOnlyChangedFiles = true;
+  private List<String> ignorePaths;
 
   private ViolationCommentsToBitbucketServerApi() {}
 
@@ -392,5 +394,14 @@ public class ViolationCommentsToBitbucketServerApi {
 
   public Integer getMaxNumberOfViolations() {
     return this.maxNumberOfViolations;
+  }
+
+  public List<String> getIgnorePaths() {
+    return this.ignorePaths;
+  }
+
+  public ViolationCommentsToBitbucketServerApi withIgnorePaths(final List<String> ignorePaths) {
+    this.ignorePaths = ignorePaths;
+    return this;
   }
 }

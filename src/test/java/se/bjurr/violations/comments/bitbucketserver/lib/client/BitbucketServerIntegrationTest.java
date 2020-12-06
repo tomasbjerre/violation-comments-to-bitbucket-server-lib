@@ -82,7 +82,7 @@ public class BitbucketServerIntegrationTest {
     violations.add(
         violationBuilder() //
             .setFile(CHANGED_FILE) //
-            .setMessage("no not ok!") //
+            .setMessage("no not ok!\nnewline") //
             .setSeverity(SEVERITY.ERROR) //
             .setStartLine(12) //
             .setReporter("The tool") //

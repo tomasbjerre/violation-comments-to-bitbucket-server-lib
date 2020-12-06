@@ -4,6 +4,7 @@ import static com.google.common.base.Strings.isNullOrEmpty;
 import static com.google.common.cache.CacheBuilder.newBuilder;
 import static com.google.common.collect.Lists.newArrayList;
 import static java.util.concurrent.TimeUnit.MINUTES;
+import static java.util.logging.Level.INFO;
 import static java.util.logging.Level.SEVERE;
 import static se.bjurr.violations.comments.bitbucketserver.lib.client.model.DIFFTYPE.ADDED;
 
@@ -32,6 +33,7 @@ import se.bjurr.violations.comments.lib.CommentsProvider;
 import se.bjurr.violations.comments.lib.model.ChangedFile;
 import se.bjurr.violations.comments.lib.model.Comment;
 import se.bjurr.violations.lib.ViolationsLogger;
+import se.bjurr.violations.lib.reports.ReportsFinder;
 
 public class BitbucketServerCommentsProvider implements CommentsProvider {
   private static final Integer BITBUCKET_MAX_COMMENT_SIZE = 32767;
@@ -121,6 +123,16 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
        * This is time consuming to do and is only needed if we are creating comments on each file.
        */
       for (final String changedFile : this.client.pullRequestChanges()) {
+        final List<String> ignorePaths = this.violationCommentsToBitbucketApi.getIgnorePaths();
+        if (ReportsFinder.isIgnored(changedFile, ignorePaths)) {
+          this.violationsLogger.log(
+              INFO,
+              "Ignoring changed file "
+                  + changedFile
+                  + " because it matched ignored paths: "
+                  + ignorePaths);
+          continue;
+        }
         final List<BitbucketServerComment> bitbucketServerCommentsOnFile =
             this.client.pullRequestComments(changedFile);
         for (final BitbucketServerComment fileComment : bitbucketServerCommentsOnFile) {
