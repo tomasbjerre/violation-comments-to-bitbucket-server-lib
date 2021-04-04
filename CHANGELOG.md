@@ -1,7 +1,16 @@
 
- # Violation comments to bitbucket server lib changelog
+# violation-comments-to-bitbucket-server-lib changelog
 
-Changelog of Violation comments to bitbucket server lib.
+Changelog of violation-comments-to-bitbucket-server-lib.
+
+## 1.101.1
+### No issue
+
+**new build script**
+
+
+[6ffacf9db0bb758](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/6ffacf9db0bb758) Tomas Bjerre *2021-04-04 14:35:07*
+
 
 ## 1.100
 ### GitHub #72   
@@ -311,11 +320,11 @@ Changelog of Violation comments to bitbucket server lib.
 
 **[TC-2481] Add retrieval of outdated pull request comments.**
 
- * Violation comments and their tasks are not deleted if the annotated 
- * commit has been removed by a force-push because it is marked as outdated 
- * in Bitbucket. 
- * By additionally fetching outdated comments, outdated violation comments 
- * can be automatically deleted if keepOldComments is not set. 
+* Violation comments and their tasks are not deleted if the annotated 
+* commit has been removed by a force-push because it is marked as outdated 
+* in Bitbucket. 
+* By additionally fetching outdated comments, outdated violation comments 
+* can be automatically deleted if keepOldComments is not set. 
 
 [40666bfdee58a13](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/40666bfdee58a13) Frederik Boster *2018-12-13 15:47:14*
 
@@ -348,9 +357,9 @@ Changelog of Violation comments to bitbucket server lib.
 
 **Fixed Pull Request comments automatic deletion**
 
- * 1.Extend parsing of Bitbucket comments and tasks from REST response 
- * 2.Add API for deletion of Bitbucket tasks 
- * 3.Delete Bitbucket tasks and sub-comments recursively before removing a comment 
+* 1.Extend parsing of Bitbucket comments and tasks from REST response 
+* 2.Add API for deletion of Bitbucket tasks 
+* 3.Delete Bitbucket tasks and sub-comments recursively before removing a comment 
 
 [2dc9003ea81e692](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/2dc9003ea81e692) Peijie Liu *2018-10-02 14:02:59*
 
@@ -517,7 +526,7 @@ Changelog of Violation comments to bitbucket server lib.
 
 **Added support for proxy**
 
- * - Implementation basing on org.apache.http.client.HttpClient was chosen, because this works with Jenkins StashNotifier as well. 
+* - Implementation basing on org.apache.http.client.HttpClient was chosen, because this works with Jenkins StashNotifier as well. 
 
 [5fd8e3af5126beb](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/5fd8e3af5126beb) stoesselt *2018-07-05 13:04:03*
 
@@ -708,9 +717,9 @@ Changelog of Violation comments to bitbucket server lib.
 
 **Keeping comments and adjusting checkstyle**
 
- * Checkstyle now allows empty source attribute. 
- * Comments can optionaly be kept and not removed when new comments are added. 
- * Will no longer re-create identical comments. 
+* Checkstyle now allows empty source attribute. 
+* Comments can optionaly be kept and not removed when new comments are added. 
+* Will no longer re-create identical comments. 
 
 [4e2cc9662e53323](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/4e2cc9662e53323) Tomas Bjerre *2017-09-02 09:19:51*
 
@@ -833,7 +842,7 @@ Changelog of Violation comments to bitbucket server lib.
 
 **Handling deleted files in PR:s**
 
- * And using violations lib 1.22 
+* And using violations lib 1.22 
 
 [40c69f6a7b64eea](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/40c69f6a7b64eea) Tomas Bjerre *2016-12-21 17:16:48*
 
@@ -991,9 +1000,8 @@ Changelog of Violation comments to bitbucket server lib.
 
 **Not trying to delete PR comments**
 
- * Looks like its not supported in API 
+* Looks like its not supported in API 
 
 [f00b2b738497013](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/f00b2b738497013) Tomas Bjerre *2016-07-29 19:50:15*
 
 
- 
