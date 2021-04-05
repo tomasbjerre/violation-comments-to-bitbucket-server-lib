@@ -3,6 +3,15 @@
 
 Changelog of violation-comments-to-bitbucket-server-lib.
 
+## 1.101.2
+### No issue
+
+**new build script**
+
+
+[3b66f7b7b1b6334](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/3b66f7b7b1b6334) Tomas Bjerre *2021-04-04 15:29:12*
+
+
 ## 1.101.1
 ### No issue
 
