@@ -11,6 +11,7 @@ import java.net.CookieHandler;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
 import java.net.URI;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import org.apache.http.HttpResponse;
@@ -104,7 +105,7 @@ public class BitbucketServerInvoker {
           throw new IllegalArgumentException(
               "Unsupported http method:\n" + url + "\n" + method + "\n" + postContent);
       }
-      request.setURI(new URI(url));
+      request.setURI(convertToURIEscapingIllegalCharacters(url));
       final RequestConfig.Builder requestBuilder =
           RequestConfig.custom().setConnectionRequestTimeout(30000).setConnectTimeout(30000);
       request.setConfig(requestBuilder.build());
@@ -169,5 +170,11 @@ public class BitbucketServerInvoker {
         throw new RuntimeException(e.getMessage(), e);
       }
     }
+  }
+
+  private URI convertToURIEscapingIllegalCharacters(String string) throws Exception {
+      URL url = new URL(string);
+      URI uri = new URI(url.getProtocol(), url.getUserInfo(), url.getHost(), url.getPort(), url.getPath(), url.getQuery(), url.getRef());
+      return uri;
   }
 }
