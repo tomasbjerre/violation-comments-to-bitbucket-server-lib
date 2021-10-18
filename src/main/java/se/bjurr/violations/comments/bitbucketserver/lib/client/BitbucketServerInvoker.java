@@ -14,6 +14,7 @@ import java.net.URI;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
@@ -23,6 +24,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
+
 import se.bjurr.violations.lib.ViolationsLogger;
 
 public class BitbucketServerInvoker {
@@ -105,7 +107,7 @@ public class BitbucketServerInvoker {
           throw new IllegalArgumentException(
               "Unsupported http method:\n" + url + "\n" + method + "\n" + postContent);
       }
-      request.setURI(convertToURIEscapingIllegalCharacters(url));
+      request.setURI(this.convertToURIEscapingIllegalCharacters(url));
       final RequestConfig.Builder requestBuilder =
           RequestConfig.custom().setConnectionRequestTimeout(30000).setConnectTimeout(30000);
       request.setConfig(requestBuilder.build());
@@ -121,8 +123,8 @@ public class BitbucketServerInvoker {
 
       final HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
       proxyConfig.addTo(httpClientBuilder);
-      if (certificateConfig != null) {
-        certificateConfig.addTo(httpClientBuilder);
+      if (this.certificateConfig != null) {
+        this.certificateConfig.addTo(httpClientBuilder);
       }
 
       final HttpClient httpClient = httpClientBuilder.build();
@@ -172,9 +174,9 @@ public class BitbucketServerInvoker {
     }
   }
 
-  private URI convertToURIEscapingIllegalCharacters(String string) throws Exception {
-      URL url = new URL(string);
-      URI uri = new URI(url.getProtocol(), url.getUserInfo(), url.getHost(), url.getPort(), url.getPath(), url.getQuery(), url.getRef());
+   URI convertToURIEscapingIllegalCharacters(final String string) throws Exception {
+      final URL url = new URL(string);
+      final URI uri = new URI(url.getProtocol(), url.getUserInfo(), url.getHost(), url.getPort(), url.getPath(), url.getQuery(), url.getRef());
       return uri;
   }
 }
