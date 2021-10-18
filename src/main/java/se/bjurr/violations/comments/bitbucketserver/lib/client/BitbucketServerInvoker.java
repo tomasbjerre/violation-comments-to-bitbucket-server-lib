@@ -14,7 +14,6 @@ import java.net.URI;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
@@ -24,7 +23,6 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
-
 import se.bjurr.violations.lib.ViolationsLogger;
 
 public class BitbucketServerInvoker {
@@ -174,9 +172,17 @@ public class BitbucketServerInvoker {
     }
   }
 
-   URI convertToURIEscapingIllegalCharacters(final String string) throws Exception {
-      final URL url = new URL(string);
-      final URI uri = new URI(url.getProtocol(), url.getUserInfo(), url.getHost(), url.getPort(), url.getPath(), url.getQuery(), url.getRef());
-      return uri;
+  URI convertToURIEscapingIllegalCharacters(final String string) throws Exception {
+    final URL url = new URL(string);
+    final URI uri =
+        new URI(
+            url.getProtocol(),
+            url.getUserInfo(),
+            url.getHost(),
+            url.getPort(),
+            url.getPath(),
+            url.getQuery(),
+            url.getRef());
+    return uri;
   }
 }
