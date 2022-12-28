@@ -13,7 +13,7 @@ apply from: project.buildscript.classLoader.getResource('main.gradle').toURI()
 
 dependencies {
  compile 'se.bjurr.violations:violation-comments-lib:1.+'
- compile 'com.jayway.jsonpath:json-path:2.0.0'
+ compile 'com.jayway.jsonpath:json-path:2.7.0'
  compile 'com.google.code.gson:gson:2.8.0'
  compile 'com.google.guava:guava:20.0'
  compile 'org.apache.httpcomponents:httpclient:4.5.5'
