@@ -2,13 +2,25 @@
 
 Changelog of violation-comments-to-bitbucket-server-lib.
 
-## [1.101.3](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.101.3) (2021-10-18)
+## 1.101.4 (2022-12-28)
+
+### Bug Fixes
+
+-  stepping dependencies ([f52f2](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/f52f278e0b09cca) Tomas Bjerre)  
+
+### Other changes
+
+**Update version of Json Path to fix uncaught exception**
+
+* As per CVE-2021-27568 there was an uncaught exception 
+* that could expose sensitive information. This gets 
+* identified by XRAY as a critical vulnerbility. 
+* @see https://nvd.nist.gov/vuln/detail/CVE-2021-27568 
+
+[34afd](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/34afd88d6e2c937) Tom Lorentsen *2022-12-28 13:12:36*
 
 
-
-
-
-
+## 1.101.3 (2021-10-18)
 
 ### Other changes
 
@@ -19,13 +31,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [02322](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/02322ae09bdaa65) Christos Koninis *2021-10-17 23:28:36*
 
 
-## [1.101.2](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.101.2) (2021-04-05)
-
-
-
-
-
-
+## 1.101.2 (2021-04-05)
 
 ### Other changes
 
@@ -35,13 +41,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [3b66f](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/3b66f7b7b1b6334) Tomas Bjerre *2021-04-04 15:29:12*
 
 
-## [1.101.1](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.101.1) (2021-04-04)
-
-
-
-
-
-
+## 1.101.1 (2021-04-04)
 
 ### Other changes
 
@@ -51,13 +51,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [6ffac](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/6ffacf9db0bb758) Tomas Bjerre *2021-04-04 14:35:07*
 
 
-## [1.100](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.100) (2020-12-06)
-
-
-
-
-
-
+## 1.100 (2020-12-06)
 
 ### Other changes
 
@@ -67,13 +61,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [35220](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/35220e01bc4f78a) Tomas Bjerre *2020-12-06 09:57:38*
 
 
-## [1.99](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.99) (2020-09-01)
-
-
-
-
-
-
+## 1.99 (2020-09-01)
 
 ### Other changes
 
@@ -88,13 +76,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [d9ff1](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/d9ff1815255b7dc) Tomas Bjerre *2020-08-29 13:58:10*
 
 
-## [1.98](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.98) (2020-08-29)
-
-
-
-
-
-
+## 1.98 (2020-08-29)
 
 ### Other changes
 
@@ -109,49 +91,15 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [a3dae](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/a3daedc4bcf6b2a) Anirudh Bagri *2020-08-28 14:57:47*
 
 
-## [1.97](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.97) (2020-07-05)
+## 1.97 (2020-07-05)
 
+## 1.96 (2020-07-05)
 
+## 1.95 (2020-07-04)
 
+## 1.93 (2020-07-02)
 
-
-
-
-
-## [1.96](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.96) (2020-07-05)
-
-
-
-
-
-
-
-
-## [1.95](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.95) (2020-07-04)
-
-
-
-
-
-
-
-
-## [1.93](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.93) (2020-07-02)
-
-
-
-
-
-
-
-
-## [1.92](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.92) (2020-03-10)
-
-
-
-
-
-
+## 1.92 (2020-03-10)
 
 ### Other changes
 
@@ -161,13 +109,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [0c1b0](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/0c1b07c3ee2659d) Tomas Bjerre *2020-03-10 15:28:58*
 
 
-## [1.91](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.91) (2020-03-09)
-
-
-
-
-
-
+## 1.91 (2020-03-09)
 
 ### Other changes
 
@@ -187,13 +129,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [b4168](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/b41689fab7a557a) Tomas Bjerre *2019-09-28 07:03:52*
 
 
-## [1.90](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.90) (2019-06-16)
-
-
-
-
-
-
+## 1.90 (2019-06-16)
 
 ### Other changes
 
@@ -203,13 +139,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [f811c](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/f811cf5f5880b17) Tomas Bjerre *2019-06-16 16:36:03*
 
 
-## [1.89](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.89) (2019-06-16)
-
-
-
-
-
-
+## 1.89 (2019-06-16)
 
 ### Other changes
 
@@ -219,13 +149,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [06e73](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/06e7315f000d98b) Tomas Bjerre *2019-06-16 07:35:21*
 
 
-## [1.88](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.88) (2019-06-12)
-
-
-
-
-
-
+## 1.88 (2019-06-12)
 
 ### Other changes
 
@@ -240,13 +164,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [98443](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/984434f146731b7) Tomas Bjerre *2019-06-01 13:40:25*
 
 
-## [1.87](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.87) (2019-04-24)
-
-
-
-
-
-
+## 1.87 (2019-04-24)
 
 ### Other changes
 
@@ -256,13 +174,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [857a3](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/857a346169fa5ba) Tomas Bjerre *2019-04-24 16:39:39*
 
 
-## [1.86](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.86) (2019-03-31)
-
-
-
-
-
-
+## 1.86 (2019-03-31)
 
 ### Other changes
 
@@ -272,13 +184,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [98403](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/98403c25aa6a727) Tomas Bjerre *2019-03-31 13:20:37*
 
 
-## [1.85](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.85) (2019-03-31)
-
-
-
-
-
-
+## 1.85 (2019-03-31)
 
 ### Other changes
 
@@ -288,13 +194,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [8a876](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/8a8769baee1edf9) Tomas Bjerre *2019-03-31 12:50:56*
 
 
-## [1.84](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.84) (2019-03-31)
-
-
-
-
-
-
+## 1.84 (2019-03-31)
 
 ### Other changes
 
@@ -304,13 +204,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [5297e](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/5297e64ba527f6f) Tomas Bjerre *2019-03-31 10:48:22*
 
 
-## [1.83](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.83) (2019-03-31)
-
-
-
-
-
-
+## 1.83 (2019-03-31)
 
 ### Other changes
 
@@ -320,13 +214,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [54fd3](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/54fd3ae16205195) Tomas Bjerre *2019-03-31 08:58:31*
 
 
-## [1.82](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.82) (2019-03-30)
-
-
-
-
-
-
+## 1.82 (2019-03-30)
 
 ### Other changes
 
@@ -341,13 +229,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [75860](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/75860d638b30000) Tomas Bjerre *2019-03-29 14:56:55*
 
 
-## [1.81](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.81) (2019-03-23)
-
-
-
-
-
-
+## 1.81 (2019-03-23)
 
 ### Other changes
 
@@ -357,13 +239,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [8661e](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/8661e5c16d25fa7) Tomas Bjerre *2019-03-23 15:07:07*
 
 
-## [1.80](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.80) (2019-03-13)
-
-
-
-
-
-
+## 1.80 (2019-03-13)
 
 ### Other changes
 
@@ -373,13 +249,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [9543e](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/9543ece4c3d7ac2) Tomas Bjerre *2019-03-13 19:23:46*
 
 
-## [1.79](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.79) (2019-03-07)
-
-
-
-
-
-
+## 1.79 (2019-03-07)
 
 ### Other changes
 
@@ -389,13 +259,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [29100](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/291007c50c3af06) Tomas Bjerre *2019-03-07 15:56:36*
 
 
-## [1.78](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.78) (2019-02-16)
-
-
-
-
-
-
+## 1.78 (2019-02-16)
 
 ### Other changes
 
@@ -405,13 +269,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [7f02a](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/7f02a0ea46314b1) Tomas Bjerre *2019-02-16 19:49:48*
 
 
-## [1.77](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.77) (2019-02-16)
-
-
-
-
-
-
+## 1.77 (2019-02-16)
 
 ### Other changes
 
@@ -421,13 +279,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [fb65d](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/fb65dc1a3e684c3) Tomas Bjerre *2019-02-16 18:55:20*
 
 
-## [1.76](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.76) (2019-02-11)
-
-
-
-
-
-
+## 1.76 (2019-02-11)
 
 ### Other changes
 
@@ -437,13 +289,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [a193d](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/a193d24b08cda34) Tomas Bjerre *2019-02-11 18:30:03*
 
 
-## [1.75](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.75) (2019-01-29)
-
-
-
-
-
-
+## 1.75 (2019-01-29)
 
 ### Other changes
 
@@ -458,13 +304,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [fa894](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/fa8949768e1e255) Tomas Bjerre *2019-01-25 19:43:49*
 
 
-## [1.74](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.74) (2019-01-14)
-
-
-
-
-
-
+## 1.74 (2019-01-14)
 
 ### Other changes
 
@@ -474,13 +314,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [569b3](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/569b3673ed2b968) Tomas Bjerre *2019-01-14 17:45:44*
 
 
-## [1.73](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.73) (2019-01-09)
-
-
-
-
-
-
+## 1.73 (2019-01-09)
 
 ### Other changes
 
@@ -490,13 +324,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [dbe87](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/dbe87b4fbdd704d) Tomas Bjerre *2019-01-09 19:39:31*
 
 
-## [1.72](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.72) (2019-01-02)
-
-
-
-
-
-
+## 1.72 (2019-01-02)
 
 ### Other changes
 
@@ -506,13 +334,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [386f5](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/386f56bbb025a8f) Tomas Bjerre *2019-01-02 21:14:32*
 
 
-## [1.71](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.71) (2018-12-13)
-
-
-
-
-
-
+## 1.71 (2018-12-13)
 
 ### Other changes
 
@@ -532,13 +354,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [40666](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/40666bfdee58a13) Frederik Boster *2018-12-13 15:47:14*
 
 
-## [1.70](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.70) (2018-10-08)
-
-
-
-
-
-
+## 1.70 (2018-10-08)
 
 ### Other changes
 
@@ -548,13 +364,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [60c6d](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/60c6d8daa48742c) Tomas Bjerre *2018-10-08 17:13:09*
 
 
-## [1.69](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.69) (2018-10-06)
-
-
-
-
-
-
+## 1.69 (2018-10-06)
 
 ### Other changes
 
@@ -564,13 +374,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [c95b4](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/c95b4317810cf96) Tomas Bjerre *2018-10-06 06:35:57*
 
 
-## [1.68](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.68) (2018-10-02)
-
-
-
-
-
-
+## 1.68 (2018-10-02)
 
 ### Other changes
 
@@ -588,13 +392,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [2dc90](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/2dc9003ea81e692) Peijie Liu *2018-10-02 14:02:59*
 
 
-## [1.67](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.67) (2018-09-26)
-
-
-
-
-
-
+## 1.67 (2018-09-26)
 
 ### Other changes
 
@@ -604,13 +402,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [4db31](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/4db31be2620cb39) Tomas Bjerre *2018-09-26 16:35:50*
 
 
-## [1.66](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.66) (2018-09-23)
-
-
-
-
-
-
+## 1.66 (2018-09-23)
 
 ### Other changes
 
@@ -620,13 +412,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [e2b1d](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/e2b1d5734000c14) Tomas Bjerre *2018-09-23 12:49:32*
 
 
-## [1.65](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.65) (2018-09-20)
-
-
-
-
-
-
+## 1.65 (2018-09-20)
 
 ### Other changes
 
@@ -636,13 +422,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [77db9](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/77db969a613ec38) Tomas Bjerre *2018-09-20 23:49:32*
 
 
-## [1.64](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.64) (2018-09-20)
-
-
-
-
-
-
+## 1.64 (2018-09-20)
 
 ### Other changes
 
@@ -652,13 +432,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [6a449](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/6a4494cd199373a) Tomas Bjerre *2018-09-20 14:11:13*
 
 
-## [1.63](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.63) (2018-09-19)
-
-
-
-
-
-
+## 1.63 (2018-09-19)
 
 ### Other changes
 
@@ -668,13 +442,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [a5776](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/a577689a2eb18ca) Tomas Bjerre *2018-09-19 12:26:41*
 
 
-## [1.62](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.62) (2018-09-18)
-
-
-
-
-
-
+## 1.62 (2018-09-18)
 
 ### Other changes
 
@@ -684,13 +452,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [fe98d](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/fe98dad1236a392) Tomas Bjerre *2018-09-18 19:17:48*
 
 
-## [1.61](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.61) (2018-09-18)
-
-
-
-
-
-
+## 1.61 (2018-09-18)
 
 ### Other changes
 
@@ -700,13 +462,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [45439](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/45439c67e39ec14) Tomas Bjerre *2018-09-18 15:56:08*
 
 
-## [1.60](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.60) (2018-09-18)
-
-
-
-
-
-
+## 1.60 (2018-09-18)
 
 ### Other changes
 
@@ -716,13 +472,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [c7e82](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/c7e82ae3698a44a) Tomas Bjerre *2018-09-18 09:48:58*
 
 
-## [1.59](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.59) (2018-09-18)
-
-
-
-
-
-
+## 1.59 (2018-09-18)
 
 ### Other changes
 
@@ -732,13 +482,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [d5bd6](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/d5bd660676ee31b) Tomas Bjerre *2018-09-18 09:34:00*
 
 
-## [1.58](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.58) (2018-09-18)
-
-
-
-
-
-
+## 1.58 (2018-09-18)
 
 ### Other changes
 
@@ -748,13 +492,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [92bc0](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/92bc0f7e922b026) Tomas Bjerre *2018-09-18 08:25:08*
 
 
-## [1.57](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.57) (2018-09-18)
-
-
-
-
-
-
+## 1.57 (2018-09-18)
 
 ### Other changes
 
@@ -764,13 +502,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [e8e68](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/e8e683457224b68) Tomas Bjerre *2018-09-18 07:46:33*
 
 
-## [1.56](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.56) (2018-09-17)
-
-
-
-
-
-
+## 1.56 (2018-09-17)
 
 ### Other changes
 
@@ -780,13 +512,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [ef9cf](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/ef9cf692c04a118) Tomas Bjerre *2018-09-17 13:32:10*
 
 
-## [1.55](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.55) (2018-09-15)
-
-
-
-
-
-
+## 1.55 (2018-09-15)
 
 ### Other changes
 
@@ -796,13 +522,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [cba77](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/cba77400e34ef7f) Tomas Bjerre *2018-09-15 07:59:32*
 
 
-## [1.54](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.54) (2018-09-12)
-
-
-
-
-
-
+## 1.54 (2018-09-12)
 
 ### Other changes
 
@@ -812,13 +532,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [54d69](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/54d69ce9a83237b) Tomas Bjerre *2018-09-12 20:46:49*
 
 
-## [1.53](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.53) (2018-07-09)
-
-
-
-
-
-
+## 1.53 (2018-07-09)
 
 ### Other changes
 
@@ -828,13 +542,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [e06f0](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/e06f02e954a8cc8) Tomas Bjerre *2018-07-09 11:03:05*
 
 
-## [1.52](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.52) (2018-07-06)
-
-
-
-
-
-
+## 1.52 (2018-07-06)
 
 ### Other changes
 
@@ -849,13 +557,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [a0c2b](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/a0c2b0f1d922fbb) Frederik Boster *2018-07-06 12:41:19*
 
 
-## [1.51](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.51) (2018-07-05)
-
-
-
-
-
-
+## 1.51 (2018-07-05)
 
 ### Other changes
 
@@ -871,13 +573,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [5fd8e](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/5fd8e3af5126beb) stoesselt *2018-07-05 13:04:03*
 
 
-## [1.50](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.50) (2018-07-04)
-
-
-
-
-
-
+## 1.50 (2018-07-04)
 
 ### Other changes
 
@@ -887,13 +583,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [a59a2](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/a59a2ee59c5a1c2) Tomas Bjerre *2018-07-04 18:13:57*
 
 
-## [1.49](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.49) (2018-07-04)
-
-
-
-
-
-
+## 1.49 (2018-07-04)
 
 ### Other changes
 
@@ -903,13 +593,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [dead3](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/dead345cae1fa1b) Tomas Bjerre *2018-07-04 12:56:14*
 
 
-## [1.48](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.48) (2018-02-13)
-
-
-
-
-
-
+## 1.48 (2018-02-13)
 
 ### Other changes
 
@@ -919,13 +603,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [68c09](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/68c09c2d9836709) Tomas Bjerre *2018-02-13 18:59:38*
 
 
-## [1.47](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.47) (2018-02-10)
-
-
-
-
-
-
+## 1.47 (2018-02-10)
 
 ### Other changes
 
@@ -935,13 +613,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [e8cd8](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/e8cd87fdd59f777) Tomas Bjerre *2018-02-10 07:55:37*
 
 
-## [1.46](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.46) (2018-02-10)
-
-
-
-
-
-
+## 1.46 (2018-02-10)
 
 ### Other changes
 
@@ -951,13 +623,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [f8b8d](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/f8b8d772bb455fc) Tomas Bjerre *2018-02-10 07:38:54*
 
 
-## [1.45](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.45) (2018-02-06)
-
-
-
-
-
-
+## 1.45 (2018-02-06)
 
 ### Other changes
 
@@ -972,13 +638,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [3173d](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/3173d02da2df549) Tomas Bjerre *2018-02-06 17:59:33*
 
 
-## [1.43](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.43) (2018-01-14)
-
-
-
-
-
-
+## 1.43 (2018-01-14)
 
 ### Other changes
 
@@ -988,13 +648,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [b39df](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/b39df0b7481f4f8) Tomas Bjerre *2018-01-14 11:53:49*
 
 
-## [1.42](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.42) (2017-12-31)
-
-
-
-
-
-
+## 1.42 (2017-12-31)
 
 ### Other changes
 
@@ -1004,13 +658,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [9daaa](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/9daaa06247f67a0) Tomas Bjerre *2017-12-31 11:47:43*
 
 
-## [1.41](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.41) (2017-12-25)
-
-
-
-
-
-
+## 1.41 (2017-12-25)
 
 ### Other changes
 
@@ -1025,13 +673,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [65dac](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/65dacc19718859e) Tomas Bjerre *2017-12-25 16:12:52*
 
 
-## [1.40](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.40) (2017-12-22)
-
-
-
-
-
-
+## 1.40 (2017-12-22)
 
 ### Other changes
 
@@ -1041,13 +683,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [86b16](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/86b16b4d20add98) Tomas Bjerre *2017-12-22 18:57:11*
 
 
-## [1.39](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.39) (2017-12-22)
-
-
-
-
-
-
+## 1.39 (2017-12-22)
 
 ### Other changes
 
@@ -1057,13 +693,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [19e05](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/19e05ef49d841ac) Tomas Bjerre *2017-12-22 12:41:07*
 
 
-## [1.38](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.38) (2017-12-21)
-
-
-
-
-
-
+## 1.38 (2017-12-21)
 
 ### Other changes
 
@@ -1078,13 +708,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [cd0e9](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/cd0e98f14598b8d) Tomas Bjerre *2017-12-21 14:46:08*
 
 
-## [1.36](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.36) (2017-12-20)
-
-
-
-
-
-
+## 1.36 (2017-12-20)
 
 ### Other changes
 
@@ -1099,13 +723,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [3fd97](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/3fd97cc3246284b) Tomas Bjerre *2017-12-20 20:27:37*
 
 
-## [1.34](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.34) (2017-12-07)
-
-
-
-
-
-
+## 1.34 (2017-12-07)
 
 ### Other changes
 
@@ -1115,13 +733,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [5bf64](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/5bf64160d6ca74c) Tomas Bjerre *2017-12-07 16:01:06*
 
 
-## [1.33](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.33) (2017-10-13)
-
-
-
-
-
-
+## 1.33 (2017-10-13)
 
 ### Other changes
 
@@ -1131,13 +743,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [c08ea](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/c08ea355348f350) Tomas Bjerre *2017-10-13 09:40:16*
 
 
-## [1.32](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.32) (2017-10-09)
-
-
-
-
-
-
+## 1.32 (2017-10-09)
 
 ### Other changes
 
@@ -1152,13 +758,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [37eee](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/37eeea9ff213c8a) Tomas Bjerre *2017-09-02 20:08:21*
 
 
-## [1.31](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.31) (2017-09-02)
-
-
-
-
-
-
+## 1.31 (2017-09-02)
 
 ### Other changes
 
@@ -1168,13 +768,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [ff4e2](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/ff4e27423a411f7) Tomas Bjerre *2017-09-02 11:50:15*
 
 
-## [1.30](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.30) (2017-09-02)
-
-
-
-
-
-
+## 1.30 (2017-09-02)
 
 ### Other changes
 
@@ -1187,13 +781,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [4e2cc](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/4e2cc9662e53323) Tomas Bjerre *2017-09-02 09:19:51*
 
 
-## [1.29](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.29) (2017-08-11)
-
-
-
-
-
-
+## 1.29 (2017-08-11)
 
 ### Other changes
 
@@ -1203,13 +791,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [fdff3](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/fdff3f2ae865d81) Tomas Bjerre *2017-08-11 10:04:40*
 
 
-## [1.28](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.28) (2017-08-02)
-
-
-
-
-
-
+## 1.28 (2017-08-02)
 
 ### Other changes
 
@@ -1219,13 +801,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [7122d](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/7122da4322e2f6e) Tomas Bjerre *2017-08-02 15:29:50*
 
 
-## [1.27](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.27) (2017-07-15)
-
-
-
-
-
-
+## 1.27 (2017-07-15)
 
 ### Other changes
 
@@ -1235,13 +811,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [b7292](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/b729287b348333d) Tomas Bjerre *2017-07-15 09:17:53*
 
 
-## [1.26](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.26) (2017-04-11)
-
-
-
-
-
-
+## 1.26 (2017-04-11)
 
 ### Other changes
 
@@ -1251,13 +821,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [3c906](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/3c906fabbbe0bcf) Tomas Bjerre *2017-04-11 18:22:55*
 
 
-## [1.25](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.25) (2017-04-10)
-
-
-
-
-
-
+## 1.25 (2017-04-10)
 
 ### Other changes
 
@@ -1267,13 +831,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [fdf8a](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/fdf8a28dc7502fd) Tomas Bjerre *2017-04-10 18:20:41*
 
 
-## [1.24](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.24) (2017-03-30)
-
-
-
-
-
-
+## 1.24 (2017-03-30)
 
 ### Other changes
 
@@ -1283,13 +841,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [0b835](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/0b83521291bb7d4) Tomas Bjerre *2017-03-30 17:31:51*
 
 
-## [1.23](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.23) (2017-03-17)
-
-
-
-
-
-
+## 1.23 (2017-03-17)
 
 ### Other changes
 
@@ -1299,13 +851,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [57b78](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/57b78fb4ea56b2b) Tomas Bjerre *2017-03-17 17:33:08*
 
 
-## [1.22](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.22) (2017-03-17)
-
-
-
-
-
-
+## 1.22 (2017-03-17)
 
 ### Other changes
 
@@ -1315,13 +861,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [e53e0](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/e53e0682214ea70) Tomas Bjerre *2017-03-17 14:29:15*
 
 
-## [1.21](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.21) (2017-02-19)
-
-
-
-
-
-
+## 1.21 (2017-02-19)
 
 ### Other changes
 
@@ -1331,13 +871,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [752b0](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/752b07b7507e319) Tomas Bjerre *2017-02-19 21:21:54*
 
 
-## [1.20](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.20) (2017-02-18)
-
-
-
-
-
-
+## 1.20 (2017-02-18)
 
 ### Other changes
 
@@ -1347,13 +881,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [76aa7](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/76aa7b3a0723981) Tomas Bjerre *2017-02-18 21:49:47*
 
 
-## [1.19](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.19) (2017-02-16)
-
-
-
-
-
-
+## 1.19 (2017-02-16)
 
 ### Other changes
 
@@ -1363,13 +891,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [29b87](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/29b87c6a9f73fa1) Tomas Bjerre *2017-02-16 21:06:56*
 
 
-## [1.18](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.18) (2017-02-06)
-
-
-
-
-
-
+## 1.18 (2017-02-06)
 
 ### Other changes
 
@@ -1384,13 +906,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [41d9c](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/41d9c7f7e91e178) Tomas Bjerre *2016-12-21 18:31:41*
 
 
-## [1.17](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.17) (2016-12-21)
-
-
-
-
-
-
+## 1.17 (2016-12-21)
 
 ### Other changes
 
@@ -1406,13 +922,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [9209e](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/9209e4c5df3a33c) Tomas Bjerre *2016-12-21 16:58:03*
 
 
-## [1.16](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.16) (2016-12-12)
-
-
-
-
-
-
+## 1.16 (2016-12-12)
 
 ### Other changes
 
@@ -1422,13 +932,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [c2f04](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/c2f0453d2880e2f) Tomas Bjerre *2016-12-12 17:09:40*
 
 
-## [1.15](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.15) (2016-11-06)
-
-
-
-
-
-
+## 1.15 (2016-11-06)
 
 ### Other changes
 
@@ -1438,13 +942,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [e407e](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/e407e22ac35361b) Tomas Bjerre *2016-11-06 06:57:28*
 
 
-## [1.14](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.14) (2016-11-01)
-
-
-
-
-
-
+## 1.14 (2016-11-01)
 
 ### Other changes
 
@@ -1454,13 +952,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [8e074](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/8e074647617c76d) Tomas Bjerre *2016-11-01 19:56:02*
 
 
-## [1.13](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.13) (2016-11-01)
-
-
-
-
-
-
+## 1.13 (2016-11-01)
 
 ### Other changes
 
@@ -1470,13 +962,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [576f3](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/576f30c6aeafa05) Tomas Bjerre *2016-11-01 16:58:18*
 
 
-## [1.12](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.12) (2016-10-31)
-
-
-
-
-
-
+## 1.12 (2016-10-31)
 
 ### Other changes
 
@@ -1486,13 +972,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [38956](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/38956ecff098aec) Tomas Bjerre *2016-10-31 21:17:02*
 
 
-## [1.11](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.11) (2016-10-31)
-
-
-
-
-
-
+## 1.11 (2016-10-31)
 
 ### Other changes
 
@@ -1507,13 +987,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [a7c57](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/a7c57c68c22bbc1) Tomas Bjerre *2016-10-31 20:12:41*
 
 
-## [1.10](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.10) (2016-10-27)
-
-
-
-
-
-
+## 1.10 (2016-10-27)
 
 ### Other changes
 
@@ -1523,13 +997,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [ea4ca](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/ea4ca5639f75022) Tomas Bjerre *2016-10-27 17:00:54*
 
 
-## [1.9](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.9) (2016-10-26)
-
-
-
-
-
-
+## 1.9 (2016-10-26)
 
 ### Other changes
 
@@ -1539,13 +1007,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [2ad39](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/2ad392e6446091f) Tomas Bjerre *2016-10-26 15:53:42*
 
 
-## [1.8](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.8) (2016-10-25)
-
-
-
-
-
-
+## 1.8 (2016-10-25)
 
 ### Other changes
 
@@ -1555,13 +1017,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [13866](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/138665e1f556abd) Tomas Bjerre *2016-10-25 18:14:27*
 
 
-## [1.7](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.7) (2016-10-24)
-
-
-
-
-
-
+## 1.7 (2016-10-24)
 
 ### Other changes
 
@@ -1571,13 +1027,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [e5cb7](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/e5cb74d799e022e) Tomas Bjerre *2016-10-24 17:29:59*
 
 
-## [1.6](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.6) (2016-10-03)
-
-
-
-
-
-
+## 1.6 (2016-10-03)
 
 ### Other changes
 
@@ -1587,13 +1037,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [b318a](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/b318ab5bbe6647d) Tomas Bjerre *2016-10-03 17:09:38*
 
 
-## [1.5](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.5) (2016-10-01)
-
-
-
-
-
-
+## 1.5 (2016-10-01)
 
 ### Other changes
 
@@ -1603,13 +1047,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [6e1c3](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/6e1c3db034115ae) Tomas Bjerre *2016-10-01 11:39:06*
 
 
-## [1.4](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.4) (2016-08-19)
-
-
-
-
-
-
+## 1.4 (2016-08-19)
 
 ### Other changes
 
@@ -1619,13 +1057,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [1bd73](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/1bd7386d09197c0) Tomas Bjerre *2016-08-19 05:04:02*
 
 
-## [1.3](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.3) (2016-08-02)
-
-
-
-
-
-
+## 1.3 (2016-08-02)
 
 ### Other changes
 
@@ -1635,13 +1067,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [b9e95](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/b9e9581e16b69ab) Tomas Bjerre *2016-08-02 17:29:11*
 
 
-## [1.2](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.2) (2016-08-02)
-
-
-
-
-
-
+## 1.2 (2016-08-02)
 
 ### Other changes
 
@@ -1651,13 +1077,7 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [504ee](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/504ee8501ccb5f1) Tomas Bjerre *2016-08-02 17:14:58*
 
 
-## [1.1](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/releases/tag/1.1) (2016-07-29)
-
-
-
-
-
-
+## 1.1 (2016-07-29)
 
 ### Other changes
 
@@ -1668,4 +1088,13 @@ Changelog of violation-comments-to-bitbucket-server-lib.
 [f00b2](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/f00b2b738497013) Tomas Bjerre *2016-07-29 19:50:15*
 
 
-    
+## 1.0 (2016-07-29)
+
+### Other changes
+
+**Initial**
+
+
+[28e7c](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/28e7ce0585d9edb) Tomas Bjerre *2016-07-29 18:21:31*
+
+
