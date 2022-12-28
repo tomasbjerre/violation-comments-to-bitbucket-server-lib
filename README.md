@@ -1,6 +1,5 @@
 # Violation Comments to Bitbucket Server Lib
 
-[![Build Status](https://travis-ci.org/tomasbjerre/violation-comments-to-bitbucket-server-lib.svg?branch=master)](https://travis-ci.org/tomasbjerre/violation-comments-to-bitbucket-server-lib)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/se.bjurr.violations/violation-comments-to-bitbucket-server-lib/badge.svg)](https://maven-badges.herokuapp.com/maven-central/se.bjurr.violations/violation-comments-to-bitbucket-server-lib)
 
 This is a library that adds violation comments from static code analysis to Bitbucket Server.
