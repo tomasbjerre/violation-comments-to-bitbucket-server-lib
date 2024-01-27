@@ -2,6 +2,12 @@
 
 Changelog of violation-comments-to-bitbucket-server-lib.
 
+## 2.0.0 (2024-01-27)
+
+### Breaking changes
+
+-  JsonPath 2.9.0, Gson 2.10 and Java 11 ([02554](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/02554a337f8b471) Tomas Bjerre)  
+
 ## 1.101.4 (2022-12-28)
 
 ### Bug Fixes
