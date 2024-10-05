@@ -1,54 +1,49 @@
-{  
-   "size":1,
-   "limit":25,
-   "isLastPage":true,
-   "values":[  
-      {  
-         "properties":{  
-            "repositoryId":1
-         },
-         "id":2,
-         "version":0,
-         "text":"in diff comment",
-         "author":{  
-            "name":"admin",
-            "emailAddress":"admin@example.com",
-            "id":1,
-            "displayName":"Administrator",
-            "active":true,
-            "slug":"admin",
-            "type":"NORMAL",
-            "links":{  
-               "self":[  
-                  {  
-                     "href":"http://localhost:7990/bitbucket/users/admin"
-                  }
-               ]
+{
+  "size": 1,
+  "limit": 25,
+  "isLastPage": true,
+  "values": [
+    {
+      "properties": {
+        "repositoryId": 1
+      },
+      "id": 2,
+      "version": 0,
+      "text": "in diff comment",
+      "author": {
+        "name": "admin",
+        "emailAddress": "admin@example.com",
+        "id": 1,
+        "displayName": "Administrator",
+        "active": true,
+        "slug": "admin",
+        "type": "NORMAL",
+        "links": {
+          "self": [
+            {
+              "href": "http://localhost:7990/bitbucket/users/admin"
             }
-         },
-         "createdDate":1469641988579,
-         "updatedDate":1469641988579,
-         "comments":[  
-
-         ],
-         "anchor":{  
-            "fromHash":"0a943a29376f2336b78312d99e65da17048951db",
-            "toHash":"3ac25b2582904e4fc3e059cfb6d0ef518c4e2a7a",
-            "line":1,
-            "lineType":"ADDED",
-            "fileType":"TO",
-            "path":"basic_branching/file.txt",
-            "diffType":"EFFECTIVE"
-         },
-         "tasks":[  
-
-         ],
-         "permittedOperations":{  
-            "editable":true,
-            "deletable":true
-         }
+          ]
+        }
+      },
+      "createdDate": 1469641988579,
+      "updatedDate": 1469641988579,
+      "comments": [],
+      "anchor": {
+        "fromHash": "0a943a29376f2336b78312d99e65da17048951db",
+        "toHash": "3ac25b2582904e4fc3e059cfb6d0ef518c4e2a7a",
+        "line": 1,
+        "lineType": "ADDED",
+        "fileType": "TO",
+        "path": "basic_branching/file.txt",
+        "diffType": "EFFECTIVE"
+      },
+      "tasks": [],
+      "permittedOperations": {
+        "editable": true,
+        "deletable": true
       }
-   ],
-   "start":0
+    }
+  ],
+  "start": 0
 }
-

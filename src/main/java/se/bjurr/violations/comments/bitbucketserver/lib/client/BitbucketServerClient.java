@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import net.minidev.json.JSONArray;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.BitbucketServerInvoker.Method;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerComment;
@@ -181,7 +182,7 @@ public class BitbucketServerClient {
             + changedFile
             + "\" }}";
 
-    final LinkedHashMap<?, ?> parsed =
+    final Map<?, ?> parsed =
         this.invokeAndParse(
             this.getBitbucketServerPullRequestBase() + "/comments",
             BitbucketServerInvoker.Method.POST,
@@ -194,8 +195,7 @@ public class BitbucketServerClient {
   public BitbucketServerComment pullRequestComment(final Long commentId) {
     final String url = this.getBitbucketServerPullRequestBase() + "/comments/" + commentId;
 
-    final LinkedHashMap<?, ?> parsed =
-        this.invokeAndParse(url, BitbucketServerInvoker.Method.GET, null, "$");
+    final Map<?, ?> parsed = this.invokeAndParse(url, BitbucketServerInvoker.Method.GET, null, "$");
 
     return this.toBitbucketServerComment(parsed);
   }
@@ -223,7 +223,7 @@ public class BitbucketServerClient {
   private List<BitbucketServerComment> getComments(final String url, final String jsonPath) {
 
     final String json = this.doInvokeUrl(url, Method.GET, null);
-    List<LinkedHashMap<?, ?>> parsed = null;
+    List<Map<?, ?>> parsed;
     try {
       parsed = JsonPath.read(json, jsonPath);
     } catch (final Exception e) {
@@ -297,30 +297,27 @@ public class BitbucketServerClient {
         .replaceAll("\t", "    ");
   }
 
-  private List<BitbucketServerComment> toBitbucketServerComments(
-      final List<LinkedHashMap<?, ?>> parsed) {
+  private List<BitbucketServerComment> toBitbucketServerComments(final List<Map<?, ?>> parsed) {
     final List<BitbucketServerComment> transformed = newArrayList();
-    for (final LinkedHashMap<?, ?> from : parsed) {
+    for (final Map<?, ?> from : parsed) {
       transformed.add(this.toBitbucketServerComment(from));
     }
     return transformed;
   }
 
-  private BitbucketServerComment toBitbucketServerComment(final LinkedHashMap<?, ?> parsed) {
-    final Integer version = (Integer) parsed.get("version");
-    final String text = (String) parsed.get("text");
+  private BitbucketServerComment toBitbucketServerComment(final Map<?, ?> parsed) {
     final Integer id = (Integer) parsed.get("id");
     if (id == null) {
       throw new NullPointerException("id");
     }
 
-    List<LinkedHashMap<?, ?>> tasks = new ArrayList<LinkedHashMap<?, ?>>();
+    List<Map<?, ?>> tasks = new ArrayList<>();
     final JSONArray jsonArrayTasks = (JSONArray) parsed.get("tasks");
     if (jsonArrayTasks != null) {
       tasks = Arrays.asList(jsonArrayTasks.toArray(new LinkedHashMap<?, ?>[0]));
     }
 
-    List<LinkedHashMap<?, ?>> subComments = new ArrayList<>();
+    List<Map<?, ?>> subComments = new ArrayList<>();
     final JSONArray jsonArraySubComments = (JSONArray) parsed.get("comments");
     if (jsonArraySubComments != null) {
       subComments = Arrays.asList(jsonArraySubComments.toArray(new LinkedHashMap<?, ?>[0]));
@@ -330,6 +327,8 @@ public class BitbucketServerClient {
     final List<BitbucketServerComment> bitbucketServerSubComments =
         this.toBitbucketServerComments(subComments);
 
+    final Integer version = (Integer) parsed.get("version");
+    final String text = (String) parsed.get("text");
     final BitbucketServerComment comment = new BitbucketServerComment(version, text, id);
 
     comment.setTasks(bitbucketServerTasks);
@@ -338,17 +337,17 @@ public class BitbucketServerClient {
     return comment;
   }
 
-  private List<BitbucketServerTask> toBitbucketServerTasks(final List<LinkedHashMap<?, ?>> parsed) {
+  private List<BitbucketServerTask> toBitbucketServerTasks(final List<Map<?, ?>> parsed) {
     final List<BitbucketServerTask> bitbucketServerTasks = new ArrayList<>();
 
-    for (final LinkedHashMap<?, ?> parsedTask : parsed) {
+    for (final Map<?, ?> parsedTask : parsed) {
       bitbucketServerTasks.add(this.toBitbucketServerTask(parsedTask));
     }
 
     return bitbucketServerTasks;
   }
 
-  private BitbucketServerTask toBitbucketServerTask(final LinkedHashMap<?, ?> parsed) {
+  private BitbucketServerTask toBitbucketServerTask(final Map<?, ?> parsed) {
     final Integer id = (Integer) parsed.get("id");
     final String text = (String) parsed.get("text");
     return new BitbucketServerTask(id, text);

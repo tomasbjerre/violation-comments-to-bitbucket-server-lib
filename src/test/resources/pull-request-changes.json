@@ -1,39 +1,39 @@
-{  
-   "fromHash":"0a943a29376f2336b78312d99e65da17048951db",
-   "toHash":"3ac25b2582904e4fc3e059cfb6d0ef518c4e2a7a",
-   "values":[  
-      {  
-         "contentId":"94efe92828e29523d68baaff145f81a680bacad4",
-         "fromContentId":"d8c00a7fe6eb6a00378e103a46e3c472c084a949",
-         "path":{  
-            "components":[  
-               "basic_branching",
-               "file.txt"
-            ],
-            "parent":"basic_branching",
-            "name":"file.txt",
-            "extension":"txt",
-            "toString":"basic_branching/file.txt"
-         },
-         "executable":false,
-         "percentUnchanged":-1,
-         "type":"MODIFY",
-         "nodeType":"FILE",
-         "srcExecutable":false,
-         "links":{  
-            "self":[  
-               null
-            ]
-         },
-         "properties":{  
-            "activeComments":1,
-            "orphanedComments":0
-         }
+{
+  "fromHash": "0a943a29376f2336b78312d99e65da17048951db",
+  "toHash": "3ac25b2582904e4fc3e059cfb6d0ef518c4e2a7a",
+  "values": [
+    {
+      "contentId": "94efe92828e29523d68baaff145f81a680bacad4",
+      "fromContentId": "d8c00a7fe6eb6a00378e103a46e3c472c084a949",
+      "path": {
+        "components": [
+          "basic_branching",
+          "file.txt"
+        ],
+        "parent": "basic_branching",
+        "name": "file.txt",
+        "extension": "txt",
+        "toString": "basic_branching/file.txt"
+      },
+      "executable": false,
+      "percentUnchanged": -1,
+      "type": "MODIFY",
+      "nodeType": "FILE",
+      "srcExecutable": false,
+      "links": {
+        "self": [
+          null
+        ]
+      },
+      "properties": {
+        "activeComments": 1,
+        "orphanedComments": 0
       }
-   ],
-   "size":1,
-   "isLastPage":true,
-   "start":0,
-   "limit":25,
-   "nextPageStart":null
+    }
+  ],
+  "size": 1,
+  "isLastPage": true,
+  "start": 0,
+  "limit": 25,
+  "nextPageStart": null
 }

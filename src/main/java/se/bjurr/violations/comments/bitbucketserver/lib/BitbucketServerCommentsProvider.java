@@ -36,7 +36,7 @@ import se.bjurr.violations.lib.ViolationsLogger;
 import se.bjurr.violations.lib.reports.ReportsFinder;
 
 public class BitbucketServerCommentsProvider implements CommentsProvider {
-  private static final Integer BITBUCKET_MAX_COMMENT_SIZE = 32767;
+  private static final Integer BITBUCKET_MAX_COMMENT_SIZE = 32_767;
 
   private final BitbucketServerClient client;
 

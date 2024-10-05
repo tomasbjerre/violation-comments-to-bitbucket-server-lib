@@ -5,7 +5,6 @@ import static com.google.common.base.Strings.isNullOrEmpty;
 import static java.util.logging.Level.INFO;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.CookieHandler;
 import java.net.CookieManager;
@@ -86,7 +85,6 @@ public class BitbucketServerInvoker {
       final String postContent,
       final String authorizationValue,
       final ProxyConfig proxyConfig) {
-    BufferedReader bufferedReader = null;
     try {
       CookieHandler.setDefault(new CookieManager(null, CookiePolicy.ACCEPT_ALL));
       // Preparation of the request
@@ -107,7 +105,7 @@ public class BitbucketServerInvoker {
       }
       request.setURI(this.convertToURIEscapingIllegalCharacters(url));
       final RequestConfig.Builder requestBuilder =
-          RequestConfig.custom().setConnectionRequestTimeout(30000).setConnectTimeout(30000);
+          RequestConfig.custom().setConnectionRequestTimeout(30_000).setConnectTimeout(30_000);
       request.setConfig(requestBuilder.build());
       request.addHeader("Authorization", authorizationValue);
       request.addHeader("X-Atlassian-Token", "no-check");
@@ -146,29 +144,21 @@ public class BitbucketServerInvoker {
       if (response.getEntity() == null) {
         return null;
       }
-      bufferedReader =
-          new BufferedReader(new InputStreamReader(response.getEntity().getContent(), UTF_8));
-      final StringBuilder stringBuilder = new StringBuilder();
-      String line = null;
-      while ((line = bufferedReader.readLine()) != null) {
-        stringBuilder.append(line + "\n");
+      try (BufferedReader bufferedReader =
+          new BufferedReader(new InputStreamReader(response.getEntity().getContent(), UTF_8))) {
+        final StringBuilder stringBuilder = new StringBuilder();
+        String line;
+        while ((line = bufferedReader.readLine()) != null) {
+          stringBuilder.append(line + "\n");
+        }
+        final String json = stringBuilder.toString();
+        if (wasNotOk) {
+          violationsLogger.log(INFO, "Response:\n" + json);
+        }
+        return json;
       }
-      final String json = stringBuilder.toString();
-      if (wasNotOk) {
-        violationsLogger.log(INFO, "Response:\n" + json);
-      }
-      return json;
     } catch (final Throwable e) {
       throw new RuntimeException("Error calling:\n" + url + "\n" + method + "\n" + postContent, e);
-    } finally {
-      try {
-        if (bufferedReader != null) {
-          bufferedReader.close();
-        }
-
-      } catch (final IOException e) {
-        throw new RuntimeException(e.getMessage(), e);
-      }
     }
   }
 

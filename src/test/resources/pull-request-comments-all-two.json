@@ -1,145 +1,137 @@
-{  
-   "size":3,
-   "limit":500,
-   "isLastPage":true,
-   "values":[  
-      {  
-         "id":40,
-         "createdDate":1550346390735,
-         "user":{  
-            "name":"admin",
-            "emailAddress":"admin@example.com",
-            "id":1,
-            "displayName":"Administrator",
-            "active":true,
-            "slug":"admin",
-            "type":"NORMAL",
-            "links":{  
-               "self":[  
-                  {  
-                     "href":"http://localhost:7990/bitbucket/users/admin"
-                  }
-               ]
+{
+  "size": 3,
+  "limit": 500,
+  "isLastPage": true,
+  "values": [
+    {
+      "id": 40,
+      "createdDate": 1550346390735,
+      "user": {
+        "name": "admin",
+        "emailAddress": "admin@example.com",
+        "id": 1,
+        "displayName": "Administrator",
+        "active": true,
+        "slug": "admin",
+        "type": "NORMAL",
+        "links": {
+          "self": [
+            {
+              "href": "http://localhost:7990/bitbucket/users/admin"
             }
-         },
-         "action":"COMMENTED",
-         "commentAction":"ADDED",
-         "comment":{  
-            "properties":{  
-               "repositoryId":1
-            },
-            "id":23,
-            "version":0,
-            "text":"this is another comment\n",
-            "author":{  
-               "name":"admin",
-               "emailAddress":"admin@example.com",
-               "id":1,
-               "displayName":"Administrator",
-               "active":true,
-               "slug":"admin",
-               "type":"NORMAL",
-               "links":{  
-                  "self":[  
-                     {  
-                        "href":"http://localhost:7990/bitbucket/users/admin"
-                     }
-                  ]
-               }
-            },
-            "createdDate":1550346390735,
-            "updatedDate":1550346390735,
-            "comments":[  
-
-            ],
-            "tasks":[  
-
-            ],
-            "permittedOperations":{  
-               "editable":true,
-               "deletable":true
-            }
-         }
+          ]
+        }
       },
-      {  
-         "id":39,
-         "createdDate":1550346384561,
-         "user":{  
-            "name":"admin",
-            "emailAddress":"admin@example.com",
-            "id":1,
-            "displayName":"Administrator",
-            "active":true,
-            "slug":"admin",
-            "type":"NORMAL",
-            "links":{  
-               "self":[  
-                  {  
-                     "href":"http://localhost:7990/bitbucket/users/admin"
-                  }
-               ]
-            }
-         },
-         "action":"COMMENTED",
-         "commentAction":"ADDED",
-         "comment":{  
-            "properties":{  
-               "repositoryId":1
-            },
-            "id":22,
-            "version":0,
-            "text":"this is a comment",
-            "author":{  
-               "name":"admin",
-               "emailAddress":"admin@example.com",
-               "id":1,
-               "displayName":"Administrator",
-               "active":true,
-               "slug":"admin",
-               "type":"NORMAL",
-               "links":{  
-                  "self":[  
-                     {  
-                        "href":"http://localhost:7990/bitbucket/users/admin"
-                     }
-                  ]
-               }
-            },
-            "createdDate":1550346384561,
-            "updatedDate":1550346384561,
-            "comments":[  
-
-            ],
-            "tasks":[  
-
-            ],
-            "permittedOperations":{  
-               "editable":true,
-               "deletable":true
-            }
-         }
-      },
-      {  
-         "id":2,
-         "createdDate":1550311425057,
-         "user":{  
-            "name":"admin",
-            "emailAddress":"admin@example.com",
-            "id":1,
-            "displayName":"Administrator",
-            "active":true,
-            "slug":"admin",
-            "type":"NORMAL",
-            "links":{  
-               "self":[  
-                  {  
-                     "href":"http://localhost:7990/bitbucket/users/admin"
-                  }
-               ]
-            }
-         },
-         "action":"OPENED"
+      "action": "COMMENTED",
+      "commentAction": "ADDED",
+      "comment": {
+        "properties": {
+          "repositoryId": 1
+        },
+        "id": 23,
+        "version": 0,
+        "text": "this is another comment\n",
+        "author": {
+          "name": "admin",
+          "emailAddress": "admin@example.com",
+          "id": 1,
+          "displayName": "Administrator",
+          "active": true,
+          "slug": "admin",
+          "type": "NORMAL",
+          "links": {
+            "self": [
+              {
+                "href": "http://localhost:7990/bitbucket/users/admin"
+              }
+            ]
+          }
+        },
+        "createdDate": 1550346390735,
+        "updatedDate": 1550346390735,
+        "comments": [],
+        "tasks": [],
+        "permittedOperations": {
+          "editable": true,
+          "deletable": true
+        }
       }
-   ],
-   "start":0
+    },
+    {
+      "id": 39,
+      "createdDate": 1550346384561,
+      "user": {
+        "name": "admin",
+        "emailAddress": "admin@example.com",
+        "id": 1,
+        "displayName": "Administrator",
+        "active": true,
+        "slug": "admin",
+        "type": "NORMAL",
+        "links": {
+          "self": [
+            {
+              "href": "http://localhost:7990/bitbucket/users/admin"
+            }
+          ]
+        }
+      },
+      "action": "COMMENTED",
+      "commentAction": "ADDED",
+      "comment": {
+        "properties": {
+          "repositoryId": 1
+        },
+        "id": 22,
+        "version": 0,
+        "text": "this is a comment",
+        "author": {
+          "name": "admin",
+          "emailAddress": "admin@example.com",
+          "id": 1,
+          "displayName": "Administrator",
+          "active": true,
+          "slug": "admin",
+          "type": "NORMAL",
+          "links": {
+            "self": [
+              {
+                "href": "http://localhost:7990/bitbucket/users/admin"
+              }
+            ]
+          }
+        },
+        "createdDate": 1550346384561,
+        "updatedDate": 1550346384561,
+        "comments": [],
+        "tasks": [],
+        "permittedOperations": {
+          "editable": true,
+          "deletable": true
+        }
+      }
+    },
+    {
+      "id": 2,
+      "createdDate": 1550311425057,
+      "user": {
+        "name": "admin",
+        "emailAddress": "admin@example.com",
+        "id": 1,
+        "displayName": "Administrator",
+        "active": true,
+        "slug": "admin",
+        "type": "NORMAL",
+        "links": {
+          "self": [
+            {
+              "href": "http://localhost:7990/bitbucket/users/admin"
+            }
+          ]
+        }
+      },
+      "action": "OPENED"
+    }
+  ],
+  "start": 0
 }

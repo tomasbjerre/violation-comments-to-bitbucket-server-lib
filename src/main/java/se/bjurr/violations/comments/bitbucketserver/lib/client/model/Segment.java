@@ -7,59 +7,56 @@ public class Segment {
   private final List<Line> lines;
 
   public Segment() {
-    type = null;
-    lines = null;
+    this.type = null;
+    this.lines = null;
   }
 
-  public Segment(DIFFTYPE type, List<Line> lines) {
+  public Segment(final DIFFTYPE type, final List<Line> lines) {
     this.type = type;
     this.lines = lines;
   }
 
   @Override
-  public boolean equals(Object obj) {
+  public boolean equals(final Object obj) {
     if (this == obj) {
       return true;
     }
     if (obj == null) {
       return false;
     }
-    if (getClass() != obj.getClass()) {
+    if (this.getClass() != obj.getClass()) {
       return false;
     }
-    Segment other = (Segment) obj;
-    if (lines == null) {
+    final Segment other = (Segment) obj;
+    if (this.lines == null) {
       if (other.lines != null) {
         return false;
       }
-    } else if (!lines.equals(other.lines)) {
+    } else if (!this.lines.equals(other.lines)) {
       return false;
     }
-    if (type != other.type) {
-      return false;
-    }
-    return true;
+    return this.type == other.type;
   }
 
   public List<Line> getLines() {
-    return lines;
+    return this.lines;
   }
 
   public DIFFTYPE getType() {
-    return type;
+    return this.type;
   }
 
   @Override
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + (lines == null ? 0 : lines.hashCode());
-    result = prime * result + (type == null ? 0 : type.hashCode());
+    result = prime * result + (this.lines == null ? 0 : this.lines.hashCode());
+    result = prime * result + (this.type == null ? 0 : this.type.hashCode());
     return result;
   }
 
   @Override
   public String toString() {
-    return "Segment [type=" + type + ", lines=" + lines + "]";
+    return "Segment [type=" + this.type + ", lines=" + this.lines + "]";
   }
 }

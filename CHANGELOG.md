@@ -1,6 +1,3 @@
-# violation-comments-to-bitbucket-server-lib changelog
-
-Changelog of violation-comments-to-bitbucket-server-lib.
 
 ## 2.0.0 (2024-01-27)
 

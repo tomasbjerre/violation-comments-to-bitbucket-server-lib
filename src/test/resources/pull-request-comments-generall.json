@@ -1,2716 +1,2688 @@
 {
-   "size":25,
-   "limit":25,
-   "isLastPage":false,
-   "values":[
-      {
-         "id":1188967,
-         "createdDate":1593699382487,
-         "user":{
-            "name":"username",
-            "emailAddress":"whatever@place.se",
-            "id":2812,
-            "displayName":"Serviceuser",
-            "active":true,
-            "slug":"username",
-            "type":"NORMAL",
-            "links":{
-               "self":[
-                  {
-                     "href":"http://stash.whatever.se/users/username"
-                  }
-               ]
+  "size": 25,
+  "limit": 25,
+  "isLastPage": false,
+  "values": [
+    {
+      "id": 1188967,
+      "createdDate": 1593699382487,
+      "user": {
+        "name": "username",
+        "emailAddress": "whatever@place.se",
+        "id": 2812,
+        "displayName": "Serviceuser",
+        "active": true,
+        "slug": "username",
+        "type": "NORMAL",
+        "links": {
+          "self": [
+            {
+              "href": "http://stash.whatever.se/users/username"
             }
-         },
-         "action":"COMMENTED",
-         "commentAction":"ADDED",
-         "comment":{
-            "properties":{
-               "repositoryId":1434
-            },
-            "id":196268,
-            "version":0,
-            "text":"\nWARN Pmd UnnecessaryFullyQualifiedName\n\nUnnecessary use of fully qualified name &#39;java.lang.Exception&#39; due to existing implicit import &#39;java.lang.*&#39;&#10;&#10;&#10;Code Style https://pmd.github.io/pmd-6.8.0/pmd_rules_java_codestyle.html#unnecessaryfullyqualifiedname\n            \n\n*<this is a auto generated comment from violation-comments-lib F7F8ASD8123FSDF>* *<a-1320215802>*",
-            "author":{
-               "name":"username",
-               "emailAddress":"whatever@place.se",
-               "id":2812,
-               "displayName":"Serviceuser",
-               "active":true,
-               "slug":"username",
-               "type":"NORMAL",
-               "links":{
-                  "self":[
-                     {
-                        "href":"http://stash.whatever.se/users/username"
-                     }
-                  ]
-               }
-            },
-            "createdDate":1593699382486,
-            "updatedDate":1593699382486,
-            "comments":[
-
-            ],
-            "tasks":[
-
-            ],
-            "severity":"NORMAL",
-            "state":"OPEN",
-            "permittedOperations":{
-               "editable":false,
-               "transitionable":true,
-               "deletable":true
-            }
-         },
-         "commentAnchor":{
-            "fromHash":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-            "toHash":"922937de098d3d10a9ee323c337db7e2f216be6b",
-            "line":57,
-            "lineType":"ADDED",
-            "fileType":"TO",
-            "path":"src/main/java/fold/log/KlassLogik.java",
-            "diffType":"EFFECTIVE",
-            "orphaned":false
-         },
-         "diff":{
-            "source":null,
-            "destination":{
-               "components":[
-                  "src",
-                  "main",
-                  "java",
-                  "utb",
-                  "logik",
-                  "KlassLogik.java"
-               ],
-               "parent":"src/main/java/fold/log",
-               "name":"KlassLogik.java",
-               "extension":"java",
-               "toString":"src/main/java/fold/log/KlassLogik.java"
-            },
-            "hunks":[
-               {
-                  "context":"public class KlassLogik",
-                  "sourceLine":47,
-                  "sourceSpan":16,
-                  "destinationLine":47,
-                  "destinationSpan":21,
-                  "segments":[
-                     {
-                        "type":"CONTEXT",
-                        "lines":[
-                           {
-                              "destination":47,
-                              "source":47,
-                              "line":"    * @param KlassForm KlassForm",
-                              "truncated":false
-                           },
-                           {
-                              "destination":48,
-                              "source":48,
-                              "line":"    * @param kundId kundId",
-                              "truncated":false
-                           },
-                           {
-                              "destination":49,
-                              "source":49,
-                              "line":"    * @param personnummer personnummer",
-                              "truncated":false
-                           },
-                           {
-                              "destination":50,
-                              "source":50,
-                              "line":"    */",
-                              "truncated":false
-                           },
-                           {
-                              "destination":51,
-                              "source":51,
-                              "line":"   public void hamtaKlassuppgifter(KlassForm KlassForm, String kundId, String personnummer)",
-                              "truncated":false
-                           },
-                           {
-                              "destination":52,
-                              "source":52,
-                              "line":"   {",
-                              "truncated":false
-                           },
-                           {
-                              "destination":53,
-                              "source":53,
-                              "line":"      // Hämta Klassuppgifter",
-                              "truncated":false
-                           },
-                           {
-                              "destination":54,
-                              "source":54,
-                              "line":"      KlassVO KlassVO = KlassDAO.hamtaUtbetalningsuppgifter(kundId, personnummer);",
-                              "truncated":false
-                           }
-                        ],
-                        "truncated":false
-                     },
-                     {
-                        "type":"ADDED",
-                        "lines":[
-                           {
-                              "destination":55,
-                              "source":55,
-                              "line":"try {",
-                              "truncated":false
-                           },
-                           {
-                              "destination":56,
-                              "source":55,
-                              "line":"if (KlassVO == null) KlassVO.toString();",
-                              "truncated":false
-                           },
-                           {
-                              "destination":57,
-                              "source":55,
-                              "line":"} catch (java.lang.Exception e) {",
-                              "truncated":false,
-                              "commentIds":[
-                                 196268
-                              ]
-                           },
-                           {
-                              "destination":58,
-                              "source":55,
-                              "line":"",
-                              "truncated":false
-                           },
-                           {
-                              "destination":59,
-                              "source":55,
-                              "line":"}",
-                              "truncated":false
-                           }
-                        ],
-                        "truncated":false
-                     },
-                     {
-                        "type":"CONTEXT",
-                        "lines":[
-                           {
-                              "destination":60,
-                              "source":55,
-                              "line":"      // Initera Klassformen med hämtade uppgifter",
-                              "truncated":false
-                           },
-                           {
-                              "destination":61,
-                              "source":56,
-                              "line":"      initieraKlassuppgifter(KlassForm, KlassVO);",
-                              "truncated":false
-                           },
-                           {
-                              "destination":62,
-                              "source":57,
-                              "line":"      KlassForm.setInitierad(true);",
-                              "truncated":false
-                           },
-                           {
-                              "destination":63,
-                              "source":58,
-                              "line":"",
-                              "truncated":false
-                           },
-                           {
-                              "destination":64,
-                              "source":59,
-                              "line":"   }",
-                              "truncated":false
-                           },
-                           {
-                              "destination":65,
-                              "source":60,
-                              "line":"",
-                              "truncated":false
-                           },
-                           {
-                              "destination":66,
-                              "source":61,
-                              "line":"   /**",
-                              "truncated":false
-                           },
-                           {
-                              "destination":67,
-                              "source":62,
-                              "line":"    * Initierar KlassForm med inmatade värden",
-                              "truncated":false
-                           }
-                        ],
-                        "truncated":false
-                     }
-                  ],
-                  "truncated":false
-               }
-            ],
-            "truncated":false,
-            "properties":{
-               "toHash":"922937de098d3d10a9ee323c337db7e2f216be6b",
-               "current":true,
-               "fromHash":"9477438cbdc76205c1211df91cad7c4367a10ccf"
-            }
-         }
+          ]
+        }
       },
-      {
-         "id":1188966,
-         "createdDate":1593699382417,
-         "user":{
-            "name":"username",
-            "emailAddress":"whatever@place.se",
-            "id":2812,
-            "displayName":"Serviceuser",
-            "active":true,
-            "slug":"username",
-            "type":"NORMAL",
-            "links":{
-               "self":[
-                  {
-                     "href":"http://stash.whatever.se/users/username"
-                  }
-               ]
-            }
-         },
-         "action":"COMMENTED",
-         "commentAction":"ADDED",
-         "comment":{
-            "properties":{
-               "repositoryId":1434
-            },
-            "id":196267,
-            "version":0,
-            "text":"\nWARN Pmd EmptyCatchBlock\n\nAvoid empty catch blocks&#10;&#10;&#10;Error Prone https://pmd.github.io/pmd-6.8.0/pmd_rules_java_errorprone.html#emptycatchblock\n            \n\n*<this is a auto generated comment from violation-comments-lib F7F8ASD8123FSDF>* *<a1829579353>*",
-            "author":{
-               "name":"username",
-               "emailAddress":"whatever@place.se",
-               "id":2812,
-               "displayName":"Serviceuser",
-               "active":true,
-               "slug":"username",
-               "type":"NORMAL",
-               "links":{
-                  "self":[
-                     {
-                        "href":"http://stash.whatever.se/users/username"
-                     }
-                  ]
-               }
-            },
-            "createdDate":1593699382418,
-            "updatedDate":1593699382418,
-            "comments":[
-
-            ],
-            "tasks":[
-
-            ],
-            "severity":"NORMAL",
-            "state":"OPEN",
-            "permittedOperations":{
-               "editable":false,
-               "transitionable":true,
-               "deletable":true
-            }
-         },
-         "commentAnchor":{
-            "fromHash":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-            "toHash":"922937de098d3d10a9ee323c337db7e2f216be6b",
-            "line":57,
-            "lineType":"ADDED",
-            "fileType":"TO",
-            "path":"src/main/java/fold/log/KlassLogik.java",
-            "diffType":"EFFECTIVE",
-            "orphaned":false
-         },
-         "diff":{
-            "source":null,
-            "destination":{
-               "components":[
-                  "src",
-                  "main",
-                  "java",
-                  "utb",
-                  "logik",
-                  "KlassLogik.java"
-               ],
-               "parent":"src/main/java/fold/log",
-               "name":"KlassLogik.java",
-               "extension":"java",
-               "toString":"src/main/java/fold/log/KlassLogik.java"
-            },
-            "hunks":[
-               {
-                  "context":"public class KlassLogik",
-                  "sourceLine":47,
-                  "sourceSpan":16,
-                  "destinationLine":47,
-                  "destinationSpan":21,
-                  "segments":[
-                     {
-                        "type":"CONTEXT",
-                        "lines":[
-                           {
-                              "destination":47,
-                              "source":47,
-                              "line":"    * @param KlassForm KlassForm",
-                              "truncated":false
-                           },
-                           {
-                              "destination":48,
-                              "source":48,
-                              "line":"    * @param kundId kundId",
-                              "truncated":false
-                           },
-                           {
-                              "destination":49,
-                              "source":49,
-                              "line":"    * @param personnummer personnummer",
-                              "truncated":false
-                           },
-                           {
-                              "destination":50,
-                              "source":50,
-                              "line":"    */",
-                              "truncated":false
-                           },
-                           {
-                              "destination":51,
-                              "source":51,
-                              "line":"   public void hamtaKlassuppgifter(KlassForm KlassForm, String kundId, String personnummer)",
-                              "truncated":false
-                           },
-                           {
-                              "destination":52,
-                              "source":52,
-                              "line":"   {",
-                              "truncated":false
-                           },
-                           {
-                              "destination":53,
-                              "source":53,
-                              "line":"      // Hämta Klassuppgifter",
-                              "truncated":false
-                           },
-                           {
-                              "destination":54,
-                              "source":54,
-                              "line":"      KlassVO KlassVO = KlassDAO.hamtaUtbetalningsuppgifter(kundId, personnummer);",
-                              "truncated":false
-                           }
-                        ],
-                        "truncated":false
-                     },
-                     {
-                        "type":"ADDED",
-                        "lines":[
-                           {
-                              "destination":55,
-                              "source":55,
-                              "line":"try {",
-                              "truncated":false
-                           },
-                           {
-                              "destination":56,
-                              "source":55,
-                              "line":"if (KlassVO == null) KlassVO.toString();",
-                              "truncated":false
-                           },
-                           {
-                              "destination":57,
-                              "source":55,
-                              "line":"} catch (java.lang.Exception e) {",
-                              "truncated":false,
-                              "commentIds":[
-                                 196267
-                              ]
-                           },
-                           {
-                              "destination":58,
-                              "source":55,
-                              "line":"",
-                              "truncated":false
-                           },
-                           {
-                              "destination":59,
-                              "source":55,
-                              "line":"}",
-                              "truncated":false
-                           }
-                        ],
-                        "truncated":false
-                     },
-                     {
-                        "type":"CONTEXT",
-                        "lines":[
-                           {
-                              "destination":60,
-                              "source":55,
-                              "line":"      // Initera Klassformen med hämtade uppgifter",
-                              "truncated":false
-                           },
-                           {
-                              "destination":61,
-                              "source":56,
-                              "line":"      initieraKlassuppgifter(KlassForm, KlassVO);",
-                              "truncated":false
-                           },
-                           {
-                              "destination":62,
-                              "source":57,
-                              "line":"      KlassForm.setInitierad(true);",
-                              "truncated":false
-                           },
-                           {
-                              "destination":63,
-                              "source":58,
-                              "line":"",
-                              "truncated":false
-                           },
-                           {
-                              "destination":64,
-                              "source":59,
-                              "line":"   }",
-                              "truncated":false
-                           },
-                           {
-                              "destination":65,
-                              "source":60,
-                              "line":"",
-                              "truncated":false
-                           },
-                           {
-                              "destination":66,
-                              "source":61,
-                              "line":"   /**",
-                              "truncated":false
-                           },
-                           {
-                              "destination":67,
-                              "source":62,
-                              "line":"    * Initierar KlassForm med inmatade värden",
-                              "truncated":false
-                           }
-                        ],
-                        "truncated":false
-                     }
-                  ],
-                  "truncated":false
-               }
-            ],
-            "truncated":false,
-            "properties":{
-               "toHash":"922937de098d3d10a9ee323c337db7e2f216be6b",
-               "current":true,
-               "fromHash":"9477438cbdc76205c1211df91cad7c4367a10ccf"
-            }
-         }
+      "action": "COMMENTED",
+      "commentAction": "ADDED",
+      "comment": {
+        "properties": {
+          "repositoryId": 1434
+        },
+        "id": 196268,
+        "version": 0,
+        "text": "\nWARN Pmd UnnecessaryFullyQualifiedName\n\nUnnecessary use of fully qualified name &#39;java.lang.Exception&#39; due to existing implicit import &#39;java.lang.*&#39;&#10;&#10;&#10;Code Style https://pmd.github.io/pmd-6.8.0/pmd_rules_java_codestyle.html#unnecessaryfullyqualifiedname\n            \n\n*<this is a auto generated comment from violation-comments-lib F7F8ASD8123FSDF>* *<a-1320215802>*",
+        "author": {
+          "name": "username",
+          "emailAddress": "whatever@place.se",
+          "id": 2812,
+          "displayName": "Serviceuser",
+          "active": true,
+          "slug": "username",
+          "type": "NORMAL",
+          "links": {
+            "self": [
+              {
+                "href": "http://stash.whatever.se/users/username"
+              }
+            ]
+          }
+        },
+        "createdDate": 1593699382486,
+        "updatedDate": 1593699382486,
+        "comments": [],
+        "tasks": [],
+        "severity": "NORMAL",
+        "state": "OPEN",
+        "permittedOperations": {
+          "editable": false,
+          "transitionable": true,
+          "deletable": true
+        }
       },
-      {
-         "id":1188965,
-         "createdDate":1593699382367,
-         "user":{
-            "name":"username",
-            "emailAddress":"whatever@place.se",
-            "id":2812,
-            "displayName":"Serviceuser",
-            "active":true,
-            "slug":"username",
-            "type":"NORMAL",
-            "links":{
-               "self":[
-                  {
-                     "href":"http://stash.whatever.se/users/username"
-                  }
-               ]
-            }
-         },
-         "action":"COMMENTED",
-         "commentAction":"ADDED",
-         "comment":{
-            "properties":{
-               "repositoryId":1434
-            },
-            "id":196266,
-            "version":0,
-            "text":"\nERROR Findbugs NP_ALWAYS_NULL\n\nNull pointer dereference&#10;&#10;&#10;&lt;p&gt; A null pointer is dereferenced here.&amp;nbsp; This will lead to a&#10;&lt;code&gt;NullPointerException&lt;/code&gt; when the code is executed.&lt;/p&gt;&#10;\n            \n\n*<this is a auto generated comment from violation-comments-lib F7F8ASD8123FSDF>* *<a-1549149017>*",
-            "author":{
-               "name":"username",
-               "emailAddress":"whatever@place.se",
-               "id":2812,
-               "displayName":"Serviceuser",
-               "active":true,
-               "slug":"username",
-               "type":"NORMAL",
-               "links":{
-                  "self":[
-                     {
-                        "href":"http://stash.whatever.se/users/username"
-                     }
-                  ]
-               }
-            },
-            "createdDate":1593699382365,
-            "updatedDate":1593699382365,
-            "comments":[
-
-            ],
-            "tasks":[
-
-            ],
-            "severity":"NORMAL",
-            "state":"OPEN",
-            "permittedOperations":{
-               "editable":false,
-               "transitionable":true,
-               "deletable":true
-            }
-         },
-         "commentAnchor":{
-            "fromHash":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-            "toHash":"922937de098d3d10a9ee323c337db7e2f216be6b",
-            "line":56,
-            "lineType":"ADDED",
-            "fileType":"TO",
-            "path":"src/main/java/fold/log/KlassLogik.java",
-            "diffType":"EFFECTIVE",
-            "orphaned":false
-         },
-         "diff":{
-            "source":null,
-            "destination":{
-               "components":[
-                  "src",
-                  "main",
-                  "java",
-                  "utb",
-                  "logik",
-                  "KlassLogik.java"
-               ],
-               "parent":"src/main/java/fold/log",
-               "name":"KlassLogik.java",
-               "extension":"java",
-               "toString":"src/main/java/fold/log/KlassLogik.java"
-            },
-            "hunks":[
-               {
-                  "context":"public class KlassLogik",
-                  "sourceLine":46,
-                  "sourceSpan":16,
-                  "destinationLine":46,
-                  "destinationSpan":21,
-                  "segments":[
-                     {
-                        "type":"CONTEXT",
-                        "lines":[
-                           {
-                              "destination":46,
-                              "source":46,
-                              "line":"    *",
-                              "truncated":false
-                           },
-                           {
-                              "destination":47,
-                              "source":47,
-                              "line":"    * @param KlassForm KlassForm",
-                              "truncated":false
-                           },
-                           {
-                              "destination":48,
-                              "source":48,
-                              "line":"    * @param kundId kundId",
-                              "truncated":false
-                           },
-                           {
-                              "destination":49,
-                              "source":49,
-                              "line":"    * @param personnummer personnummer",
-                              "truncated":false
-                           },
-                           {
-                              "destination":50,
-                              "source":50,
-                              "line":"    */",
-                              "truncated":false
-                           },
-                           {
-                              "destination":51,
-                              "source":51,
-                              "line":"   public void hamtaKlassuppgifter(KlassForm KlassForm, String kundId, String personnummer)",
-                              "truncated":false
-                           },
-                           {
-                              "destination":52,
-                              "source":52,
-                              "line":"   {",
-                              "truncated":false
-                           },
-                           {
-                              "destination":53,
-                              "source":53,
-                              "line":"      // Hämta Klassuppgifter",
-                              "truncated":false
-                           },
-                           {
-                              "destination":54,
-                              "source":54,
-                              "line":"      KlassVO KlassVO = KlassDAO.hamtaUtbetalningsuppgifter(kundId, personnummer);",
-                              "truncated":false
-                           }
-                        ],
-                        "truncated":false
-                     },
-                     {
-                        "type":"ADDED",
-                        "lines":[
-                           {
-                              "destination":55,
-                              "source":55,
-                              "line":"try {",
-                              "truncated":false
-                           },
-                           {
-                              "destination":56,
-                              "source":55,
-                              "line":"if (KlassVO == null) KlassVO.toString();",
-                              "truncated":false,
-                              "commentIds":[
-                                 196266
-                              ]
-                           },
-                           {
-                              "destination":57,
-                              "source":55,
-                              "line":"} catch (java.lang.Exception e) {",
-                              "truncated":false
-                           },
-                           {
-                              "destination":58,
-                              "source":55,
-                              "line":"",
-                              "truncated":false
-                           },
-                           {
-                              "destination":59,
-                              "source":55,
-                              "line":"}",
-                              "truncated":false
-                           }
-                        ],
-                        "truncated":false
-                     },
-                     {
-                        "type":"CONTEXT",
-                        "lines":[
-                           {
-                              "destination":60,
-                              "source":55,
-                              "line":"      // Initera Klassformen med hämtade uppgifter",
-                              "truncated":false
-                           },
-                           {
-                              "destination":61,
-                              "source":56,
-                              "line":"      initieraKlassuppgifter(KlassForm, KlassVO);",
-                              "truncated":false
-                           },
-                           {
-                              "destination":62,
-                              "source":57,
-                              "line":"      KlassForm.setInitierad(true);",
-                              "truncated":false
-                           },
-                           {
-                              "destination":63,
-                              "source":58,
-                              "line":"",
-                              "truncated":false
-                           },
-                           {
-                              "destination":64,
-                              "source":59,
-                              "line":"   }",
-                              "truncated":false
-                           },
-                           {
-                              "destination":65,
-                              "source":60,
-                              "line":"",
-                              "truncated":false
-                           },
-                           {
-                              "destination":66,
-                              "source":61,
-                              "line":"   /**",
-                              "truncated":false
-                           }
-                        ],
-                        "truncated":false
-                     }
-                  ],
-                  "truncated":false
-               }
-            ],
-            "truncated":false,
-            "properties":{
-               "toHash":"922937de098d3d10a9ee323c337db7e2f216be6b",
-               "current":true,
-               "fromHash":"9477438cbdc76205c1211df91cad7c4367a10ccf"
-            }
-         }
+      "commentAnchor": {
+        "fromHash": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+        "toHash": "922937de098d3d10a9ee323c337db7e2f216be6b",
+        "line": 57,
+        "lineType": "ADDED",
+        "fileType": "TO",
+        "path": "src/main/java/fold/log/KlassLogik.java",
+        "diffType": "EFFECTIVE",
+        "orphaned": false
       },
-      {
-         "id":1188964,
-         "createdDate":1593699382300,
-         "user":{
-            "name":"username",
-            "emailAddress":"whatever@place.se",
-            "id":2812,
-            "displayName":"Serviceuser",
-            "active":true,
-            "slug":"username",
-            "type":"NORMAL",
-            "links":{
-               "self":[
+      "diff": {
+        "source": null,
+        "destination": {
+          "components": [
+            "src",
+            "main",
+            "java",
+            "utb",
+            "logik",
+            "KlassLogik.java"
+          ],
+          "parent": "src/main/java/fold/log",
+          "name": "KlassLogik.java",
+          "extension": "java",
+          "toString": "src/main/java/fold/log/KlassLogik.java"
+        },
+        "hunks": [
+          {
+            "context": "public class KlassLogik",
+            "sourceLine": 47,
+            "sourceSpan": 16,
+            "destinationLine": 47,
+            "destinationSpan": 21,
+            "segments": [
+              {
+                "type": "CONTEXT",
+                "lines": [
                   {
-                     "href":"http://stash.whatever.se/users/username"
-                  }
-               ]
-            }
-         },
-         "action":"COMMENTED",
-         "commentAction":"ADDED",
-         "comment":{
-            "properties":{
-               "repositoryId":1434
-            },
-            "id":196265,
-            "version":0,
-            "text":"\nINFO Findbugs NP_LOAD_OF_KNOWN_NULL_VALUE\n\nLoad of known null value&#10;&#10;&#10;  &lt;p&gt; The variable referenced at this point is known to be null due to an earlier&#10;   check against null. Although this is valid, it might be a mistake (perhaps you&#10;intended to refer to a different variable, or perhaps the earlier check to see if the&#10;variable is null should have been a check to see if it was non-null).&#10;&lt;/p&gt;&#10;\n            \n\n*<this is a auto generated comment from violation-comments-lib F7F8ASD8123FSDF>* *<a334699368>*",
-            "author":{
-               "name":"username",
-               "emailAddress":"whatever@place.se",
-               "id":2812,
-               "displayName":"Serviceuser",
-               "active":true,
-               "slug":"username",
-               "type":"NORMAL",
-               "links":{
-                  "self":[
-                     {
-                        "href":"http://stash.whatever.se/users/username"
-                     }
-                  ]
-               }
-            },
-            "createdDate":1593699382301,
-            "updatedDate":1593699382301,
-            "comments":[
-
-            ],
-            "tasks":[
-
-            ],
-            "severity":"NORMAL",
-            "state":"OPEN",
-            "permittedOperations":{
-               "editable":false,
-               "transitionable":true,
-               "deletable":true
-            }
-         },
-         "commentAnchor":{
-            "fromHash":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-            "toHash":"922937de098d3d10a9ee323c337db7e2f216be6b",
-            "line":56,
-            "lineType":"ADDED",
-            "fileType":"TO",
-            "path":"src/main/java/fold/log/KlassLogik.java",
-            "diffType":"EFFECTIVE",
-            "orphaned":false
-         },
-         "diff":{
-            "source":null,
-            "destination":{
-               "components":[
-                  "src",
-                  "main",
-                  "java",
-                  "utb",
-                  "logik",
-                  "KlassLogik.java"
-               ],
-               "parent":"src/main/java/fold/log",
-               "name":"KlassLogik.java",
-               "extension":"java",
-               "toString":"src/main/java/fold/log/KlassLogik.java"
-            },
-            "hunks":[
-               {
-                  "context":"public class KlassLogik",
-                  "sourceLine":46,
-                  "sourceSpan":16,
-                  "destinationLine":46,
-                  "destinationSpan":21,
-                  "segments":[
-                     {
-                        "type":"CONTEXT",
-                        "lines":[
-                           {
-                              "destination":46,
-                              "source":46,
-                              "line":"    *",
-                              "truncated":false
-                           },
-                           {
-                              "destination":47,
-                              "source":47,
-                              "line":"    * @param KlassForm KlassForm",
-                              "truncated":false
-                           },
-                           {
-                              "destination":48,
-                              "source":48,
-                              "line":"    * @param kundId kundId",
-                              "truncated":false
-                           },
-                           {
-                              "destination":49,
-                              "source":49,
-                              "line":"    * @param personnummer personnummer",
-                              "truncated":false
-                           },
-                           {
-                              "destination":50,
-                              "source":50,
-                              "line":"    */",
-                              "truncated":false
-                           },
-                           {
-                              "destination":51,
-                              "source":51,
-                              "line":"   public void hamtaKlassuppgifter(KlassForm KlassForm, String kundId, String personnummer)",
-                              "truncated":false
-                           },
-                           {
-                              "destination":52,
-                              "source":52,
-                              "line":"   {",
-                              "truncated":false
-                           },
-                           {
-                              "destination":53,
-                              "source":53,
-                              "line":"      // Hämta Klassuppgifter",
-                              "truncated":false
-                           },
-                           {
-                              "destination":54,
-                              "source":54,
-                              "line":"      KlassVO KlassVO = KlassDAO.hamtaUtbetalningsuppgifter(kundId, personnummer);",
-                              "truncated":false
-                           }
-                        ],
-                        "truncated":false
-                     },
-                     {
-                        "type":"ADDED",
-                        "lines":[
-                           {
-                              "destination":55,
-                              "source":55,
-                              "line":"try {",
-                              "truncated":false
-                           },
-                           {
-                              "destination":56,
-                              "source":55,
-                              "line":"if (KlassVO == null) KlassVO.toString();",
-                              "truncated":false,
-                              "commentIds":[
-                                 196265
-                              ]
-                           },
-                           {
-                              "destination":57,
-                              "source":55,
-                              "line":"} catch (java.lang.Exception e) {",
-                              "truncated":false
-                           },
-                           {
-                              "destination":58,
-                              "source":55,
-                              "line":"",
-                              "truncated":false
-                           },
-                           {
-                              "destination":59,
-                              "source":55,
-                              "line":"}",
-                              "truncated":false
-                           }
-                        ],
-                        "truncated":false
-                     },
-                     {
-                        "type":"CONTEXT",
-                        "lines":[
-                           {
-                              "destination":60,
-                              "source":55,
-                              "line":"      // Initera Klassformen med hämtade uppgifter",
-                              "truncated":false
-                           },
-                           {
-                              "destination":61,
-                              "source":56,
-                              "line":"      initieraKlassuppgifter(KlassForm, KlassVO);",
-                              "truncated":false
-                           },
-                           {
-                              "destination":62,
-                              "source":57,
-                              "line":"      KlassForm.setInitierad(true);",
-                              "truncated":false
-                           },
-                           {
-                              "destination":63,
-                              "source":58,
-                              "line":"",
-                              "truncated":false
-                           },
-                           {
-                              "destination":64,
-                              "source":59,
-                              "line":"   }",
-                              "truncated":false
-                           },
-                           {
-                              "destination":65,
-                              "source":60,
-                              "line":"",
-                              "truncated":false
-                           },
-                           {
-                              "destination":66,
-                              "source":61,
-                              "line":"   /**",
-                              "truncated":false
-                           }
-                        ],
-                        "truncated":false
-                     }
-                  ],
-                  "truncated":false
-               }
-            ],
-            "truncated":false,
-            "properties":{
-               "toHash":"922937de098d3d10a9ee323c337db7e2f216be6b",
-               "current":true,
-               "fromHash":"9477438cbdc76205c1211df91cad7c4367a10ccf"
-            }
-         }
-      },
-      {
-         "id":1188963,
-         "createdDate":1593699382250,
-         "user":{
-            "name":"username",
-            "emailAddress":"whatever@place.se",
-            "id":2812,
-            "displayName":"Serviceuser",
-            "active":true,
-            "slug":"username",
-            "type":"NORMAL",
-            "links":{
-               "self":[
+                    "destination": 47,
+                    "source": 47,
+                    "line": "    * @param KlassForm KlassForm",
+                    "truncated": false
+                  },
                   {
-                     "href":"http://stash.whatever.se/users/username"
-                  }
-               ]
-            }
-         },
-         "action":"COMMENTED",
-         "commentAction":"ADDED",
-         "comment":{
-            "properties":{
-               "repositoryId":1434
-            },
-            "id":196264,
-            "version":0,
-            "text":"\nINFO Findbugs DE_MIGHT_IGNORE\n\nMethod might ignore exception&#10;&#10;&#10;  &lt;p&gt; This method might ignore an exception.&amp;nbsp; In general, exceptions&#10;  should be handled or reported in some way, or they should be thrown&#10;  out of the method.&lt;/p&gt;&#10;\n            \n\n*<this is a auto generated comment from violation-comments-lib F7F8ASD8123FSDF>* *<a1657698829>*",
-            "author":{
-               "name":"username",
-               "emailAddress":"whatever@place.se",
-               "id":2812,
-               "displayName":"Serviceuser",
-               "active":true,
-               "slug":"username",
-               "type":"NORMAL",
-               "links":{
-                  "self":[
-                     {
-                        "href":"http://stash.whatever.se/users/username"
-                     }
-                  ]
-               }
-            },
-            "createdDate":1593699382250,
-            "updatedDate":1593699382250,
-            "comments":[
-
-            ],
-            "tasks":[
-
-            ],
-            "severity":"NORMAL",
-            "state":"OPEN",
-            "permittedOperations":{
-               "editable":false,
-               "transitionable":true,
-               "deletable":true
-            }
-         },
-         "commentAnchor":{
-            "fromHash":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-            "toHash":"922937de098d3d10a9ee323c337db7e2f216be6b",
-            "line":57,
-            "lineType":"ADDED",
-            "fileType":"TO",
-            "path":"src/main/java/fold/log/KlassLogik.java",
-            "diffType":"EFFECTIVE",
-            "orphaned":false
-         },
-         "diff":{
-            "source":null,
-            "destination":{
-               "components":[
-                  "src",
-                  "main",
-                  "java",
-                  "utb",
-                  "logik",
-                  "KlassLogik.java"
-               ],
-               "parent":"src/main/java/fold/log",
-               "name":"KlassLogik.java",
-               "extension":"java",
-               "toString":"src/main/java/fold/log/KlassLogik.java"
-            },
-            "hunks":[
-               {
-                  "context":"public class KlassLogik",
-                  "sourceLine":47,
-                  "sourceSpan":16,
-                  "destinationLine":47,
-                  "destinationSpan":21,
-                  "segments":[
-                     {
-                        "type":"CONTEXT",
-                        "lines":[
-                           {
-                              "destination":47,
-                              "source":47,
-                              "line":"    * @param KlassForm KlassForm",
-                              "truncated":false
-                           },
-                           {
-                              "destination":48,
-                              "source":48,
-                              "line":"    * @param kundId kundId",
-                              "truncated":false
-                           },
-                           {
-                              "destination":49,
-                              "source":49,
-                              "line":"    * @param personnummer personnummer",
-                              "truncated":false
-                           },
-                           {
-                              "destination":50,
-                              "source":50,
-                              "line":"    */",
-                              "truncated":false
-                           },
-                           {
-                              "destination":51,
-                              "source":51,
-                              "line":"   public void hamtaKlassuppgifter(KlassForm KlassForm, String kundId, String personnummer)",
-                              "truncated":false
-                           },
-                           {
-                              "destination":52,
-                              "source":52,
-                              "line":"   {",
-                              "truncated":false
-                           },
-                           {
-                              "destination":53,
-                              "source":53,
-                              "line":"      // Hämta Klassuppgifter",
-                              "truncated":false
-                           },
-                           {
-                              "destination":54,
-                              "source":54,
-                              "line":"      KlassVO KlassVO = KlassDAO.hamtaUtbetalningsuppgifter(kundId, personnummer);",
-                              "truncated":false
-                           }
-                        ],
-                        "truncated":false
-                     },
-                     {
-                        "type":"ADDED",
-                        "lines":[
-                           {
-                              "destination":55,
-                              "source":55,
-                              "line":"try {",
-                              "truncated":false
-                           },
-                           {
-                              "destination":56,
-                              "source":55,
-                              "line":"if (KlassVO == null) KlassVO.toString();",
-                              "truncated":false
-                           },
-                           {
-                              "destination":57,
-                              "source":55,
-                              "line":"} catch (java.lang.Exception e) {",
-                              "truncated":false,
-                              "commentIds":[
-                                 196264
-                              ]
-                           },
-                           {
-                              "destination":58,
-                              "source":55,
-                              "line":"",
-                              "truncated":false
-                           },
-                           {
-                              "destination":59,
-                              "source":55,
-                              "line":"}",
-                              "truncated":false
-                           }
-                        ],
-                        "truncated":false
-                     },
-                     {
-                        "type":"CONTEXT",
-                        "lines":[
-                           {
-                              "destination":60,
-                              "source":55,
-                              "line":"      // Initera Klassformen med hämtade uppgifter",
-                              "truncated":false
-                           },
-                           {
-                              "destination":61,
-                              "source":56,
-                              "line":"      initieraKlassuppgifter(KlassForm, KlassVO);",
-                              "truncated":false
-                           },
-                           {
-                              "destination":62,
-                              "source":57,
-                              "line":"      KlassForm.setInitierad(true);",
-                              "truncated":false
-                           },
-                           {
-                              "destination":63,
-                              "source":58,
-                              "line":"",
-                              "truncated":false
-                           },
-                           {
-                              "destination":64,
-                              "source":59,
-                              "line":"   }",
-                              "truncated":false
-                           },
-                           {
-                              "destination":65,
-                              "source":60,
-                              "line":"",
-                              "truncated":false
-                           },
-                           {
-                              "destination":66,
-                              "source":61,
-                              "line":"   /**",
-                              "truncated":false
-                           },
-                           {
-                              "destination":67,
-                              "source":62,
-                              "line":"    * Initierar KlassForm med inmatade värden",
-                              "truncated":false
-                           }
-                        ],
-                        "truncated":false
-                     }
-                  ],
-                  "truncated":false
-               }
-            ],
-            "truncated":false,
-            "properties":{
-               "toHash":"922937de098d3d10a9ee323c337db7e2f216be6b",
-               "current":true,
-               "fromHash":"9477438cbdc76205c1211df91cad7c4367a10ccf"
-            }
-         }
-      },
-      {
-         "id":1188962,
-         "createdDate":1593699382190,
-         "user":{
-            "name":"username",
-            "emailAddress":"whatever@place.se",
-            "id":2812,
-            "displayName":"Serviceuser",
-            "active":true,
-            "slug":"username",
-            "type":"NORMAL",
-            "links":{
-               "self":[
+                    "destination": 48,
+                    "source": 48,
+                    "line": "    * @param kundId kundId",
+                    "truncated": false
+                  },
                   {
-                     "href":"http://stash.whatever.se/users/username"
-                  }
-               ]
-            }
-         },
-         "action":"COMMENTED",
-         "commentAction":"ADDED",
-         "comment":{
-            "properties":{
-               "repositoryId":1434
-            },
-            "id":196263,
-            "version":0,
-            "text":"\nERROR Findbugs NP_NULL_PARAM_DEREF\n\nMethod call passes null for non-null parameter&#10;&#10;&#10;      &lt;p&gt;&#10;      This method call passes a null value for a non-null method parameter.&#10;    Either the parameter is annotated as a parameter that should&#10;    always be non-null, or analysis has shown that it will always be&#10;    dereferenced.&#10;      &lt;/p&gt;&#10;      \n            \n\n*<this is a auto generated comment from violation-comments-lib F7F8ASD8123FSDF>* *<a1999818251>*",
-            "author":{
-               "name":"username",
-               "emailAddress":"whatever@place.se",
-               "id":2812,
-               "displayName":"Serviceuser",
-               "active":true,
-               "slug":"username",
-               "type":"NORMAL",
-               "links":{
-                  "self":[
-                     {
-                        "href":"http://stash.whatever.se/users/username"
-                     }
-                  ]
-               }
-            },
-            "createdDate":1593699382191,
-            "updatedDate":1593699382191,
-            "comments":[
-
-            ],
-            "tasks":[
-
-            ],
-            "severity":"NORMAL",
-            "state":"OPEN",
-            "permittedOperations":{
-               "editable":false,
-               "transitionable":true,
-               "deletable":true
-            }
-         },
-         "commentAnchor":{
-            "fromHash":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-            "toHash":"922937de098d3d10a9ee323c337db7e2f216be6b",
-            "line":57,
-            "lineType":"ADDED",
-            "fileType":"TO",
-            "path":"src/main/java/fold/log/KlassLogik.java",
-            "diffType":"EFFECTIVE",
-            "orphaned":false
-         },
-         "diff":{
-            "source":null,
-            "destination":{
-               "components":[
-                  "src",
-                  "main",
-                  "java",
-                  "utb",
-                  "logik",
-                  "KlassLogik.java"
-               ],
-               "parent":"src/main/java/fold/log",
-               "name":"KlassLogik.java",
-               "extension":"java",
-               "toString":"src/main/java/fold/log/KlassLogik.java"
-            },
-            "hunks":[
-               {
-                  "context":"public class KlassLogik",
-                  "sourceLine":47,
-                  "sourceSpan":16,
-                  "destinationLine":47,
-                  "destinationSpan":21,
-                  "segments":[
-                     {
-                        "type":"CONTEXT",
-                        "lines":[
-                           {
-                              "destination":47,
-                              "source":47,
-                              "line":"    * @param KlassForm KlassForm",
-                              "truncated":false
-                           },
-                           {
-                              "destination":48,
-                              "source":48,
-                              "line":"    * @param kundId kundId",
-                              "truncated":false
-                           },
-                           {
-                              "destination":49,
-                              "source":49,
-                              "line":"    * @param personnummer personnummer",
-                              "truncated":false
-                           },
-                           {
-                              "destination":50,
-                              "source":50,
-                              "line":"    */",
-                              "truncated":false
-                           },
-                           {
-                              "destination":51,
-                              "source":51,
-                              "line":"   public void hamtaKlassuppgifter(KlassForm KlassForm, String kundId, String personnummer)",
-                              "truncated":false
-                           },
-                           {
-                              "destination":52,
-                              "source":52,
-                              "line":"   {",
-                              "truncated":false
-                           },
-                           {
-                              "destination":53,
-                              "source":53,
-                              "line":"      // Hämta Klassuppgifter",
-                              "truncated":false
-                           },
-                           {
-                              "destination":54,
-                              "source":54,
-                              "line":"      KlassVO KlassVO = KlassDAO.hamtaUtbetalningsuppgifter(kundId, personnummer);",
-                              "truncated":false
-                           }
-                        ],
-                        "truncated":false
-                     },
-                     {
-                        "type":"ADDED",
-                        "lines":[
-                           {
-                              "destination":55,
-                              "source":55,
-                              "line":"try {",
-                              "truncated":false
-                           },
-                           {
-                              "destination":56,
-                              "source":55,
-                              "line":"if (KlassVO == null) KlassVO.toString();",
-                              "truncated":false
-                           },
-                           {
-                              "destination":57,
-                              "source":55,
-                              "line":"} catch (java.lang.Exception e) {",
-                              "truncated":false,
-                              "commentIds":[
-                                 196263
-                              ]
-                           },
-                           {
-                              "destination":58,
-                              "source":55,
-                              "line":"",
-                              "truncated":false
-                           },
-                           {
-                              "destination":59,
-                              "source":55,
-                              "line":"}",
-                              "truncated":false
-                           }
-                        ],
-                        "truncated":false
-                     },
-                     {
-                        "type":"CONTEXT",
-                        "lines":[
-                           {
-                              "destination":60,
-                              "source":55,
-                              "line":"      // Initera Klassformen med hämtade uppgifter",
-                              "truncated":false
-                           },
-                           {
-                              "destination":61,
-                              "source":56,
-                              "line":"      initieraKlassuppgifter(KlassForm, KlassVO);",
-                              "truncated":false
-                           },
-                           {
-                              "destination":62,
-                              "source":57,
-                              "line":"      KlassForm.setInitierad(true);",
-                              "truncated":false
-                           },
-                           {
-                              "destination":63,
-                              "source":58,
-                              "line":"",
-                              "truncated":false
-                           },
-                           {
-                              "destination":64,
-                              "source":59,
-                              "line":"   }",
-                              "truncated":false
-                           },
-                           {
-                              "destination":65,
-                              "source":60,
-                              "line":"",
-                              "truncated":false
-                           },
-                           {
-                              "destination":66,
-                              "source":61,
-                              "line":"   /**",
-                              "truncated":false
-                           },
-                           {
-                              "destination":67,
-                              "source":62,
-                              "line":"    * Initierar KlassForm med inmatade värden",
-                              "truncated":false
-                           }
-                        ],
-                        "truncated":false
-                     }
-                  ],
-                  "truncated":false
-               }
-            ],
-            "truncated":false,
-            "properties":{
-               "toHash":"922937de098d3d10a9ee323c337db7e2f216be6b",
-               "current":true,
-               "fromHash":"9477438cbdc76205c1211df91cad7c4367a10ccf"
-            }
-         }
-      },
-      {
-         "id":1188959,
-         "createdDate":1593699310883,
-         "user":{
-            "name":"tomas.bjerre",
-            "emailAddress":"tomas.bjerre@place.se",
-            "id":4792,
-            "displayName":"Tomas Bjerre",
-            "active":true,
-            "slug":"tomas.bjerre",
-            "type":"NORMAL",
-            "links":{
-               "self":[
+                    "destination": 49,
+                    "source": 49,
+                    "line": "    * @param personnummer personnummer",
+                    "truncated": false
+                  },
                   {
-                     "href":"http://stash.whatever.se/users/tomas.bjerre"
-                  }
-               ]
-            }
-         },
-         "action":"RESCOPED",
-         "fromHash":"922937de098d3d10a9ee323c337db7e2f216be6b",
-         "previousFromHash":"f9f0dda70a9353ce5c189a3d5174e6f9c77c35f8",
-         "previousToHash":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-         "toHash":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-         "added":{
-            "commits":[
-               {
-                  "id":"922937de098d3d10a9ee323c337db7e2f216be6b",
-                  "displayId":"922937de098",
-                  "author":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
+                    "destination": 50,
+                    "source": 50,
+                    "line": "    */",
+                    "truncated": false
                   },
-                  "authorTimestamp":1593688023000,
-                  "committer":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
-                  },
-                  "committerTimestamp":1593699309000,
-                  "message":"Chore: labbar lite (refs JI-1234)",
-                  "parents":[
-                     {
-                        "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-                        "displayId":"9477438cbdc"
-                     }
-                  ],
-                  "properties":{
-                     "jira-key":[
-                        "JI-1234"
-                     ]
-                  }
-               }
-            ],
-            "total":1
-         },
-         "removed":{
-            "commits":[
-               {
-                  "id":"f9f0dda70a9353ce5c189a3d5174e6f9c77c35f8",
-                  "displayId":"f9f0dda70a9",
-                  "author":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
-                  },
-                  "authorTimestamp":1593688023000,
-                  "committer":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
-                  },
-                  "committerTimestamp":1593699067000,
-                  "message":"Chore: labbar lite (refs JI-1234)",
-                  "parents":[
-                     {
-                        "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-                        "displayId":"9477438cbdc"
-                     }
-                  ]
-               }
-            ],
-            "total":1
-         }
-      },
-      {
-         "id":1188951,
-         "createdDate":1593699102353,
-         "user":{
-            "name":"username",
-            "emailAddress":"whatever@place.se",
-            "id":2812,
-            "displayName":"Serviceuser",
-            "active":true,
-            "slug":"username",
-            "type":"NORMAL",
-            "links":{
-               "self":[
                   {
-                     "href":"http://stash.whatever.se/users/username"
-                  }
-               ]
-            }
-         },
-         "action":"COMMENTED",
-         "commentAction":"ADDED",
-         "comment":{
-            "properties":{
-               "repositoryId":1434
-            },
-            "id":196262,
-            "version":0,
-            "text":"Found 3 violations:\n\n\n\n-------------------------------------\nERROR Junit java.lang.AssertionError\n\ntestHamtaBankTeknisktFel : java.lang.AssertionError: CLEARINGNUMMER returnerar BANKNAMN expected:&lt;&gt; but was:&lt;null&gt;\n            \n\n*<this is a auto generated comment from violation-comments-lib F7F8ASD8123FSDF>* *<a-410021585>*\n\n\n-------------------------------------\nERROR Junit java.lang.AssertionError\n\ntestBankSaknas : java.lang.AssertionError: CLEARINGNUMMER(0000) returnerar BANKNAMN_SAKNAS() expected:&lt;&gt; but was:&lt;null&gt;\n            \n\n*<this is a auto generated comment from violation-comments-lib F7F8ASD8123FSDF>* *<a-433456500>*\n\n\n-------------------------------------\nERROR Junit java.lang.NullPointerException\n\ntestBankFinns : java.lang.NullPointerException\n            \n\n*<this is a auto generated comment from violation-comments-lib F7F8ASD8123FSDF>* *<a1000468442>*\n *<ACCUMULATED-VIOLATIONS>*",
-            "author":{
-               "name":"username",
-               "emailAddress":"whatever@place.se",
-               "id":2812,
-               "displayName":"Serviceuser",
-               "active":true,
-               "slug":"username",
-               "type":"NORMAL",
-               "links":{
-                  "self":[
-                     {
-                        "href":"http://stash.whatever.se/users/username"
-                     }
-                  ]
-               }
-            },
-            "createdDate":1593699102353,
-            "updatedDate":1593699102353,
-            "comments":[
-
-            ],
-            "tasks":[
-
-            ],
-            "severity":"NORMAL",
-            "state":"OPEN",
-            "permittedOperations":{
-               "editable":false,
-               "transitionable":true,
-               "deletable":true
-            }
-         }
-      },
-      {
-         "id":1188950,
-         "createdDate":1593699068900,
-         "user":{
-            "name":"tomas.bjerre",
-            "emailAddress":"tomas.bjerre@place.se",
-            "id":4792,
-            "displayName":"Tomas Bjerre",
-            "active":true,
-            "slug":"tomas.bjerre",
-            "type":"NORMAL",
-            "links":{
-               "self":[
+                    "destination": 51,
+                    "source": 51,
+                    "line": "   public void hamtaKlassuppgifter(KlassForm KlassForm, String kundId, String personnummer)",
+                    "truncated": false
+                  },
                   {
-                     "href":"http://stash.whatever.se/users/tomas.bjerre"
-                  }
-               ]
-            }
-         },
-         "action":"RESCOPED",
-         "fromHash":"f9f0dda70a9353ce5c189a3d5174e6f9c77c35f8",
-         "previousFromHash":"e10fdc392a8e8a08eed3bea6db544c3d120ab5ac",
-         "previousToHash":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-         "toHash":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-         "added":{
-            "commits":[
-               {
-                  "id":"f9f0dda70a9353ce5c189a3d5174e6f9c77c35f8",
-                  "displayId":"f9f0dda70a9",
-                  "author":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
+                    "destination": 52,
+                    "source": 52,
+                    "line": "   {",
+                    "truncated": false
                   },
-                  "authorTimestamp":1593688023000,
-                  "committer":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
-                  },
-                  "committerTimestamp":1593699067000,
-                  "message":"Chore: labbar lite (refs JI-1234)",
-                  "parents":[
-                     {
-                        "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-                        "displayId":"9477438cbdc"
-                     }
-                  ]
-               }
-            ],
-            "total":1
-         },
-         "removed":{
-            "commits":[
-               {
-                  "id":"e10fdc392a8e8a08eed3bea6db544c3d120ab5ac",
-                  "displayId":"e10fdc392a8",
-                  "author":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
-                  },
-                  "authorTimestamp":1593688023000,
-                  "committer":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
-                  },
-                  "committerTimestamp":1593698964000,
-                  "message":"Chore: labbar lite (refs JI-1234)",
-                  "parents":[
-                     {
-                        "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-                        "displayId":"9477438cbdc"
-                     }
-                  ]
-               }
-            ],
-            "total":1
-         }
-      },
-      {
-         "id":1188942,
-         "createdDate":1593698965633,
-         "user":{
-            "name":"tomas.bjerre",
-            "emailAddress":"tomas.bjerre@place.se",
-            "id":4792,
-            "displayName":"Tomas Bjerre",
-            "active":true,
-            "slug":"tomas.bjerre",
-            "type":"NORMAL",
-            "links":{
-               "self":[
                   {
-                     "href":"http://stash.whatever.se/users/tomas.bjerre"
-                  }
-               ]
-            }
-         },
-         "action":"RESCOPED",
-         "fromHash":"e10fdc392a8e8a08eed3bea6db544c3d120ab5ac",
-         "previousFromHash":"9bf97a82f1cea0ac559145f4d295e173964f5e7e",
-         "previousToHash":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-         "toHash":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-         "added":{
-            "commits":[
-               {
-                  "id":"e10fdc392a8e8a08eed3bea6db544c3d120ab5ac",
-                  "displayId":"e10fdc392a8",
-                  "author":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
+                    "destination": 53,
+                    "source": 53,
+                    "line": "      // Hämta Klassuppgifter",
+                    "truncated": false
                   },
-                  "authorTimestamp":1593688023000,
-                  "committer":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
-                  },
-                  "committerTimestamp":1593698964000,
-                  "message":"Chore: labbar lite (refs JI-1234)",
-                  "parents":[
-                     {
-                        "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-                        "displayId":"9477438cbdc"
-                     }
-                  ]
-               }
-            ],
-            "total":1
-         },
-         "removed":{
-            "commits":[
-               {
-                  "id":"9bf97a82f1cea0ac559145f4d295e173964f5e7e",
-                  "displayId":"9bf97a82f1c",
-                  "author":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
-                  },
-                  "authorTimestamp":1593688023000,
-                  "committer":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
-                  },
-                  "committerTimestamp":1593698833000,
-                  "message":"Chore: labbar lite (refs JI-1234)",
-                  "parents":[
-                     {
-                        "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-                        "displayId":"9477438cbdc"
-                     }
-                  ]
-               }
-            ],
-            "total":1
-         }
-      },
-      {
-         "id":1188932,
-         "createdDate":1593698834570,
-         "user":{
-            "name":"tomas.bjerre",
-            "emailAddress":"tomas.bjerre@place.se",
-            "id":4792,
-            "displayName":"Tomas Bjerre",
-            "active":true,
-            "slug":"tomas.bjerre",
-            "type":"NORMAL",
-            "links":{
-               "self":[
                   {
-                     "href":"http://stash.whatever.se/users/tomas.bjerre"
+                    "destination": 54,
+                    "source": 54,
+                    "line": "      KlassVO KlassVO = KlassDAO.hamtaUtbetalningsuppgifter(kundId, personnummer);",
+                    "truncated": false
                   }
-               ]
-            }
-         },
-         "action":"RESCOPED",
-         "fromHash":"9bf97a82f1cea0ac559145f4d295e173964f5e7e",
-         "previousFromHash":"5e34c35701a9d679ec55d4e65f24e47e4c27116b",
-         "previousToHash":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-         "toHash":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-         "added":{
-            "commits":[
-               {
-                  "id":"9bf97a82f1cea0ac559145f4d295e173964f5e7e",
-                  "displayId":"9bf97a82f1c",
-                  "author":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
-                  },
-                  "authorTimestamp":1593688023000,
-                  "committer":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
-                  },
-                  "committerTimestamp":1593698833000,
-                  "message":"Chore: labbar lite (refs JI-1234)",
-                  "parents":[
-                     {
-                        "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-                        "displayId":"9477438cbdc"
-                     }
-                  ]
-               }
-            ],
-            "total":1
-         },
-         "removed":{
-            "commits":[
-               {
-                  "id":"5e34c35701a9d679ec55d4e65f24e47e4c27116b",
-                  "displayId":"5e34c35701a",
-                  "author":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
-                  },
-                  "authorTimestamp":1593688023000,
-                  "committer":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
-                  },
-                  "committerTimestamp":1593698825000,
-                  "message":"Chore: labbar lite (refs JI-1234)",
-                  "parents":[
-                     {
-                        "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-                        "displayId":"9477438cbdc"
-                     }
-                  ]
-               }
-            ],
-            "total":1
-         }
-      },
-      {
-         "id":1188927,
-         "createdDate":1593698826053,
-         "user":{
-            "name":"tomas.bjerre",
-            "emailAddress":"tomas.bjerre@place.se",
-            "id":4792,
-            "displayName":"Tomas Bjerre",
-            "active":true,
-            "slug":"tomas.bjerre",
-            "type":"NORMAL",
-            "links":{
-               "self":[
+                ],
+                "truncated": false
+              },
+              {
+                "type": "ADDED",
+                "lines": [
                   {
-                     "href":"http://stash.whatever.se/users/tomas.bjerre"
-                  }
-               ]
-            }
-         },
-         "action":"RESCOPED",
-         "fromHash":"5e34c35701a9d679ec55d4e65f24e47e4c27116b",
-         "previousFromHash":"fe5696dd27fb05d03885d0a75169e68cd0ca9fa0",
-         "previousToHash":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-         "toHash":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-         "added":{
-            "commits":[
-               {
-                  "id":"5e34c35701a9d679ec55d4e65f24e47e4c27116b",
-                  "displayId":"5e34c35701a",
-                  "author":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
+                    "destination": 55,
+                    "source": 55,
+                    "line": "try {",
+                    "truncated": false
                   },
-                  "authorTimestamp":1593688023000,
-                  "committer":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
-                  },
-                  "committerTimestamp":1593698825000,
-                  "message":"Chore: labbar lite (refs JI-1234)",
-                  "parents":[
-                     {
-                        "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-                        "displayId":"9477438cbdc"
-                     }
-                  ]
-               }
-            ],
-            "total":1
-         },
-         "removed":{
-            "commits":[
-               {
-                  "id":"fe5696dd27fb05d03885d0a75169e68cd0ca9fa0",
-                  "displayId":"fe5696dd27f",
-                  "author":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
-                  },
-                  "authorTimestamp":1593688023000,
-                  "committer":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
-                  },
-                  "committerTimestamp":1593698783000,
-                  "message":"Chore: labbar lite (refs JI-1234)",
-                  "parents":[
-                     {
-                        "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-                        "displayId":"9477438cbdc"
-                     }
-                  ]
-               }
-            ],
-            "total":1
-         }
-      },
-      {
-         "id":1188922,
-         "createdDate":1593698784510,
-         "user":{
-            "name":"tomas.bjerre",
-            "emailAddress":"tomas.bjerre@place.se",
-            "id":4792,
-            "displayName":"Tomas Bjerre",
-            "active":true,
-            "slug":"tomas.bjerre",
-            "type":"NORMAL",
-            "links":{
-               "self":[
                   {
-                     "href":"http://stash.whatever.se/users/tomas.bjerre"
-                  }
-               ]
-            }
-         },
-         "action":"RESCOPED",
-         "fromHash":"fe5696dd27fb05d03885d0a75169e68cd0ca9fa0",
-         "previousFromHash":"a21eae914ff3dbcb31f45d7fdf1112f31825224f",
-         "previousToHash":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-         "toHash":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-         "added":{
-            "commits":[
-               {
-                  "id":"fe5696dd27fb05d03885d0a75169e68cd0ca9fa0",
-                  "displayId":"fe5696dd27f",
-                  "author":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
+                    "destination": 56,
+                    "source": 55,
+                    "line": "if (KlassVO == null) KlassVO.toString();",
+                    "truncated": false
                   },
-                  "authorTimestamp":1593688023000,
-                  "committer":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
-                  },
-                  "committerTimestamp":1593698783000,
-                  "message":"Chore: labbar lite (refs JI-1234)",
-                  "parents":[
-                     {
-                        "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-                        "displayId":"9477438cbdc"
-                     }
-                  ]
-               }
-            ],
-            "total":1
-         },
-         "removed":{
-            "commits":[
-               {
-                  "id":"a21eae914ff3dbcb31f45d7fdf1112f31825224f",
-                  "displayId":"a21eae914ff",
-                  "author":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
-                  },
-                  "authorTimestamp":1593688023000,
-                  "committer":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
-                  },
-                  "committerTimestamp":1593698731000,
-                  "message":"Chore: labbar lite (refs JI-1234)",
-                  "parents":[
-                     {
-                        "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-                        "displayId":"9477438cbdc"
-                     }
-                  ]
-               }
-            ],
-            "total":1
-         }
-      },
-      {
-         "id":1188903,
-         "createdDate":1593698732800,
-         "user":{
-            "name":"tomas.bjerre",
-            "emailAddress":"tomas.bjerre@place.se",
-            "id":4792,
-            "displayName":"Tomas Bjerre",
-            "active":true,
-            "slug":"tomas.bjerre",
-            "type":"NORMAL",
-            "links":{
-               "self":[
                   {
-                     "href":"http://stash.whatever.se/users/tomas.bjerre"
-                  }
-               ]
-            }
-         },
-         "action":"RESCOPED",
-         "fromHash":"a21eae914ff3dbcb31f45d7fdf1112f31825224f",
-         "previousFromHash":"022409ecb210288956248731a63f89ff40fcf3bd",
-         "previousToHash":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-         "toHash":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-         "added":{
-            "commits":[
-               {
-                  "id":"a21eae914ff3dbcb31f45d7fdf1112f31825224f",
-                  "displayId":"a21eae914ff",
-                  "author":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
+                    "destination": 57,
+                    "source": 55,
+                    "line": "} catch (java.lang.Exception e) {",
+                    "truncated": false,
+                    "commentIds": [
+                      196268
+                    ]
                   },
-                  "authorTimestamp":1593688023000,
-                  "committer":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
-                  },
-                  "committerTimestamp":1593698731000,
-                  "message":"Chore: labbar lite (refs JI-1234)",
-                  "parents":[
-                     {
-                        "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-                        "displayId":"9477438cbdc"
-                     }
-                  ]
-               }
-            ],
-            "total":1
-         },
-         "removed":{
-            "commits":[
-               {
-                  "id":"022409ecb210288956248731a63f89ff40fcf3bd",
-                  "displayId":"022409ecb21",
-                  "author":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
-                  },
-                  "authorTimestamp":1593688023000,
-                  "committer":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
-                  },
-                  "committerTimestamp":1593698523000,
-                  "message":"Chore: labbar lite (refs JI-1234)",
-                  "parents":[
-                     {
-                        "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-                        "displayId":"9477438cbdc"
-                     }
-                  ]
-               }
-            ],
-            "total":1
-         }
-      },
-      {
-         "id":1188877,
-         "createdDate":1593698524797,
-         "user":{
-            "name":"tomas.bjerre",
-            "emailAddress":"tomas.bjerre@place.se",
-            "id":4792,
-            "displayName":"Tomas Bjerre",
-            "active":true,
-            "slug":"tomas.bjerre",
-            "type":"NORMAL",
-            "links":{
-               "self":[
                   {
-                     "href":"http://stash.whatever.se/users/tomas.bjerre"
-                  }
-               ]
-            }
-         },
-         "action":"RESCOPED",
-         "fromHash":"022409ecb210288956248731a63f89ff40fcf3bd",
-         "previousFromHash":"843cf5867d791e4ce5a933f0eb5df49ff339b0e1",
-         "previousToHash":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-         "toHash":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-         "added":{
-            "commits":[
-               {
-                  "id":"022409ecb210288956248731a63f89ff40fcf3bd",
-                  "displayId":"022409ecb21",
-                  "author":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
+                    "destination": 58,
+                    "source": 55,
+                    "line": "",
+                    "truncated": false
                   },
-                  "authorTimestamp":1593688023000,
-                  "committer":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
-                  },
-                  "committerTimestamp":1593698523000,
-                  "message":"Chore: labbar lite (refs JI-1234)",
-                  "parents":[
-                     {
-                        "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-                        "displayId":"9477438cbdc"
-                     }
-                  ]
-               }
-            ],
-            "total":1
-         },
-         "removed":{
-            "commits":[
-               {
-                  "id":"843cf5867d791e4ce5a933f0eb5df49ff339b0e1",
-                  "displayId":"843cf5867d7",
-                  "author":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
-                  },
-                  "authorTimestamp":1593688023000,
-                  "committer":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
-                  },
-                  "committerTimestamp":1593698296000,
-                  "message":"Chore: labbar lite (refs JI-1234)",
-                  "parents":[
-                     {
-                        "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-                        "displayId":"9477438cbdc"
-                     }
-                  ]
-               }
-            ],
-            "total":1
-         }
-      },
-      {
-         "id":1188867,
-         "createdDate":1593698297623,
-         "user":{
-            "name":"tomas.bjerre",
-            "emailAddress":"tomas.bjerre@place.se",
-            "id":4792,
-            "displayName":"Tomas Bjerre",
-            "active":true,
-            "slug":"tomas.bjerre",
-            "type":"NORMAL",
-            "links":{
-               "self":[
                   {
-                     "href":"http://stash.whatever.se/users/tomas.bjerre"
+                    "destination": 59,
+                    "source": 55,
+                    "line": "}",
+                    "truncated": false
                   }
-               ]
-            }
-         },
-         "action":"RESCOPED",
-         "fromHash":"843cf5867d791e4ce5a933f0eb5df49ff339b0e1",
-         "previousFromHash":"0db930637de601bbd74b5ac6b4b8f9cbeb323f0f",
-         "previousToHash":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-         "toHash":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-         "added":{
-            "commits":[
-               {
-                  "id":"843cf5867d791e4ce5a933f0eb5df49ff339b0e1",
-                  "displayId":"843cf5867d7",
-                  "author":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
+                ],
+                "truncated": false
+              },
+              {
+                "type": "CONTEXT",
+                "lines": [
+                  {
+                    "destination": 60,
+                    "source": 55,
+                    "line": "      // Initera Klassformen med hämtade uppgifter",
+                    "truncated": false
                   },
-                  "authorTimestamp":1593688023000,
-                  "committer":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
+                  {
+                    "destination": 61,
+                    "source": 56,
+                    "line": "      initieraKlassuppgifter(KlassForm, KlassVO);",
+                    "truncated": false
                   },
-                  "committerTimestamp":1593698296000,
-                  "message":"Chore: labbar lite (refs JI-1234)",
-                  "parents":[
-                     {
-                        "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-                        "displayId":"9477438cbdc"
-                     }
-                  ]
-               }
+                  {
+                    "destination": 62,
+                    "source": 57,
+                    "line": "      KlassForm.setInitierad(true);",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 63,
+                    "source": 58,
+                    "line": "",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 64,
+                    "source": 59,
+                    "line": "   }",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 65,
+                    "source": 60,
+                    "line": "",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 66,
+                    "source": 61,
+                    "line": "   /**",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 67,
+                    "source": 62,
+                    "line": "    * Initierar KlassForm med inmatade värden",
+                    "truncated": false
+                  }
+                ],
+                "truncated": false
+              }
             ],
-            "total":1
-         },
-         "removed":{
-            "commits":[
-               {
-                  "id":"0db930637de601bbd74b5ac6b4b8f9cbeb323f0f",
-                  "displayId":"0db930637de",
-                  "author":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
-                  },
-                  "authorTimestamp":1593688023000,
-                  "committer":{
-                     "name":"tomas.bjerre",
-                     "emailAddress":"tomas.bjerre@place.se",
-                     "id":4792,
-                     "displayName":"Tomas Bjerre",
-                     "active":true,
-                     "slug":"tomas.bjerre",
-                     "type":"NORMAL",
-                     "links":{
-                        "self":[
-                           {
-                              "href":"http://stash.whatever.se/users/tomas.bjerre"
-                           }
-                        ]
-                     }
-                  },
-                  "committerTimestamp":1593698223000,
-                  "message":"Chore: labbar lite (refs JI-1234)",
-                  "parents":[
-                     {
-                        "id":"9477438cbdc76205c1211df91cad7c4367a10ccf",
-                        "displayId":"9477438cbdc"
-                     }
-                  ]
-               }
-            ],
-            "total":1
-         }
+            "truncated": false
+          }
+        ],
+        "truncated": false,
+        "properties": {
+          "toHash": "922937de098d3d10a9ee323c337db7e2f216be6b",
+          "current": true,
+          "fromHash": "9477438cbdc76205c1211df91cad7c4367a10ccf"
+        }
       }
-   ]
+    },
+    {
+      "id": 1188966,
+      "createdDate": 1593699382417,
+      "user": {
+        "name": "username",
+        "emailAddress": "whatever@place.se",
+        "id": 2812,
+        "displayName": "Serviceuser",
+        "active": true,
+        "slug": "username",
+        "type": "NORMAL",
+        "links": {
+          "self": [
+            {
+              "href": "http://stash.whatever.se/users/username"
+            }
+          ]
+        }
+      },
+      "action": "COMMENTED",
+      "commentAction": "ADDED",
+      "comment": {
+        "properties": {
+          "repositoryId": 1434
+        },
+        "id": 196267,
+        "version": 0,
+        "text": "\nWARN Pmd EmptyCatchBlock\n\nAvoid empty catch blocks&#10;&#10;&#10;Error Prone https://pmd.github.io/pmd-6.8.0/pmd_rules_java_errorprone.html#emptycatchblock\n            \n\n*<this is a auto generated comment from violation-comments-lib F7F8ASD8123FSDF>* *<a1829579353>*",
+        "author": {
+          "name": "username",
+          "emailAddress": "whatever@place.se",
+          "id": 2812,
+          "displayName": "Serviceuser",
+          "active": true,
+          "slug": "username",
+          "type": "NORMAL",
+          "links": {
+            "self": [
+              {
+                "href": "http://stash.whatever.se/users/username"
+              }
+            ]
+          }
+        },
+        "createdDate": 1593699382418,
+        "updatedDate": 1593699382418,
+        "comments": [],
+        "tasks": [],
+        "severity": "NORMAL",
+        "state": "OPEN",
+        "permittedOperations": {
+          "editable": false,
+          "transitionable": true,
+          "deletable": true
+        }
+      },
+      "commentAnchor": {
+        "fromHash": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+        "toHash": "922937de098d3d10a9ee323c337db7e2f216be6b",
+        "line": 57,
+        "lineType": "ADDED",
+        "fileType": "TO",
+        "path": "src/main/java/fold/log/KlassLogik.java",
+        "diffType": "EFFECTIVE",
+        "orphaned": false
+      },
+      "diff": {
+        "source": null,
+        "destination": {
+          "components": [
+            "src",
+            "main",
+            "java",
+            "utb",
+            "logik",
+            "KlassLogik.java"
+          ],
+          "parent": "src/main/java/fold/log",
+          "name": "KlassLogik.java",
+          "extension": "java",
+          "toString": "src/main/java/fold/log/KlassLogik.java"
+        },
+        "hunks": [
+          {
+            "context": "public class KlassLogik",
+            "sourceLine": 47,
+            "sourceSpan": 16,
+            "destinationLine": 47,
+            "destinationSpan": 21,
+            "segments": [
+              {
+                "type": "CONTEXT",
+                "lines": [
+                  {
+                    "destination": 47,
+                    "source": 47,
+                    "line": "    * @param KlassForm KlassForm",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 48,
+                    "source": 48,
+                    "line": "    * @param kundId kundId",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 49,
+                    "source": 49,
+                    "line": "    * @param personnummer personnummer",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 50,
+                    "source": 50,
+                    "line": "    */",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 51,
+                    "source": 51,
+                    "line": "   public void hamtaKlassuppgifter(KlassForm KlassForm, String kundId, String personnummer)",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 52,
+                    "source": 52,
+                    "line": "   {",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 53,
+                    "source": 53,
+                    "line": "      // Hämta Klassuppgifter",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 54,
+                    "source": 54,
+                    "line": "      KlassVO KlassVO = KlassDAO.hamtaUtbetalningsuppgifter(kundId, personnummer);",
+                    "truncated": false
+                  }
+                ],
+                "truncated": false
+              },
+              {
+                "type": "ADDED",
+                "lines": [
+                  {
+                    "destination": 55,
+                    "source": 55,
+                    "line": "try {",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 56,
+                    "source": 55,
+                    "line": "if (KlassVO == null) KlassVO.toString();",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 57,
+                    "source": 55,
+                    "line": "} catch (java.lang.Exception e) {",
+                    "truncated": false,
+                    "commentIds": [
+                      196267
+                    ]
+                  },
+                  {
+                    "destination": 58,
+                    "source": 55,
+                    "line": "",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 59,
+                    "source": 55,
+                    "line": "}",
+                    "truncated": false
+                  }
+                ],
+                "truncated": false
+              },
+              {
+                "type": "CONTEXT",
+                "lines": [
+                  {
+                    "destination": 60,
+                    "source": 55,
+                    "line": "      // Initera Klassformen med hämtade uppgifter",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 61,
+                    "source": 56,
+                    "line": "      initieraKlassuppgifter(KlassForm, KlassVO);",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 62,
+                    "source": 57,
+                    "line": "      KlassForm.setInitierad(true);",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 63,
+                    "source": 58,
+                    "line": "",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 64,
+                    "source": 59,
+                    "line": "   }",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 65,
+                    "source": 60,
+                    "line": "",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 66,
+                    "source": 61,
+                    "line": "   /**",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 67,
+                    "source": 62,
+                    "line": "    * Initierar KlassForm med inmatade värden",
+                    "truncated": false
+                  }
+                ],
+                "truncated": false
+              }
+            ],
+            "truncated": false
+          }
+        ],
+        "truncated": false,
+        "properties": {
+          "toHash": "922937de098d3d10a9ee323c337db7e2f216be6b",
+          "current": true,
+          "fromHash": "9477438cbdc76205c1211df91cad7c4367a10ccf"
+        }
+      }
+    },
+    {
+      "id": 1188965,
+      "createdDate": 1593699382367,
+      "user": {
+        "name": "username",
+        "emailAddress": "whatever@place.se",
+        "id": 2812,
+        "displayName": "Serviceuser",
+        "active": true,
+        "slug": "username",
+        "type": "NORMAL",
+        "links": {
+          "self": [
+            {
+              "href": "http://stash.whatever.se/users/username"
+            }
+          ]
+        }
+      },
+      "action": "COMMENTED",
+      "commentAction": "ADDED",
+      "comment": {
+        "properties": {
+          "repositoryId": 1434
+        },
+        "id": 196266,
+        "version": 0,
+        "text": "\nERROR Findbugs NP_ALWAYS_NULL\n\nNull pointer dereference&#10;&#10;&#10;&lt;p&gt; A null pointer is dereferenced here.&amp;nbsp; This will lead to a&#10;&lt;code&gt;NullPointerException&lt;/code&gt; when the code is executed.&lt;/p&gt;&#10;\n            \n\n*<this is a auto generated comment from violation-comments-lib F7F8ASD8123FSDF>* *<a-1549149017>*",
+        "author": {
+          "name": "username",
+          "emailAddress": "whatever@place.se",
+          "id": 2812,
+          "displayName": "Serviceuser",
+          "active": true,
+          "slug": "username",
+          "type": "NORMAL",
+          "links": {
+            "self": [
+              {
+                "href": "http://stash.whatever.se/users/username"
+              }
+            ]
+          }
+        },
+        "createdDate": 1593699382365,
+        "updatedDate": 1593699382365,
+        "comments": [],
+        "tasks": [],
+        "severity": "NORMAL",
+        "state": "OPEN",
+        "permittedOperations": {
+          "editable": false,
+          "transitionable": true,
+          "deletable": true
+        }
+      },
+      "commentAnchor": {
+        "fromHash": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+        "toHash": "922937de098d3d10a9ee323c337db7e2f216be6b",
+        "line": 56,
+        "lineType": "ADDED",
+        "fileType": "TO",
+        "path": "src/main/java/fold/log/KlassLogik.java",
+        "diffType": "EFFECTIVE",
+        "orphaned": false
+      },
+      "diff": {
+        "source": null,
+        "destination": {
+          "components": [
+            "src",
+            "main",
+            "java",
+            "utb",
+            "logik",
+            "KlassLogik.java"
+          ],
+          "parent": "src/main/java/fold/log",
+          "name": "KlassLogik.java",
+          "extension": "java",
+          "toString": "src/main/java/fold/log/KlassLogik.java"
+        },
+        "hunks": [
+          {
+            "context": "public class KlassLogik",
+            "sourceLine": 46,
+            "sourceSpan": 16,
+            "destinationLine": 46,
+            "destinationSpan": 21,
+            "segments": [
+              {
+                "type": "CONTEXT",
+                "lines": [
+                  {
+                    "destination": 46,
+                    "source": 46,
+                    "line": "    *",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 47,
+                    "source": 47,
+                    "line": "    * @param KlassForm KlassForm",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 48,
+                    "source": 48,
+                    "line": "    * @param kundId kundId",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 49,
+                    "source": 49,
+                    "line": "    * @param personnummer personnummer",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 50,
+                    "source": 50,
+                    "line": "    */",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 51,
+                    "source": 51,
+                    "line": "   public void hamtaKlassuppgifter(KlassForm KlassForm, String kundId, String personnummer)",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 52,
+                    "source": 52,
+                    "line": "   {",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 53,
+                    "source": 53,
+                    "line": "      // Hämta Klassuppgifter",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 54,
+                    "source": 54,
+                    "line": "      KlassVO KlassVO = KlassDAO.hamtaUtbetalningsuppgifter(kundId, personnummer);",
+                    "truncated": false
+                  }
+                ],
+                "truncated": false
+              },
+              {
+                "type": "ADDED",
+                "lines": [
+                  {
+                    "destination": 55,
+                    "source": 55,
+                    "line": "try {",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 56,
+                    "source": 55,
+                    "line": "if (KlassVO == null) KlassVO.toString();",
+                    "truncated": false,
+                    "commentIds": [
+                      196266
+                    ]
+                  },
+                  {
+                    "destination": 57,
+                    "source": 55,
+                    "line": "} catch (java.lang.Exception e) {",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 58,
+                    "source": 55,
+                    "line": "",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 59,
+                    "source": 55,
+                    "line": "}",
+                    "truncated": false
+                  }
+                ],
+                "truncated": false
+              },
+              {
+                "type": "CONTEXT",
+                "lines": [
+                  {
+                    "destination": 60,
+                    "source": 55,
+                    "line": "      // Initera Klassformen med hämtade uppgifter",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 61,
+                    "source": 56,
+                    "line": "      initieraKlassuppgifter(KlassForm, KlassVO);",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 62,
+                    "source": 57,
+                    "line": "      KlassForm.setInitierad(true);",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 63,
+                    "source": 58,
+                    "line": "",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 64,
+                    "source": 59,
+                    "line": "   }",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 65,
+                    "source": 60,
+                    "line": "",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 66,
+                    "source": 61,
+                    "line": "   /**",
+                    "truncated": false
+                  }
+                ],
+                "truncated": false
+              }
+            ],
+            "truncated": false
+          }
+        ],
+        "truncated": false,
+        "properties": {
+          "toHash": "922937de098d3d10a9ee323c337db7e2f216be6b",
+          "current": true,
+          "fromHash": "9477438cbdc76205c1211df91cad7c4367a10ccf"
+        }
+      }
+    },
+    {
+      "id": 1188964,
+      "createdDate": 1593699382300,
+      "user": {
+        "name": "username",
+        "emailAddress": "whatever@place.se",
+        "id": 2812,
+        "displayName": "Serviceuser",
+        "active": true,
+        "slug": "username",
+        "type": "NORMAL",
+        "links": {
+          "self": [
+            {
+              "href": "http://stash.whatever.se/users/username"
+            }
+          ]
+        }
+      },
+      "action": "COMMENTED",
+      "commentAction": "ADDED",
+      "comment": {
+        "properties": {
+          "repositoryId": 1434
+        },
+        "id": 196265,
+        "version": 0,
+        "text": "\nINFO Findbugs NP_LOAD_OF_KNOWN_NULL_VALUE\n\nLoad of known null value&#10;&#10;&#10;  &lt;p&gt; The variable referenced at this point is known to be null due to an earlier&#10;   check against null. Although this is valid, it might be a mistake (perhaps you&#10;intended to refer to a different variable, or perhaps the earlier check to see if the&#10;variable is null should have been a check to see if it was non-null).&#10;&lt;/p&gt;&#10;\n            \n\n*<this is a auto generated comment from violation-comments-lib F7F8ASD8123FSDF>* *<a334699368>*",
+        "author": {
+          "name": "username",
+          "emailAddress": "whatever@place.se",
+          "id": 2812,
+          "displayName": "Serviceuser",
+          "active": true,
+          "slug": "username",
+          "type": "NORMAL",
+          "links": {
+            "self": [
+              {
+                "href": "http://stash.whatever.se/users/username"
+              }
+            ]
+          }
+        },
+        "createdDate": 1593699382301,
+        "updatedDate": 1593699382301,
+        "comments": [],
+        "tasks": [],
+        "severity": "NORMAL",
+        "state": "OPEN",
+        "permittedOperations": {
+          "editable": false,
+          "transitionable": true,
+          "deletable": true
+        }
+      },
+      "commentAnchor": {
+        "fromHash": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+        "toHash": "922937de098d3d10a9ee323c337db7e2f216be6b",
+        "line": 56,
+        "lineType": "ADDED",
+        "fileType": "TO",
+        "path": "src/main/java/fold/log/KlassLogik.java",
+        "diffType": "EFFECTIVE",
+        "orphaned": false
+      },
+      "diff": {
+        "source": null,
+        "destination": {
+          "components": [
+            "src",
+            "main",
+            "java",
+            "utb",
+            "logik",
+            "KlassLogik.java"
+          ],
+          "parent": "src/main/java/fold/log",
+          "name": "KlassLogik.java",
+          "extension": "java",
+          "toString": "src/main/java/fold/log/KlassLogik.java"
+        },
+        "hunks": [
+          {
+            "context": "public class KlassLogik",
+            "sourceLine": 46,
+            "sourceSpan": 16,
+            "destinationLine": 46,
+            "destinationSpan": 21,
+            "segments": [
+              {
+                "type": "CONTEXT",
+                "lines": [
+                  {
+                    "destination": 46,
+                    "source": 46,
+                    "line": "    *",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 47,
+                    "source": 47,
+                    "line": "    * @param KlassForm KlassForm",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 48,
+                    "source": 48,
+                    "line": "    * @param kundId kundId",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 49,
+                    "source": 49,
+                    "line": "    * @param personnummer personnummer",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 50,
+                    "source": 50,
+                    "line": "    */",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 51,
+                    "source": 51,
+                    "line": "   public void hamtaKlassuppgifter(KlassForm KlassForm, String kundId, String personnummer)",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 52,
+                    "source": 52,
+                    "line": "   {",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 53,
+                    "source": 53,
+                    "line": "      // Hämta Klassuppgifter",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 54,
+                    "source": 54,
+                    "line": "      KlassVO KlassVO = KlassDAO.hamtaUtbetalningsuppgifter(kundId, personnummer);",
+                    "truncated": false
+                  }
+                ],
+                "truncated": false
+              },
+              {
+                "type": "ADDED",
+                "lines": [
+                  {
+                    "destination": 55,
+                    "source": 55,
+                    "line": "try {",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 56,
+                    "source": 55,
+                    "line": "if (KlassVO == null) KlassVO.toString();",
+                    "truncated": false,
+                    "commentIds": [
+                      196265
+                    ]
+                  },
+                  {
+                    "destination": 57,
+                    "source": 55,
+                    "line": "} catch (java.lang.Exception e) {",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 58,
+                    "source": 55,
+                    "line": "",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 59,
+                    "source": 55,
+                    "line": "}",
+                    "truncated": false
+                  }
+                ],
+                "truncated": false
+              },
+              {
+                "type": "CONTEXT",
+                "lines": [
+                  {
+                    "destination": 60,
+                    "source": 55,
+                    "line": "      // Initera Klassformen med hämtade uppgifter",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 61,
+                    "source": 56,
+                    "line": "      initieraKlassuppgifter(KlassForm, KlassVO);",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 62,
+                    "source": 57,
+                    "line": "      KlassForm.setInitierad(true);",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 63,
+                    "source": 58,
+                    "line": "",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 64,
+                    "source": 59,
+                    "line": "   }",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 65,
+                    "source": 60,
+                    "line": "",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 66,
+                    "source": 61,
+                    "line": "   /**",
+                    "truncated": false
+                  }
+                ],
+                "truncated": false
+              }
+            ],
+            "truncated": false
+          }
+        ],
+        "truncated": false,
+        "properties": {
+          "toHash": "922937de098d3d10a9ee323c337db7e2f216be6b",
+          "current": true,
+          "fromHash": "9477438cbdc76205c1211df91cad7c4367a10ccf"
+        }
+      }
+    },
+    {
+      "id": 1188963,
+      "createdDate": 1593699382250,
+      "user": {
+        "name": "username",
+        "emailAddress": "whatever@place.se",
+        "id": 2812,
+        "displayName": "Serviceuser",
+        "active": true,
+        "slug": "username",
+        "type": "NORMAL",
+        "links": {
+          "self": [
+            {
+              "href": "http://stash.whatever.se/users/username"
+            }
+          ]
+        }
+      },
+      "action": "COMMENTED",
+      "commentAction": "ADDED",
+      "comment": {
+        "properties": {
+          "repositoryId": 1434
+        },
+        "id": 196264,
+        "version": 0,
+        "text": "\nINFO Findbugs DE_MIGHT_IGNORE\n\nMethod might ignore exception&#10;&#10;&#10;  &lt;p&gt; This method might ignore an exception.&amp;nbsp; In general, exceptions&#10;  should be handled or reported in some way, or they should be thrown&#10;  out of the method.&lt;/p&gt;&#10;\n            \n\n*<this is a auto generated comment from violation-comments-lib F7F8ASD8123FSDF>* *<a1657698829>*",
+        "author": {
+          "name": "username",
+          "emailAddress": "whatever@place.se",
+          "id": 2812,
+          "displayName": "Serviceuser",
+          "active": true,
+          "slug": "username",
+          "type": "NORMAL",
+          "links": {
+            "self": [
+              {
+                "href": "http://stash.whatever.se/users/username"
+              }
+            ]
+          }
+        },
+        "createdDate": 1593699382250,
+        "updatedDate": 1593699382250,
+        "comments": [],
+        "tasks": [],
+        "severity": "NORMAL",
+        "state": "OPEN",
+        "permittedOperations": {
+          "editable": false,
+          "transitionable": true,
+          "deletable": true
+        }
+      },
+      "commentAnchor": {
+        "fromHash": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+        "toHash": "922937de098d3d10a9ee323c337db7e2f216be6b",
+        "line": 57,
+        "lineType": "ADDED",
+        "fileType": "TO",
+        "path": "src/main/java/fold/log/KlassLogik.java",
+        "diffType": "EFFECTIVE",
+        "orphaned": false
+      },
+      "diff": {
+        "source": null,
+        "destination": {
+          "components": [
+            "src",
+            "main",
+            "java",
+            "utb",
+            "logik",
+            "KlassLogik.java"
+          ],
+          "parent": "src/main/java/fold/log",
+          "name": "KlassLogik.java",
+          "extension": "java",
+          "toString": "src/main/java/fold/log/KlassLogik.java"
+        },
+        "hunks": [
+          {
+            "context": "public class KlassLogik",
+            "sourceLine": 47,
+            "sourceSpan": 16,
+            "destinationLine": 47,
+            "destinationSpan": 21,
+            "segments": [
+              {
+                "type": "CONTEXT",
+                "lines": [
+                  {
+                    "destination": 47,
+                    "source": 47,
+                    "line": "    * @param KlassForm KlassForm",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 48,
+                    "source": 48,
+                    "line": "    * @param kundId kundId",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 49,
+                    "source": 49,
+                    "line": "    * @param personnummer personnummer",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 50,
+                    "source": 50,
+                    "line": "    */",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 51,
+                    "source": 51,
+                    "line": "   public void hamtaKlassuppgifter(KlassForm KlassForm, String kundId, String personnummer)",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 52,
+                    "source": 52,
+                    "line": "   {",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 53,
+                    "source": 53,
+                    "line": "      // Hämta Klassuppgifter",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 54,
+                    "source": 54,
+                    "line": "      KlassVO KlassVO = KlassDAO.hamtaUtbetalningsuppgifter(kundId, personnummer);",
+                    "truncated": false
+                  }
+                ],
+                "truncated": false
+              },
+              {
+                "type": "ADDED",
+                "lines": [
+                  {
+                    "destination": 55,
+                    "source": 55,
+                    "line": "try {",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 56,
+                    "source": 55,
+                    "line": "if (KlassVO == null) KlassVO.toString();",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 57,
+                    "source": 55,
+                    "line": "} catch (java.lang.Exception e) {",
+                    "truncated": false,
+                    "commentIds": [
+                      196264
+                    ]
+                  },
+                  {
+                    "destination": 58,
+                    "source": 55,
+                    "line": "",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 59,
+                    "source": 55,
+                    "line": "}",
+                    "truncated": false
+                  }
+                ],
+                "truncated": false
+              },
+              {
+                "type": "CONTEXT",
+                "lines": [
+                  {
+                    "destination": 60,
+                    "source": 55,
+                    "line": "      // Initera Klassformen med hämtade uppgifter",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 61,
+                    "source": 56,
+                    "line": "      initieraKlassuppgifter(KlassForm, KlassVO);",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 62,
+                    "source": 57,
+                    "line": "      KlassForm.setInitierad(true);",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 63,
+                    "source": 58,
+                    "line": "",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 64,
+                    "source": 59,
+                    "line": "   }",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 65,
+                    "source": 60,
+                    "line": "",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 66,
+                    "source": 61,
+                    "line": "   /**",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 67,
+                    "source": 62,
+                    "line": "    * Initierar KlassForm med inmatade värden",
+                    "truncated": false
+                  }
+                ],
+                "truncated": false
+              }
+            ],
+            "truncated": false
+          }
+        ],
+        "truncated": false,
+        "properties": {
+          "toHash": "922937de098d3d10a9ee323c337db7e2f216be6b",
+          "current": true,
+          "fromHash": "9477438cbdc76205c1211df91cad7c4367a10ccf"
+        }
+      }
+    },
+    {
+      "id": 1188962,
+      "createdDate": 1593699382190,
+      "user": {
+        "name": "username",
+        "emailAddress": "whatever@place.se",
+        "id": 2812,
+        "displayName": "Serviceuser",
+        "active": true,
+        "slug": "username",
+        "type": "NORMAL",
+        "links": {
+          "self": [
+            {
+              "href": "http://stash.whatever.se/users/username"
+            }
+          ]
+        }
+      },
+      "action": "COMMENTED",
+      "commentAction": "ADDED",
+      "comment": {
+        "properties": {
+          "repositoryId": 1434
+        },
+        "id": 196263,
+        "version": 0,
+        "text": "\nERROR Findbugs NP_NULL_PARAM_DEREF\n\nMethod call passes null for non-null parameter&#10;&#10;&#10;      &lt;p&gt;&#10;      This method call passes a null value for a non-null method parameter.&#10;    Either the parameter is annotated as a parameter that should&#10;    always be non-null, or analysis has shown that it will always be&#10;    dereferenced.&#10;      &lt;/p&gt;&#10;      \n            \n\n*<this is a auto generated comment from violation-comments-lib F7F8ASD8123FSDF>* *<a1999818251>*",
+        "author": {
+          "name": "username",
+          "emailAddress": "whatever@place.se",
+          "id": 2812,
+          "displayName": "Serviceuser",
+          "active": true,
+          "slug": "username",
+          "type": "NORMAL",
+          "links": {
+            "self": [
+              {
+                "href": "http://stash.whatever.se/users/username"
+              }
+            ]
+          }
+        },
+        "createdDate": 1593699382191,
+        "updatedDate": 1593699382191,
+        "comments": [],
+        "tasks": [],
+        "severity": "NORMAL",
+        "state": "OPEN",
+        "permittedOperations": {
+          "editable": false,
+          "transitionable": true,
+          "deletable": true
+        }
+      },
+      "commentAnchor": {
+        "fromHash": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+        "toHash": "922937de098d3d10a9ee323c337db7e2f216be6b",
+        "line": 57,
+        "lineType": "ADDED",
+        "fileType": "TO",
+        "path": "src/main/java/fold/log/KlassLogik.java",
+        "diffType": "EFFECTIVE",
+        "orphaned": false
+      },
+      "diff": {
+        "source": null,
+        "destination": {
+          "components": [
+            "src",
+            "main",
+            "java",
+            "utb",
+            "logik",
+            "KlassLogik.java"
+          ],
+          "parent": "src/main/java/fold/log",
+          "name": "KlassLogik.java",
+          "extension": "java",
+          "toString": "src/main/java/fold/log/KlassLogik.java"
+        },
+        "hunks": [
+          {
+            "context": "public class KlassLogik",
+            "sourceLine": 47,
+            "sourceSpan": 16,
+            "destinationLine": 47,
+            "destinationSpan": 21,
+            "segments": [
+              {
+                "type": "CONTEXT",
+                "lines": [
+                  {
+                    "destination": 47,
+                    "source": 47,
+                    "line": "    * @param KlassForm KlassForm",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 48,
+                    "source": 48,
+                    "line": "    * @param kundId kundId",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 49,
+                    "source": 49,
+                    "line": "    * @param personnummer personnummer",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 50,
+                    "source": 50,
+                    "line": "    */",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 51,
+                    "source": 51,
+                    "line": "   public void hamtaKlassuppgifter(KlassForm KlassForm, String kundId, String personnummer)",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 52,
+                    "source": 52,
+                    "line": "   {",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 53,
+                    "source": 53,
+                    "line": "      // Hämta Klassuppgifter",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 54,
+                    "source": 54,
+                    "line": "      KlassVO KlassVO = KlassDAO.hamtaUtbetalningsuppgifter(kundId, personnummer);",
+                    "truncated": false
+                  }
+                ],
+                "truncated": false
+              },
+              {
+                "type": "ADDED",
+                "lines": [
+                  {
+                    "destination": 55,
+                    "source": 55,
+                    "line": "try {",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 56,
+                    "source": 55,
+                    "line": "if (KlassVO == null) KlassVO.toString();",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 57,
+                    "source": 55,
+                    "line": "} catch (java.lang.Exception e) {",
+                    "truncated": false,
+                    "commentIds": [
+                      196263
+                    ]
+                  },
+                  {
+                    "destination": 58,
+                    "source": 55,
+                    "line": "",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 59,
+                    "source": 55,
+                    "line": "}",
+                    "truncated": false
+                  }
+                ],
+                "truncated": false
+              },
+              {
+                "type": "CONTEXT",
+                "lines": [
+                  {
+                    "destination": 60,
+                    "source": 55,
+                    "line": "      // Initera Klassformen med hämtade uppgifter",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 61,
+                    "source": 56,
+                    "line": "      initieraKlassuppgifter(KlassForm, KlassVO);",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 62,
+                    "source": 57,
+                    "line": "      KlassForm.setInitierad(true);",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 63,
+                    "source": 58,
+                    "line": "",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 64,
+                    "source": 59,
+                    "line": "   }",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 65,
+                    "source": 60,
+                    "line": "",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 66,
+                    "source": 61,
+                    "line": "   /**",
+                    "truncated": false
+                  },
+                  {
+                    "destination": 67,
+                    "source": 62,
+                    "line": "    * Initierar KlassForm med inmatade värden",
+                    "truncated": false
+                  }
+                ],
+                "truncated": false
+              }
+            ],
+            "truncated": false
+          }
+        ],
+        "truncated": false,
+        "properties": {
+          "toHash": "922937de098d3d10a9ee323c337db7e2f216be6b",
+          "current": true,
+          "fromHash": "9477438cbdc76205c1211df91cad7c4367a10ccf"
+        }
+      }
+    },
+    {
+      "id": 1188959,
+      "createdDate": 1593699310883,
+      "user": {
+        "name": "tomas.bjerre",
+        "emailAddress": "tomas.bjerre@place.se",
+        "id": 4792,
+        "displayName": "Tomas Bjerre",
+        "active": true,
+        "slug": "tomas.bjerre",
+        "type": "NORMAL",
+        "links": {
+          "self": [
+            {
+              "href": "http://stash.whatever.se/users/tomas.bjerre"
+            }
+          ]
+        }
+      },
+      "action": "RESCOPED",
+      "fromHash": "922937de098d3d10a9ee323c337db7e2f216be6b",
+      "previousFromHash": "f9f0dda70a9353ce5c189a3d5174e6f9c77c35f8",
+      "previousToHash": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+      "toHash": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+      "added": {
+        "commits": [
+          {
+            "id": "922937de098d3d10a9ee323c337db7e2f216be6b",
+            "displayId": "922937de098",
+            "author": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "authorTimestamp": 1593688023000,
+            "committer": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "committerTimestamp": 1593699309000,
+            "message": "Chore: labbar lite (refs JI-1234)",
+            "parents": [
+              {
+                "id": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+                "displayId": "9477438cbdc"
+              }
+            ],
+            "properties": {
+              "jira-key": [
+                "JI-1234"
+              ]
+            }
+          }
+        ],
+        "total": 1
+      },
+      "removed": {
+        "commits": [
+          {
+            "id": "f9f0dda70a9353ce5c189a3d5174e6f9c77c35f8",
+            "displayId": "f9f0dda70a9",
+            "author": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "authorTimestamp": 1593688023000,
+            "committer": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "committerTimestamp": 1593699067000,
+            "message": "Chore: labbar lite (refs JI-1234)",
+            "parents": [
+              {
+                "id": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+                "displayId": "9477438cbdc"
+              }
+            ]
+          }
+        ],
+        "total": 1
+      }
+    },
+    {
+      "id": 1188951,
+      "createdDate": 1593699102353,
+      "user": {
+        "name": "username",
+        "emailAddress": "whatever@place.se",
+        "id": 2812,
+        "displayName": "Serviceuser",
+        "active": true,
+        "slug": "username",
+        "type": "NORMAL",
+        "links": {
+          "self": [
+            {
+              "href": "http://stash.whatever.se/users/username"
+            }
+          ]
+        }
+      },
+      "action": "COMMENTED",
+      "commentAction": "ADDED",
+      "comment": {
+        "properties": {
+          "repositoryId": 1434
+        },
+        "id": 196262,
+        "version": 0,
+        "text": "Found 3 violations:\n\n\n\n-------------------------------------\nERROR Junit java.lang.AssertionError\n\ntestHamtaBankTeknisktFel : java.lang.AssertionError: CLEARINGNUMMER returnerar BANKNAMN expected:&lt;&gt; but was:&lt;null&gt;\n            \n\n*<this is a auto generated comment from violation-comments-lib F7F8ASD8123FSDF>* *<a-410021585>*\n\n\n-------------------------------------\nERROR Junit java.lang.AssertionError\n\ntestBankSaknas : java.lang.AssertionError: CLEARINGNUMMER(0000) returnerar BANKNAMN_SAKNAS() expected:&lt;&gt; but was:&lt;null&gt;\n            \n\n*<this is a auto generated comment from violation-comments-lib F7F8ASD8123FSDF>* *<a-433456500>*\n\n\n-------------------------------------\nERROR Junit java.lang.NullPointerException\n\ntestBankFinns : java.lang.NullPointerException\n            \n\n*<this is a auto generated comment from violation-comments-lib F7F8ASD8123FSDF>* *<a1000468442>*\n *<ACCUMULATED-VIOLATIONS>*",
+        "author": {
+          "name": "username",
+          "emailAddress": "whatever@place.se",
+          "id": 2812,
+          "displayName": "Serviceuser",
+          "active": true,
+          "slug": "username",
+          "type": "NORMAL",
+          "links": {
+            "self": [
+              {
+                "href": "http://stash.whatever.se/users/username"
+              }
+            ]
+          }
+        },
+        "createdDate": 1593699102353,
+        "updatedDate": 1593699102353,
+        "comments": [],
+        "tasks": [],
+        "severity": "NORMAL",
+        "state": "OPEN",
+        "permittedOperations": {
+          "editable": false,
+          "transitionable": true,
+          "deletable": true
+        }
+      }
+    },
+    {
+      "id": 1188950,
+      "createdDate": 1593699068900,
+      "user": {
+        "name": "tomas.bjerre",
+        "emailAddress": "tomas.bjerre@place.se",
+        "id": 4792,
+        "displayName": "Tomas Bjerre",
+        "active": true,
+        "slug": "tomas.bjerre",
+        "type": "NORMAL",
+        "links": {
+          "self": [
+            {
+              "href": "http://stash.whatever.se/users/tomas.bjerre"
+            }
+          ]
+        }
+      },
+      "action": "RESCOPED",
+      "fromHash": "f9f0dda70a9353ce5c189a3d5174e6f9c77c35f8",
+      "previousFromHash": "e10fdc392a8e8a08eed3bea6db544c3d120ab5ac",
+      "previousToHash": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+      "toHash": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+      "added": {
+        "commits": [
+          {
+            "id": "f9f0dda70a9353ce5c189a3d5174e6f9c77c35f8",
+            "displayId": "f9f0dda70a9",
+            "author": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "authorTimestamp": 1593688023000,
+            "committer": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "committerTimestamp": 1593699067000,
+            "message": "Chore: labbar lite (refs JI-1234)",
+            "parents": [
+              {
+                "id": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+                "displayId": "9477438cbdc"
+              }
+            ]
+          }
+        ],
+        "total": 1
+      },
+      "removed": {
+        "commits": [
+          {
+            "id": "e10fdc392a8e8a08eed3bea6db544c3d120ab5ac",
+            "displayId": "e10fdc392a8",
+            "author": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "authorTimestamp": 1593688023000,
+            "committer": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "committerTimestamp": 1593698964000,
+            "message": "Chore: labbar lite (refs JI-1234)",
+            "parents": [
+              {
+                "id": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+                "displayId": "9477438cbdc"
+              }
+            ]
+          }
+        ],
+        "total": 1
+      }
+    },
+    {
+      "id": 1188942,
+      "createdDate": 1593698965633,
+      "user": {
+        "name": "tomas.bjerre",
+        "emailAddress": "tomas.bjerre@place.se",
+        "id": 4792,
+        "displayName": "Tomas Bjerre",
+        "active": true,
+        "slug": "tomas.bjerre",
+        "type": "NORMAL",
+        "links": {
+          "self": [
+            {
+              "href": "http://stash.whatever.se/users/tomas.bjerre"
+            }
+          ]
+        }
+      },
+      "action": "RESCOPED",
+      "fromHash": "e10fdc392a8e8a08eed3bea6db544c3d120ab5ac",
+      "previousFromHash": "9bf97a82f1cea0ac559145f4d295e173964f5e7e",
+      "previousToHash": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+      "toHash": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+      "added": {
+        "commits": [
+          {
+            "id": "e10fdc392a8e8a08eed3bea6db544c3d120ab5ac",
+            "displayId": "e10fdc392a8",
+            "author": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "authorTimestamp": 1593688023000,
+            "committer": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "committerTimestamp": 1593698964000,
+            "message": "Chore: labbar lite (refs JI-1234)",
+            "parents": [
+              {
+                "id": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+                "displayId": "9477438cbdc"
+              }
+            ]
+          }
+        ],
+        "total": 1
+      },
+      "removed": {
+        "commits": [
+          {
+            "id": "9bf97a82f1cea0ac559145f4d295e173964f5e7e",
+            "displayId": "9bf97a82f1c",
+            "author": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "authorTimestamp": 1593688023000,
+            "committer": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "committerTimestamp": 1593698833000,
+            "message": "Chore: labbar lite (refs JI-1234)",
+            "parents": [
+              {
+                "id": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+                "displayId": "9477438cbdc"
+              }
+            ]
+          }
+        ],
+        "total": 1
+      }
+    },
+    {
+      "id": 1188932,
+      "createdDate": 1593698834570,
+      "user": {
+        "name": "tomas.bjerre",
+        "emailAddress": "tomas.bjerre@place.se",
+        "id": 4792,
+        "displayName": "Tomas Bjerre",
+        "active": true,
+        "slug": "tomas.bjerre",
+        "type": "NORMAL",
+        "links": {
+          "self": [
+            {
+              "href": "http://stash.whatever.se/users/tomas.bjerre"
+            }
+          ]
+        }
+      },
+      "action": "RESCOPED",
+      "fromHash": "9bf97a82f1cea0ac559145f4d295e173964f5e7e",
+      "previousFromHash": "5e34c35701a9d679ec55d4e65f24e47e4c27116b",
+      "previousToHash": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+      "toHash": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+      "added": {
+        "commits": [
+          {
+            "id": "9bf97a82f1cea0ac559145f4d295e173964f5e7e",
+            "displayId": "9bf97a82f1c",
+            "author": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "authorTimestamp": 1593688023000,
+            "committer": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "committerTimestamp": 1593698833000,
+            "message": "Chore: labbar lite (refs JI-1234)",
+            "parents": [
+              {
+                "id": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+                "displayId": "9477438cbdc"
+              }
+            ]
+          }
+        ],
+        "total": 1
+      },
+      "removed": {
+        "commits": [
+          {
+            "id": "5e34c35701a9d679ec55d4e65f24e47e4c27116b",
+            "displayId": "5e34c35701a",
+            "author": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "authorTimestamp": 1593688023000,
+            "committer": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "committerTimestamp": 1593698825000,
+            "message": "Chore: labbar lite (refs JI-1234)",
+            "parents": [
+              {
+                "id": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+                "displayId": "9477438cbdc"
+              }
+            ]
+          }
+        ],
+        "total": 1
+      }
+    },
+    {
+      "id": 1188927,
+      "createdDate": 1593698826053,
+      "user": {
+        "name": "tomas.bjerre",
+        "emailAddress": "tomas.bjerre@place.se",
+        "id": 4792,
+        "displayName": "Tomas Bjerre",
+        "active": true,
+        "slug": "tomas.bjerre",
+        "type": "NORMAL",
+        "links": {
+          "self": [
+            {
+              "href": "http://stash.whatever.se/users/tomas.bjerre"
+            }
+          ]
+        }
+      },
+      "action": "RESCOPED",
+      "fromHash": "5e34c35701a9d679ec55d4e65f24e47e4c27116b",
+      "previousFromHash": "fe5696dd27fb05d03885d0a75169e68cd0ca9fa0",
+      "previousToHash": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+      "toHash": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+      "added": {
+        "commits": [
+          {
+            "id": "5e34c35701a9d679ec55d4e65f24e47e4c27116b",
+            "displayId": "5e34c35701a",
+            "author": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "authorTimestamp": 1593688023000,
+            "committer": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "committerTimestamp": 1593698825000,
+            "message": "Chore: labbar lite (refs JI-1234)",
+            "parents": [
+              {
+                "id": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+                "displayId": "9477438cbdc"
+              }
+            ]
+          }
+        ],
+        "total": 1
+      },
+      "removed": {
+        "commits": [
+          {
+            "id": "fe5696dd27fb05d03885d0a75169e68cd0ca9fa0",
+            "displayId": "fe5696dd27f",
+            "author": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "authorTimestamp": 1593688023000,
+            "committer": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "committerTimestamp": 1593698783000,
+            "message": "Chore: labbar lite (refs JI-1234)",
+            "parents": [
+              {
+                "id": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+                "displayId": "9477438cbdc"
+              }
+            ]
+          }
+        ],
+        "total": 1
+      }
+    },
+    {
+      "id": 1188922,
+      "createdDate": 1593698784510,
+      "user": {
+        "name": "tomas.bjerre",
+        "emailAddress": "tomas.bjerre@place.se",
+        "id": 4792,
+        "displayName": "Tomas Bjerre",
+        "active": true,
+        "slug": "tomas.bjerre",
+        "type": "NORMAL",
+        "links": {
+          "self": [
+            {
+              "href": "http://stash.whatever.se/users/tomas.bjerre"
+            }
+          ]
+        }
+      },
+      "action": "RESCOPED",
+      "fromHash": "fe5696dd27fb05d03885d0a75169e68cd0ca9fa0",
+      "previousFromHash": "a21eae914ff3dbcb31f45d7fdf1112f31825224f",
+      "previousToHash": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+      "toHash": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+      "added": {
+        "commits": [
+          {
+            "id": "fe5696dd27fb05d03885d0a75169e68cd0ca9fa0",
+            "displayId": "fe5696dd27f",
+            "author": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "authorTimestamp": 1593688023000,
+            "committer": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "committerTimestamp": 1593698783000,
+            "message": "Chore: labbar lite (refs JI-1234)",
+            "parents": [
+              {
+                "id": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+                "displayId": "9477438cbdc"
+              }
+            ]
+          }
+        ],
+        "total": 1
+      },
+      "removed": {
+        "commits": [
+          {
+            "id": "a21eae914ff3dbcb31f45d7fdf1112f31825224f",
+            "displayId": "a21eae914ff",
+            "author": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "authorTimestamp": 1593688023000,
+            "committer": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "committerTimestamp": 1593698731000,
+            "message": "Chore: labbar lite (refs JI-1234)",
+            "parents": [
+              {
+                "id": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+                "displayId": "9477438cbdc"
+              }
+            ]
+          }
+        ],
+        "total": 1
+      }
+    },
+    {
+      "id": 1188903,
+      "createdDate": 1593698732800,
+      "user": {
+        "name": "tomas.bjerre",
+        "emailAddress": "tomas.bjerre@place.se",
+        "id": 4792,
+        "displayName": "Tomas Bjerre",
+        "active": true,
+        "slug": "tomas.bjerre",
+        "type": "NORMAL",
+        "links": {
+          "self": [
+            {
+              "href": "http://stash.whatever.se/users/tomas.bjerre"
+            }
+          ]
+        }
+      },
+      "action": "RESCOPED",
+      "fromHash": "a21eae914ff3dbcb31f45d7fdf1112f31825224f",
+      "previousFromHash": "022409ecb210288956248731a63f89ff40fcf3bd",
+      "previousToHash": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+      "toHash": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+      "added": {
+        "commits": [
+          {
+            "id": "a21eae914ff3dbcb31f45d7fdf1112f31825224f",
+            "displayId": "a21eae914ff",
+            "author": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "authorTimestamp": 1593688023000,
+            "committer": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "committerTimestamp": 1593698731000,
+            "message": "Chore: labbar lite (refs JI-1234)",
+            "parents": [
+              {
+                "id": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+                "displayId": "9477438cbdc"
+              }
+            ]
+          }
+        ],
+        "total": 1
+      },
+      "removed": {
+        "commits": [
+          {
+            "id": "022409ecb210288956248731a63f89ff40fcf3bd",
+            "displayId": "022409ecb21",
+            "author": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "authorTimestamp": 1593688023000,
+            "committer": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "committerTimestamp": 1593698523000,
+            "message": "Chore: labbar lite (refs JI-1234)",
+            "parents": [
+              {
+                "id": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+                "displayId": "9477438cbdc"
+              }
+            ]
+          }
+        ],
+        "total": 1
+      }
+    },
+    {
+      "id": 1188877,
+      "createdDate": 1593698524797,
+      "user": {
+        "name": "tomas.bjerre",
+        "emailAddress": "tomas.bjerre@place.se",
+        "id": 4792,
+        "displayName": "Tomas Bjerre",
+        "active": true,
+        "slug": "tomas.bjerre",
+        "type": "NORMAL",
+        "links": {
+          "self": [
+            {
+              "href": "http://stash.whatever.se/users/tomas.bjerre"
+            }
+          ]
+        }
+      },
+      "action": "RESCOPED",
+      "fromHash": "022409ecb210288956248731a63f89ff40fcf3bd",
+      "previousFromHash": "843cf5867d791e4ce5a933f0eb5df49ff339b0e1",
+      "previousToHash": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+      "toHash": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+      "added": {
+        "commits": [
+          {
+            "id": "022409ecb210288956248731a63f89ff40fcf3bd",
+            "displayId": "022409ecb21",
+            "author": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "authorTimestamp": 1593688023000,
+            "committer": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "committerTimestamp": 1593698523000,
+            "message": "Chore: labbar lite (refs JI-1234)",
+            "parents": [
+              {
+                "id": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+                "displayId": "9477438cbdc"
+              }
+            ]
+          }
+        ],
+        "total": 1
+      },
+      "removed": {
+        "commits": [
+          {
+            "id": "843cf5867d791e4ce5a933f0eb5df49ff339b0e1",
+            "displayId": "843cf5867d7",
+            "author": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "authorTimestamp": 1593688023000,
+            "committer": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "committerTimestamp": 1593698296000,
+            "message": "Chore: labbar lite (refs JI-1234)",
+            "parents": [
+              {
+                "id": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+                "displayId": "9477438cbdc"
+              }
+            ]
+          }
+        ],
+        "total": 1
+      }
+    },
+    {
+      "id": 1188867,
+      "createdDate": 1593698297623,
+      "user": {
+        "name": "tomas.bjerre",
+        "emailAddress": "tomas.bjerre@place.se",
+        "id": 4792,
+        "displayName": "Tomas Bjerre",
+        "active": true,
+        "slug": "tomas.bjerre",
+        "type": "NORMAL",
+        "links": {
+          "self": [
+            {
+              "href": "http://stash.whatever.se/users/tomas.bjerre"
+            }
+          ]
+        }
+      },
+      "action": "RESCOPED",
+      "fromHash": "843cf5867d791e4ce5a933f0eb5df49ff339b0e1",
+      "previousFromHash": "0db930637de601bbd74b5ac6b4b8f9cbeb323f0f",
+      "previousToHash": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+      "toHash": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+      "added": {
+        "commits": [
+          {
+            "id": "843cf5867d791e4ce5a933f0eb5df49ff339b0e1",
+            "displayId": "843cf5867d7",
+            "author": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "authorTimestamp": 1593688023000,
+            "committer": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "committerTimestamp": 1593698296000,
+            "message": "Chore: labbar lite (refs JI-1234)",
+            "parents": [
+              {
+                "id": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+                "displayId": "9477438cbdc"
+              }
+            ]
+          }
+        ],
+        "total": 1
+      },
+      "removed": {
+        "commits": [
+          {
+            "id": "0db930637de601bbd74b5ac6b4b8f9cbeb323f0f",
+            "displayId": "0db930637de",
+            "author": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "authorTimestamp": 1593688023000,
+            "committer": {
+              "name": "tomas.bjerre",
+              "emailAddress": "tomas.bjerre@place.se",
+              "id": 4792,
+              "displayName": "Tomas Bjerre",
+              "active": true,
+              "slug": "tomas.bjerre",
+              "type": "NORMAL",
+              "links": {
+                "self": [
+                  {
+                    "href": "http://stash.whatever.se/users/tomas.bjerre"
+                  }
+                ]
+              }
+            },
+            "committerTimestamp": 1593698223000,
+            "message": "Chore: labbar lite (refs JI-1234)",
+            "parents": [
+              {
+                "id": "9477438cbdc76205c1211df91cad7c4367a10ccf",
+                "displayId": "9477438cbdc"
+              }
+            ]
+          }
+        ],
+        "total": 1
+      }
+    }
+  ]
 }
