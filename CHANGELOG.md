@@ -1,3 +1,9 @@
+## Unreleased ()
+
+### Bug Fixes
+
+-  new build script and minor adjustments from SCA ([88541](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/8854126987a195e) Tomas Bjerre)  
+
 
 ## 2.0.0 (2024-01-27)
 
