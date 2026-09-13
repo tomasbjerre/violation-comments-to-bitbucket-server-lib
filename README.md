@@ -36,6 +36,6 @@ It can be configured with some Java properties:
 
 ## Developer instructions
 
-To build the code, have a look at `.travis.yml`.
+To build the code, have a look at `.github/workflows/gradle-ci.yaml`.
 
-To do a release you need to do `./gradlew release` and release the artifact from [staging](https://oss.sonatype.org/#stagingRepositories). More information [here](http://central.sonatype.org/pages/releasing-the-deployment.html).
+To do a release you need to do `./gradlew updateVersion && ./gradlew release`. More information [here](https://github.com/vanniktech/gradle-maven-publish-plugin/blob/main/docs/central.md#secrets).
