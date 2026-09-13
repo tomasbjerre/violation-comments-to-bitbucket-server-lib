@@ -1,13 +1,11 @@
 package se.bjurr.violations.comments.bitbucketserver.lib.client;
 
-import static com.google.common.base.Charsets.UTF_8;
-import static com.google.common.collect.Lists.newArrayList;
 import static java.net.URLEncoder.encode;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.logging.Level.INFO;
 import static se.bjurr.violations.lib.util.Utils.isNullOrEmpty;
 
-import com.google.common.annotations.VisibleForTesting;
-import com.google.gson.Gson;
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.jayway.jsonpath.JsonPath;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
@@ -22,12 +20,19 @@ import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketSe
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerDiffResponse;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerTask;
 import se.bjurr.violations.lib.ViolationsLogger;
+import tools.jackson.databind.DeserializationFeature;
+import tools.jackson.databind.json.JsonMapper;
 
 public class BitbucketServerClient {
+  private static final JsonMapper JSON_MAPPER =
+      JsonMapper.builder()
+          .changeDefaultVisibility(vc -> vc.withFieldVisibility(Visibility.ANY))
+          .disable(DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES)
+          .build();
+
   private static BitbucketServerInvoker bitbucketServerInvoker = new BitbucketServerInvoker();
   private final ViolationsLogger violationsLogger;
 
-  @VisibleForTesting
   public static void setBitbucketServerInvoker(
       final BitbucketServerInvoker bitbucketServerInvoker) {
     BitbucketServerClient.bitbucketServerInvoker = bitbucketServerInvoker;
@@ -244,7 +249,7 @@ public class BitbucketServerClient {
     final String json = this.doInvokeUrl(url, BitbucketServerInvoker.Method.GET, null);
     try {
       final BitbucketServerDiffResponse diff =
-          new Gson().fromJson(json, BitbucketServerDiffResponse.class);
+          JSON_MAPPER.readValue(json, BitbucketServerDiffResponse.class);
       if (diff.getDiffs().isEmpty()) {
         this.violationsLogger.log(INFO, "Found no diffs from " + url + " in JSON:\n" + json);
       }
@@ -288,7 +293,6 @@ public class BitbucketServerClient {
     this.doInvokeUrl(this.getBitbucketServerApiBase() + "/tasks", Method.POST, taskPostContent);
   }
 
-  @VisibleForTesting
   String safeJson(final String message) {
     return message
         .replaceAll("\\\\", "\\\\\\\\")
@@ -298,7 +302,7 @@ public class BitbucketServerClient {
   }
 
   private List<BitbucketServerComment> toBitbucketServerComments(final List<Map<?, ?>> parsed) {
-    final List<BitbucketServerComment> transformed = newArrayList();
+    final List<BitbucketServerComment> transformed = new ArrayList<>();
     for (final Map<?, ?> from : parsed) {
       transformed.add(this.toBitbucketServerComment(from));
     }

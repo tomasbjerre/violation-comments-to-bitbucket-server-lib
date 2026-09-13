@@ -1,6 +1,6 @@
 package se.bjurr.violations.comments.bitbucketserver.lib;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import static java.util.Objects.requireNonNull;
 import static java.util.Optional.ofNullable;
 import static se.bjurr.violations.comments.lib.CommentsCreator.createComments;
 import static se.bjurr.violations.lib.FilteringViolationsLogger.filterLevel;
@@ -101,10 +101,10 @@ public class ViolationCommentsToBitbucketServerApi {
               + DEFAULT_PROP_KEYSTORE_PASS
               + "=keystorepass");
     }
-    checkNotNull(this.bitbucketServerUrl, "BitbucketServerURL");
-    checkNotNull(this.pullRequestId, "PullRequestId");
-    checkNotNull(this.repoSlug, "repoSlug");
-    checkNotNull(this.projectKey, "projectKey");
+    requireNonNull(this.bitbucketServerUrl, "BitbucketServerURL");
+    requireNonNull(this.pullRequestId, "PullRequestId");
+    requireNonNull(this.repoSlug, "repoSlug");
+    requireNonNull(this.projectKey, "projectKey");
   }
 
   public ViolationCommentsToBitbucketServerApi withViolationsLogger(

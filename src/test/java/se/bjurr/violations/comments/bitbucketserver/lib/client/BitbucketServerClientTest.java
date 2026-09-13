@@ -1,14 +1,14 @@
 package se.bjurr.violations.comments.bitbucketserver.lib.client;
 
-import static com.google.common.collect.Lists.newArrayList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static se.bjurr.violations.comments.bitbucketserver.lib.client.model.DIFFTYPE.ADDED;
 import static se.bjurr.violations.comments.bitbucketserver.lib.client.model.DIFFTYPE.CONTEXT;
 import static se.bjurr.violations.comments.bitbucketserver.lib.client.model.DIFFTYPE.REMOVED;
 
-import com.google.common.base.Charsets;
-import com.google.common.io.Resources;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -75,7 +75,7 @@ public class BitbucketServerClientTest {
 
   public List<BitbucketServerDiff> filterByFile(
       final BitbucketServerDiffResponse response, final String filename) {
-    final List<BitbucketServerDiff> filtered = newArrayList();
+    final List<BitbucketServerDiff> filtered = new ArrayList<>();
     final List<BitbucketServerDiff> mixed = response.getDiffs();
     for (final BitbucketServerDiff d : mixed) {
       if (d.getDestination().getToString().equals(filename)) {
@@ -87,7 +87,7 @@ public class BitbucketServerClientTest {
 
   public List<Segment> filterSegments(
       final BitbucketServerDiff bitbucketServerDiff, final DIFFTYPE diffType) {
-    final List<Segment> filtered = newArrayList();
+    final List<Segment> filtered = new ArrayList<>();
     for (final DiffHunk hunk : bitbucketServerDiff.getHunks()) {
       final List<Segment> mixed = hunk.getSegments();
       for (final Segment s : mixed) {
@@ -101,8 +101,8 @@ public class BitbucketServerClientTest {
   }
 
   private void mockJson(final String resourceName) {
-    try {
-      this.mockedJson = Resources.toString(Resources.getResource(resourceName), Charsets.UTF_8);
+    try (InputStream is = this.getClass().getClassLoader().getResourceAsStream(resourceName)) {
+      this.mockedJson = new String(is.readAllBytes(), StandardCharsets.UTF_8);
     } catch (final IOException e) {
       e.printStackTrace();
     }

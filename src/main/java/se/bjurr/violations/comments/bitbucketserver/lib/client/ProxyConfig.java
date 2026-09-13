@@ -1,6 +1,6 @@
 package se.bjurr.violations.comments.bitbucketserver.lib.client;
 
-import static com.google.common.base.Strings.isNullOrEmpty;
+import static se.bjurr.violations.lib.util.Utils.isNullOrEmpty;
 
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;

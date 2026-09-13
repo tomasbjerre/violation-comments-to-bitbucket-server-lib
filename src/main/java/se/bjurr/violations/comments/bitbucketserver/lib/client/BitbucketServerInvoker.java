@@ -1,7 +1,6 @@
 package se.bjurr.violations.comments.bitbucketserver.lib.client;
 
-import static com.google.common.base.Charsets.UTF_8;
-import static com.google.common.base.Strings.isNullOrEmpty;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.logging.Level.INFO;
 
 import java.io.BufferedReader;
@@ -112,7 +111,7 @@ public class BitbucketServerInvoker {
       request.addHeader("Content-Type", "application/json");
       request.addHeader("Accept", "application/json");
 
-      if (request instanceof HttpPost && !isNullOrEmpty(postContent)) {
+      if (request instanceof HttpPost && postContent != null && !postContent.isEmpty()) {
         final StringEntity entity = new StringEntity(postContent, UTF_8);
         ((HttpPost) request).setEntity(entity);
       }

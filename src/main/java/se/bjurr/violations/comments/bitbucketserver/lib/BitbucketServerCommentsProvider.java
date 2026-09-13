@@ -1,14 +1,12 @@
 package se.bjurr.violations.comments.bitbucketserver.lib;
 
-import static com.google.common.base.Strings.isNullOrEmpty;
 import static com.google.common.cache.CacheBuilder.newBuilder;
-import static com.google.common.collect.Lists.newArrayList;
 import static java.util.concurrent.TimeUnit.MINUTES;
 import static java.util.logging.Level.INFO;
 import static java.util.logging.Level.SEVERE;
 import static se.bjurr.violations.comments.bitbucketserver.lib.client.model.DIFFTYPE.ADDED;
+import static se.bjurr.violations.lib.util.Utils.isNullOrEmpty;
 
-import com.google.common.annotations.VisibleForTesting;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import java.util.ArrayDeque;
@@ -55,7 +53,6 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
   private final ViolationCommentsToBitbucketServerApi violationCommentsToBitbucketApi;
   private final ViolationsLogger violationsLogger;
 
-  @VisibleForTesting
   BitbucketServerCommentsProvider() {
     this.client = null;
     this.violationCommentsToBitbucketApi = null;
@@ -136,7 +133,7 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
         final List<BitbucketServerComment> bitbucketServerCommentsOnFile =
             this.client.pullRequestComments(changedFile);
         for (final BitbucketServerComment fileComment : bitbucketServerCommentsOnFile) {
-          final List<String> specifics = newArrayList(fileComment.getVersion() + "", changedFile);
+          final List<String> specifics = List.of(fileComment.getVersion() + "", changedFile);
           final Comment comment =
               new Comment(fileComment.getId() + "", fileComment.getText(), null, specifics);
           comments.put(fileComment.getId(), comment);
@@ -145,7 +142,7 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
     }
 
     for (final BitbucketServerComment comment : this.client.pullRequestComments()) {
-      final List<String> specifics = newArrayList(comment.getVersion() + "", "");
+      final List<String> specifics = List.of(comment.getVersion() + "", "");
       if (!comments.containsKey(comment.getId())) {
         comments.put(
             comment.getId(), new Comment(comment.getId() + "", comment.getText(), null, specifics));
@@ -157,7 +154,7 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
 
   @Override
   public List<ChangedFile> getFiles() {
-    final List<ChangedFile> changedFiles = newArrayList();
+    final List<ChangedFile> changedFiles = new ArrayList<>();
 
     final List<String> bitbucketServerChangedFiles = this.client.pullRequestChanges();
 
@@ -204,7 +201,6 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
     }
   }
 
-  @VisibleForTesting
   boolean shouldComment(
       final ChangedFile changedFile,
       final Integer changedLine,

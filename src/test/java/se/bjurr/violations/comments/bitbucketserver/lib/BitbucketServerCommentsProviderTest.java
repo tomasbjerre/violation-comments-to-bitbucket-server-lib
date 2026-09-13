@@ -1,8 +1,8 @@
 package se.bjurr.violations.comments.bitbucketserver.lib;
 
-import static com.google.common.collect.Lists.newArrayList;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,10 +26,10 @@ public class BitbucketServerCommentsProviderTest {
   @Test
   public void testThatDeletedFilesCanBeHandled() {
     ChangedFile changedFile = new ChangedFile("filename", null);
-    List<BitbucketServerDiff> diffs = newArrayList();
-    List<DiffHunk> hunks = newArrayList();
-    List<Segment> segments = newArrayList();
-    List<Line> lines = newArrayList();
+    List<BitbucketServerDiff> diffs = new ArrayList<>();
+    List<DiffHunk> hunks = new ArrayList<>();
+    List<Segment> segments = new ArrayList<>();
+    List<Line> lines = new ArrayList<>();
     lines.add(new Line(10));
     segments.add(new Segment(DIFFTYPE.ADDED, lines));
     hunks.add(new DiffHunk(segments));
@@ -45,11 +45,11 @@ public class BitbucketServerCommentsProviderTest {
   @Test
   public void testThatOnlyAddedCanBeCommented() {
     ChangedFile changedFile = new ChangedFile("filename", null);
-    List<BitbucketServerDiff> diffs = newArrayList();
+    List<BitbucketServerDiff> diffs = new ArrayList<>();
     DiffDestination destination = new DiffDestination("filename");
-    List<DiffHunk> hunks = newArrayList();
-    List<Segment> segments = newArrayList();
-    List<Line> lines = newArrayList();
+    List<DiffHunk> hunks = new ArrayList<>();
+    List<Segment> segments = new ArrayList<>();
+    List<Line> lines = new ArrayList<>();
     lines.add(new Line(10));
     segments.add(new Segment(DIFFTYPE.ADDED, lines));
     hunks.add(new DiffHunk(segments));
