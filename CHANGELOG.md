@@ -1,3 +1,29 @@
+## 3.0.0 (2026-09-13)
+
+### Breaking changes
+
+-  drop guava and use java 17 ([cbcdc](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/cbcdc9483ea7da6) Tomas Bjerre)  
+
+### Bug Fixes
+
+-  new build script and minor adjustments from SCA ([88541](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/8854126987a195e) Tomas Bjerre)  
+
+### Dependency updates
+
+- update dependencies and gradle-conventions to 2.1.2 ([fc95e](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/fc95e736d4ddc76) Tomas Bjerre)  
+- gradle 9 ([0badc](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/0badc177417689b) Tomas Bjerre)  
+### Other changes
+
+**Fix broken Maven Central badge in README**
+
+* maven-badges.herokuapp.com is down; switch to img.shields.io badge 
+* linking to search.maven.org. 
+* Co-Authored-By: Claude Sonnet 5 &lt;noreply@anthropic.com&gt; 
+* Claude-Session: https://claude.ai/code/session_011PGVf85V1VhJj4oM3rKh7b 
+
+[ed9de](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/ed9de4d974acc29) Tomas Bjerre *2026-09-13 08:52:01*
+
+
 ## Unreleased ()
 
 ### Bug Fixes
