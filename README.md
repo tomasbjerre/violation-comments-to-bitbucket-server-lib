@@ -4,6 +4,8 @@
 
 This is a library that adds violation comments from static code analysis to Bitbucket Server.
 
+> **Note:** Starting with version `3.x.y`, this plugin requires Java 17 or later.
+
 It uses [Violation Comments Lib](https://github.com/tomasbjerre/violation-comments-lib) and supports the same formats as [Violations Lib](https://github.com/tomasbjerre/violations-lib).
  
 Very easy to use with a nice builder pattern

@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerComment;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerDiff;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerDiffResponse;
@@ -54,7 +54,7 @@ public class BitbucketServerClientTest {
   private String invoked;
   private final String path = "anypath";
 
-  @Before
+  @BeforeEach
   public void before() {
     BitbucketServerClient.setBitbucketServerInvoker(
         new BitbucketServerInvoker() {

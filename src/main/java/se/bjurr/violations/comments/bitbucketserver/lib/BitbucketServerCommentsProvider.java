@@ -1,23 +1,23 @@
 package se.bjurr.violations.comments.bitbucketserver.lib;
 
-import static com.google.common.cache.CacheBuilder.newBuilder;
 import static java.util.concurrent.TimeUnit.MINUTES;
 import static java.util.logging.Level.INFO;
 import static java.util.logging.Level.SEVERE;
 import static se.bjurr.violations.comments.bitbucketserver.lib.client.model.DIFFTYPE.ADDED;
 import static se.bjurr.violations.lib.util.Utils.isNullOrEmpty;
 
-import com.google.common.cache.CacheLoader;
-import com.google.common.cache.LoadingCache;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.BitbucketServerClient;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerComment;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerDiff;
@@ -38,23 +38,15 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
 
   private final BitbucketServerClient client;
 
-  private final LoadingCache<String, BitbucketServerDiffResponse> diffResponse =
-      newBuilder()
-          .maximumSize(100)
-          .expireAfterWrite(2, MINUTES)
-          .build(
-              new CacheLoader<String, BitbucketServerDiffResponse>() {
-                @Override
-                public BitbucketServerDiffResponse load(final String path) {
-                  return BitbucketServerCommentsProvider.this.client.pullRequestDiff(path);
-                }
-              });
+  private final ExpiringCache<String, BitbucketServerDiffResponse> diffResponse;
 
   private final ViolationCommentsToBitbucketServerApi violationCommentsToBitbucketApi;
   private final ViolationsLogger violationsLogger;
 
   BitbucketServerCommentsProvider() {
     this.client = null;
+    this.diffResponse =
+        new ExpiringCache<>(100, 2, MINUTES, path -> this.client.pullRequestDiff(path));
     this.violationCommentsToBitbucketApi = null;
     this.violationsLogger = null;
   }
@@ -93,6 +85,8 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
             proxyHostPort,
             proxyUser,
             proxyPassword);
+    this.diffResponse =
+        new ExpiringCache<>(100, 2, MINUTES, path -> this.client.pullRequestDiff(path));
     this.violationCommentsToBitbucketApi = violationCommentsToBitbucketApi;
   }
 
@@ -298,5 +292,49 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
   @Override
   public Integer getMaxNumberOfViolations() {
     return this.violationCommentsToBitbucketApi.getMaxNumberOfViolations();
+  }
+
+  /** A size-bounded, time-expiring memoizing cache. */
+  private static final class ExpiringCache<K, V> {
+    private final long ttlMillis;
+    private final Function<K, V> loader;
+    private final Map<K, Entry<V>> entries;
+
+    ExpiringCache(
+        final int maximumSize,
+        final long ttl,
+        final TimeUnit ttlUnit,
+        final Function<K, V> loader) {
+      this.ttlMillis = ttlUnit.toMillis(ttl);
+      this.loader = loader;
+      this.entries =
+          new LinkedHashMap<K, Entry<V>>(16, 0.75f, true) {
+            @Override
+            protected boolean removeEldestEntry(final Map.Entry<K, Entry<V>> eldest) {
+              return this.size() > maximumSize;
+            }
+          };
+    }
+
+    synchronized V get(final K key) {
+      final Entry<V> cached = this.entries.get(key);
+      final long now = System.currentTimeMillis();
+      if (cached != null && now - cached.createdAt < this.ttlMillis) {
+        return cached.value;
+      }
+      final V value = this.loader.apply(key);
+      this.entries.put(key, new Entry<>(value, now));
+      return value;
+    }
+
+    private static final class Entry<V> {
+      private final V value;
+      private final long createdAt;
+
+      Entry(final V value, final long createdAt) {
+        this.value = value;
+        this.createdAt = createdAt;
+      }
+    }
   }
 }

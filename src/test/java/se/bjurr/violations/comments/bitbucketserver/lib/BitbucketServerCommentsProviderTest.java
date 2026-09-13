@@ -4,8 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerDiff;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.DIFFTYPE;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.DiffDestination;
@@ -18,7 +18,7 @@ public class BitbucketServerCommentsProviderTest {
 
   private BitbucketServerCommentsProvider sut;
 
-  @Before
+  @BeforeEach
   public void before() {
     sut = new BitbucketServerCommentsProvider();
   }

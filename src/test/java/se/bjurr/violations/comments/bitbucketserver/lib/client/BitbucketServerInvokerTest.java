@@ -3,7 +3,7 @@ package se.bjurr.violations.comments.bitbucketserver.lib.client;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.net.URI;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class BitbucketServerInvokerTest {
 
