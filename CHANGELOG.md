@@ -1,3 +1,25 @@
+## 3.1.0 (2026-09-14)
+
+### Features
+
+-  **ci**  add draft/publish release workflow ([6eec6](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/6eec609ff9b73a1) Tomas Bjerre)  
+
+### Dependency updates
+
+- update gradle-conventions to 2.2.1 and gradle wrapper to 9.7.1 ([8de1e](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/8de1e1ea6ea34be) Tomas Bjerre)  
+### Other changes
+
+**Superseded by centralized publish-draft-releases.yaml in .github**
+
+
+[05de5](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/05de599a07fb728) Tomas Bjerre *2026-09-14 19:58:49*
+
+**Auto-publish pending draft releases weekly**
+
+
+[1d6bf](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/1d6bfbe4963b968) Tomas Bjerre *2026-09-14 19:47:46*
+
+
 ## 3.0.0 (2026-09-13)
 
 ### Breaking changes
