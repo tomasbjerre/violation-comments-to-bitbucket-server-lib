@@ -1,3 +1,18 @@
+## 3.2.0 (2026-09-17)
+
+### Features
+
+-  resolve tasks instead of removing comments that have them ([7482c](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/7482c6ca5138263) Tomas Bjerre)  
+
+### Other changes
+
+**Merge pull request #18 from tomasbjerre/feat/resolve-tasks-instead-of-removing**
+
+* feat: resolve tasks instead of removing comments that have them 
+
+[78fd5](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/78fd5a45b7f7e2a) Tomas Bjerre *2026-09-17 18:54:34*
+
+
 ## 3.1.0 (2026-09-14)
 
 ### Features
