@@ -277,6 +277,13 @@ public class BitbucketServerClient {
         null);
   }
 
+  public void resolveTask(final BitbucketServerTask task) {
+    this.doInvokeUrl(
+        this.getBitbucketServerApiBase() + "/tasks/" + task.getId(),
+        BitbucketServerInvoker.Method.PUT,
+        "{ \"state\": \"RESOLVED\" }");
+  }
+
   public void commentCreateTask(
       final BitbucketServerComment comment, final String changedFile, final int line) {
     final String changedFileName = new File(changedFile).getName();
