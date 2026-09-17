@@ -14,9 +14,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import se.bjurr.violations.comments.bitbucketserver.lib.client.BitbucketServerInvoker.Method;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerComment;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerDiff;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerDiffResponse;
+import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerTask;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.DIFFTYPE;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.DiffHunk;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.Segment;
@@ -52,6 +54,8 @@ public class BitbucketServerClientTest {
           null,
           null);
   private String invoked;
+  private Method invokedMethod;
+  private String invokedPostContent;
   private final String path = "anypath";
 
   @BeforeEach
@@ -68,6 +72,8 @@ public class BitbucketServerClientTest {
               final String bitbucketServerPassword,
               final ProxyConfig proxyConfig) {
             BitbucketServerClientTest.this.invoked = url;
+            BitbucketServerClientTest.this.invokedMethod = method;
+            BitbucketServerClientTest.this.invokedPostContent = postContent;
             return BitbucketServerClientTest.this.mockedJson;
           }
         });
@@ -257,6 +263,17 @@ public class BitbucketServerClientTest {
         .hasSize(1);
     assertThat(this.filterSegments(diffs.get(0), CONTEXT)) //
         .hasSize(3);
+  }
+
+  @Test
+  public void testResolveTask() {
+    this.sut.resolveTask(new BitbucketServerTask(42, "please double check this"));
+
+    assertThat(this.invokedMethod) //
+        .isEqualTo(Method.PUT);
+    assertThat(this.invoked).isEqualTo("bitbucketServerBaseUrl/rest/api/1.0/tasks/42");
+    assertThat(this.invokedPostContent) //
+        .isEqualTo("{ \"state\": \"RESOLVED\" }");
   }
 
   @Test

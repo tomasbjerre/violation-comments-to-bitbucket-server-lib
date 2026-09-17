@@ -16,8 +16,10 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -28,7 +30,8 @@ public class BitbucketServerInvoker {
   public enum Method {
     DELETE,
     GET,
-    POST
+    POST,
+    PUT
   }
 
   private CertificateConfig certificateConfig = null;
@@ -98,6 +101,9 @@ public class BitbucketServerInvoker {
         case POST:
           request = new HttpPost();
           break;
+        case PUT:
+          request = new HttpPut();
+          break;
         default:
           throw new IllegalArgumentException(
               "Unsupported http method:\n" + url + "\n" + method + "\n" + postContent);
@@ -111,9 +117,11 @@ public class BitbucketServerInvoker {
       request.addHeader("Content-Type", "application/json");
       request.addHeader("Accept", "application/json");
 
-      if (request instanceof HttpPost && postContent != null && !postContent.isEmpty()) {
+      if ((request instanceof HttpPost || request instanceof HttpPut)
+          && postContent != null
+          && !postContent.isEmpty()) {
         final StringEntity entity = new StringEntity(postContent, UTF_8);
-        ((HttpPost) request).setEntity(entity);
+        ((HttpEntityEnclosingRequestBase) request).setEntity(entity);
       }
 
       final HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();

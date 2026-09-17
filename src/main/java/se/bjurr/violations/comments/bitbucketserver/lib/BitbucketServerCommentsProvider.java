@@ -252,7 +252,32 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
     return this.violationCommentsToBitbucketApi.getShouldCommentOnlyChangedFiles();
   }
 
+  /**
+   * Removes the given comment, and any replies to it - unless the comment, or one of its replies,
+   * currently has a task attached (whether created by this tool or by a user converting a comment
+   * into one via the Bitbucket Server UI). Tasks can't be deleted along with their anchor comment
+   * without losing the human-tracked "this needs following up on" signal they represent, so in that
+   * case every task in the thread is resolved instead, and nothing is removed.
+   */
   private void removeComment(final BitbucketServerComment comment) {
+    final Deque<BitbucketServerComment> commentStack = flattenThread(comment);
+
+    if (anyTaskInThread(commentStack)) {
+      for (final BitbucketServerComment stackComment : commentStack) {
+        this.resolveTasks(stackComment);
+      }
+      return;
+    }
+
+    final Iterator<BitbucketServerComment> commentStackIt = commentStack.descendingIterator();
+    while (commentStackIt.hasNext()) {
+      final BitbucketServerComment stackComment = commentStackIt.next();
+      this.client.pullRequestRemoveComment(stackComment.getId(), stackComment.getVersion());
+    }
+  }
+
+  /** The given comment, followed by every reply to it, replies-to-replies included. */
+  static Deque<BitbucketServerComment> flattenThread(final BitbucketServerComment comment) {
     final Deque<BitbucketServerComment> commentStack = new ArrayDeque<>();
     commentStack.add(comment);
 
@@ -266,21 +291,20 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
         subComments.addAll(subComment.getComments());
       }
     }
-
-    final Iterator<BitbucketServerComment> commentStackIt = commentStack.descendingIterator();
-    while (commentStackIt.hasNext()) {
-      final BitbucketServerComment stackComment = commentStackIt.next();
-
-      this.removeTasks(stackComment);
-      this.client.pullRequestRemoveComment(stackComment.getId(), stackComment.getVersion());
-    }
+    return commentStack;
   }
 
-  private void removeTasks(final BitbucketServerComment comment) {
-    final List<BitbucketServerTask> bitbucketServerTasks = comment.getTasks();
+  /**
+   * Whether any comment in the thread currently has a task attached - regardless of whether this
+   * tool created it or a user converted a comment into one via the Bitbucket Server UI.
+   */
+  static boolean anyTaskInThread(final Collection<BitbucketServerComment> commentThread) {
+    return commentThread.stream().anyMatch(c -> !c.getTasks().isEmpty());
+  }
 
-    for (final BitbucketServerTask bitbucketServerTask : bitbucketServerTasks) {
-      this.client.removeTask(bitbucketServerTask);
+  private void resolveTasks(final BitbucketServerComment comment) {
+    for (final BitbucketServerTask bitbucketServerTask : comment.getTasks()) {
+      this.client.resolveTask(bitbucketServerTask);
     }
   }
 

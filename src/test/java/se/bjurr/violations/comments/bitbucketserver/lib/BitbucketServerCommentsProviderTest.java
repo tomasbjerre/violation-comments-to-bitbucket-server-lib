@@ -3,10 +3,13 @@ package se.bjurr.violations.comments.bitbucketserver.lib;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerComment;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerDiff;
+import se.bjurr.violations.comments.bitbucketserver.lib.client.model.BitbucketServerTask;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.DIFFTYPE;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.DiffDestination;
 import se.bjurr.violations.comments.bitbucketserver.lib.client.model.DiffHunk;
@@ -75,5 +78,45 @@ public class BitbucketServerCommentsProviderTest {
     context = 1;
     actual = sut.shouldComment(changedFile, changedLine, context, diffs);
     assertThat(actual).isTrue();
+  }
+
+  @Test
+  public void testAnyTaskInThreadIsFalseWhenNoCommentHasATask() {
+    BitbucketServerComment parent = new BitbucketServerComment(0, "parent", 1);
+    BitbucketServerComment reply = new BitbucketServerComment(0, "reply", 2);
+    parent.setComments(List.of(reply));
+
+    Deque<BitbucketServerComment> thread = BitbucketServerCommentsProvider.flattenThread(parent);
+
+    assertThat(BitbucketServerCommentsProvider.anyTaskInThread(thread)) //
+        .isFalse();
+  }
+
+  @Test
+  public void testAnyTaskInThreadIsTrueWhenTheParentHasATask() {
+    BitbucketServerComment parent = new BitbucketServerComment(0, "parent", 1);
+    parent.setTasks(List.of(new BitbucketServerTask(10, "follow up")));
+
+    Deque<BitbucketServerComment> thread = BitbucketServerCommentsProvider.flattenThread(parent);
+
+    assertThat(BitbucketServerCommentsProvider.anyTaskInThread(thread)) //
+        .isTrue();
+  }
+
+  @Test
+  public void testAnyTaskInThreadIsTrueWhenAUserConvertedAReplyIntoATask() {
+    // The tool never created a task - a user did, via the Bitbucket Server UI, on a reply. The
+    // comment we fetch live from the API reflects that regardless of any tool-side config.
+    BitbucketServerComment parent = new BitbucketServerComment(0, "parent", 1);
+    BitbucketServerComment reply = new BitbucketServerComment(0, "reply", 2);
+    reply.setTasks(List.of(new BitbucketServerTask(11, "please double check this")));
+    parent.setComments(List.of(reply));
+
+    Deque<BitbucketServerComment> thread = BitbucketServerCommentsProvider.flattenThread(parent);
+
+    assertThat(thread) //
+        .hasSize(2);
+    assertThat(BitbucketServerCommentsProvider.anyTaskInThread(thread)) //
+        .isTrue();
   }
 }
