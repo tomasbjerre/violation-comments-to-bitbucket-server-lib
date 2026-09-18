@@ -1,10 +1,12 @@
 package se.bjurr.violations.comments.bitbucketserver.lib.client;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static se.bjurr.violations.comments.bitbucketserver.lib.client.model.DIFFTYPE.ADDED;
 import static se.bjurr.violations.comments.bitbucketserver.lib.client.model.DIFFTYPE.CONTEXT;
 import static se.bjurr.violations.comments.bitbucketserver.lib.client.model.DIFFTYPE.REMOVED;
 
+import com.jayway.jsonpath.JsonPath;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -274,6 +276,25 @@ public class BitbucketServerClientTest {
     assertThat(this.invoked).isEqualTo("bitbucketServerBaseUrl/rest/api/1.0/tasks/42");
     assertThat(this.invokedPostContent) //
         .isEqualTo("{ \"state\": \"RESOLVED\" }");
+  }
+
+  @Test
+  public void testCommentCreateTaskSendsValidJson() {
+    this.sut.commentCreateTask(
+        new BitbucketServerComment(0, "no not ok!", 50),
+        "src/main/java/com/test/SomeClass.java",
+        5);
+
+    assertThat(this.invokedMethod) //
+        .isEqualTo(Method.POST);
+    assertThat(this.invoked).isEqualTo("bitbucketServerBaseUrl/rest/api/1.0/tasks");
+    assertThat(this.invokedPostContent)
+        .isEqualTo(
+            "{ \"anchor\": { \"id\": 50, \"type\": \"COMMENT\" }, \"text\": \"[Violation] SomeClass.java L5\" }");
+    // A stray trailing '}' here previously made this invalid JSON, so the request would be
+    // silently rejected by a real server (BitbucketServerInvoker only logs non-2xx responses).
+    assertThatCode(() -> JsonPath.parse(this.invokedPostContent).json()) //
+        .doesNotThrowAnyException();
   }
 
   @Test

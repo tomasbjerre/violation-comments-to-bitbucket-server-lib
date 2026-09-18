@@ -1,0 +1,59 @@
+{
+  "anchor": {
+    "properties": {
+      "repositoryId": 1
+    },
+    "id": 50,
+    "version": 0,
+    "text": "[Violation] no not ok!",
+    "author": {
+      "name": "admin",
+      "emailAddress": "admin@example.com",
+      "id": 1,
+      "displayName": "Administrator",
+      "active": true,
+      "slug": "admin",
+      "type": "NORMAL",
+      "links": {
+        "self": [
+          {
+            "href": "http://localhost:7990/bitbucket/users/admin"
+          }
+        ]
+      }
+    },
+    "createdDate": 1550346500000,
+    "updatedDate": 1550346500000,
+    "comments": [],
+    "tasks": [],
+    "permittedOperations": {
+      "editable": true,
+      "deletable": true
+    }
+  },
+  "author": {
+    "name": "admin",
+    "emailAddress": "admin@example.com",
+    "id": 1,
+    "displayName": "Administrator",
+    "active": true,
+    "slug": "admin",
+    "type": "NORMAL",
+    "links": {
+      "self": [
+        {
+          "href": "http://localhost:7990/bitbucket/users/admin"
+        }
+      ]
+    }
+  },
+  "createdDate": 1550346501000,
+  "id": 6,
+  "permittedOperations": {
+    "deletable": true,
+    "editable": true,
+    "transitionable": true
+  },
+  "text": "[Violation] SomeClass.java L5",
+  "state": "OPEN"
+}

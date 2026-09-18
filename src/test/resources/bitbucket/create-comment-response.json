@@ -1,0 +1,41 @@
+{
+  "properties": {
+    "repositoryId": 1
+  },
+  "id": 50,
+  "version": 0,
+  "text": "[Violation] no not ok!",
+  "author": {
+    "name": "admin",
+    "emailAddress": "admin@example.com",
+    "id": 1,
+    "displayName": "Administrator",
+    "active": true,
+    "slug": "admin",
+    "type": "NORMAL",
+    "links": {
+      "self": [
+        {
+          "href": "http://localhost:7990/bitbucket/users/admin"
+        }
+      ]
+    }
+  },
+  "createdDate": 1550346500000,
+  "updatedDate": 1550346500000,
+  "comments": [],
+  "anchor": {
+    "fromHash": "0a943a29376f2336b78312d99e65da17048951db",
+    "toHash": "3ac25b2582904e4fc3e059cfb6d0ef518c4e2a7a",
+    "line": 5,
+    "lineType": "ADDED",
+    "fileType": "TO",
+    "path": "src/main/java/com/test/SomeClass.java",
+    "diffType": "EFFECTIVE"
+  },
+  "tasks": [],
+  "permittedOperations": {
+    "editable": true,
+    "deletable": true
+  }
+}
