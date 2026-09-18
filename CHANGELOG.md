@@ -1,3 +1,22 @@
+## 3.2.1 (2026-09-18)
+
+### Bug Fixes
+
+-  **client**  send valid JSON from commentCreateTask() ([f6fd6](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/f6fd6fea1a69033) Tomas Bjerre)  
+
+### Dependency updates
+
+- update plugin se.bjurr.gradle.bundle-jar to v2.3.0 (#20) ([1782d](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/1782d8594ce36f8) renovate[bot])  
+- update dependency se.bjurr.violations:violation-comments-lib to v1.111.0 (#19) ([673d9](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/673d9bb7b0e0f35) renovate[bot])  
+### Other changes
+
+**Merge pull request #21 from tomasbjerre/test/wiremock-integration-tests**
+
+* test: add WireMock integration tests over real HTTP 
+
+[b2276](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/b2276494286d890) Tomas Bjerre *2026-09-18 05:53:52*
+
+
 ## 3.2.0 (2026-09-17)
 
 ### Features
