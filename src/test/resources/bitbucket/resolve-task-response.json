@@ -1,0 +1,31 @@
+{
+  "anchor": {
+    "id": 41,
+    "type": "COMMENT"
+  },
+  "author": {
+    "name": "admin",
+    "emailAddress": "admin@example.com",
+    "id": 1,
+    "displayName": "Administrator",
+    "active": true,
+    "slug": "admin",
+    "type": "NORMAL",
+    "links": {
+      "self": [
+        {
+          "href": "http://localhost:7990/bitbucket/users/admin"
+        }
+      ]
+    }
+  },
+  "createdDate": 1550346400000,
+  "id": 5,
+  "permittedOperations": {
+    "deletable": false,
+    "editable": false,
+    "transitionable": true
+  },
+  "text": "please double check this",
+  "state": "RESOLVED"
+}

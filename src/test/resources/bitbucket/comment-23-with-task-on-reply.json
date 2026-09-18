@@ -1,0 +1,97 @@
+{
+  "properties": {
+    "repositoryId": 1
+  },
+  "id": 23,
+  "version": 0,
+  "text": "this is another comment\n",
+  "author": {
+    "name": "admin",
+    "emailAddress": "admin@example.com",
+    "id": 1,
+    "displayName": "Administrator",
+    "active": true,
+    "slug": "admin",
+    "type": "NORMAL",
+    "links": {
+      "self": [
+        {
+          "href": "http://localhost:7990/bitbucket/users/admin"
+        }
+      ]
+    }
+  },
+  "createdDate": 1550346390735,
+  "updatedDate": 1550346390735,
+  "comments": [
+    {
+      "properties": {
+        "repositoryId": 1
+      },
+      "id": 41,
+      "version": 0,
+      "text": "please double check this",
+      "author": {
+        "name": "admin",
+        "emailAddress": "admin@example.com",
+        "id": 1,
+        "displayName": "Administrator",
+        "active": true,
+        "slug": "admin",
+        "type": "NORMAL",
+        "links": {
+          "self": [
+            {
+              "href": "http://localhost:7990/bitbucket/users/admin"
+            }
+          ]
+        }
+      },
+      "createdDate": 1550346395000,
+      "updatedDate": 1550346395000,
+      "comments": [],
+      "tasks": [
+        {
+          "anchor": {
+            "id": 41,
+            "type": "COMMENT"
+          },
+          "author": {
+            "name": "admin",
+            "emailAddress": "admin@example.com",
+            "id": 1,
+            "displayName": "Administrator",
+            "active": true,
+            "slug": "admin",
+            "type": "NORMAL",
+            "links": {
+              "self": [
+                {
+                  "href": "http://localhost:7990/bitbucket/users/admin"
+                }
+              ]
+            }
+          },
+          "createdDate": 1550346400000,
+          "id": 5,
+          "permittedOperations": {
+            "deletable": true,
+            "editable": true,
+            "transitionable": true
+          },
+          "text": "please double check this",
+          "state": "OPEN"
+        }
+      ],
+      "permittedOperations": {
+        "editable": true,
+        "deletable": true
+      }
+    }
+  ],
+  "tasks": [],
+  "permittedOperations": {
+    "editable": true,
+    "deletable": true
+  }
+}
