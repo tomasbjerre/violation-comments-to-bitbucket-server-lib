@@ -295,7 +295,7 @@ public class BitbucketServerClient {
             + changedFileName
             + " L"
             + line
-            + "\" }}";
+            + "\" }";
 
     this.doInvokeUrl(this.getBitbucketServerApiBase() + "/tasks", Method.POST, taskPostContent);
   }
