@@ -2,13 +2,11 @@ package se.bjurr.violations.comments.bitbucketserver.lib.client;
 
 import static se.bjurr.violations.lib.util.Utils.isNullOrEmpty;
 
-import org.apache.http.HttpHost;
-import org.apache.http.auth.AuthScope;
-import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.client.CredentialsProvider;
-import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.impl.client.ProxyAuthenticationStrategy;
+import java.net.Authenticator;
+import java.net.InetSocketAddress;
+import java.net.PasswordAuthentication;
+import java.net.ProxySelector;
+import java.net.http.HttpClient;
 
 public class ProxyConfig {
 
@@ -25,21 +23,22 @@ public class ProxyConfig {
     this.proxyPassword = proxyPassword;
   }
 
-  public HttpClientBuilder addTo(HttpClientBuilder builder) {
+  public HttpClient.Builder addTo(HttpClient.Builder builder) {
     if (!isNullOrEmpty(proxyHostNameOrIp)) {
-      HttpHost proxyHost = new HttpHost(proxyHostNameOrIp, proxyHostPort);
-      builder = builder.setProxy(proxyHost);
+      builder =
+          builder.proxy(ProxySelector.of(new InetSocketAddress(proxyHostNameOrIp, proxyHostPort)));
 
       if (!isNullOrEmpty(proxyUser)) {
-        CredentialsProvider credsProvider = new BasicCredentialsProvider();
-        credsProvider.setCredentials(
-            new AuthScope(proxyHostNameOrIp, proxyHostPort),
-            new UsernamePasswordCredentials(proxyUser, proxyPassword));
-
         builder =
-            builder
-                .setDefaultCredentialsProvider(credsProvider)
-                .setProxyAuthenticationStrategy(new ProxyAuthenticationStrategy());
+            builder.authenticator(
+                new Authenticator() {
+                  @Override
+                  protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(
+                        proxyUser,
+                        proxyPassword == null ? new char[0] : proxyPassword.toCharArray());
+                  }
+                });
       }
     }
     return builder;

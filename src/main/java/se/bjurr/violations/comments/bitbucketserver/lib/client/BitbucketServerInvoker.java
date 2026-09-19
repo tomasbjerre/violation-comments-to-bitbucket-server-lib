@@ -3,29 +3,23 @@ package se.bjurr.violations.comments.bitbucketserver.lib.client;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.logging.Level.INFO;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.CookieHandler;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
 import java.net.URI;
 import java.net.URL;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpRequest.BodyPublishers;
+import java.net.http.HttpResponse;
+import java.net.http.HttpResponse.BodyHandlers;
 import java.nio.charset.StandardCharsets;
+import java.time.Duration;
 import java.util.Base64;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.config.RequestConfig;
-import org.apache.http.client.methods.HttpDelete;
-import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpPut;
-import org.apache.http.client.methods.HttpRequestBase;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.HttpClientBuilder;
 import se.bjurr.violations.lib.ViolationsLogger;
 
 public class BitbucketServerInvoker {
+
+  private static final Duration TIMEOUT = Duration.ofMillis(30_000);
 
   public enum Method {
     DELETE,
@@ -88,82 +82,66 @@ public class BitbucketServerInvoker {
       final String authorizationValue,
       final ProxyConfig proxyConfig) {
     try {
-      CookieHandler.setDefault(new CookieManager(null, CookiePolicy.ACCEPT_ALL));
-      // Preparation of the request
-      HttpRequestBase request;
-      switch (method) {
-        case DELETE:
-          request = new HttpDelete();
-          break;
-        case GET:
-          request = new HttpGet();
-          break;
-        case POST:
-          request = new HttpPost();
-          break;
-        case PUT:
-          request = new HttpPut();
-          break;
-        default:
-          throw new IllegalArgumentException(
-              "Unsupported http method:\n" + url + "\n" + method + "\n" + postContent);
-      }
-      request.setURI(this.convertToURIEscapingIllegalCharacters(url));
-      final RequestConfig.Builder requestBuilder =
-          RequestConfig.custom().setConnectionRequestTimeout(30_000).setConnectTimeout(30_000);
-      request.setConfig(requestBuilder.build());
-      request.addHeader("Authorization", authorizationValue);
-      request.addHeader("X-Atlassian-Token", "no-check");
-      request.addHeader("Content-Type", "application/json");
-      request.addHeader("Accept", "application/json");
-
-      if ((request instanceof HttpPost || request instanceof HttpPut)
-          && postContent != null
-          && !postContent.isEmpty()) {
-        final StringEntity entity = new StringEntity(postContent, UTF_8);
-        ((HttpEntityEnclosingRequestBase) request).setEntity(entity);
-      }
-
-      final HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
+      final HttpClient.Builder httpClientBuilder =
+          HttpClient.newBuilder()
+              .connectTimeout(TIMEOUT)
+              .cookieHandler(new CookieManager(null, CookiePolicy.ACCEPT_ALL));
       proxyConfig.addTo(httpClientBuilder);
       if (this.certificateConfig != null) {
         this.certificateConfig.addTo(httpClientBuilder);
       }
 
-      final HttpClient httpClient = httpClientBuilder.build();
+      final HttpRequest.Builder requestBuilder =
+          HttpRequest.newBuilder()
+              .uri(this.convertToURIEscapingIllegalCharacters(url))
+              .timeout(TIMEOUT)
+              .header("Authorization", authorizationValue)
+              .header("X-Atlassian-Token", "no-check")
+              .header("Content-Type", "application/json")
+              .header("Accept", "application/json");
 
-      // Execute the request and get the response
-      final HttpResponse response = httpClient.execute(request);
-      String statusCode = "";
-      String reasonPhrase = "";
-      if (response.getStatusLine() != null) {
-        statusCode = "" + response.getStatusLine().getStatusCode();
-        reasonPhrase = response.getStatusLine().getReasonPhrase();
+      final boolean hasBody = postContent != null && !postContent.isEmpty();
+      switch (method) {
+        case DELETE:
+          requestBuilder.DELETE();
+          break;
+        case GET:
+          requestBuilder.GET();
+          break;
+        case POST:
+          requestBuilder.POST(
+              hasBody ? BodyPublishers.ofString(postContent, UTF_8) : BodyPublishers.noBody());
+          break;
+        case PUT:
+          requestBuilder.PUT(
+              hasBody ? BodyPublishers.ofString(postContent, UTF_8) : BodyPublishers.noBody());
+          break;
+        default:
+          throw new IllegalArgumentException(
+              "Unsupported http method:\n" + url + "\n" + method + "\n" + postContent);
       }
+
+      final HttpClient httpClient = httpClientBuilder.build();
+      final HttpResponse<String> response =
+          httpClient.send(requestBuilder.build(), BodyHandlers.ofString(UTF_8));
+
+      final String statusCode = "" + response.statusCode();
       final boolean wasNotOk = !statusCode.startsWith("2");
       if (wasNotOk) {
         violationsLogger.log(
-            INFO,
-            method + " " + url + " " + statusCode + " " + reasonPhrase + "\nSent:\n" + postContent);
+            INFO, method + " " + url + " " + statusCode + "\nSent:\n" + postContent);
       } else {
-        violationsLogger.log(INFO, method + " " + url + " " + statusCode + " " + reasonPhrase);
+        violationsLogger.log(INFO, method + " " + url + " " + statusCode);
       }
-      if (response.getEntity() == null) {
+
+      final String json = response.body();
+      if (json == null || json.isEmpty()) {
         return null;
       }
-      try (BufferedReader bufferedReader =
-          new BufferedReader(new InputStreamReader(response.getEntity().getContent(), UTF_8))) {
-        final StringBuilder stringBuilder = new StringBuilder();
-        String line;
-        while ((line = bufferedReader.readLine()) != null) {
-          stringBuilder.append(line + "\n");
-        }
-        final String json = stringBuilder.toString();
-        if (wasNotOk) {
-          violationsLogger.log(INFO, "Response:\n" + json);
-        }
-        return json;
+      if (wasNotOk) {
+        violationsLogger.log(INFO, "Response:\n" + json);
       }
+      return json;
     } catch (final Throwable e) {
       throw new RuntimeException("Error calling:\n" + url + "\n" + method + "\n" + postContent, e);
     }
