@@ -116,9 +116,6 @@ public class BitbucketServerInvoker {
           requestBuilder.PUT(
               hasBody ? BodyPublishers.ofString(postContent, UTF_8) : BodyPublishers.noBody());
           break;
-        default:
-          throw new IllegalArgumentException(
-              "Unsupported http method:\n" + url + "\n" + method + "\n" + postContent);
       }
 
       final HttpClient httpClient = httpClientBuilder.build();
@@ -149,15 +146,13 @@ public class BitbucketServerInvoker {
 
   URI convertToURIEscapingIllegalCharacters(final String string) throws Exception {
     final URL url = new URL(string);
-    final URI uri =
-        new URI(
-            url.getProtocol(),
-            url.getUserInfo(),
-            url.getHost(),
-            url.getPort(),
-            url.getPath(),
-            url.getQuery(),
-            url.getRef());
-    return uri;
+    return new URI(
+        url.getProtocol(),
+        url.getUserInfo(),
+        url.getHost(),
+        url.getPort(),
+        url.getPath(),
+        url.getQuery(),
+        url.getRef());
   }
 }

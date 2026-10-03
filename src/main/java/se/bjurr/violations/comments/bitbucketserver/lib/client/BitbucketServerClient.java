@@ -11,7 +11,6 @@ import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import net.minidev.json.JSONArray;
@@ -207,8 +206,7 @@ public class BitbucketServerClient {
 
   public List<BitbucketServerComment> pullRequestComments() {
     final String url = this.getBitbucketServerPullRequestBase() + "/activities?limit=9999";
-    final List<BitbucketServerComment> comments = this.getComments(url, "$.values.[*].comment");
-    return comments;
+    return this.getComments(url, "$.values.[*].comment");
   }
 
   public List<BitbucketServerComment> pullRequestComments(final String changedFile) {
@@ -323,15 +321,15 @@ public class BitbucketServerClient {
     }
 
     List<Map<?, ?>> tasks = new ArrayList<>();
-    final JSONArray jsonArrayTasks = (JSONArray) parsed.get("tasks");
+    final List<?> jsonArrayTasks = (JSONArray) parsed.get("tasks");
     if (jsonArrayTasks != null) {
-      tasks = Arrays.asList(jsonArrayTasks.toArray(new LinkedHashMap<?, ?>[0]));
+      tasks = Arrays.asList(jsonArrayTasks.toArray(new Map<?, ?>[0]));
     }
 
     List<Map<?, ?>> subComments = new ArrayList<>();
-    final JSONArray jsonArraySubComments = (JSONArray) parsed.get("comments");
+    final List<?> jsonArraySubComments = (JSONArray) parsed.get("comments");
     if (jsonArraySubComments != null) {
-      subComments = Arrays.asList(jsonArraySubComments.toArray(new LinkedHashMap<?, ?>[0]));
+      subComments = Arrays.asList(jsonArraySubComments.toArray(new Map<?, ?>[0]));
     }
 
     final List<BitbucketServerTask> bitbucketServerTasks = this.toBitbucketServerTasks(tasks);
