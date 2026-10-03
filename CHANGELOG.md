@@ -1,3 +1,8 @@
+## 3.2.3 (2026-10-03)
+
+### Dependency updates
+
+- update plugin se.bjurr.gradle.bundle-jar to v2.4.3 (#25) ([227d7](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/227d78a5f507ee3) renovate[bot])  
 ## 3.2.1 (2026-09-18)
 
 ### Bug Fixes
