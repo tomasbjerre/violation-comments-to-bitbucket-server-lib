@@ -45,8 +45,10 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
 
   BitbucketServerCommentsProvider() {
     this.client = null;
+    // A method reference would resolve this.client eagerly (null here, for tests), unlike
+    // this lambda's deferred evaluation.
     this.diffResponse =
-        new ExpiringCache<>(100, 2, MINUTES, path -> this.client.pullRequestDiff(path));
+        new ExpiringCache<>(100, 2, MINUTES, path -> this.client.pullRequestDiff(path)); // NOPMD
     this.violationCommentsToBitbucketApi = null;
     this.violationsLogger = null;
   }
@@ -85,8 +87,7 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
             proxyHostPort,
             proxyUser,
             proxyPassword);
-    this.diffResponse =
-        new ExpiringCache<>(100, 2, MINUTES, path -> this.client.pullRequestDiff(path));
+    this.diffResponse = new ExpiringCache<>(100, 2, MINUTES, this.client::pullRequestDiff);
     this.violationCommentsToBitbucketApi = violationCommentsToBitbucketApi;
   }
 
@@ -153,7 +154,7 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
     final List<String> bitbucketServerChangedFiles = this.client.pullRequestChanges();
 
     for (final String changedFile : bitbucketServerChangedFiles) {
-      changedFiles.add(new ChangedFile(changedFile, new ArrayList<String>()));
+      changedFiles.add(new ChangedFile(changedFile, new ArrayList<>()));
     }
 
     return changedFiles;
@@ -332,7 +333,7 @@ public class BitbucketServerCommentsProvider implements CommentsProvider {
       this.ttlMillis = ttlUnit.toMillis(ttl);
       this.loader = loader;
       this.entries =
-          new LinkedHashMap<K, Entry<V>>(16, 0.75f, true) {
+          new LinkedHashMap<>(16, 0.75f, true) {
             @Override
             protected boolean removeEldestEntry(final Map.Entry<K, Entry<V>> eldest) {
               return this.size() > maximumSize;
