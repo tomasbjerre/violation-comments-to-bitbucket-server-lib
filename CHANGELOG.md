@@ -1,3 +1,11 @@
+## 3.2.4 (2026-10-24)
+
+### Dependency updates
+
+- update dependency tools.jackson.core:jackson-databind to v3.2.4 (#30) ([c8fb9](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/c8fb99758fbc115) renovate[bot])  
+- update dependency gradle to v9.8.2 (#29) ([b78ef](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/b78ef64a7c7fc51) renovate[bot])  
+- update dependency gradle to v9.8.1 (#28) ([c588f](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/c588f80afe7dda2) renovate[bot])  
+- update dependency se.bjurr.violations:violation-comments-lib to v1.111.2 (#26) ([9581c](https://github.com/tomasbjerre/violation-comments-to-bitbucket-server-lib/commit/9581c6c630cce68) renovate[bot])  
 ## 3.2.3 (2026-10-03)
 
 ### Dependency updates
